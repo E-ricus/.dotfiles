@@ -181,7 +181,7 @@ vnoremap <leader>pp "+gP
 nnoremap <leader>pp "+gP
 
 " Buffers
-nmap <leader>. :Buffers<CR>
+nmap <leader>b :Buffers<CR>
 nnoremap <leader>k <C-w>k
 nnoremap <leader>h <C-w>h
 nnoremap <leader>l <C-w>l
