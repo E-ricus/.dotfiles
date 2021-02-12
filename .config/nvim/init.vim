@@ -24,6 +24,7 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'RishabhRD/popfix'
 Plug 'RishabhRD/nvim-lsputils'
 " LSP Status
+Plug 'nvim-lua/lsp-status.nvim'
 " Syntax
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
@@ -214,6 +215,14 @@ nnoremap k gk
 
 """ AirLine
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#nvimlsp#enabled = 0
+function! LspStatus() abort
+  let status = luaeval('require("lsp-status").status()')
+  return trim(status)
+endfunction
+call airline#parts#define_function('lsp_status', 'LspStatus')
+call airline#parts#define_condition('lsp_status', 'luaeval("#vim.lsp.buf_get_clients() > 0")')
+let g:airline_section_warning = airline#section#create_right(['lsp_status'])
 
 """ FZF
 " <leader>s for Rg search
@@ -237,17 +246,38 @@ nnoremap <silent> <leader>f :Files<CR>
 " https://github.com/neovim/nvim-lspconfig#rust_analyzer
 lua <<EOF
 
+local lsp_status = require("lsp-status")
+
+-- use LSP SymbolKinds themselves as the kind labels
+local kind_labels_mt = {__index = function(_, k) return k end}
+local kind_labels = {}
+setmetatable(kind_labels, kind_labels_mt)
+
+lsp_status.register_progress()
+lsp_status.config({
+  kind_labels = kind_labels,
+  indicator_errors = "×",
+  indicator_warnings = "!",
+  indicator_info = "i",
+  indicator_hint = "›",
+  -- the default is a wide codepoint which breaks absolute and relative
+  -- line counts if placed before airline's Z section
+  status_symbol = "",
+})
+
 -- nvim_lsp object
 local nvim_lsp = require'lspconfig'
 
 -- function to attach completion when setting up lsp
 local on_attach = function(client)
     require'completion'.on_attach(client)
+    lsp_status.on_attach(client)
 end
 
 -- Enable rust_analyzer
 nvim_lsp.rust_analyzer.setup({ 
     on_attach=on_attach,
+    capabilities=lsp_status.capabilities,
     settings = {
         ["rust-analyzer"] = {
             assist = {
@@ -319,7 +349,7 @@ nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
 
-let g:completion_enable_auto_paren = 1
+"let g:completion_enable_auto_paren = 1
 
 " =============================================================================
 " # Git settings 
