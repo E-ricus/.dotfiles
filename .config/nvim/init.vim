@@ -5,7 +5,7 @@ set rtp+=~/dev/base16-vim/
 " =============================================================================
 call plug#begin()
 " Editor enhancement
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 Plug 'machakann/vim-highlightedyank'
 Plug 'andymass/vim-matchup'
 Plug 'justinmk/vim-sneak'
@@ -61,6 +61,7 @@ set smartcase
 set scrolloff=5
 set mouse=a " Enable mouse usage (all modes) in terminals
 set shortmess+=c " Don't pass messages to |ins-completion-menu|.
+set completeopt=menuone,noinsert,noselect
 set colorcolumn=80 " and give me a colored column
 
 let g:sneak#s_next = 1
@@ -72,13 +73,11 @@ let g:vim_markdown_frontmatter = 1
 syntax on
 set termguicolors
 set background=dark
-let ayucolor="dark"
 hi Normal ctermbg=NONE
-colorscheme ayu
-"let base16colorspace=256
-" Brighter comments
-"call Base16hi("Comment", g:base16_gui09, "", g:base16_cterm09, "", "", "")
-"colorscheme base16-gruvbox-dark-hard
+let base16colorspace=256
+colorscheme base16-gruvbox-dark-hard
+"let ayucolor="dark"
+"colorscheme ayu
 
 " Proper search
 set incsearch
@@ -98,19 +97,6 @@ set updatetime=300
 " =============================================================================
 " # File explorer
 " =============================================================================
-"let g:netrw_banner = 0
-"let g:netrw_liststyle = 3
-"let g:netrw_browse_split = 4
-"let g:netrw_altv = 1
-"let g:netrw_winsize = 25
-""augroup ProjectDrawer
-""  autocmd!
-""  autocmd VimEnter * :Vexplore
-""augroup END
-
-"" Toogle file explorer
-"nmap <silent> <leader><TAB> :Vexplore<CR>
-"xmap <silent> <leader><TAB> :Vexplore<CR>
 nnoremap <leader><TAB> :NERDTreeToggle<CR>
 
 " =============================================================================
@@ -181,7 +167,7 @@ vnoremap <leader>pp "+gP
 nnoremap <leader>pp "+gP
 
 " Buffers
-nmap <leader>. :Buffers<CR>
+nmap <leader>b :Buffers<CR>
 nnoremap <leader>k <C-w>k
 nnoremap <leader>h <C-w>h
 nnoremap <leader>l <C-w>l
@@ -217,26 +203,12 @@ nnoremap k gk
 " =============================================================================
 " # Plugin settings
 " =============================================================================
-
-""" Lightline
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ],
-      \		    [ 'gitbranch' ] ],
-      \ },
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \   'cocstatus': 'coc#status',
-      \	  'gitbranch': 'FugitiveHead'
-      \ },
-      \ }
-function! LightlineFilename()
-  return expand('%:t') !=# '' ? @% : '[No Name]'
-endfunction
+""" AirLine
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#coc#enabled = 1
 
 " Use auocmd to force lightline update.
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+"autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 """ FZF
 " <leader>s for Rg search
@@ -294,9 +266,9 @@ endif
 nmap <leader>rn <Plug>(coc-rename)
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Use `g[` and `g]` to navigate diagnostics
+nmap <silent> g[ <Plug>(coc-diagnostic-prev)
+nmap <silent> g] <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
