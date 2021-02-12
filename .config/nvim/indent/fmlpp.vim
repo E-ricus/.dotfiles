@@ -15,4 +15,3 @@ setlocal autoindent
 
 " Indent after '{' (and other stuff). Ideally this would be further customized.
 setlocal smartindent
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab

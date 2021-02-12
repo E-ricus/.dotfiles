@@ -39,7 +39,7 @@ syn keyword fmlppError set_or_push
 syn keyword fmlppFlow if
 syn keyword fmlppFlow else
 syn keyword fmlppFlow where
-syn keyword fmlppFlow rn
+syn keyword fmlppFlow return
 
 syn keyword fmlppLoop for
 
@@ -53,14 +53,19 @@ syn keyword fmlppAssignment as
 " Literals
 syn match fmlppNumber display "\<[0-9]\+\(\.[0-9]\+\)\?\>"
 syn keyword fmlppBool true false
-syn region fmlppString start=+"+ end=+"+
-syn region fmlppSingleString start=+'+ end=+'+
+syn region fmlppString start=+'+ end=+'+
 
 " Regions
 syn region fmlppComment start="//" end="$"
-" Highlight the backticks around fhirpath, and highlight the expression itself
-" as fhirpath.
-syn region fmlppFhirpath matchgroup=fmlppFhirpathBacktick contains=@fhirpath start=+`+ end=+`+
+" Double quotes are used for the `map` URL, `uses`, `imports`, and `rule`.
+syn region fmlppIdentifier start=+"+ end=+"+
+
+" TODO: Since fhirpath is now delimited by parentheses but parentheses are used
+" elsewhere we need more complicated logic here.
+"
+" Highlight the fhirpath delimiters, and highlight the expression itself as
+" fhirpath.
+" syn region fmlppFhirpath matchgroup=fmlppFhirpathDelimiter start=+(+ end=+)+ contains=fhirpath
 
 " Highlighting
 hi def link fmlppImport Include
@@ -74,7 +79,6 @@ hi def link fmlppException Exception
 hi def link fmlppAssignment Operator
 hi def link fmlppNumber Number
 hi def link fmlppBool Boolean
-hi def link fmlppFhirpathBacktick Delimiter
+" hi def link fmlppFhirpathDelimiter Delimiter
 hi def link fmlppString String
-hi def link fmlppSingleString String
 hi def link fmlppComment Comment
