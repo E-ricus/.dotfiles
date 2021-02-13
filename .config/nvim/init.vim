@@ -222,7 +222,7 @@ function! LspStatus() abort
 endfunction
 call airline#parts#define_function('lsp_status', 'LspStatus')
 call airline#parts#define_condition('lsp_status', 'luaeval("#vim.lsp.buf_get_clients() > 0")')
-let g:airline_section_warning = airline#section#create_right(['lsp_status'])
+let g:airline_section_c = airline#section#create_right(['file', 'readonly', 'lsp_status'])
 
 """ FZF
 " <leader>s for Rg search
