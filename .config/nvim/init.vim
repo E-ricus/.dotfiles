@@ -33,6 +33,8 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'dag/vim-fish'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for':'go' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -72,6 +74,7 @@ set mouse=a " Enable mouse usage (all modes) in terminals
 set shortmess+=c " Don't pass messages to |ins-completion-menu|.
 set completeopt=menuone,noinsert,noselect
 set colorcolumn=80 " and give me a colored column
+lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 let g:sneak#s_next = 1
 let g:vim_markdown_new_list_item_indent = 0
