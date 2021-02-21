@@ -32,7 +32,7 @@ Plug 'stephpy/vim-yaml'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'dag/vim-fish'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for':'go' }
+Plug 'tweekmonster/gofmt.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 " Fuzzy finder
@@ -122,23 +122,8 @@ let g:rustfmt_fail_silently = 0
 let g:rust_clip_command = 'xclip -selection clipboard'
 au Filetype rust set colorcolumn=100
 
-""" Golang
-let g:go_play_open_browser = 0
-let g:go_fmt_fail_silently = 1
-let g:go_bin_path = expand("~/dev/go/bin")
-let g:go_def_mapping_enabled = 0
-let g:go_code_completion_enabled = 0
-let g:go_doc_keywordprg_enabled = 0
-let g:go_gopls_enabled = 0
-" Go syntax highlighting
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
-" Auto formatting and importing
-let g:go_fmt_autosave = 1
-let g:go_fmt_command = "goimports"
+" Golang
+"let g:gofmt_exe = 'goimports'
 
 " =============================================================================
 " # Keyboard shortcuts
@@ -351,6 +336,7 @@ nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
+"autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
 
 "let g:completion_enable_auto_paren = 1
 
