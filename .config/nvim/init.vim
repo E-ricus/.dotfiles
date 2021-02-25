@@ -20,11 +20,12 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp_extensions.nvim'
 " Autocompletion framework for built-in LSP
 Plug 'nvim-lua/completion-nvim'
-" Better defaults
-Plug 'RishabhRD/popfix'
-Plug 'RishabhRD/nvim-lsputils'
 " LSP Status
 Plug 'nvim-lua/lsp-status.nvim'
+"" TELESCOPE
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 " Syntax
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
@@ -37,8 +38,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 " Git
 Plug 'mhinz/vim-signify'
@@ -46,7 +47,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 " Colors
 Plug 'morhetz/gruvbox'
-"Plug 'ayu-theme/ayu-vim'
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
@@ -87,9 +88,9 @@ set termguicolors
 set background=dark
 hi Normal ctermbg=NONE
 let base16colorspace=256
-colorscheme base16-gruvbox-dark-hard
-"let ayucolor="dark"
-"colorscheme ayu
+"colorscheme base16-gruvbox-dark-hard
+let ayucolor="dark"
+colorscheme ayu
 
 " Proper search
 set incsearch
@@ -163,7 +164,6 @@ vnoremap <leader>y "+y
 vnoremap <leader>pp "+gP
 nnoremap <leader>pp "+gP
 
-" Buffers
 nmap <leader>b :Buffers<CR>
 nnoremap <leader>k <C-w>k
 nnoremap <leader>h <C-w>h
@@ -212,23 +212,13 @@ call airline#parts#define_function('lsp_status', 'LspStatus')
 call airline#parts#define_condition('lsp_status', 'luaeval("#vim.lsp.buf_get_clients() > 0")')
 let g:airline_section_c = airline#section#create_right(['file', 'readonly', 'lsp_status'])
 
-""" FZF
-" <leader>s for Rg search
-noremap <leader>S :Rg
-let g:fzf_layout = { 'down': '~20%' }
-"let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
-let $FZF_DEFAULT_OPTS='--reverse'
-"command! -bang -nargs=* Rg
-"  \ call fzf#vim#grep(
-"  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-"  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-"  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-"  \   <bang>0)
+""" Telescope
+autocmd User TelescopePreviewerLoaded setlocal wrap
 
-
-nnoremap <leader>s :Rg <C-R>=expand("<cword>")<CR><CR>
-
-nnoremap <silent> <leader>f :Files<CR>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Configure LSP
 " https://github.com/neovim/nvim-lspconfig#rust_analyzer
@@ -297,14 +287,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = true,
   }
 )
-vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
-vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
-vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
-vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
-vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
-vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
-vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
-vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
 EOF
 
 
