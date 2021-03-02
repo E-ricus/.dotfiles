@@ -341,7 +341,8 @@ let g:signify_sign_show_count = 0
 let g:signify_sign_show_text = 1
 
 nmap <leader>g :G<CR>
-nmap <leader>gb :GBranches<CR>
+nmap <leader>gg <cmd>Telescope git_status<cr>
+nmap <leader>gb<cmd>Telescope git_branches<cr> 
 nmap <leader>gc :Gcommit<CR>
 nmap <leader>ga :Gcommit --amend<CR>
 nmap <leader>dj :diffget //3<CR>
@@ -355,11 +356,6 @@ nmap <leader>gk <plug>(signify-prev-hunk)
 nmap <leader>gJ 9999<leader>gJ
 nmap <leader>gK 9999<leader>gk
 
-
-" If you like colors instead
-" highlight SignifySignAdd                  ctermbg=green                guibg=#00ff00
-" highlight SignifySignDelete ctermfg=black ctermbg=red    guifg=#ffffff guibg=#ff0000
-" highlight SignifySignChange ctermfg=black ctermbg=yellow guifg=#000000 guibg=#ffff00
 " ==================================================================================
 "  # FHIR mapping language
 " ==================================================================================
