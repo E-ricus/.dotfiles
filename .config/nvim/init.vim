@@ -5,7 +5,7 @@ set rtp+=~/dev/base16-vim/
 " =============================================================================
 call plug#begin()
 " Editor enhancement
-Plug 'vim-airline/vim-airline'
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'machakann/vim-highlightedyank'
 Plug 'andymass/vim-matchup'
 Plug 'justinmk/vim-sneak'
