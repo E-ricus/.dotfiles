@@ -11,6 +11,7 @@ Plug 'andymass/vim-matchup'
 Plug 'justinmk/vim-sneak'
 Plug 'szw/vim-maximizer'
 Plug 'preservim/nerdcommenter'
+Plug 'kyazdani42/nvim-web-devicons'
 " NertdTREE
 Plug 'preservim/nerdtree'
 " LSP
@@ -26,6 +27,7 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " Syntax
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
@@ -38,9 +40,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
@@ -131,16 +130,6 @@ au Filetype rust set colorcolumn=100
 " =============================================================================
 " ; as :
 nnoremap ; :
-" Ctrl + p to Esc
-nnoremap <C-p> <Esc>
-inoremap <C-p> <Esc>
-vnoremap <C-p> <Esc>
-snoremap <C-p> <Esc>
-xnoremap <C-p> <Esc>
-cnoremap <C-p> <C-c>
-onoremap <C-p> <Esc>
-lnoremap <C-p> <Esc>
-tnoremap <C-p> <Esc>
 
 " Ctrl+h to stop searching
 vnoremap <C-h> :noh<cr>
@@ -200,6 +189,14 @@ nnoremap k gk
 " =============================================================================
 " # Plugin settings
 " =============================================================================
+
+lua <<EOF
+require'nvim-web-devicons'.setup {
+ -- globally enable default icons (default to false)
+ -- will get overriden by `get_icons` option
+ default = true;
+}
+EOF
 
 """ AirLine
 let g:airline_powerline_fonts = 1
@@ -304,10 +301,6 @@ nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-"nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-"nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-"nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-"nnoremap <leader>a    <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> gdd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr    <cmd>Telescope lsp_references<CR>
 nnoremap <leader> ds    <cmd>Telescope lsp_document_symbols<CR>
@@ -316,7 +309,6 @@ nnoremap <leader>a    <cmd>Telescope lsp_code_actions<CR>
 nnoremap <leader>rn   <cmd>lua vim.lsp.buf.rename()<CR>' 
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
-
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
@@ -324,7 +316,6 @@ nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
 "autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
-
 "let g:completion_enable_auto_paren = 1
 
 " =============================================================================
