@@ -40,7 +40,7 @@ Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 " Colors
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
@@ -55,11 +55,3 @@ let g:sneak#s_next = 1
 " # File explorer
 " =============================================================================
 nnoremap <leader><TAB> :NERDTreeToggle<CR>
-
-""" Telescope
-autocmd User TelescopePreviewerLoaded setlocal wrap
-
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>

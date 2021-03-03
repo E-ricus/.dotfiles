@@ -9,11 +9,3 @@ let g:airline#extensions#nvimlsp#enabled = 0
 "call airline#parts#define_function('lsp_status', 'LspStatus')
 "call airline#parts#define_condition('lsp_status', 'luaeval("#vim.lsp.buf_get_clients() > 0")')
 "let g:airline_section_c = airline#section#create_right(['file', 'readonly', 'lsp_status'])
-
-lua <<EOF
-require'nvim-web-devicons'.setup {
- -- globally enable default icons (default to false)
- -- will get overriden by `get_icons` option
- default = true;
-}
-EOF
