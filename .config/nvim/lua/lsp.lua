@@ -41,6 +41,19 @@ nvim_lsp.rust_analyzer.setup({
         }
     }
 })
+-- Enable Go please
+nvim_lsp.gopls.setup {
+  on_attach=on_attach,
+  cmd = {"gopls", "serve"},
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
+  },
+}
 
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
