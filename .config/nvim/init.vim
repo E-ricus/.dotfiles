@@ -15,8 +15,10 @@ Plug 'preservim/nerdtree'
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp_extensions.nvim'
-Plug 'nvim-lua/completion-nvim'
-Plug 'steelsojka/completion-buffers'
+Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/vim-vsnip'
+"Plug 'nvim-lua/completion-nvim'
+"Plug 'steelsojka/completion-buffers'
 "Plug 'nvim-lua/lsp-status.nvim'
 "" TELESCOPE
 Plug 'nvim-lua/popup.nvim'

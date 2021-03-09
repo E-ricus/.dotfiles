@@ -2,14 +2,19 @@ lua require('lsp')
 
 "" Completion
 "let g:completion_enable_auto_paren = 1
+"let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+" use <Tab> as trigger keys
+"imap <Tab> <Plug>(completion_smart_tab)
+"imap <S-Tab> <Plug>(completion_smart_s_tab)
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" use <Tab> as trigger keys
-imap <Tab> <Plug>(completion_smart_tab)
-imap <S-Tab> <Plug>(completion_smart_s_tab)
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 "" LSP
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>

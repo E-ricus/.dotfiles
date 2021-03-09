@@ -1,11 +1,38 @@
 -- Completion
-vim.g.completion_chain_complete_list = {
-  default = {
-    { complete_items = { 'lsp' } },
-    { complete_items = { 'buffers' } },
-    { mode = { '<c-p>' } },
-    { mode = { '<c-n>' } }
-  },
+--vim.g.completion_chain_complete_list = {
+  --default = {
+    --{ complete_items = { 'lsp' } },
+    --{ complete_items = { 'buffers' } },
+    --{ mode = { '<c-p>' } },
+    --{ mode = { '<c-n>' } }
+  --},
+--}
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    vsnip = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    spell = true;
+    tags = true;
+    snippets_nvim = false;
+    treesitter = true;
+  };
 }
 
 -- nvim_lsp object
@@ -13,20 +40,20 @@ local nvim_lsp = require'lspconfig'
 
 -- function to attach completion when setting up lsp
 local on_attach = function(client)
-    require'completion'.on_attach(client)
+    --require'completion'.on_attach(client)
 end
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Enable rust_analyzer
 nvim_lsp.rust_analyzer.setup({ 
     on_attach=on_attach,
+    capabilities=capabilities,
     settings = {
         ["rust-analyzer"] = {
-            assist = {
-                importMergeBehavior = "last",
-                importPrefix = "by_self",
-            },
             cargo = {
-                loadOutDirsFromCheck = true
+                runBuildScripts = true
             },
             procMacro = {
                 enable = true
@@ -44,6 +71,7 @@ nvim_lsp.rust_analyzer.setup({
 -- Enable Go please
 nvim_lsp.gopls.setup {
   on_attach=on_attach,
+  capabilities=capabilities,
   cmd = {"gopls", "serve"},
   settings = {
     gopls = {
