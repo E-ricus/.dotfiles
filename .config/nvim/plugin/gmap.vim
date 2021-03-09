@@ -23,7 +23,6 @@ vnoremap <leader>y "+y
 vnoremap <leader>pp "+gP
 nnoremap <leader>pp "+gP
 
-nmap <leader>b :Buffers<CR>
 nnoremap <leader>k <C-w>k
 nnoremap <leader>h <C-w>h
 nnoremap <leader>l <C-w>l

@@ -12,6 +12,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'szw/vim-maximizer'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
+Plug 'airblade/vim-rooter'
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp_extensions.nvim'
@@ -19,7 +20,6 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'
 "Plug 'nvim-lua/completion-nvim'
 "Plug 'steelsojka/completion-buffers'
-"Plug 'nvim-lua/lsp-status.nvim'
 "" TELESCOPE
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -36,8 +36,6 @@ Plug 'dag/vim-fish'
 Plug 'tweekmonster/gofmt.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
-" Fuzzy finder
-Plug 'airblade/vim-rooter'
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
