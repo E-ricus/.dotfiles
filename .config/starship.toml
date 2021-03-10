@@ -1,0 +1,18 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+#single line
+[line_break]
+disabled = true
+
+## Replace the "❯" symbol in the prompt with "➜"
+#[character]                            # The name of the module we are configuring is "character"
+#success_symbol = "[➜](bold green)"     # The "suc
+
+[package]
+disabled = true
+
+[cmd_duration]
+disabled = true
+
+[rust]
+disabled = true
