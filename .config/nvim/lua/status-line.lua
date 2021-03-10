@@ -7,7 +7,7 @@ devicons.setup {
 
 local gl = require'galaxyline'
 local gls = gl.section
-local vcs = require'galaxyline.provider_vcs'
+local condition = require('galaxyline.condition')
 
 gl.short_line_list = {'vim-plug', 'tagbar', 'Mundo', 'MundoDiff', 'startify'}
 
@@ -189,58 +189,40 @@ gls.left[5] = {
 gls.left[6] = {
   GitIcon = {
     provider = function ()
-      if wide_enough(85) then
         return '   '
-      end
-      return ''
     end,
+    condition = wide_enough(85) and condition.check_git_workspace,
     highlight = {colors.bright_red, colors.bg1},
   }
 }
 gls.left[7] = {
   GitBranch = {
-    provider = function ()
-      if wide_enough(85) then
-        return vcs.get_git_branch()
-      end
-      return ''
-    end,
+    provider = "GitBranch",
+    condition = wide_enough(85) and condition.check_git_workspace,
     highlight = {colors.fg2, colors.bg1},
   }
 }
 gls.left[8] = {
   DiffAdd = {
-    provider = function ()
-      if wide_enough(95) then
-        return vcs.diff_add()
-      end
-      return ''
-    end,
+    provider = "DiffAdd",
     icon = ' ',
+    condition = wide_enough(95) and condition.check_git_workspace,
     highlight = {colors.bright_green, colors.bg1},
   }
 }
 gls.left[9] = {
   DiffModified = {
-    provider = function ()
-      if wide_enough(95) then
-        return vcs.diff_modified()
-      end
-      return ''
-    end,
+    provider = "DiffModified",
     icon = ' ',
+    condition = wide_enough(95) and condition.check_git_workspace,
     highlight = {colors.bright_orange, colors.bg1},
   }
 }
 gls.left[10] = {
   DiffRemove = {
-    provider = function ()
-      if wide_enough(95) then
-        return vcs.diff_remove()
-      end
-      return ''
-    end,
+    provider = "DiffRemove",
     icon = ' ',
+    condition = wide_enough(95) and condition.check_git_workspace,
     highlight = {colors.bright_red, colors.bg1},
   }
 }
