@@ -82,6 +82,11 @@ nvim_lsp.gopls.setup {
     },
   },
 }
+-- Enable Pyls
+nvim_lsp.pyls.setup {
+  on_attach=on_attach,
+  capabilities=capabilities,
+}
 
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

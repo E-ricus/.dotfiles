@@ -11,7 +11,7 @@ let g:rust_clip_command = 'xclip -selection clipboard'
 au Filetype rust set colorcolumn=100
 
 " Golang
-"let g:gofmt_exe = 'goimports'
+let g:gofmt_exe = 'goimports'
 
 " ==================================================================================
 "  # FHIR mapping language
