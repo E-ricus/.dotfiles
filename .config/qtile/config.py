@@ -144,15 +144,15 @@ keys = [
          ),
 ]
 
-group_names = [("WWW", {'layout': 'monadtall'}),
+group_names = [("TERM", {'layout': 'monadtall'}),
+               ("TMUX", {'layout': 'monadtall'}),
+               ("WWW", {'layout': 'monadtall'}),
                ("DEV", {'layout': 'monadtall'}),
-               ("SYS", {'layout': 'monadtall'}),
-               ("DOC", {'layout': 'monadtall'}),
-               ("VBOX", {'layout': 'monadtall'}),
                ("CHAT", {'layout': 'monadtall'}),
                ("MUS", {'layout': 'monadtall'}),
                ("VID", {'layout': 'monadtall'}),
-               ("GFX", {'layout': 'floating'})]
+               ("VBOX", {'layout': 'monadtall'}),
+               ("EXT", {'layout': 'floating'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -224,7 +224,7 @@ def init_widgets_list():
                        background = colors[0]
                        ),
               widget.Image(
-                       filename = "~/.config/qtile/icons/linux.png",
+                       filename = "~/.config/qtile/icons/python-white.png",
                        scale = "False",
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)}
                        ),

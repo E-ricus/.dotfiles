@@ -55,9 +55,9 @@ nnoremap <leader>a :action ShowIntentionActions<CR>
 nnoremap <leader>rn :action RenameElement<CR>
 nnoremap <leader>w :action ReformatCode<CR>
 nnoremap <leader><TAB> :action FileStructurePopup<CR>
-nnoremap <silent> [g :action GotoPreviousError<CR>
-nnoremap <silent> ]g :action GotoNextError<CR>
+nnoremap <silent> g[ :action GotoPreviousError<CR>
+nnoremap <silent> g] :action GotoNextError<CR>
 
 
-nnoremap <leader>f :action SearchEverywhere<CR>
+nnoremap <leader>ff :action SearchEverywhere<CR>
 nnoremap <leader>s :action FindInPath<CR>
