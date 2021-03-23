@@ -146,13 +146,13 @@ keys = [
 
 group_names = [("TERM", {'layout': 'monadtall'}),
                ("TMUX", {'layout': 'monadtall'}),
-               ("WWW", {'layout': 'monadtall'}),
+               ("WEB", {'layout': 'monadtall'}),
                ("DEV", {'layout': 'monadtall'}),
                ("CHAT", {'layout': 'monadtall'}),
                ("MUS", {'layout': 'monadtall'}),
                ("VID", {'layout': 'monadtall'}),
                ("VBOX", {'layout': 'monadtall'}),
-               ("EXT", {'layout': 'floating'})]
+               ("EXT", {'layout': 'monadtall'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
