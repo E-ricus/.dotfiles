@@ -351,13 +351,27 @@ def init_widgets_list():
                        padding = 0,
                        fontsize = 37
                        ),
-              widget.Net(
-                       # interface = "enp6s0",
-                       format = '{down} ↓↑ {up}',
+              widget.TextBox(
+                       text = " ",
                        foreground = colors[2],
                        background = colors[4],
-                       padding = 5
+                       padding = 0,
+                       fontsize = 14
                        ),
+              widget.CPU(
+                       format = '{freq_current}GHz {load_percent}%',
+                       foreground = colors[2],
+                       background = colors[4],
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
+                       padding = 5
+                      ),
+              # widget.Net(
+                       # # interface = "enp6s0",
+                       # format = '{down} ↓↑ {up}',
+                       # foreground = colors[2],
+                       # background = colors[4],
+                       # padding = 5
+                       # ),
               widget.TextBox(
                        text = '',
                        background = colors[4],

@@ -26,7 +26,7 @@ nnoremap <silent> gdd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr    <cmd>Telescope lsp_references<CR>
 nnoremap <leader>ds    <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <leader>ws    <cmd>Telescope lsp_workspace_symbols<CR>
-nnoremap <leader>a    <cmd>Telescope lsp_code_actions<CR>
+nnoremap <leader>a    <cmd>lua require'telescope.builtin'.lsp_code_actions(require('telescope.themes').get_dropdown())<CR>
 nnoremap <leader>rn   <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>fr   <cmd>lua vim.lsp.buf.formatting()<CR>
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
