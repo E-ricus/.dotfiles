@@ -33,19 +33,13 @@ nnoremap <leader>j <C-w>j
 nnoremap <leader><leader> <c-^>
 " Quick-save
 nmap <leader>w :w<CR>
-" No arrow keys --- force yourself to use the home row
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-"So I can move around in insert
-inoremap <C-k> <C-o>gk
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-inoremap <C-j> <C-o>gj
+"" No arrow keys --- force yourself to use the home row
+"nnoremap <up> <nop>
+"nnoremap <down> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
 
 " Left and right can switch buffers
 nnoremap <left> :bp<CR>
