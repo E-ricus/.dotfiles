@@ -18,8 +18,6 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'
-"Plug 'nvim-lua/completion-nvim'
-"Plug 'steelsojka/completion-buffers'
 "" TELESCOPE
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -39,7 +37,7 @@ Plug 'nvim-treesitter/playground'
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
+Plug 'sindrets/diffview.nvim'
 " Colors
 Plug 'gruvbox-community/gruvbox'
 Plug 'ayu-theme/ayu-vim'
