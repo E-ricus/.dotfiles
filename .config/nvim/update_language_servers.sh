@@ -21,3 +21,5 @@ GO111MODULE=on go get golang.org/x/tools/cmd/goimports
 # Pyls (requires pip)
 echo "updating Pyls"
 pip install python-language-server -U
+echo "updating tsserver"
+npm install -g typescript-language-server
