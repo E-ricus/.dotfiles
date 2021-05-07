@@ -2,13 +2,8 @@ local actions = require('telescope.actions')
 local previewers = require('telescope.previewers')
 require('telescope').setup {
     defaults = {
-        file_sorter = require('telescope.sorters').get_fzy_sorter,
-        prompt_prefix = ' >',
+        prompt_prefix = ' 🔍',
         color_devicons = true,
-
-        file_previewer   = previewers.vim_buffer_cat.new,
-        grep_previewer   = previewers.vim_buffer_vimgrep.new,
-        qflist_previewer = previewers.vim_buffer_qflist.new,
 
         mappings = {
             i = {
@@ -19,14 +14,15 @@ require('telescope').setup {
         file_ignore_patterns = {"node_modules"}
     },
     extensions = {
-        fzy_native = {
-            override_generic_sorter = false,
-            override_file_sorter = true,
+        fzf = {
+            override_generic_sorter = false, -- override the generic sorter
+            override_file_sorter = true,     -- override the file sorter
+            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
         }
     }
 }
 
-require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('fzf')
 
 local M = {}
 
