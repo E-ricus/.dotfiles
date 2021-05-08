@@ -1,12 +1,5 @@
 lua require('lsp')
-
-"" Completion
-"let g:completion_enable_auto_paren = 1
-"let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-" use <Tab> as trigger keys
-"imap <Tab> <Plug>(completion_smart_tab)
-"imap <S-Tab> <Plug>(completion_smart_s_tab)
-
+"
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -37,4 +30,4 @@ nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
-"autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
+autocmd BufWritePre *.ts,*py lua vim.lsp.buf.formatting()
