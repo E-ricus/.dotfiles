@@ -7,10 +7,10 @@ let g:signify_sign_show_text = 1
 
 nmap <leader>g :G<CR>
 nmap <leader>gg <cmd>Telescope git_status<cr>
-nmap <leader>gb <cmd>Telescope git_branches<cr> 
-nmap <leader>gd <cmd>DiffviewOpen<cr> 
-nmap <leader>gc :Gcommit<CR>
-nmap <leader>ga :Gcommit --amend<CR>
+nmap <leader>gb <cmd>Telescope git_branches<cr>
+nmap <leader>gd <cmd>DiffviewOpen<cr>
+nmap <leader>gc :Git commit<CR>
+nmap <leader>ga :Git commit --amend<CR>
 nmap <leader>dj :diffget //3<CR>
 nmap <leader>df :diffget //2<CR>
 

@@ -82,6 +82,14 @@ nvim_lsp.pyls.setup {
 -- Enable TSserver
 nvim_lsp.tsserver.setup {
   on_attach=on_attach,
+  filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx"
+  },
   capabilities=capabilities,
 }
 

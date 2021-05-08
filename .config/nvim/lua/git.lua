@@ -31,3 +31,19 @@ require'diffview'.setup {
     }
   }
 }
+
+local actions = require('telescope.actions')
+local M = {}
+
+M.git_branches = function() 
+    require("telescope.builtin").git_branches({
+        attach_mappings = function(prompt_bufnr, map) 
+            map('i', '<c-d>', actions.git_delete_branch)
+            map('n', '<c-d>', actions.git_delete_branch)
+            map('i', '<c-a>', actions.git_create_branch)
+            return true
+        end
+    })
+end
+
+return M

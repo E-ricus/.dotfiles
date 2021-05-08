@@ -1,5 +1,4 @@
 local actions = require('telescope.actions')
-local previewers = require('telescope.previewers')
 require('telescope').setup {
     defaults = {
         prompt_prefix = ' 🔍',
@@ -23,17 +22,3 @@ require('telescope').setup {
 }
 
 require('telescope').load_extension('fzf')
-
-local M = {}
-
-M.git_branches = function() 
-    require("telescope.builtin").git_branches({
-        attach_mappings = function(prompt_bufnr, map) 
-            map('i', '<c-d>', actions.git_delete_branch)
-            map('n', '<c-d>', actions.git_delete_branch)
-            return true
-        end
-    })
-end
-
-return M
