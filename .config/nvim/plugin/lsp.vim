@@ -30,4 +30,4 @@ nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
-autocmd BufWritePre *.ts,*py lua vim.lsp.buf.formatting()
+autocmd BufWritePre *.rs,*.ts,*py lua vim.lsp.buf.formatting_sync()
