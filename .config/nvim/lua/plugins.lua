@@ -53,7 +53,6 @@ return require('packer').startup {
         use 'godlygeek/tabular'
         use 'plasticboy/vim-markdown'
         use 'dag/vim-fish'
-        use 'tweekmonster/gofmt.vim'
 
         -- Git
         use {

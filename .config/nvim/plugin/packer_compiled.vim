@@ -88,10 +88,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
-  ["gofmt.vim"] = {
-    loaded = true,
-    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/gofmt.vim"
-  },
   gruvbox = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/gruvbox"
@@ -99,6 +95,10 @@ _G.packer_plugins = {
   ["lsp_extensions.nvim"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
+  },
+  ["nvim-comment"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-comment"
   },
   ["nvim-compe"] = {
     loaded = true,

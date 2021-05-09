@@ -35,9 +35,9 @@ require('diffview').setup {
 -- Keymaps
 local map = require('ericus.vim-utils').mapper
 
-map('n', 'gs', 'G', {noremap = true})
-map('n', 'gg', 'Telescope git_status', {noremap = true})
-map('n', 'gb', 'Telescope git_branches', {noremap = true})
-map('n', 'gd', 'DiffviewOpen', {noremap = true})
-map('n', 'gc', 'Git commit', {noremap = true})
-map('n', 'ga', 'Git commit --ammend', {noremap = true})
+map('n', '<leader>gs', 'G', {noremap = true})
+map('n', '<leader>gg', 'Telescope git_status', {noremap = true})
+map('n', '<leader>gb', 'Telescope git_branches', {noremap = true})
+map('n', '<leader>gd', 'DiffviewOpen', {noremap = true})
+map('n', '<leader>gc', 'Git commit', {noremap = true})
+map('n', '<leader>ga', 'Git commit --ammend', {noremap = true})

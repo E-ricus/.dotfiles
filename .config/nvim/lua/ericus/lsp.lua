@@ -12,15 +12,15 @@ local on_attach = function(client)
     vu.buffer_mapper('n', 'gi', 'vim.lsp.buf.implementation()')
     vu.buffer_mapper('n', 'K', 'vim.lsp.buf.hover()')
     vu.buffer_mapper('n', 'gD', 'vim.lsp.buf.declaration()')
-    vu.buffer_mapper('n', 'rn', 'vim.lsp.buf.rename()')
-    vu.buffer_mapper('n', 'fr', 'vim.lsp.buf.formatting()')
+    vu.buffer_mapper('n', '<leader>rn', 'vim.lsp.buf.rename()')
+    vu.buffer_mapper('n', '<leader>fr', 'vim.lsp.buf.formatting()')
     vu.buffer_mapper('n', 'g[', 'vim.lsp.diagnostic.goto_prev()')
     vu.buffer_mapper('n', 'g]', 'vim.lsp.diagnostic.goto_next()')
-    vu.buffer_mapper('n', 'a', 'require\'telescope.builtin\'.lsp_code_actions(require(\'telescope.themes\').get_dropdown())')
+    vu.buffer_mapper('n', '<leader>a', 'require\'telescope.builtin\'.lsp_code_actions(require(\'telescope.themes\').get_dropdown())')
     vu.buffer_mapper('i', '<c-k>', 'vim.lsp.buf.signature_help()')
     vu.mapper('n', 'gr', 'Telescope lsp_references')
-    vu.mapper('n', 'ds', 'Telescope lsp_document_symbols')
-    vu.mapper('n', 'ws', 'Telescope lsp_workspace_symbols')
+    vu.mapper('n', '<leader>ds', 'Telescope lsp_document_symbols')
+    vu.mapper('n', '<leader>ws', 'Telescope lsp_workspace_symbols')
     -- Only rust has this
     if filetype == 'rust' then
         vim.cmd(
@@ -39,7 +39,7 @@ local on_attach = function(client)
             augroup END
         ]]
     end
-    if vim.tbl_contains({"python", "rust", "typescript"}, filetype) then
+    if vim.tbl_contains({"python", "rust", "typescript", "go"}, filetype) then
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
     end
 end
