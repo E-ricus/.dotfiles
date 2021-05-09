@@ -1,15 +1,15 @@
-local devicons = require'nvim-web-devicons'
+local devicons = require('nvim-web-devicons')
 devicons.setup {
  -- globally enable default icons (default to false)
  -- will get overriden by `get_icons` option
  default = true;
 }
 
-local gl = require'galaxyline'
+local gl = require('galaxyline')
 local gls = gl.section
 local condition = require('galaxyline.condition')
 
-gl.short_line_list = {'vim-plug', 'tagbar', 'Mundo', 'MundoDiff', 'startify'}
+gl.short_line_list = {'vim-plug', 'tagbar', 'packer', 'NvimTree', 'startify'}
 
 -- Gruvbox
 local colors = {
@@ -205,15 +205,15 @@ gls.left[7] = {
 gls.left[8] = {
   DiffAdd = {
     provider = "DiffAdd",
-    icon = ' ',
-    condition = wide_enough(95) and condition.check_git_workspace,
+    icon = '   ',
+    --condition = wide_enough(95) and condition.check_git_workspace,
     highlight = {colors.bright_green, colors.bg1},
   }
 }
 gls.left[9] = {
   DiffModified = {
     provider = "DiffModified",
-    icon = ' ',
+    icon = '   ',
     condition = wide_enough(95) and condition.check_git_workspace,
     highlight = {colors.bright_orange, colors.bg1},
   }
@@ -221,7 +221,7 @@ gls.left[9] = {
 gls.left[10] = {
   DiffRemove = {
     provider = "DiffRemove",
-    icon = ' ',
+    icon = '   ',
     condition = wide_enough(95) and condition.check_git_workspace,
     highlight = {colors.bright_red, colors.bg1},
   }

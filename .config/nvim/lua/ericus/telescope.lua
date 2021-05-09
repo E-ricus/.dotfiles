@@ -22,3 +22,12 @@ require('telescope').setup {
 }
 
 require('telescope').load_extension('fzf')
+
+-- Keymaps
+local map = require('ericus.vim-utils').mapper
+
+map('n', 'ff', 'Telescope find_files', {noremap = true})
+map('n', 'f.', 'Telescope find_files find_command=rg,--ignore,--hidden,--files', {noremap = true})
+map('n', 'fg', 'Telescope live_grep', {noremap = true})
+map('n', 'fb', 'Telescope buffers', {noremap = true})
+map('n', 'fh', 'Telescope help_tags', {noremap = true})

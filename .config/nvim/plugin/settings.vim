@@ -1,3 +1,4 @@
+filetype plugin indent on
 set encoding=utf-8
 set smartindent
 set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
@@ -29,3 +30,5 @@ set splitbelow
 set cmdheight=2
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
+
+let g:sneak#s_next = 1
