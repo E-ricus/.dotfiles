@@ -4,10 +4,15 @@ require('nvim_comment').setup({
     line_mapping = "<leader>cc",
     operator_mapping = "<leader>c"
 })
+
 -- File Tree
 vim.api.nvim_set_keymap('n', '<leader><TAB>', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
--- Treesiter syntax
-require('nvim-treesitter.configs').setup { highlight = { enable = true } }
+
+-- Treesiter
+require('nvim-treesitter.configs').setup {
+    highlight = { enable = true },
+    indent = { enable = true }
+}
 
 -- Colors
 vim.cmd('syntax on') -- syntax highlighting

@@ -144,10 +144,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
-  ["vim-fish"] = {
-    loaded = true,
-    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/vim-fish"
-  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/vim-fugitive"
@@ -176,17 +172,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/vim-sneak"
   },
-  ["vim-toml"] = {
-    loaded = true,
-    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/vim-toml"
-  },
   ["vim-vsnip"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/vim-vsnip"
-  },
-  ["vim-yaml"] = {
-    loaded = true,
-    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/vim-yaml"
   }
 }
 

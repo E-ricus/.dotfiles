@@ -1,6 +1,7 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
+-- Installs packer if is the first time loading
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -8,12 +9,18 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute "packadd packer.nvim"
 end
 
+-- Installs parser if is the first time
+local treesitter_path = fn.stdpath("data") .. "/site/pack/packer/start/nvim-treesitter"
+local treesitter_hook = ':TSUpdate'
+if fn.empty(fn.glob(treesitter_path)) > 0 then
+    treesitter_hook = ':TSInstall lua go rust typescript python yaml toml'
+end
+
 vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
 
 return require('packer').startup {
     function(use)
         use 'wbthomason/packer.nvim'
-        -- Editor enhancemnts
         -- Icons
         use 'kyazdani42/nvim-web-devicons'
         use {
@@ -28,7 +35,6 @@ return require('packer').startup {
         use 'terrortylor/nvim-comment'
         -- File Explorer
         use 'kyazdani42/nvim-tree.lua'
-
 
         -- LSP
         use 'neovim/nvim-lspconfig'
@@ -46,13 +52,11 @@ return require('packer').startup {
         use 'hrsh7th/vim-vsnip'
 
         -- Treesitter
-        use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+        use {'nvim-treesitter/nvim-treesitter', run = treesitter_hook}
+
         -- Syntax
-        use 'cespare/vim-toml'
-        use 'stephpy/vim-yaml'
         use 'godlygeek/tabular'
         use 'plasticboy/vim-markdown'
-        use 'dag/vim-fish'
 
         -- Git
         use {
