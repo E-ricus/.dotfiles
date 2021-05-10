@@ -8,19 +8,20 @@ local on_attach = function(client)
     local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
 
     -- keymaps
-    vu.buffer_mapper('n', 'gd', 'vim.lsp.buf.definition()')
-    vu.buffer_mapper('n', 'gi', 'vim.lsp.buf.implementation()')
-    vu.buffer_mapper('n', 'K', 'vim.lsp.buf.hover()')
-    vu.buffer_mapper('n', 'gD', 'vim.lsp.buf.declaration()')
-    vu.buffer_mapper('n', '<leader>rn', 'vim.lsp.buf.rename()')
-    vu.buffer_mapper('n', '<leader>fr', 'vim.lsp.buf.formatting()')
-    vu.buffer_mapper('n', 'g[', 'vim.lsp.diagnostic.goto_prev()')
-    vu.buffer_mapper('n', 'g]', 'vim.lsp.diagnostic.goto_next()')
-    vu.buffer_mapper('n', '<leader>a', 'require\'telescope.builtin\'.lsp_code_actions(require(\'telescope.themes\').get_dropdown())')
-    vu.buffer_mapper('i', '<c-k>', 'vim.lsp.buf.signature_help()')
-    vu.mapper('n', 'gr', 'Telescope lsp_references')
-    vu.mapper('n', '<leader>ds', 'Telescope lsp_document_symbols')
-    vu.mapper('n', '<leader>ws', 'Telescope lsp_workspace_symbols')
+    vu.buffer_lua_mapper('n', 'gd', 'vim.lsp.buf.definition()')
+    vu.buffer_lua_mapper('n', 'gi', 'vim.lsp.buf.implementation()')
+    vu.buffer_lua_mapper('n', 'K', 'vim.lsp.buf.hover()')
+    vu.buffer_lua_mapper('n', 'gD', 'vim.lsp.buf.declaration()')
+    vu.buffer_lua_mapper('n', '<leader>rn', 'vim.lsp.buf.rename()')
+    vu.buffer_lua_mapper('n', '<leader>fr', 'vim.lsp.buf.formatting()')
+    vu.buffer_lua_mapper('n', 'g[', 'vim.lsp.diagnostic.goto_prev()')
+    vu.buffer_lua_mapper('n', 'g]', 'vim.lsp.diagnostic.goto_next()')
+    vu.buffer_lua_mapper('i', '<c-k>', 'vim.lsp.buf.signature_help()')
+    -- Telescope maps
+    vu.buffer_mapper('n', 'gr', 'Telescope lsp_references')
+    vu.buffer_mapper('n', '<leader>ds', 'Telescope lsp_document_symbols')
+    vu.buffer_mapper('n', '<leader>ws', 'Telescope lsp_workspace_symbols')
+    vu.buffer_mapper('n', '<leader>a', 'Telescope lsp_code_actions theme=get_dropdown')
     -- Only rust has this
     if filetype == 'rust' then
         vim.cmd(
