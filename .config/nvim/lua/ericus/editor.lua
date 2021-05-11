@@ -11,7 +11,8 @@ vim.api.nvim_set_keymap('n', '<leader><TAB>', ':NvimTreeToggle<CR>', {noremap = 
 -- Treesiter
 require('nvim-treesitter.configs').setup {
     highlight = { enable = true },
-    indent = { enable = true }
+    indent = { enable = true },
+    matchup = { enable = true },
 }
 
 -- Colors
