@@ -1,8 +1,5 @@
 local vu = require('ericus.vim-utils')
 
--- nvim_lsp object
-local nvim_lsp = require('lspconfig')
-
 -- function to attach completion when setting up lsp
 local on_attach = function(client)
     local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
@@ -45,64 +42,58 @@ local on_attach = function(client)
     end
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local function setup_servers()
+    local lsp_install = require('lspinstall')
+    lsp_install.setup()
+    -- nvim_lsp object
+    local nvim_lsp = require('lspconfig')
 
--- Enable rust_analyzer
-nvim_lsp.rust_analyzer.setup({ 
-    on_attach=on_attach,
-    capabilities=capabilities,
-    settings = {
-        ["rust-analyzer"] = {
-            cargo = {
-                runBuildScripts = true
-            },
-            procMacro = {
-                enable = true
-            },
-            checkOnSave = {
-                command = "clippy"
-            },
-            diagnostics = {
-                disabled = {"macro-error"}
-            },
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+    -- Specific server settings
+    local settings = {
+        rust = {
+            ["rust-analyzer"] = {
+                checkOnSave = {
+                    command = "clippy"
+                },
+                diagnostics = {
+                    disabled = {"macro-error"}
+                },
+
+            }
+        },
+        go = {
+            gopls = {
+                analyses = {
+                    unusedparams = true,
+                },
+                staticcheck = true,
+            },
+        },
+        lua = {
+            Lua = {
+                diagnostics = {
+                    -- Get the language server to recognize the `vim` global
+                    globals = {'vim'},
+                },
+            }
         }
     }
-})
--- Enable Go please
-nvim_lsp.gopls.setup {
-  on_attach=on_attach,
-  capabilities=capabilities,
-  cmd = {"gopls", "serve"},
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-    },
-  },
-}
--- Enable Pyls
-nvim_lsp.pyls.setup {
-  on_attach=on_attach,
-  capabilities=capabilities,
-}
 
--- Enable TSserver
-nvim_lsp.tsserver.setup {
-  on_attach=on_attach,
-  filetypes = {
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx"
-  },
-  capabilities=capabilities,
-}
+    local servers = lsp_install.installed_servers()
+
+    for _, server in ipairs(servers) do
+        nvim_lsp[server].setup{
+            on_attach=on_attach,
+            capabilities=capabilities,
+            settings=settings[server],
+        }
+    end
+end
+
+setup_servers()
 
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

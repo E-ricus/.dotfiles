@@ -27,7 +27,7 @@ return require('packer').startup {
             'glepnir/galaxyline.nvim', branch = 'main',
             requires = {'kyazdani42/nvim-web-devicons'}
         }
-        use 'machakann/vim-highlightedyank'        
+        use 'machakann/vim-highlightedyank'
         use 'andymass/vim-matchup'
         use 'justinmk/vim-sneak'
         use 'szw/vim-maximizer'
@@ -39,6 +39,7 @@ return require('packer').startup {
         -- LSP
         use 'neovim/nvim-lspconfig'
         use 'nvim-lua/lsp_extensions.nvim'
+        use {'kabouzeid/nvim-lspinstall', run = ':LspInstall lua'}
 
         -- Telescope
         use {
@@ -71,7 +72,7 @@ return require('packer').startup {
 
         -- Colors
         use 'gruvbox-community/gruvbox'
-        use 'ayu-theme/ayu-vim' 
+        use 'ayu-theme/ayu-vim'
 
     end
 }

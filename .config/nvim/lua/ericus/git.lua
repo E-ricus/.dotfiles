@@ -11,7 +11,7 @@ require('diffview').setup {
     -- The `view` bindings are active in the diff buffers, only when the current
     -- tabpage is a Diffview.
     view = {
-      ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file 
+      ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file
       ["<s-tab>"]   = cb("select_prev_entry"),  -- Open the diff for the previous file
       ["<leader>e"] = cb("focus_files"),        -- Bring focus to the files panel
       ["<leader>b"] = cb("toggle_files"),       -- Toggle the files panel.
@@ -35,9 +35,9 @@ require('diffview').setup {
 -- Keymaps
 local map = require('ericus.vim-utils').mapper
 
-map('n', '<leader>gs', 'G', {noremap = true})
-map('n', '<leader>gg', 'Telescope git_status', {noremap = true})
-map('n', '<leader>gb', 'Telescope git_branches', {noremap = true})
-map('n', '<leader>gd', 'DiffviewOpen', {noremap = true})
-map('n', '<leader>gc', 'Git commit', {noremap = true})
-map('n', '<leader>ga', 'Git commit --ammend', {noremap = true})
+map('n', '<leader>gs', 'G')
+map('n', '<leader>gg', 'Telescope git_status')
+map('n', '<leader>gb', 'Telescope git_branches')
+map('n', '<leader>gd', 'DiffviewOpen')
+map('n', '<leader>gc', 'Git commit')
+map('n', '<leader>ga', 'Git commit --ammend')
