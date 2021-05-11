@@ -16,7 +16,7 @@ local on_attach = function(client)
     vu.buffer_lua_mapper('n', '<leader>fr', 'vim.lsp.buf.formatting()')
     vu.buffer_lua_mapper('n', 'g[', 'vim.lsp.diagnostic.goto_prev()')
     vu.buffer_lua_mapper('n', 'g]', 'vim.lsp.diagnostic.goto_next()')
-    vu.buffer_lua_mapper('i', '<c-k>', 'vim.lsp.buf.signature_help()')
+    vu.buffer_lua_mapper('i', '<C-k>', 'vim.lsp.buf.signature_help()')
     -- Telescope maps
     vu.buffer_mapper('n', 'gr', 'Telescope lsp_references')
     vu.buffer_mapper('n', '<leader>ds', 'Telescope lsp_document_symbols')
@@ -109,7 +109,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = true,
     signs = true,
-    update_in_insert = true,
+    update_in_insert = false,
   }
 )
 
