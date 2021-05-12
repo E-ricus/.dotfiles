@@ -29,6 +29,7 @@ local map = require('ericus.vim-utils').mapper
 map('n', '<leader>ff', 'Telescope find_files')
 map('n', '<leader>f.', 'Telescope find_files find_command=rg,--ignore,--hidden,--files')
 map('n', '<leader>fg', 'Telescope live_grep')
+map('n', '<leader>fs', 'Telescope grep_string')
 map('n', '<leader>fb', 'Telescope buffers')
 map('n', '<leader>fh', 'Telescope help_tags')
 map('n', '<leader>ts', 'Telescope treesitter')
