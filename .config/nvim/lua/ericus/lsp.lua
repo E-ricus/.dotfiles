@@ -9,7 +9,6 @@ local on_attach = function(client)
     vu.buffer_lua_mapper('n', 'K', 'vim.lsp.buf.hover()')
     vu.buffer_lua_mapper('n', 'gD', 'vim.lsp.buf.declaration()')
     vu.buffer_lua_mapper('n', '<leader>rn', 'vim.lsp.buf.rename()')
-    vu.buffer_lua_mapper('n', '<leader>fr', 'vim.lsp.buf.formatting()')
     vu.buffer_lua_mapper('n', 'g[', 'vim.lsp.diagnostic.goto_prev()')
     vu.buffer_lua_mapper('n', 'g]', 'vim.lsp.diagnostic.goto_next()')
     vu.buffer_lua_mapper('i', '<C-k>', 'vim.lsp.buf.signature_help()')
@@ -37,8 +36,13 @@ local on_attach = function(client)
             augroup END
         ]]
     end
-    if vim.tbl_contains({"python", "rust", "typescript", "go"}, filetype) then
+    -- Set some keybinds conditional on server capabilities
+    if client.resolved_capabilities.document_formatting then
+        vu.buffer_lua_mapper("n", "<leader>fr", "vim.lsp.buf.formatting()")
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
+    end
+    if client.resolved_capabilities.document_range_formatting then
+        vu.buffer_lua_mapper("v", "<leader>fr", "vim.lsp.buf.range_formatting()")
     end
 end
 
@@ -85,7 +89,7 @@ local function setup_servers()
     local servers = lsp_install.installed_servers()
 
     for _, server in ipairs(servers) do
-        nvim_lsp[server].setup{
+        nvim_lsp[server].setup {
             on_attach=on_attach,
             capabilities=capabilities,
             settings=settings[server],
