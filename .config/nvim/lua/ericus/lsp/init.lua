@@ -1,5 +1,7 @@
 local vu = require('ericus.vim-utils')
 
+require('ericus.lsp.handlers')
+
 -- function to attach completion when setting up lsp
 local on_attach = function(client)
     local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
@@ -12,6 +14,8 @@ local on_attach = function(client)
     vu.buffer_lua_mapper('n', 'g[', 'vim.lsp.diagnostic.goto_prev()')
     vu.buffer_lua_mapper('n', 'g]', 'vim.lsp.diagnostic.goto_next()')
     vu.buffer_lua_mapper('i', '<C-k>', 'vim.lsp.buf.signature_help()')
+    vu.buffer_lua_mapper('n', '<C-k>', 'vim.lsp.buf.signature_help()')
+    vu.buffer_lua_mapper('n', '<leader>we', "require('lsp_extensions.workspace.diagnostic').set_qf_list()")
     -- Telescope maps
     vu.buffer_mapper('n', 'gr', 'Telescope lsp_references')
     vu.buffer_mapper('n', 'gd', 'Telescope lsp_definitions')
@@ -98,13 +102,3 @@ local function setup_servers()
 end
 
 setup_servers()
-
--- Enable diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = true,
-    signs = true,
-    update_in_insert = false,
-  }
-)
-
