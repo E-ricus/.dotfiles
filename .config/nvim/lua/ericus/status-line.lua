@@ -9,7 +9,7 @@ local gl = require('galaxyline')
 local gls = gl.section
 local condition = require('galaxyline.condition')
 
-gl.short_line_list = {'vim-plug', 'tagbar', 'packer', 'NvimTree', 'startify'}
+gl.short_line_list = {'vim-plug', 'tagbar', 'packer', 'NvimTree'}
 
 -- Gruvbox
 local colors = {
@@ -109,7 +109,7 @@ local function buffer_not_empty()
   return false
 end
 
-local function diagnostic_exists()
+local function client_connected()
   return not vim.tbl_isempty(vim.lsp.buf_get_clients(0))
 end
 
@@ -200,20 +200,22 @@ gls.left[7] = {
     provider = "GitBranch",
     condition = wide_enough(85) and condition.check_git_workspace,
     highlight = {colors.fg2, colors.bg1},
+    separator = ' ',
+    separator_highlight = {colors.fg2, colors.bg1},
   }
 }
 gls.left[8] = {
   DiffAdd = {
     provider = "DiffAdd",
-    icon = '   ',
-    --condition = wide_enough(95) and condition.check_git_workspace,
+    icon = ' ',
+    condition = wide_enough(95) and condition.check_git_workspace,
     highlight = {colors.bright_green, colors.bg1},
   }
 }
 gls.left[9] = {
   DiffModified = {
     provider = "DiffModified",
-    icon = '   ',
+    icon = ' ',
     condition = wide_enough(95) and condition.check_git_workspace,
     highlight = {colors.bright_orange, colors.bg1},
   }
@@ -221,7 +223,7 @@ gls.left[9] = {
 gls.left[10] = {
   DiffRemove = {
     provider = "DiffRemove",
-    icon = '   ',
+    icon = ' ',
     condition = wide_enough(95) and condition.check_git_workspace,
     highlight = {colors.bright_red, colors.bg1},
   }
@@ -229,44 +231,20 @@ gls.left[10] = {
 
 gls.right[1] = {
   LspStatus = {
-    provider = function()
-      local connected = diagnostic_exists()
-      if connected then
-        return '  ' .. icons.connected .. '  '
-      else
-        return ''
-      end
+    condition = wide_enough(85) and client_connected(),
+    provider = function ()
+        return require('ericus.lsp.status').status_line()
     end,
-    highlight = {colors.bright_green, colors.bg1},
+    highlight = {colors.fg2, colors.bg1},
   }
 }
 gls.right[2] = {
-  DiagnosticWarn = {
-    provider = function()
-      local n = vim.lsp.diagnostic.get_count(0, 'Warning')
-      if n == 0 then return '' end
-      return string.format(' %s %d ', icons.warning, n)
-    end,
-    highlight = {colors.bright_yellow, colors.bg1},
-  }
-}
-gls.right[3] = {
-  DiagnosticError = {
-    provider = function()
-      local n = vim.lsp.diagnostic.get_count(0, 'Error')
-      if n == 0 then return '' end
-      return string.format(' %s %d ', icons.error, n)
-    end,
-    highlight = {colors.bright_red, colors.bg1},
-  }
-}
-gls.right[4] = {
   RightSepNested = {
     provider = function() return sep.right_filled end,
     highlight = 'GalaxyViModeInvNested',
   }
 }
-gls.right[5] = {
+gls.right[3] = {
   FileFormat = {
     provider = function()
       if not buffer_not_empty() or not wide_enough(70) then return '' end
@@ -276,13 +254,13 @@ gls.right[5] = {
     highlight = 'GalaxyViModeNested',
   }
 }
-gls.right[6] = {
+gls.right[4] = {
   RightSep = {
     provider = function() return sep.right_filled end,
     highlight = 'GalaxyViModeInv',
   }
 }
-gls.right[7] = {
+gls.right[5] = {
   PositionInfo = {
     provider = function()
       if not buffer_not_empty() or not wide_enough(60) then return '' end
@@ -291,7 +269,7 @@ gls.right[7] = {
     highlight = 'GalaxyViMode',
   }
 }
-gls.right[8] = {
+gls.right[6] = {
   PercentInfo = {
     provider = function ()
       if not buffer_not_empty() or not wide_enough(65) then return '' end
@@ -306,10 +284,11 @@ gls.right[8] = {
 
 local short_map = {
   ['vim-plug'] = 'Plugins',
-  ['startify'] = 'Starfity',
+  ['packer'] = 'Plugins',
   ['tagbar'] = 'Tagbar',
   ['Mundo'] = 'History',
   ['MundoDiff'] = 'Diff',
+  ['NvimTree'] = 'Tree',
 }
 
 local function has_file_type()
@@ -323,7 +302,7 @@ end
 gls.short_line_left[1] = {
   BufferType = {
     provider = function ()
-      local label, fg, nested_fg = unpack(mode_hl())
+      local _, fg, nested_fg = unpack(mode_hl())
       highlight('GalaxyViMode', colors.bg1, fg)
       highlight('GalaxyViModeInv', fg, nested_fg)
       highlight('GalaxyViModeInvNested', nested_fg, colors.bg1)

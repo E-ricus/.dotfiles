@@ -39,7 +39,8 @@ return require('packer').startup {
         -- LSP
         use 'neovim/nvim-lspconfig'
         use 'nvim-lua/lsp_extensions.nvim'
-        use {'kabouzeid/nvim-lspinstall', run = ':LspInstall lua'}
+        use {'kabouzeid/nvim-lspinstall'}
+        use 'nvim-lua/lsp-status.nvim'
 
         -- Telescope
         use {

@@ -1,10 +1,16 @@
 local vu = require('ericus.vim-utils')
 
+local nvim_status = require('lsp-status')
+
+
+require('ericus.lsp.status').activate()
 require('ericus.lsp.handlers')
 
 -- function to attach completion when setting up lsp
 local on_attach = function(client)
     local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
+
+    nvim_status.on_attach(client)
 
     -- keymaps
     vu.buffer_lua_mapper('n', 'gi', 'vim.lsp.buf.implementation()')
@@ -50,14 +56,16 @@ local on_attach = function(client)
     end
 end
 
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities = vim.tbl_deep_extend('keep', capabilities, nvim_status.capabilities)
+
 local function setup_servers()
     local lsp_install = require('lspinstall')
     lsp_install.setup()
     -- nvim_lsp object
     local nvim_lsp = require('lspconfig')
-
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     -- Specific server settings
     local settings = {

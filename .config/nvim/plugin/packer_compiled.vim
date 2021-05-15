@@ -92,6 +92,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/gruvbox"
   },
+  ["lsp-status.nvim"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/lsp-status.nvim"
+  },
   ["lsp_extensions.nvim"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
