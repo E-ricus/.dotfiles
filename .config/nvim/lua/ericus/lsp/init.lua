@@ -2,7 +2,6 @@ local vu = require('ericus.vim-utils')
 
 local nvim_status = require('lsp-status')
 
-
 require('ericus.lsp.status').activate()
 require('ericus.lsp.handlers')
 
@@ -61,52 +60,4 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = vim.tbl_deep_extend('keep', capabilities, nvim_status.capabilities)
 
-local function setup_servers()
-    local lsp_install = require('lspinstall')
-    lsp_install.setup()
-    -- nvim_lsp object
-    local nvim_lsp = require('lspconfig')
-
-    -- Specific server settings
-    local settings = {
-        rust = {
-            ["rust-analyzer"] = {
-                checkOnSave = {
-                    command = "clippy"
-                },
-                diagnostics = {
-                    disabled = {"macro-error"}
-                },
-
-            }
-        },
-        go = {
-            gopls = {
-                analyses = {
-                    unusedparams = true,
-                },
-                staticcheck = true,
-            },
-        },
-        lua = {
-            Lua = {
-                diagnostics = {
-                    -- Get the language server to recognize the `vim` global
-                    globals = {'vim'},
-                },
-            }
-        }
-    }
-
-    local servers = lsp_install.installed_servers()
-
-    for _, server in ipairs(servers) do
-        nvim_lsp[server].setup {
-            on_attach=on_attach,
-            capabilities=capabilities,
-            settings=settings[server],
-        }
-    end
-end
-
-setup_servers()
+require('ericus.lsp.servers').setup_servers(on_attach, capabilities)

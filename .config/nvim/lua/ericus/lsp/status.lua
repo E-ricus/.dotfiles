@@ -22,7 +22,7 @@ end
 status.activate = function()
   nvim_status.config {
     select_symbol = status.select_symbol,
-    status_symbol = ' ',
+    status_symbol = '',
     current_function = false,
 
     indicator_errors = '',
