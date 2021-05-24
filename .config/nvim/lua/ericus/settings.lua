@@ -1,5 +1,3 @@
-vim.cmd('filetype plugin indent on')
-vim.api.nvim_set_option('encoding', 'utf-8')
 vim.api.nvim_set_option('smartindent', true)
 vim.api.nvim_set_option('timeoutlen', 300)
 vim.api.nvim_set_option('number', true)
@@ -21,7 +19,6 @@ vim.cmd('set shortmess+=c') --Don't pass messages to |ins-completion-menu|.
 vim.cmd('set completeopt=menuone,noinsert,noselect') --Better completion
 vim.cmd('set colorcolumn=80')
 -- Proper search
-vim.api.nvim_set_option('incsearch', true)
 vim.api.nvim_set_option('ignorecase', true)
 vim.api.nvim_set_option('smartcase', true)
 vim.api.nvim_set_option('gdefault', true)

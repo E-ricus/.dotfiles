@@ -33,14 +33,9 @@ nnoremap <leader>j <C-w>j
 nnoremap <leader><leader> <c-^>
 " Quick-save
 nmap <leader>w :w<CR>
-"" No arrow keys --- force yourself to use the home row
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
 
 " Move by line
 nnoremap j gj
 nnoremap k gk
+
+imap <C-L> <Esc>
