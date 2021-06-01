@@ -1,30 +1,29 @@
-vim.api.nvim_set_option('smartindent', true)
-vim.api.nvim_set_option('timeoutlen', 300)
-vim.api.nvim_set_option('number', true)
-vim.api.nvim_set_option('relativenumber', true)
+vim.opt.smartindent = true
+vim.opt.timeoutlen = 300
+vim.opt.number = true
+vim.opt.relativenumber = true
 -- Make diffing better: https://vimways.org/2018/the-power-of-diff/
-vim.cmd('set diffopt+=algorithm:patience')
-vim.cmd('set diffopt+=indent-heuristic')
-vim.api.nvim_set_option('hidden', true)
-vim.cmd('set nohlsearch')
-vim.cmd('set noshowmode')
-vim.api.nvim_set_option('tabstop', 4)
-vim.api.nvim_set_option('softtabstop', 4)
-vim.api.nvim_set_option('shiftwidth', 4)
-vim.api.nvim_set_option('expandtab', true)
-vim.api.nvim_set_option('smartcase', true)
-vim.api.nvim_set_option('scrolloff', 5)
-vim.api.nvim_set_option('mouse', 'a')
-vim.cmd('set shortmess+=c') --Don't pass messages to |ins-completion-menu|.
-vim.cmd('set completeopt=menuone,noinsert,noselect') --Better completion
-vim.cmd('set colorcolumn=80')
+vim.opt.diffopt:append {'algorithm:patience', 'indent-heuristic'}
+vim.opt.hidden = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartcase = true
+vim.opt.scrolloff = 5
+vim.opt.mouse = 'a'
+vim.opt.shortmess:append('c') --Don't pass messages to |ins-completion-menu|.
+vim.opt.completeopt = {'menuone','noinsert','noselect'} --Better completion
+-- vim.opt.colorcolumn = 80
 -- Proper search
-vim.api.nvim_set_option('ignorecase', true)
-vim.api.nvim_set_option('smartcase', true)
-vim.api.nvim_set_option('gdefault', true)
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.gdefault = true
 -- Sane splits
-vim.api.nvim_set_option('splitright', true)
-vim.api.nvim_set_option('splitbelow', true)
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 -- Better display for messages
-vim.api.nvim_set_option('cmdheight', 2)
-vim.api.nvim_set_option('updatetime', 300)
+vim.opt.cmdheight = 2
+vim.opt.updatetime = 300
+
+vim.cmd('set noshowmode') -- Already on the statusline

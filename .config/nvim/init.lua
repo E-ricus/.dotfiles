@@ -1,6 +1,6 @@
 -- Important globals settings
 vim.g.mapleader = " "
-vim.cmd('set shell=/bin/bash') -- Fish is not the best team player
+vim.opt.shell = '/bin/bash'
 
 -- General configs
 require('ericus.settings')

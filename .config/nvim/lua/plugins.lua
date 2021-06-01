@@ -74,6 +74,7 @@ return require('packer').startup {
         -- Colors
         use 'gruvbox-community/gruvbox'
         use 'ayu-theme/ayu-vim'
+        use 'marko-cerovac/material.nvim'
 
     end
 }

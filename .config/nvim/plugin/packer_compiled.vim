@@ -100,6 +100,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
   },
+  ["material.nvim"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/material.nvim"
+  },
   ["nvim-comment"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-comment"
