@@ -52,6 +52,7 @@ return require('packer').startup {
         -- Autocomplete
         use 'hrsh7th/nvim-compe'
         use 'hrsh7th/vim-vsnip'
+        use "rafamadriz/friendly-snippets"
 
         -- Treesitter
         use {'nvim-treesitter/nvim-treesitter', run = treesitter_hook}

@@ -2,7 +2,7 @@ local lsp_install = require('lspinstall')
 
 local M = {}
 
-local required_servers = { "lua", "rust", "go", "typescript", "python", "yaml", "json", "html"}
+local required_servers = { "lua", "rust", "go", "typescript", "python", "yaml", "json", "html", "elixir"}
 local settings = {
     rust = {
         ["rust-analyzer"] = {
@@ -21,6 +21,9 @@ local settings = {
                 unusedparams = true,
             },
             staticcheck = true,
+            codelenses = {
+                test = true,
+            },
         },
     },
     lua = {
