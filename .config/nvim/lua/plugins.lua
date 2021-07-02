@@ -56,6 +56,8 @@ return require('packer').startup {
 
         -- Treesitter
         use {'nvim-treesitter/nvim-treesitter', run = treesitter_hook}
+        use 'nvim-treesitter/playground'
+        use 'nvim-treesitter/nvim-treesitter-textobjects'
 
         -- Syntax
         use 'godlygeek/tabular'

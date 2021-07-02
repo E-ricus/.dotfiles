@@ -14,6 +14,7 @@ local on_attach = function(client)
     -- keymaps
     vu.buffer_lua_mapper('n', 'gi', 'vim.lsp.buf.implementation()')
     vu.buffer_lua_mapper('n', 'K', 'vim.lsp.buf.hover()')
+    vu.buffer_lua_mapper('n', 'gd', 'vim.lsp.buf.definition()')
     vu.buffer_lua_mapper('n', 'gD', 'vim.lsp.buf.declaration()')
     vu.buffer_lua_mapper('n', '<leader>rn', 'vim.lsp.buf.rename()')
     vu.buffer_lua_mapper('n', 'g[', 'vim.lsp.diagnostic.goto_prev()')
@@ -23,11 +24,11 @@ local on_attach = function(client)
     vu.buffer_lua_mapper('n', '<C-k>', 'vim.lsp.buf.signature_help()')
     -- Telescope maps
     vu.buffer_mapper('n', 'gr', 'Telescope lsp_references')
-    vu.buffer_mapper('n', 'gd', 'Telescope lsp_definitions')
-    vu.buffer_mapper('n', '<leader>ds', 'Telescope lsp_document_symbols')
+    vu.buffer_mapper('n', '<leader>bs', 'Telescope lsp_document_symbols')
     vu.buffer_mapper('n', '<leader>ws', 'Telescope lsp_workspace_symbols')
     vu.buffer_mapper('n', '<leader>a', 'Telescope lsp_code_actions theme=get_dropdown')
     vu.buffer_mapper('n', '<leader>we', "Telescope lsp_workspace_diagnostics")
+    vu.buffer_mapper('n', '<leader>be', 'Telescope lsp_document_diagnostics')
     -- Only rust has this
     if filetype == 'rust' then
         vim.cmd(
