@@ -10,8 +10,8 @@ from libqtile import layout, bar, widget, hook
 from libqtile.lazy import lazy
 from typing import List  # noqa: F401
 
-mod = "mod4"                                     # Sets mod key to SUPER/WINDOWS
-myTerm = "alacritty"                             # My terminal of choice
+mod = "mod4"        # Sets mod key to SUPER/WINDOWS
+myTerm = "kitty"    # My terminal of choice
 
 keys = [
          ### The essentials
@@ -142,6 +142,14 @@ keys = [
              [], "XF86AudioMute",
              lazy.spawn("amixer -q set Master toggle")
          ),
+        Key(
+            [], "XF86MonBrightnessUp", 
+            lazy.spawn("xbacklight -inc 20")
+        ),
+        Key(
+            [], "XF86MonBrightnessDown", 
+            lazy.spawn("xbacklight -dec 20")
+        ),
 ]
 
 group_names = [("TERM", {'layout': 'monadtall'}),
@@ -500,6 +508,7 @@ focus_on_window_activation = "smart"
 def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
+
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the

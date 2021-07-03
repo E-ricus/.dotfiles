@@ -18,5 +18,3 @@ alias rg "rg --files --hidden --glob '!.git'"
 
 starship init fish | source
 zoxide init fish | source
-
-colorscript random
