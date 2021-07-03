@@ -14,7 +14,7 @@ My configs
 `paru -S nerd-fonts-fira-code nerd-fonts-noto-sans-mono noto-fonts-emoji`
 
 ## System-76 laptops
-`system76-dkms`
+`paru -S sys76-kb`
 
 ## ZSA Keyboards
 https://github.com/zsa/wally/wiki/Live-training-on-Linux
