@@ -23,12 +23,6 @@ vnoremap <leader>y "+y
 vnoremap <leader>pp "+gP
 nnoremap <leader>pp "+gP
 
-nnoremap <leader>k <C-w>k
-nnoremap <leader>h <C-w>h
-nnoremap <leader>l <C-w>l
-nnoremap <leader>j <C-w>j
-
-
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
 " Quick-save
@@ -39,3 +33,25 @@ nnoremap j gj
 nnoremap k gk
 
 imap <C-L> <Esc>
+
+" Yank till the end of line
+nnoremap Y y$
+
+" Keeping it centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" Undo break points
+inoremap . .<c-g>u
+inoremap , ,<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+" Move text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==

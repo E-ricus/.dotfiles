@@ -66,6 +66,13 @@ M.update_all_servers = function ()
     end
 end
 
+M.list_servers = function ()
+    local installed_servers = lsp_install.installed_servers()
+    for _, server in pairs(installed_servers) do
+        print(server)
+    end
+end
+
 lsp_install.post_install_hook = function ()
   M.setup_servers() -- reload installed servers
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
@@ -73,5 +80,6 @@ end
 
 vim.cmd("command! LspRequire lua require('ericus.lsp.servers').require_servers()")
 vim.cmd("command! LspUpdateAll lua require('ericus.lsp.servers').update_all_servers()")
+vim.cmd("command! LspServers lua require('ericus.lsp.servers').list_servers()")
 
 return M
