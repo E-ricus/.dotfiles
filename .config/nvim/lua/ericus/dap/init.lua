@@ -1,4 +1,5 @@
 require('ericus.dap.go')
+require('ericus.dap.rust')
 
 vim.g.dap_virtual_text = true
 
