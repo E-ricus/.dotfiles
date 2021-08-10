@@ -114,6 +114,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-dap"
+  },
+  ["nvim-dap-virtual-text"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
@@ -157,6 +165,10 @@ _G.packer_plugins = {
   tabular = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/tabular"
+  },
+  ["telescope-dap.nvim"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/telescope-dap.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,

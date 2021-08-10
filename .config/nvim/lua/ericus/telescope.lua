@@ -22,13 +22,18 @@ require('telescope').setup {
     }
 }
 
+-- Faster fuzzy
 require('telescope').load_extension('fzf')
+-- DAP extension
+require('telescope').load_extension('dap')
+
 
 -- Keymaps
 local utils = require('ericus.vim-utils')
 local map = utils.mapper
 
 map('n', '<leader>ff', 'Telescope find_files')
+map('n', '<leader>ft', 'Telescope file_browser')
 map('n', '<leader>f.', 'Telescope find_files find_command=rg,--ignore,--hidden,--files')
 map('n', '<leader>fg', 'Telescope live_grep')
 map('n', '<leader>fs', 'Telescope grep_string')

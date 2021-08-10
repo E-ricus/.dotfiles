@@ -23,6 +23,7 @@ return require('packer').startup {
         use 'wbthomason/packer.nvim'
         -- Icons
         use 'kyazdani42/nvim-web-devicons'
+        -- Status line
         use {
             'glepnir/galaxyline.nvim', branch = 'main',
             requires = {'kyazdani42/nvim-web-devicons'}
@@ -58,6 +59,11 @@ return require('packer').startup {
         use {'nvim-treesitter/nvim-treesitter', run = treesitter_hook}
         use 'nvim-treesitter/playground'
         use 'nvim-treesitter/nvim-treesitter-textobjects'
+
+        -- Debugger
+        use 'mfussenegger/nvim-dap'
+        use 'nvim-telescope/telescope-dap.nvim'
+        use 'theHamsta/nvim-dap-virtual-text'
 
         -- Syntax
         use 'godlygeek/tabular'
