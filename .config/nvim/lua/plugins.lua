@@ -43,6 +43,9 @@ return require('packer').startup {
         use {'kabouzeid/nvim-lspinstall'}
         use 'nvim-lua/lsp-status.nvim'
 
+        -- Langs Enhacement
+        use 'tjdevries/green_light.nvim'
+
         -- Telescope
         use {
             'nvim-telescope/telescope.nvim',
@@ -83,7 +86,13 @@ return require('packer').startup {
         -- Colors
         use 'gruvbox-community/gruvbox'
         use 'ayu-theme/ayu-vim'
-        use 'marko-cerovac/material.nvim'
 
+        use 'tjdevries/colorbuddy.nvim'
+        use 'tjdevries/gruvbuddy.nvim'
+        use {
+            'marko-cerovac/material.nvim',
+            branch = 'colorbuddy',
+            requires = 'tjdevries/colorbuddy.nvim'
+        }
     end
 }

@@ -15,10 +15,19 @@ vim.api.nvim_set_var('sneak#s_next', 1)
 vim.cmd('syntax on') -- syntax highlighting
 vim.o.termguicolors = true -- set term gui colors most terminals support this
 vim.opt.background = 'dark'
+require("colorbuddy").colorscheme("gruvbuddy")
+
+local c = require("colorbuddy.color").colors
+local Group = require("colorbuddy.group").Group
+local s = require("colorbuddy.style").styles
+
+Group.new("GoTestSuccess", c.green, nil, s.bold)
+Group.new("GoTestFail", c.red, nil, s.bold)
+
 vim.cmd('let base16colorspace=256')
-vim.cmd('let ayucolor="dark"')
-vim.cmd('colorscheme ayu')
-vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
+-- vim.cmd('let ayucolor="dark"')
+-- vim.cmd('colorscheme ayu')
+-- vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
 
 -- Treesitter
 require('ericus.editor.treesitter')

@@ -9,6 +9,7 @@ require('ericus.syntax')
 require('plugins')
 -- Plugin required configs
 require('ericus.editor')
+require('ericus.lang-tools')
 require("ericus.compe")
 require('ericus.status-line')
 require("ericus.telescope")

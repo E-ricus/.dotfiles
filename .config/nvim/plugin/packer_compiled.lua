@@ -73,6 +73,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/ayu-vim"
   },
+  ["colorbuddy.nvim"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim"
+  },
   ["diffview.nvim"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/diffview.nvim"
@@ -90,9 +94,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
+  ["green_light.nvim"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/green_light.nvim"
+  },
   gruvbox = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/gruvbox"
+  },
+  ["gruvbuddy.nvim"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/gruvbuddy.nvim"
   },
   ["lsp-status.nvim"] = {
     loaded = true,
