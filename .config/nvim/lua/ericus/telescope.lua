@@ -29,8 +29,7 @@ require('telescope').load_extension('dap')
 
 
 -- Keymaps
-local utils = require('ericus.vim-utils')
-local map = utils.mapper
+local map = require('ericus.vim-utils').mapper
 
 map('n', '<leader>ff', 'Telescope find_files')
 map('n', '<leader>ft', 'Telescope file_browser')
@@ -41,22 +40,4 @@ map('n', '<leader>fb', 'Telescope buffers')
 map('n', '<leader>fh', 'Telescope help_tags')
 map('n', '<leader>ts', 'Telescope treesitter')
 map('n', '<leader>fq', 'Telescope quickfix')
-utils.lua_mapper('n', '<leader>th', "require('ericus.telescope').theme()")
-
-local M = {}
-
--- Colorscheme but with transparent background
-M.theme = function ()
-    require('telescope.builtin').colorscheme({
-        attach_mappings = function(_)
-            actions.select_default:enhance({
-                post = function ()
-                    vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
-                end,
-            })
-            return true
-        end
-    })
-end
-
-return M
+map('n', '<leader>th', 'Telescope colorscheme')
