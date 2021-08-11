@@ -5,7 +5,10 @@ local glm = require('gl.go_mod')
 local M = {}
 
 function M.go_test_all()
-    gl.TestRun:new():run()
+    local opts = {
+        file_pattern = './...'
+    }
+    gl.TestRun:new(opts):run()
 end
 
 

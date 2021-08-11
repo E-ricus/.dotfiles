@@ -37,7 +37,7 @@ local dap = require('dap')
   dap.configurations.go = {
     {
       type = "go",
-      name = "Debug run",
+      name = "Debug file",
       request = "launch",
       program = function()
         return vim.fn.input('Path to main: ', vim.fn.getcwd() .. '/', 'file')
@@ -45,7 +45,7 @@ local dap = require('dap')
     },
     {
       type = "go",
-      name = "Debug file (run on the file)",
+      name = "Debug",
       request = "launch",
       program = "${file}"
     },

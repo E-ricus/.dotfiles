@@ -87,6 +87,7 @@ return require('packer').startup {
         use 'gruvbox-community/gruvbox'
         use 'ayu-theme/ayu-vim'
 
+        use 'norcalli/nvim-colorizer.lua'
         use 'tjdevries/colorbuddy.nvim'
         use 'tjdevries/gruvbuddy.nvim'
         use {
