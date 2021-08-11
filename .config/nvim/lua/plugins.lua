@@ -32,7 +32,6 @@ return require('packer').startup {
         use 'andymass/vim-matchup'
         use 'justinmk/vim-sneak'
         use 'szw/vim-maximizer'
-        use 'airblade/vim-rooter'
         use 'terrortylor/nvim-comment'
         -- File Explorer
         use 'kyazdani42/nvim-tree.lua'
