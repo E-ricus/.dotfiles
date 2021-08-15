@@ -44,6 +44,7 @@ return require('packer').startup {
 
         -- Langs Enhacement
         use 'tjdevries/green_light.nvim'
+        use 'ThePrimeagen/refactoring.nvim'
 
         -- Telescope
         use {

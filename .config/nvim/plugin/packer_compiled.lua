@@ -178,6 +178,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
+  ["refactoring.nvim"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/refactoring.nvim"
+  },
   tabular = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/tabular"
@@ -213,10 +217,6 @@ _G.packer_plugins = {
   ["vim-maximizer"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/vim-maximizer"
-  },
-  ["vim-rooter"] = {
-    loaded = true,
-    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/vim-rooter"
   },
   ["vim-sneak"] = {
     loaded = true,

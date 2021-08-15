@@ -1,4 +1,3 @@
--- Golang
 local gl = require('gl.test')
 local glm = require('gl.go_mod')
 
@@ -48,11 +47,5 @@ function M.go_test()
     }
     gl.TestRun:new(opts):run()
 end
-
-vim.cmd("command! GoTest lua require('ericus.lang-tools').go_test()")
-vim.cmd("command! GoTestAll lua require('ericus.lang-tools').go_test_all()")
-vim.cmd("command! GoTestPackage lua require('ericus.lang-tools').go_test_package()")
-vim.cmd("command! GoTestFile lua require('ericus.lang-tools').go_test_file()")
-vim.cmd("command! GoTestPattern lua require('ericus.lang-tools').go_test_pattern()")
 
 return M
