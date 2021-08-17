@@ -3,9 +3,10 @@ vim.cmd('syntax on') -- syntax highlighting
 vim.o.termguicolors = true -- set term gui colors most terminals support this
 vim.opt.background = 'dark'
 
+require("colorizer").setup()
+
 ------------------ Gruvbox (colorbuddy) --------------------
 require("colorbuddy").colorscheme("gruvbuddy")
-require("colorizer").setup()
 
 local c = require("colorbuddy.color").colors
 local Group = require("colorbuddy.group").Group
@@ -18,14 +19,15 @@ Group.new("GoTestFail", c.red, nil, s.bold)
 Group.new("goTSType", g.Type.fg:dark(), nil, g.Type)
 Group.new("TSPunctBracket", c.orange:light():light())
 
--- Group.new('Keyword', c.orange, nil, nil)
+Group.new('Keyword', c.orange, nil, nil)
 
 Group.new("TSPunctBracket", c.orange:light():light())
+-- Group.new('LspReferenceText', c.purple, c.none, s.bold) highlighting text
 
 ------------------ Material (colorbuddy) --------------------
 -- require("colorbuddy").colorscheme("material")
 
---vim.g.material_style = "deep ocean"
+-- vim.g.material_style = "deep ocean"
 -- local c = require("colorbuddy.color").colors
 -- local Group = require("colorbuddy.group").Group
 -- local s = require("colorbuddy.style").styles
