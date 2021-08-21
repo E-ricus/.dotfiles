@@ -134,6 +134,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-dap"
   },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-dap-ui"
+  },
   ["nvim-dap-virtual-text"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text"

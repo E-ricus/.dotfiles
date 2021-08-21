@@ -67,6 +67,7 @@ return require('packer').startup {
         use 'mfussenegger/nvim-dap'
         use 'nvim-telescope/telescope-dap.nvim'
         use 'theHamsta/nvim-dap-virtual-text'
+        use 'rcarriga/nvim-dap-ui'
 
         -- Syntax
         use 'godlygeek/tabular'
