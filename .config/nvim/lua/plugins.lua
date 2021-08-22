@@ -13,7 +13,7 @@ end
 local treesitter_path = fn.stdpath("data") .. "/site/pack/packer/start/nvim-treesitter"
 local treesitter_hook = ':TSUpdate'
 if fn.empty(fn.glob(treesitter_path)) > 0 then
-    treesitter_hook = ':TSInstall lua go rust typescript python yaml toml comment'
+    treesitter_hook = ':TSInstall lua go gomod rust typescript python yaml toml comment'
 end
 
 vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua

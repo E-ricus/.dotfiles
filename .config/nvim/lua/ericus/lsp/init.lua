@@ -22,11 +22,12 @@ local on_attach = function(client)
     vu.buffer_lua_mapper('n', '<leader>e', 'vim.lsp.diagnostic.show_line_diagnostics()')
     vu.buffer_lua_mapper('i', '<C-k>', 'vim.lsp.buf.signature_help()')
     vu.buffer_lua_mapper('n', '<C-k>', 'vim.lsp.buf.signature_help()')
+    vu.buffer_lua_mapper('n', '<leader>l', 'vim.lsp.codelens.run()')
     -- Telescope maps
     vu.buffer_mapper('n', 'gr', 'Telescope lsp_references')
     vu.buffer_mapper('n', '<leader>bs', 'Telescope lsp_document_symbols')
     vu.buffer_mapper('n', '<leader>ws', 'Telescope lsp_workspace_symbols')
-    vu.buffer_mapper('n', '<leader>a', 'Telescope lsp_code_actions theme=get_dropdown')
+    vu.buffer_mapper('n', '<leader>a', 'Telescope lsp_code_actions theme=get_cursor')
     vu.buffer_mapper('n', '<leader>we', "Telescope lsp_workspace_diagnostics")
     vu.buffer_mapper('n', '<leader>be', 'Telescope lsp_document_diagnostics')
     -- Only rust has this
@@ -55,6 +56,15 @@ local on_attach = function(client)
     if client.resolved_capabilities.document_range_formatting then
         vu.buffer_lua_mapper("v", "<leader>fr", "vim.lsp.buf.range_formatting()")
     end
+
+    -- Codelenses
+    if client.resolved_capabilities.code_lens then
+        vim.cmd('highlight! link LspCodeLens Comment')
+        vu.nvim_exec [[
+            autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+        ]]
+    end
+
 end
 
 
