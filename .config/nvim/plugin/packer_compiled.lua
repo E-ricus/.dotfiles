@@ -73,6 +73,22 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/ayu-vim"
   },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/cmp-path"
+  },
   ["colorbuddy.nvim"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim"
@@ -118,6 +134,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/material.nvim"
   },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-cmp"
+  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
@@ -125,10 +145,6 @@ _G.packer_plugins = {
   ["nvim-comment"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-comment"
-  },
-  ["nvim-compe"] = {
-    loaded = true,
-    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-dap"] = {
     loaded = true,

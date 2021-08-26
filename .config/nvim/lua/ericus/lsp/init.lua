@@ -69,7 +69,7 @@ end
 
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities = vim.tbl_deep_extend('keep', capabilities, nvim_status.capabilities)
 
 require('ericus.lsp.servers').setup_servers(on_attach, capabilities)
