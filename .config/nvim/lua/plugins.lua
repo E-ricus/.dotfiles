@@ -23,6 +23,7 @@ return require('packer').startup {
         use 'wbthomason/packer.nvim'
         -- Icons
         use 'kyazdani42/nvim-web-devicons'
+        use 'onsails/lspkind-nvim'
         -- Status line
         use {
             'glepnir/galaxyline.nvim', branch = 'main',
@@ -59,8 +60,9 @@ return require('packer').startup {
         use 'hrsh7th/cmp-buffer'
         use 'hrsh7th/cmp-path'
         use 'hrsh7th/cmp-nvim-lua'
+        use 'saadparwaiz1/cmp_luasnip'
         -- Snippets
-        use 'hrsh7th/vim-vsnip'
+        use 'L3MON4D3/LuaSnip'
         use "rafamadriz/friendly-snippets"
 
         -- Treesitter

@@ -69,6 +69,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/LuaSnip"
+  },
   ["ayu-vim"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/ayu-vim"
@@ -88,6 +92,10 @@ _G.packer_plugins = {
   ["cmp-path"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/cmp-path"
+  },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
   },
   ["colorbuddy.nvim"] = {
     loaded = true,
@@ -129,6 +137,10 @@ _G.packer_plugins = {
   ["lsp_extensions.nvim"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
+  },
+  ["lspkind-nvim"] = {
+    loaded = true,
+    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
   },
   ["material.nvim"] = {
     loaded = true,
@@ -241,10 +253,6 @@ _G.packer_plugins = {
   ["vim-sneak"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/vim-sneak"
-  },
-  ["vim-vsnip"] = {
-    loaded = true,
-    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/vim-vsnip"
   }
 }
 

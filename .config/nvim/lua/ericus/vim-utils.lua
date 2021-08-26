@@ -24,6 +24,12 @@ end
 function M.t(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
+
+ function M.check_back_space()
+  local col = vim.fn.col '.' - 1
+  return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
+end
+
 return M
 
 
