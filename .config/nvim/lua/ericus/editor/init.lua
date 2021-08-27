@@ -6,10 +6,7 @@ require('nvim_comment').setup({
 })
 
 -- File Tree
-vim.api.nvim_set_keymap('n', '<leader><TAB>', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
-
--- sneak use s as finder
-vim.api.nvim_set_var('sneak#s_next', 1)
+vim.api.nvim_set_keymap('n', '<leader>`', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 
 -- Colors
 require('ericus.editor.colors')

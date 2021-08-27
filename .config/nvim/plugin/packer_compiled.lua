@@ -249,10 +249,6 @@ _G.packer_plugins = {
   ["vim-maximizer"] = {
     loaded = true,
     path = "/home/ericus/.local/share/nvim/site/pack/packer/start/vim-maximizer"
-  },
-  ["vim-sneak"] = {
-    loaded = true,
-    path = "/home/ericus/.local/share/nvim/site/pack/packer/start/vim-sneak"
   }
 }
 

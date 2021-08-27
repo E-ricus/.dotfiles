@@ -31,7 +31,6 @@ return require('packer').startup {
         }
         use 'machakann/vim-highlightedyank'
         use 'andymass/vim-matchup'
-        use 'justinmk/vim-sneak'
         use 'szw/vim-maximizer'
         use 'terrortylor/nvim-comment'
         -- File Explorer
