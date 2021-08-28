@@ -63,3 +63,6 @@ cmp.setup {
         { name = 'path' },
     },
 }
+
+-- Snippets
+require("luasnip/loaders/from_vscode").load()
