@@ -64,7 +64,6 @@ local on_attach = function(client)
             autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
         ]]
     end
-
 end
 
 

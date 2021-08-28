@@ -22,7 +22,7 @@ Group.new("TSPunctBracket", c.orange:light():light())
 Group.new('Keyword', c.orange, nil, nil)
 
 Group.new("TSPunctBracket", c.orange:light():light())
--- Group.new('LspReferenceText', c.purple, c.none, s.bold) highlighting text
+-- Group.new('LspReferenceText', c.purple, c.none, s.bold)
 
 ------------------ Material (colorbuddy) --------------------
 -- require("colorbuddy").colorscheme("material")
