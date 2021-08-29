@@ -23,13 +23,13 @@ local on_attach = function(client)
     vu.buffer_lua_mapper('i', '<C-k>', 'vim.lsp.buf.signature_help()')
     vu.buffer_lua_mapper('n', '<C-k>', 'vim.lsp.buf.signature_help()')
     vu.buffer_lua_mapper('n', '<leader>l', 'vim.lsp.codelens.run()')
-    -- Telescope maps
+    -- Telescope/Trouble maps
     vu.buffer_mapper('n', 'gr', 'Telescope lsp_references')
     vu.buffer_mapper('n', '<leader>bs', 'Telescope lsp_document_symbols')
     vu.buffer_mapper('n', '<leader>ws', 'Telescope lsp_workspace_symbols')
     vu.buffer_mapper('n', '<leader>a', 'Telescope lsp_code_actions theme=get_cursor')
-    vu.buffer_mapper('n', '<leader>we', "Telescope lsp_workspace_diagnostics")
-    vu.buffer_mapper('n', '<leader>be', 'Telescope lsp_document_diagnostics')
+    vu.buffer_mapper('n', '<leader>we', "TroubleToggle lsp_workspace_diagnostics")
+    vu.buffer_mapper('n', '<leader>be', 'TroubleToggle lsp_document_diagnostics')
     -- Only rust has this
     if filetype == 'rust' then
         vim.cmd(

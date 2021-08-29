@@ -1,3 +1,6 @@
+local map = require('ericus.vim-utils').mapper
+local lmap = require('ericus.vim-utils').lua_mapper
+
 -- Comments
 require('nvim_comment').setup({
     comment_empty = false,
@@ -6,7 +9,11 @@ require('nvim_comment').setup({
 })
 
 -- File Tree
-vim.api.nvim_set_keymap('n', '<leader>`', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+map('n', '<leader>`', 'NvimTreeToggle')
+-- Trouble
+map('n', '<leader>qf', 'TroubleToggle quickfix')
+lmap('n', '<leader>tn', 'require("trouble").next({skip_groups = true, jump = true})')
+lmap('n', '<leader>tp', 'require("trouble").previous({skip_groups = true, jump = true})')
 
 -- Colors
 require('ericus.editor.colors')

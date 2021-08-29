@@ -41,6 +41,15 @@ return require('packer').startup {
         use 'nvim-lua/lsp_extensions.nvim'
         use {'kabouzeid/nvim-lspinstall'}
         use 'nvim-lua/lsp-status.nvim'
+        use {
+            "folke/trouble.nvim",
+            config = function()
+                require("trouble").setup {
+                    auto_preview = false,
+                    auto_fold = true,
+                }
+            end
+        }
 
         -- Langs Enhacement
         use 'tjdevries/green_light.nvim'
