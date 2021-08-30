@@ -25,10 +25,8 @@ return require('packer').startup {
         use 'kyazdani42/nvim-web-devicons'
         use 'onsails/lspkind-nvim'
         -- Status line
-        use {
-            'glepnir/galaxyline.nvim', branch = 'main',
-            requires = {'kyazdani42/nvim-web-devicons'}
-        }
+        use 'tjdevries/express_line.nvim'
+
         use 'machakann/vim-highlightedyank'
         use 'andymass/vim-matchup'
         use 'szw/vim-maximizer'
