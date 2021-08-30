@@ -22,6 +22,7 @@ local settings = {
             },
             staticcheck = true,
             codelenses = {
+                gc_details = true, --  // Show a code lens toggling the display of gc's choices.
                 test = true,
             },
         },
