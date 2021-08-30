@@ -4,9 +4,7 @@ local sections = require('el.sections')
 local subscribe = require('el.subscribe')
 local lsp_statusline = require('el.plugins.lsp_status')
 
-local lsp_status = require('lsp-status')
-
--- local has_lsp_extensions, ws_diagnostics = pcall(require, 'lsp_extensions.workspace.diagnostic')
+local ws_diagnostic = require('lsp_extensions.workspace.diagnostic')
 
 local git_icon = subscribe.buf_autocmd("el_file_icon", "BufRead", function(_, bufnr)
   local icon = extensions.file_icon(_, bufnr)
@@ -47,19 +45,15 @@ local diagnostic_counts = function(_, _)
 
   local messages = {}
 
-  local error_icon = ''
-  local warning_icon = ''
-  local info_icon = '🛈'
+  local error_icon = ''
+  local warning_icon = ''
+  local info_icon = ''
+  local hint_icon = ''
 
-  local diagnostics = lsp_status.diagnostics()
-
-  -- local error_count = ws_diagnostics.get_count(buffer.bufnr, "Error")
-  -- local warning_count = ws_diagnostics.get_count(buffer.bufnr, "Warning")
-  -- local info_count = ws_diagnostics.get_count(buffer.bufnr, "Info")
-  -- print(error_count, warning_count, info_count)
-  local error_count = diagnostics.errors
-  local warning_count = diagnostics.warnings
-  local info_count = diagnostics.info
+  local error_count = ws_diagnostic.get_count(0, "Error")
+  local warning_count = ws_diagnostic.get_count(0, "Warning")
+  local info_count = ws_diagnostic.get_count(0, "Information")
+  local hint_count = ws_diagnostic.get_count(0, "Hint")
 
   table.insert(messages, "LSP: ")
 
@@ -67,9 +61,18 @@ local diagnostic_counts = function(_, _)
       return 'LSP:  '
   end
 
-  table.insert(messages, string.format('%s %d ', error_icon, error_count))
-  table.insert(messages, string.format('%s %d ', warning_icon,  warning_count))
-  table.insert(messages, string.format('%s %d ', info_icon, info_count))
+  if error_count ~= 0 then
+    table.insert(messages, string.format('%s %d ', error_icon, error_count))
+  end
+  if warning_count ~= 0 then
+    table.insert(messages, string.format('%s %d ', warning_icon,  warning_count))
+  end
+  if info_count ~= 0 then
+    table.insert(messages, string.format('%s %d ', info_icon, info_count))
+  end
+  if hint_count ~= 0 then
+    table.insert(messages, string.format('%s %d ', hint_icon, hint_count))
+  end
 
   return table.concat(messages, "")
 end

@@ -22,7 +22,13 @@ Group.new("TSPunctBracket", c.orange:light():light())
 Group.new('Keyword', c.orange, nil, nil)
 
 Group.new("TSPunctBracket", c.orange:light():light())
--- Group.new('LspReferenceText', c.purple, c.none, s.bold)
+
+-- Status Line
+Group.new("ElInsert", c.green, nil, s.bold)
+Group.new("ElInsertCompletion", c.green, nil, s.bold)
+Group.new("ElVisual", c.purple, nil, s.bold)
+Group.new("ElVisualLine", c.purple, nil, s.bold)
+Group.new("ElVisualBlock", c.purple, nil, s.bold)
 
 ------------------ Material (colorbuddy) --------------------
 -- require("colorbuddy").colorscheme("material")
