@@ -5,6 +5,18 @@ vim.opt.background = 'dark'
 
 require("colorizer").setup()
 
+---------- Express Status Line Highlighting -----------------
+--Link With usual colorscheme highlights
+vim.cmd("highlight default link ElNormal NormalMode")
+vim.cmd("highlight default link ElCommand CommandMode")
+vim.cmd("highlight default link ElInsert InsertMode")
+vim.cmd("highlight default link ElVisual VisualMode")
+vim.cmd("highlight default link ElReplace ReplaceMode")
+-- Link similar modes
+vim.cmd("highlight default link ElVisualBlock ElVisual")
+vim.cmd("highlight default link ElVisualLine ElVisual")
+vim.cmd("highlight default link ElInsertCompletion ElInsert")
+
 ------------------ Gruvbox (colorbuddy) --------------------
 require("colorbuddy").colorscheme("gruvbuddy")
 
@@ -20,15 +32,14 @@ Group.new("goTSType", g.Type.fg:dark(), nil, g.Type)
 Group.new("TSPunctBracket", c.orange:light():light())
 
 Group.new('Keyword', c.orange, nil, nil)
-
 Group.new("TSPunctBracket", c.orange:light():light())
 
 -- Status Line
-Group.new("ElInsert", c.green, nil, s.bold)
-Group.new("ElInsertCompletion", c.green, nil, s.bold)
-Group.new("ElVisual", c.purple, nil, s.bold)
-Group.new("ElVisualLine", c.purple, nil, s.bold)
-Group.new("ElVisualBlock", c.purple, nil, s.bold)
+Group.new('NormalMode', c.yellow, c.none, s.bold)
+Group.new('InsertMode', c.green, c.none, s.bold)
+Group.new('ReplaceMode', c.red, c.none, s.bold)
+Group.new('VisualMode', c.purple, c.none, s.bold)
+Group.new('CommandMode', c.orange, c.none, s.bold)
 
 ------------------ Material (colorbuddy) --------------------
 -- require("colorbuddy").colorscheme("material")
