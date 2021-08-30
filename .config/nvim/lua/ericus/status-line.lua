@@ -57,7 +57,7 @@ local diagnostic_counts = function(_, _)
 
   table.insert(messages, "LSP: ")
 
-  if error_count == 0 and warning_count == 0 and info_count == 0 then
+  if error_count == 0 and warning_count == 0 and info_count == 0 and hint_count == 0 then
       return 'LSP:  '
   end
 
