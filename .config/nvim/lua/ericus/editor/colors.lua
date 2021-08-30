@@ -20,27 +20,6 @@ vim.cmd("highlight default link ElInsertCompletion ElInsert")
 ------------------ Gruvbox (colorbuddy) --------------------
 require("colorbuddy").colorscheme("gruvbuddy")
 
-local c = require("colorbuddy.color").colors
-local Group = require("colorbuddy.group").Group
-local g = require("colorbuddy.group").groups
-local s = require("colorbuddy.style").styles
-
-Group.new("GoTestSuccess", c.green, nil, s.bold)
-Group.new("GoTestFail", c.red, nil, s.bold)
-
-Group.new("goTSType", g.Type.fg:dark(), nil, g.Type)
-Group.new("TSPunctBracket", c.orange:light():light())
-
-Group.new('Keyword', c.orange, nil, nil)
-Group.new("TSPunctBracket", c.orange:light():light())
-
--- Status Line
-Group.new('NormalMode', c.yellow, c.none, s.bold)
-Group.new('InsertMode', c.green, c.none, s.bold)
-Group.new('ReplaceMode', c.red, c.none, s.bold)
-Group.new('VisualMode', c.purple, c.none, s.bold)
-Group.new('CommandMode', c.orange, c.none, s.bold)
-
 ------------------ Material (colorbuddy) --------------------
 -- require("colorbuddy").colorscheme("material")
 
