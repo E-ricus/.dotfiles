@@ -85,6 +85,7 @@ return require('packer').startup {
         -- Syntax
         use 'godlygeek/tabular'
         use 'plasticboy/vim-markdown'
+        use {"ellisonleao/glow.nvim", run = "GlowInstall"}
 
         -- Git
         use {
