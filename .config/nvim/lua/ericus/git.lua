@@ -1,43 +1,20 @@
--- DIFFWIEW
-local cb = require('diffview.config').diffview_callback
+-- Neogit
+local neogit = require('neogit')
 
-require('diffview').setup {
-  diff_binaries = false,    -- Show diffs for binaries
-    use_icons = true,
-  file_panel = {
-    width = 35,
-  },
-  key_bindings = {
-    -- The `view` bindings are active in the diff buffers, only when the current
-    -- tabpage is a Diffview.
-    view = {
-      ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file
-      ["<s-tab>"]   = cb("select_prev_entry"),  -- Open the diff for the previous file
-      ["<leader>e"] = cb("focus_files"),        -- Bring focus to the files panel
-      ["<leader>b"] = cb("toggle_files"),       -- Toggle the files panel.
-    },
-    file_panel = {
-      ["j"]         = cb("next_entry"),         -- Bring the cursor to the next file entry
-      ["<down>"]    = cb("next_entry"),
-      ["k"]         = cb("prev_entry"),         -- Bring the cursor to the previous file entry.
-      ["<up>"]      = cb("prev_entry"),
-      ["<cr>"]      = cb("select_entry"),       -- Open the diff for the selected entry.
-      ["o"]         = cb("select_entry"),
-      ["R"]         = cb("refresh_files"),      -- Update stats and entries in the file list.
-      ["<tab>"]     = cb("select_next_entry"),
-      ["<s-tab>"]   = cb("select_prev_entry"),
-      ["<leader>e"] = cb("focus_files"),
-      ["<leader>b"] = cb("toggle_files"),
+neogit.setup {
+    integrations = {
+        diffview = true
     }
-  }
 }
+
+-- DIFFWIEW
+require('diffview').setup {}
 
 -- Keymaps
 local map = require('ericus.vim-utils').mapper
 
-map('n', '<leader>gs', 'G')
-map('n', '<leader>gg', 'Telescope git_status')
+map('n', '<leader>gg', 'Neogit kind=split')
+map('n', '<leader>gs', 'Telescope git_status')
 map('n', '<leader>gb', 'Telescope git_branches')
 map('n', '<leader>gd', 'DiffviewOpen')
-map('n', '<leader>gc', 'Git commit')
-map('n', '<leader>ga', 'Git commit --amend')
+map('n', '<leader>gc', 'Neogit commit')

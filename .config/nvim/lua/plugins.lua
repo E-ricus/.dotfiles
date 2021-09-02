@@ -95,7 +95,7 @@ return require('packer').startup {
                 require('gitsigns').setup()
             end
         }
-        use 'tpope/vim-fugitive'
+        use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
         use 'sindrets/diffview.nvim'
 
         -- Colors
