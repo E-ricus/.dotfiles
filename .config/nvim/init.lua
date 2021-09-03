@@ -7,6 +7,7 @@ require('ericus.settings')
 require('ericus.syntax')
 -- Load plugins with packer
 require('plugins')
+require('impatient') -- Workaround while https://github.com/neovim/neovim/pull/15436 is ready
 -- Plugin required configs
 require('ericus.editor')
 require('ericus.status-line')

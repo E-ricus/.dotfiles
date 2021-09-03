@@ -21,6 +21,7 @@ vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when th
 return require('packer').startup {
     function(use)
         use 'wbthomason/packer.nvim'
+        use {'lewis6991/impatient.nvim', rocks = 'mpack'}
         -- Icons
         use 'kyazdani42/nvim-web-devicons'
         use 'onsails/lspkind-nvim'
