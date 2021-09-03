@@ -30,7 +30,6 @@ return require('packer').startup {
 
         use 'machakann/vim-highlightedyank'
         use 'andymass/vim-matchup'
-        use 'szw/vim-maximizer'
         use 'terrortylor/nvim-comment'
         -- File Explorer
         use 'kyazdani42/nvim-tree.lua'
