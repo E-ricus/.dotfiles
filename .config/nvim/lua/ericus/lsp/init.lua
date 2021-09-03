@@ -12,7 +12,6 @@ local on_attach = function(client)
     nvim_status.on_attach(client)
 
     -- keymaps
-    vu.buffer_lua_mapper('n', 'gi', 'vim.lsp.buf.implementation()')
     vu.buffer_lua_mapper('n', 'K', 'vim.lsp.buf.hover()')
     vu.buffer_lua_mapper('n', 'gd', 'vim.lsp.buf.definition()')
     vu.buffer_lua_mapper('n', 'gD', 'vim.lsp.buf.declaration()')
@@ -24,6 +23,7 @@ local on_attach = function(client)
     vu.buffer_lua_mapper('n', '<C-k>', 'vim.lsp.buf.signature_help()')
     vu.buffer_lua_mapper('n', '<leader>l', 'vim.lsp.codelens.run()')
     -- Telescope/Trouble maps
+    vu.buffer_mapper('n', 'gi', 'Telescope lsp_implementations')
     vu.buffer_mapper('n', 'gr', 'Telescope lsp_references')
     vu.buffer_mapper('n', '<leader>bs', 'Telescope lsp_document_symbols')
     vu.buffer_mapper('n', '<leader>ws', 'Telescope lsp_workspace_symbols')
