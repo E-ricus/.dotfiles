@@ -1,5 +1,6 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
+fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 
 -- Installs packer if is the first time loading
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"

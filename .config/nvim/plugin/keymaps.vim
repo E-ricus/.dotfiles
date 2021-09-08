@@ -55,3 +55,7 @@ inoremap <C-j> <esc>:m .+1<CR>==
 inoremap <C-k> <esc>:m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
+
+" Normal mode on terminal with double esc
+tnoremap <silent> <C-[><C-[> <C-\><C-n>
+nnoremap <C-w>t <C-w>v \| :term<CR> \| a
