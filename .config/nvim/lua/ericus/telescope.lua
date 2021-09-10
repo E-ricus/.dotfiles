@@ -27,7 +27,6 @@ require('telescope').load_extension('fzf')
 -- DAP extension
 require('telescope').load_extension('dap')
 
-
 -- Keymaps
 local map = require('ericus.vim-utils').mapper
 

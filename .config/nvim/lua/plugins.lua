@@ -29,6 +29,7 @@ return require('packer').startup {
         -- Status line
         use 'tjdevries/express_line.nvim'
 
+        -- Editor enhancements
         use 'machakann/vim-highlightedyank'
         use 'andymass/vim-matchup'
         use 'terrortylor/nvim-comment'
@@ -59,7 +60,9 @@ return require('packer').startup {
             'nvim-telescope/telescope.nvim',
             requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
         }
+        -- Extensions
         use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+        use 'nvim-telescope/telescope-dap.nvim'
 
         -- Autocomplete
         use 'hrsh7th/nvim-cmp'
@@ -79,7 +82,6 @@ return require('packer').startup {
 
         -- Debugger
         use 'mfussenegger/nvim-dap'
-        use 'nvim-telescope/telescope-dap.nvim'
         use 'theHamsta/nvim-dap-virtual-text'
         use 'rcarriga/nvim-dap-ui'
 
