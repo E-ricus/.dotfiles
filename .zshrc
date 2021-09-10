@@ -1,5 +1,5 @@
 #  For Plugins and customization
-export ZSH_CUSTOM=.zsh/
+export ZSH_CUSTOM="$HOME/.config/zsh"
 
 # PATH
 if [ -d "$HOME/.bin" ] ;
@@ -21,6 +21,8 @@ export EDITOR="nvim"
 
 # Alias
 alias e="nvim"
+alias czsh="nvim ~/.zshrc"
+alias cnvim="cd ~/.config/nvim/ && nvim"
 
 
 # Enable colors and change prompt:
