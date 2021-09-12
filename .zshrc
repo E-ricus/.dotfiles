@@ -1,6 +1,6 @@
 #  For Plugins and customization
-export ZSH_ENV_HOME=$HOME/
-export XDG_CONFIG_HOME=$HOME/.config/
+export ZSH_ENV_HOME=$HOME
+export XDG_CONFIG_HOME=$HOME/.config
 export ZSH_CUSTOM="$XDG_CONFIG_HOME/zsh"
 
 # PATH
@@ -83,11 +83,9 @@ bindkey '^e' edit-command-line
 [ -f "$XDG_CONFIG_HOME/shortcutrc" ] && source "$XDG_CONFIG_HOME/shortcutrc"
 [ -f "$XDG_CONFIG_HOME/aliasrc" ] && source "$XDG_CONFIG_HOME/aliasrc"
 
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
-
 # Starship prompt
 # sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 # Better folder navigation
 eval "$(zoxide init zsh)"
@@ -97,10 +95,14 @@ eval "$(zoxide init zsh)"
 # Benchmark prompt
 # source $ZSH_CUSTOM/plugins/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
 
-# Load auto suggestions
-# git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-source $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Download Znap, if it's not there yet.
+[[ -f "$ZSH_CUSTOM/plugins/zsh-snap/znap.zsh" ]] ||
+    git clone https://github.com/marlonrichert/zsh-snap.git "$ZSH_CUSTOM/plugins/zsh-snap"
 
-# Load zsh-syntax-highlighting; should be last.
-# git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source "$ZSH_CUSTOM/plugins/zsh-snap/znap.zsh"  # Start Znap
+
+znap prompt sindresorhus/pure
+
+# `znap source` automatically downloads and installs your plugins.
+znap source zsh-users/zsh-autosuggestions
+znap source zsh-users/zsh-syntax-highlighting
