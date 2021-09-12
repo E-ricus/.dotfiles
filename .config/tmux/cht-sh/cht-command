@@ -34,3 +34,5 @@ docker-compose
 stow
 chmod
 chown
+tmux
+zsh
