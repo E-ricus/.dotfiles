@@ -79,30 +79,38 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Load aliases and shortcuts if existent.
-[ -f "$XDG_CONFIG_HOME/shortcutrc" ] && source "$XDG_CONFIG_HOME/shortcutrc"
-[ -f "$XDG_CONFIG_HOME/aliasrc" ] && source "$XDG_CONFIG_HOME/aliasrc"
+### PLUGINS
+## Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
 
-# Starship prompt
-# sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-# eval "$(starship init zsh)"
-
-# Better folder navigation
-eval "$(zoxide init zsh)"
-
-## zsh plugins:
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+## End of Zinit's installer chunk
 
 # Benchmark prompt
 # source $ZSH_CUSTOM/plugins/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
 
-# Download Znap, if it's not there yet.
-[[ -f "$ZSH_CUSTOM/plugins/zsh-snap/znap.zsh" ]] ||
-    git clone https://github.com/marlonrichert/zsh-snap.git "$ZSH_CUSTOM/plugins/zsh-snap"
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
 
-source "$ZSH_CUSTOM/plugins/zsh-snap/znap.zsh"  # Start Znap
 
-znap prompt sindresorhus/pure
+# Starship prompt
+# sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+zinit ice as"command" from"gh-r" lucid
+eval "$(starship init zsh)"
 
-# `znap source` automatically downloads and installs your plugins.
-znap source zsh-users/zsh-autosuggestions
-znap source zsh-users/zsh-syntax-highlighting
+# Better folder navigation
+zinit ice as"command" from"gh-r" lucid
+eval "$(zoxide init zsh)"
