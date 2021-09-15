@@ -46,6 +46,10 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ## End of Zinit's installer chunk
 
+# ZINIT Plugins
+zinit ice wait"1" lucid
+zinit light NICHOLAS85/z-a-eval
+
 # Benchmark prompt
 # source $ZSH_CUSTOM/plugins/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
 
@@ -114,4 +118,6 @@ zplugin ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
 zinit light starship/starship
 
 # Better folder navigation
-eval "$(zoxide init zsh)"
+zinit ice wait id-as"zoxide_movement" has"zoxide" lucid \
+      eval"zoxide init zsh"
+zinit light zdharma/null
