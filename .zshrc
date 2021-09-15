@@ -46,20 +46,21 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ## End of Zinit's installer chunk
 
-# ZINIT Plugins
-zinit ice wait"1" lucid
-zinit light NICHOLAS85/z-a-eval
-
 # Benchmark prompt
 # source $ZSH_CUSTOM/plugins/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
 
 zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma/fast-syntax-highlighting \
- blockf \
-    zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-history-substring-search \
+    blockf \
+        zsh-users/zsh-completions \
+    atload"!_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions \
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+        zdharma/fast-syntax-highlighting
+
+# History substring keymaps
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # History in cache directory:
 export HISTSIZE=100000000
@@ -69,10 +70,8 @@ setopt SHARE_HISTORY
 
 ## COMPLETION
 # Basic auto/tab complete:
-autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
 _comp_options+=(globdots) # Include hidden files.
 
 # vi mode
@@ -119,5 +118,5 @@ zinit light starship/starship
 
 # Better folder navigation
 zinit ice wait id-as"zoxide_movement" has"zoxide" lucid \
-      eval"zoxide init zsh"
+      atload'!eval $(zoxide init zsh)'
 zinit light zdharma/null
