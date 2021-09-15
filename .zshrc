@@ -1,3 +1,4 @@
+### ENVIROMENTS
 #  For Plugins and customization
 export ZSH_ENV_HOME=$HOME
 export XDG_CONFIG_HOME=$HOME/.config
@@ -18,7 +19,7 @@ fi
 if [ -d "$HOME/.cargo/bin" ] ;
   then export PATH="$HOME/go/bin:$PATH"
 fi
-# Enviroments
+# Globals
 export EDITOR="nvim"
 
 # Alias
@@ -29,55 +30,6 @@ alias cnvim="cd $XDG_CONFIG_HOME/nvim/ && nvim"
 # Enable colors and change prompt:
 autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-
-# History in cache directory:
-export HISTSIZE=100000000
-export SAVEHIST=$HISTSIZE
-export HISTFILE="$HOME/.cache/zsh/history"
-setopt SHARE_HISTORY
-
-# Basic auto/tab complete:
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots)		# Include hidden files.
-
-# vi mode
-bindkey -v
-export KEYTIMEOUT=1
-
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
-
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-# Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
 
 ### PLUGINS
 ## Added by Zinit's installer
@@ -105,12 +57,61 @@ zinit wait lucid for \
  atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions
 
+# History in cache directory:
+export HISTSIZE=100000000
+export SAVEHIST=$HISTSIZE
+export HISTFILE="$HOME/.cache/zsh/history"
+setopt SHARE_HISTORY
 
+## COMPLETION
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots) # Include hidden files.
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect '\e' send-break
+bindkey -v '^?' backward-delete-char
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+## Eval plugins
 # Starship prompt
-# sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-zinit ice as"command" from"gh-r" lucid
-eval "$(starship init zsh)"
+zplugin ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
+zinit light starship/starship
 
 # Better folder navigation
-zinit ice as"command" from"gh-r" lucid
 eval "$(zoxide init zsh)"
