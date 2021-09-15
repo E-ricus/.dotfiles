@@ -50,7 +50,8 @@ autoload -Uz _zinit
 # source $ZSH_CUSTOM/plugins/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
 
 zinit wait lucid for \
-    zsh-users/zsh-history-substring-search \
+    atload'_history_substring_search_config' \
+        zsh-users/zsh-history-substring-search \
     blockf \
         zsh-users/zsh-completions \
     atload"!_zsh_autosuggest_start" \
@@ -58,9 +59,12 @@ zinit wait lucid for \
     atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
         zdharma/fast-syntax-highlighting
 
-# History substring keymaps
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+## Plugins configuration
+# History substring config
+function _history_substring_search_config() {
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+}
 
 # History in cache directory:
 export HISTSIZE=100000000
@@ -112,14 +116,14 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 ### Eval plugins
-# Only needed to load at first time using an eval null plugins
+# Only needed to load at first time using eval null plugins
+zinit ice wait
 zinit light NICHOLAS85/z-a-eval 
 # Starship prompt
 zplugin ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
 zinit light starship/starship
 
 # Better folder navigation
-
 zinit ice wait id-as"zoxide_movement" has"zoxide" lucid \
       eval'zoxide init zsh' run-atpull
 zinit light zdharma/null
