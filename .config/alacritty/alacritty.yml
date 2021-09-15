@@ -3,14 +3,14 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
+  TERM: xterm-256color
 
 #window:
   # Window dimensions (changes require restart)
@@ -89,50 +89,50 @@
 # Font configuration
 font:
   # Normal (roman) font face
-  #normal:
+  normal:
     # Font family
     #
     # Default:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    #family: monospace
+    family: FiraCode Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    #style: Regular
+    style: Regular
 
   # Bold font face
-  #bold:
+  bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: FiraCode Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold
+    style: Bold
 
   # Italic font face
-  #italic:
+  italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: FiraCode Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
+    style: Italic
 
   # Bold italic font face
-  #bold_italic:
+  bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: FiraCode Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
+    style: Bold Italic
 
   # Point size
   size: 13.0
@@ -158,29 +158,191 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
+draw_bold_text_with_bright_colors: true
+
+# COLOR SCHEMES
+schemes:
+  # Doom One
+  doom-one: &doom-one
+    primary:
+      background: '#282c34'
+      foreground: '#bbc2cf'
+    cursor:
+      text: CellBackground
+      cursor: '#dfdfdf'
+      # cursor: '#528bff'
+    selection:
+      text: CellForeground
+      background: '#3e4451'
+    normal:
+      black:   '#1c1f24'
+      red:     '#ff6c6b'
+      green:   '#98be65'
+      yellow:  '#da8548'
+      blue:    '#51afef'
+      magenta: '#c678dd'
+      cyan:    '#5699af'
+      white:   '#202328'
+    bright:
+      black:   '#5b6268'
+      red:     '#da8548'
+      green:   '#4db5bd'
+      yellow:  '#ecbe7b'
+      blue:    '#3071db'   # This is 2257a0 in Doom Emacs but I lightened it.
+      magenta: '#a9a1e1'
+      cyan:    '#46d9ff'
+      white:   '#dfdfdf'
+
+  # Dracula
+  dracula: &dracula
+    colors:
+      primary:
+        background: '#282a36'
+        foreground: '#f8f8f2'
+      cursor:
+        text: CellBackground
+        cursor: CellForeground
+      vi_mode_cursor:
+        text: CellBackground
+        cursor: CellForeground
+      search:
+        matches:
+          foreground: '#44475a'
+          background: '#50fa7b'
+        focused_match:
+          foreground: '#44475a'
+          background: '#ffb86c'
+        bar:
+          background: '#282a36'
+          foreground: '#f8f8f2'
+      line_indicator:
+        foreground: None
+        background: None
+      selection:
+        text: CellForeground
+        background: '#44475a'
+      normal:
+        black:   '#000000'
+        red:     '#ff5555'
+        green:   '#50fa7b'
+        yellow:  '#f1fa8c'
+        blue:    '#bd93f9'
+        magenta: '#ff79c6'
+        cyan:    '#8be9fd'
+        white:   '#bfbfbf'
+      bright:
+        black:   '#4d4d4d'
+        red:     '#ff6e67'
+        green:   '#5af78e'
+        yellow:  '#f4f99d'
+        blue:    '#caa9fa'
+        magenta: '#ff92d0'
+        cyan:    '#9aedfe'
+        white:   '#e6e6e6'
+      dim:
+        black:   '#14151b'
+        red:     '#ff2222'
+        green:   '#1ef956'
+        yellow:  '#ebf85b'
+        blue:    '#4d5b86'
+        magenta: '#ff46b0'
+        cyan:    '#59dffc'
+        white:   '#e6e6d1'
+
+  # Colors (Solarized Light)
+  solarized-light: &solarized-light
+    # Default colors
+    primary:
+      background: '#fdf6e3' # base3
+      foreground: '#657b83' # base00
+
+    # Cursor colors
+    cursor:
+      text:   '#fdf6e3' # base3
+      cursor: '#657b83' # base00
+
+    # Normal colors
+    normal:
+      black:   '#073642' # base02
+      red:     '#dc322f' # red
+      green:   '#859900' # green
+      yellow:  '#b58900' # yellow
+      blue:    '#268bd2' # blue
+      magenta: '#d33682' # magenta
+      cyan:    '#2aa198' # cyan
+      white:   '#eee8d5' # base2
+
+    # Bright colors
+    bright:
+      black:   '#002b36' # base03
+      red:     '#cb4b16' # orange
+      green:   '#586e75' # base01
+      yellow:  '#657b83' # base00
+      blue:    '#839496' # base0
+      magenta: '#6c71c4' # violet
+      cyan:    '#93a1a1' # base1
+      white:   '#fdf6e3' # base3
+
+  # Colors (Solarized Dark)
+  solarized-dark: &solarized-dark
+    # Default colors
+    primary:
+      background: '#002b36' # base03
+      foreground: '#839496' # base0
+
+    # Cursor colors
+    cursor:
+      text:   '#002b36' # base03
+      cursor: '#839496' # base0
+
+    # Normal colors
+    normal:
+      black:   '#073642' # base02
+      red:     '#dc322f' # red
+      green:   '#859900' # green
+      yellow:  '#b58900' # yellow
+      blue:    '#268bd2' # blue
+      magenta: '#d33682' # magenta
+      cyan:    '#2aa198' # cyan
+      white:   '#eee8d5' # base2
+
+    # Bright colors
+    bright:
+      black:   '#002b36' # base03
+      red:     '#cb4b16' # orange
+      green:   '#586e75' # base01
+      yellow:  '#657b83' # base00
+      blue:    '#839496' # base0
+      magenta: '#6c71c4' # violet
+      cyan:    '#93a1a1' # base1
+      white:   '#fdf6e3' # base3
+
+# Choose ONE color scheme from those available in the above list.
+colors: *doom-one
+
 
 # Colors (Tomorrow Night)
-colors:
-  # Default colors
-  primary:
-    background: '#000000'
-    foreground: '#d5c4a1'
+# colors:
+#   # Default colors
+#   primary:
+#     background: '#000000'
+#     foreground: '#d5c4a1'
 
-    # Bright and dim foreground colors
-    #
-    # The dimmed foreground color is calculated automatically if it is not present.
-    # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
-    # is `false`, the normal foreground color will be used.
-    #dim_foreground: '#828482'
-    #bright_foreground: '#eaeaea'
+#     # Bright and dim foreground colors
+#     #
+#     # The dimmed foreground color is calculated automatically if it is not present.
+#     # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
+#     # is `false`, the normal foreground color will be used.
+#     #dim_foreground: '#828482'
+#     #bright_foreground: '#eaeaea'
 
-  # Cursor colors
-  #
-  # Colors which should be used to draw the terminal cursor. If these are
-  # unset, the cursor color will be the inverse of the cell color.
-  cursor:
-    text: '#1d2021'
-    cursor: '#d5c4a1'
+#   # Cursor colors
+#   #
+#   # Colors which should be used to draw the terminal cursor. If these are
+#   # unset, the cursor color will be the inverse of the cell color.
+#   cursor:
+#     text: '#1d2021'
+#     cursor: '#d5c4a1'
 
   # Vi mode cursor colors
   #
