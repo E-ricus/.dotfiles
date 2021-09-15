@@ -111,12 +111,15 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-## Eval plugins
+### Eval plugins
+# Only needed to load at first time using an eval null plugins
+zinit light NICHOLAS85/z-a-eval 
 # Starship prompt
 zplugin ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
 zinit light starship/starship
 
 # Better folder navigation
+
 zinit ice wait id-as"zoxide_movement" has"zoxide" lucid \
-      atload'!eval $(zoxide init zsh)'
+      eval'zoxide init zsh' run-atpull
 zinit light zdharma/null
