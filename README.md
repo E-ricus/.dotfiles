@@ -1,23 +1,33 @@
 ## Dotfiles
 My configs
 
-## Nvim optional requirements
+## Nvim optional requirements for telescope
 * fd
 * ripgrep
 * bat
+# Install Arch
 `paru -S fd ripgrep bat`
+# Install Mac
+`brew install fd rigprep bat`
 
 ## Fonts
 * Nerd fonts fira code
-* Nerd fonts noto sans mono
-* Noto fonts emoji
-`paru -S nerd-fonts-fira-code nerd-fonts-noto-sans-mono noto-fonts-emoji`
+* Nerd fonts Jetbrans mono
+* Noto fonts emoji (for arch)
+# Install Arch
+`paru -S nerd-fonts-fira-code nerd-fonts-jetbrains-mono noto-fonts-emoji`
+# Install Mac
+`brew tap homebrew/cask-fonts`
+`brew install --cask font-fira-code-nerd-font`
+`brew install --cask font-jetbrains-mono-nerd-font`
+
+# Macos tmux true color suppot
+`curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz`
+`sudo /usr/bin/tic -xe tmux-256color terminfo.src`
+`sudo /usr/bin/tic -xe alacritty-direct,tmux-256color terminfo.src`
 
 ## System-76 laptops
 `paru -S sys76-kb`
 
-## ZSA Keyboards
+## ZSA Keyboards on arch
 https://github.com/zsa/wally/wiki/Live-training-on-Linux
-
-## Tmux 256-colors on mac
-https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95
