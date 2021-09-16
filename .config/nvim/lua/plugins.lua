@@ -107,7 +107,6 @@ return require('packer').startup {
 
         use 'norcalli/nvim-colorizer.lua'
         use 'tjdevries/colorbuddy.nvim'
-        use 'ericpubu/gruvbuddy.nvim'
         use {
             'marko-cerovac/material.nvim',
             branch = 'colorbuddy',
