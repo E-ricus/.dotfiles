@@ -18,3 +18,6 @@ My configs
 
 ## ZSA Keyboards
 https://github.com/zsa/wally/wiki/Live-training-on-Linux
+
+## Tmux 256-colors on mac
+https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95
