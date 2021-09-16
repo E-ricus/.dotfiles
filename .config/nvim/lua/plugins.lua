@@ -39,7 +39,7 @@ return require('packer').startup {
         -- LSP
         use 'neovim/nvim-lspconfig'
         use 'nvim-lua/lsp_extensions.nvim'
-        use {'kabouzeid/nvim-lspinstall'}
+        use 'kabouzeid/nvim-lspinstall'
         use 'nvim-lua/lsp-status.nvim'
         use {
             "folke/trouble.nvim",
@@ -65,12 +65,16 @@ return require('packer').startup {
         use 'nvim-telescope/telescope-dap.nvim'
 
         -- Autocomplete
-        use 'hrsh7th/nvim-cmp'
-        use 'hrsh7th/cmp-nvim-lsp'
-        use 'hrsh7th/cmp-buffer'
-        use 'hrsh7th/cmp-path'
-        use 'hrsh7th/cmp-nvim-lua'
-        use 'saadparwaiz1/cmp_luasnip'
+        use {
+            'hrsh7th/nvim-cmp',
+            requires = {
+                'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-buffer',
+                'hrsh7th/cmp-path',
+                'saadparwaiz1/cmp_luasnip',
+                'hrsh7th/cmp-nvim-lua',
+            }
+        }
         -- Snippets
         use 'L3MON4D3/LuaSnip'
         use "rafamadriz/friendly-snippets"
@@ -81,13 +85,21 @@ return require('packer').startup {
         use 'nvim-treesitter/nvim-treesitter-textobjects'
 
         -- Debugger
-        use 'mfussenegger/nvim-dap'
-        use 'theHamsta/nvim-dap-virtual-text'
-        use 'rcarriga/nvim-dap-ui'
+        use {
+            'mfussenegger/nvim-dap',
+            requires = {
+                'theHamsta/nvim-dap-virtual-text',
+                'rcarriga/nvim-dap-ui',
+            }
+        }
 
         -- Syntax
-        use 'godlygeek/tabular'
-        use 'plasticboy/vim-markdown'
+        use {
+            'plasticboy/vim-markdown',
+            requires = {
+                'godlygeek/tabular'
+            }
+        }
         use "ellisonleao/glow.nvim"
 
         -- Git

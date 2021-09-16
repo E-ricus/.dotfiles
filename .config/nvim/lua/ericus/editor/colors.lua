@@ -18,7 +18,7 @@ vim.cmd("highlight default link ElVisualLine ElVisual")
 vim.cmd("highlight default link ElInsertCompletion ElInsert")
 
 ------------------ Gruvbox (colorbuddy) --------------------
-require("colorbuddy").colorscheme("ericus/colors/gruvbuddy")
+-- require("colorbuddy").colorscheme("ericus/colors/gruvbuddy")
 ------------------ Doom one (colorbuddy) --------------------
 require("colorbuddy").colorscheme("ericus/colors/doombuddy")
 ------------------ Material (colorbuddy) --------------------
