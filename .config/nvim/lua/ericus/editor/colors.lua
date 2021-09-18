@@ -1,26 +1,26 @@
 -- General
-vim.cmd('syntax on') -- syntax highlighting
+vim.cmd "syntax on"
 vim.o.termguicolors = true -- set term gui colors most terminals support this
-vim.opt.background = 'dark'
+vim.opt.background = "dark"
 
 require("colorizer").setup()
 
 ---------- Express Status Line Highlighting -----------------
 --Link With usual colorscheme highlights
-vim.cmd("highlight default link ElNormal NormalMode")
-vim.cmd("highlight default link ElCommand CommandMode")
-vim.cmd("highlight default link ElInsert InsertMode")
-vim.cmd("highlight default link ElVisual VisualMode")
-vim.cmd("highlight default link ElReplace ReplaceMode")
+vim.cmd "highlight default link ElNormal NormalMode"
+vim.cmd "highlight default link ElCommand CommandMode"
+vim.cmd "highlight default link ElInsert InsertMode"
+vim.cmd "highlight default link ElVisual VisualMode"
+vim.cmd "highlight default link ElReplace ReplaceMode"
 -- Link similar modes
-vim.cmd("highlight default link ElVisualBlock ElVisual")
-vim.cmd("highlight default link ElVisualLine ElVisual")
-vim.cmd("highlight default link ElInsertCompletion ElInsert")
+vim.cmd "highlight default link ElVisualBlock ElVisual"
+vim.cmd "highlight default link ElVisualLine ElVisual"
+vim.cmd "highlight default link ElInsertCompletion ElInsert"
 
 ------------------ Gruvbox (colorbuddy) --------------------
 -- require("colorbuddy").colorscheme("ericus/colors/gruvbuddy")
 ------------------ Doom one (colorbuddy) --------------------
-require("colorbuddy").colorscheme("ericus/colors/doombuddy")
+require("colorbuddy").colorscheme "ericus/colors/doombuddy"
 ------------------ Material (colorbuddy) --------------------
 -- require("colorbuddy").colorscheme("material")
 

@@ -17,7 +17,7 @@ if [ -d "$HOME/go/bin" ] ;
 fi
 
 if [ -d "$HOME/.cargo/bin" ] ;
-  then export PATH="$HOME/go/bin:$PATH"
+  then export PATH="$HOME/.cargo/bin:$PATH"
 fi
 # Globals
 export EDITOR="nvim"
@@ -26,6 +26,7 @@ export EDITOR="nvim"
 alias e="nvim"
 alias czsh="nvim ~/.zshrc"
 alias cnvim="cd $XDG_CONFIG_HOME/nvim/ && nvim"
+alias ls="exa -la"
 
 # Enable colors and change prompt:
 autoload -U colors && colors
@@ -117,7 +118,7 @@ bindkey '^e' edit-command-line
 
 ### Eval plugins
 # Only needed to load at first time using eval null plugins
-zinit ice wait
+zinit ice wait"1"
 zinit light NICHOLAS85/z-a-eval 
 # Starship prompt
 zplugin ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
