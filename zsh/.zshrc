@@ -1,8 +1,8 @@
 ### ENVIROMENTS
-#  For Plugins and customization
 export ZSH_ENV_HOME=$HOME
 export XDG_CONFIG_HOME=$HOME/.config
 export ZSH_CUSTOM="$XDG_CONFIG_HOME/zsh"
+export DOTFILES="$HOME/.dotfiles"
 
 # PATH
 if [ -d "$HOME/.bin" ] ;
