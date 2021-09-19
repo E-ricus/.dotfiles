@@ -1,10 +1,39 @@
 local actions = require "telescope.actions"
+local themes = require "telescope.themes"
 
 require("telescope").setup {
   defaults = {
     prompt_prefix = "❯ ",
     -- prompt_prefix = ' 🔍',
     color_devicons = true,
+    layout_strategy = "horizontal",
+    layout_config = {
+      width = 0.95,
+      height = 0.85,
+      prompt_position = "top",
+
+      horizontal = {
+        preview_width = function(_, cols, _)
+          if cols > 200 then
+            return math.floor(cols * 0.4)
+          else
+            return math.floor(cols * 0.6)
+          end
+        end,
+      },
+
+      vertical = {
+        width = 0.9,
+        height = 0.95,
+        preview_height = 0.5,
+      },
+
+      flex = {
+        horizontal = {
+          preview_width = 0.9,
+        },
+      },
+    },
 
     mappings = {
       i = {
@@ -26,6 +55,7 @@ require("telescope").setup {
   },
   extensions = {
     fzf = {
+      fuzzy = true,
       override_generic_sorter = true, -- override the generic sorter
       override_file_sorter = true, -- override the file sorter
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
@@ -42,6 +72,7 @@ require("telescope").load_extension "dap"
 local map = require("ericus.vim-utils").mapper
 local lua_map = require("ericus.vim-utils").lua_mapper
 
+lua_map("n", "<leader>fd", "require('ericus.telescope').fd()")
 lua_map("n", "<leader>ff", "require('ericus.telescope').search_files()")
 lua_map("n", "<leader>fi", "require('ericus.telescope').search_all_files()")
 lua_map("n", "<leader>ft", "require('ericus.telescope').search_only_certain_files()")
@@ -57,6 +88,11 @@ map("n", "<leader>fq", "Telescope quickfix")
 map("n", "<leader>th", "Telescope colorscheme")
 
 local M = {}
+
+function M.fd()
+  local opts = themes.get_ivy { hidden = true }
+  require("telescope.builtin").fd(opts)
+end
 
 function M.search_files()
   require("telescope.builtin").find_files {
