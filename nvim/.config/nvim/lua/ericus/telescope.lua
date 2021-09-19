@@ -1,11 +1,9 @@
-local actions = require "telescope.actions"
 local themes = require "telescope.themes"
 
 require("telescope").setup {
   defaults = {
-    prompt_prefix = "❯ ",
-    -- prompt_prefix = ' 🔍',
-    color_devicons = true,
+    -- prompt_prefix = "❯ ",
+    prompt_prefix = "🔍",
     layout_strategy = "horizontal",
     layout_config = {
       width = 0.95,
@@ -34,13 +32,6 @@ require("telescope").setup {
         },
       },
     },
-
-    mappings = {
-      i = {
-        ["<C-x>"] = false,
-        ["<C-q>"] = actions.send_to_qflist,
-      },
-    },
     file_ignore_patterns = { "node_modules/", "deps/", ".git/" },
     vimgrep_arguments = {
       "rg",
@@ -56,9 +47,9 @@ require("telescope").setup {
   extensions = {
     fzf = {
       fuzzy = true,
-      override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
     },
   },
 }
@@ -80,7 +71,7 @@ lua_map("n", "<leader>fg", "require('ericus.telescope').live_grep()")
 lua_map("n", "<leader>fs", "require('telescope.builtin').grep_string()")
 lua_map("n", "<leader>f/", "require('ericus.telescope').grep_last_search()")
 lua_map("n", "<leader>fp", "require('ericus.telescope').grep_prompt()")
-map("n", "<leader>f.", "Telescope file_browser")
+lua_map("n", "<leader>f.", "require('ericus.telescope').file_tree()")
 map("n", "<leader>fb", "Telescope buffers")
 map("n", "<leader>fh", "Telescope help_tags")
 map("n", "<leader>ts", "Telescope treesitter")
@@ -123,6 +114,11 @@ function M.live_grep()
     previewer = false,
     fzf_separator = "|>",
   }
+end
+
+function M.file_tree()
+  local opts = themes.get_ivy { hidden = true }
+  require("telescope.builtin").file_browser(opts)
 end
 
 function M.grep_last_search(opts)
