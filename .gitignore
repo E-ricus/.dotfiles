@@ -1,4 +1,2 @@
-.config/nvim/.git/
-.config/nvim/.gitignore
-.config/nvim/plugin/packer_compiled.lua
-.config/nvim/time.txt
+nvim/.config/nvim/plugin/packer_compiled.lua
+nvim/.config/nvim/time.txt

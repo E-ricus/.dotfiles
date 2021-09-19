@@ -15,19 +15,22 @@ There should not be en existing file where stow tries to create the symlink
 ## Uninstall
 `chmod +x ./clean && ./clean`
 
-
 ## Nvim optional requirements for telescope
 * fd
 * ripgrep
 * bat
+
 Arch based: `paru -S fd ripgrep bat`
+
 MacOS: `brew install fd rigprep bat`
 
 ## Fonts
 * Nerd fonts fira code
 * Nerd fonts Jetbrans mono
 * Noto fonts emoji (for arch)
+
 Arch based: `paru -S nerd-fonts-fira-code nerd-fonts-jetbrains-mono noto-fonts-emoji`
+
 MacOS:
 `brew tap homebrew/cask-fonts`
 `brew install --cask font-fira-code-nerd-font`
