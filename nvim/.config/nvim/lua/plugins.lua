@@ -33,6 +33,12 @@ return require("packer").startup {
     use "machakann/vim-highlightedyank"
     use "andymass/vim-matchup"
     use "terrortylor/nvim-comment"
+    use {
+      "Shatur/neovim-session-manager",
+      config = function()
+        vim.cmd "let g:autoload_last_session = v:false"
+      end,
+    }
     -- File Explorer
     use "kyazdani42/nvim-tree.lua"
 

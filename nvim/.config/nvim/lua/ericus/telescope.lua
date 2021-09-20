@@ -58,6 +58,8 @@ require("telescope").setup {
 require("telescope").load_extension "fzf"
 -- DAP extension
 require("telescope").load_extension "dap"
+-- Sessions
+require("telescope").load_extension "sessions"
 
 -- Keymaps
 local map = require("ericus.vim-utils").mapper
@@ -68,7 +70,7 @@ lua_map("n", "<leader>ff", "require('ericus.telescope').search_files()")
 lua_map("n", "<leader>fi", "require('ericus.telescope').search_all_files()")
 lua_map("n", "<leader>ft", "require('ericus.telescope').search_only_certain_files()")
 lua_map("n", "<leader>fg", "require('ericus.telescope').live_grep()")
-lua_map("n", "<leader>fs", "require('telescope.builtin').grep_string()")
+lua_map("n", "<leader>fw", "require('telescope.builtin').grep_string()")
 lua_map("n", "<leader>f/", "require('ericus.telescope').grep_last_search()")
 lua_map("n", "<leader>fp", "require('ericus.telescope').grep_prompt()")
 lua_map("n", "<leader>f.", "require('ericus.telescope').file_tree()")
@@ -77,6 +79,7 @@ map("n", "<leader>fh", "Telescope help_tags")
 map("n", "<leader>ts", "Telescope treesitter")
 map("n", "<leader>fq", "Telescope quickfix")
 map("n", "<leader>th", "Telescope colorscheme")
+map("n", "<leader>fs", "Telescope sessions")
 
 local M = {}
 
