@@ -32,6 +32,9 @@ local function super_tab(fallback)
     luasnip.expand_or_jump()
   elseif has_words_before() then
     cmp.complete()
+    if vim.fn.pumvisible() ~= 1 then
+      feedkey "<Tab>"
+    end
   else
     fallback()
   end
