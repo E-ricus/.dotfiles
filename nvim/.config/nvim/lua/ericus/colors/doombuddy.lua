@@ -22,6 +22,7 @@ Group.new("InsertMode", c.green, c.none, s.bold)
 Group.new("ReplaceMode", c.red, c.none, s.bold)
 Group.new("VisualMode", c.purple, c.none, s.bold)
 Group.new("CommandMode", c.orange, c.none, s.bold)
+Group.new("SelectMode", c.turquoise, c.none, s.bold)
 
 -- GreenLight
 Group.new("GoTestSuccess", c.green, nil, s.bold)

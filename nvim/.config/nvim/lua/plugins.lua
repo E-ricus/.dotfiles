@@ -80,6 +80,8 @@ return require("packer").startup {
         "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lua",
       },
+      -- TODO: remove when https://github.com/hrsh7th/nvim-cmp/pull/224 is merged
+      branch = "custom-menu",
     }
     -- Snippets
     use "L3MON4D3/LuaSnip"

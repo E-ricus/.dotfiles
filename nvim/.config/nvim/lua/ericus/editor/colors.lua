@@ -12,6 +12,7 @@ vim.cmd "highlight default link ElCommand CommandMode"
 vim.cmd "highlight default link ElInsert InsertMode"
 vim.cmd "highlight default link ElVisual VisualMode"
 vim.cmd "highlight default link ElReplace ReplaceMode"
+vim.cmd "highlight default link ElSelect SelectMode"
 -- Link similar modes
 vim.cmd "highlight default link ElVisualBlock ElVisual"
 vim.cmd "highlight default link ElVisualLine ElVisual"

@@ -26,13 +26,13 @@ local feedkey = function(key)
 end
 
 local function super_tab(fallback)
-  if vim.fn.pumvisible() == 1 then
-    feedkey "<C-n>"
+  if cmp.visible() then
+    cmp.select_next_item()
   elseif luasnip.expand_or_jumpable() then
     luasnip.expand_or_jump()
   elseif has_words_before() then
     cmp.complete()
-    if vim.fn.pumvisible() ~= 1 then
+    if not cmp.visible() then
       feedkey "<Tab>"
     end
   else
@@ -41,8 +41,8 @@ local function super_tab(fallback)
 end
 
 local function super_s_tab(fallback)
-  if vim.fn.pumvisible() == 1 then
-    feedkey "<C-p>"
+  if cmp.visible() then
+    cmp.select_prev_item()
   elseif luasnip.jumpable(-1) then
     luasnip.jump(-1)
   else
@@ -75,8 +75,8 @@ cmp.setup {
   mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-1),
+    ["<C-f>"] = cmp.mapping.scroll_docs(1),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm {
