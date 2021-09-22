@@ -12,6 +12,7 @@ require("luasnip/loaders/from_vscode").lazy_load { include = { "lua", "go", "rus
 
 -- cmp
 local cmp = require "cmp"
+local lspkind = require "lspkind"
 
 local has_words_before = function()
   if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
@@ -50,7 +51,6 @@ local function super_s_tab(fallback)
   end
 end
 
-local lspkind = require "lspkind"
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -75,12 +75,12 @@ cmp.setup {
   mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-1),
-    ["<C-f>"] = cmp.mapping.scroll_docs(1),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Insert,
+      -- behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     },
     ["<tab>"] = cmp.mapping(super_tab, { "i", "s" }),
