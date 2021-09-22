@@ -72,7 +72,7 @@ return require("packer").startup {
 
     -- Autocomplete
     use {
-      "hrsh7th/nvim-cmp",
+      "ericpubu/nvim-cmp",
       requires = {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",

@@ -86,6 +86,9 @@ cmp.setup {
     ["<tab>"] = cmp.mapping(super_tab, { "i", "s" }),
     ["<S-tab>"] = cmp.mapping(super_s_tab, { "i", "s" }),
   },
+  experimental = {
+    ghost_text = true,
+  },
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
