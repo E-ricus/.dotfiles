@@ -56,5 +56,9 @@ dap.configurations.go = {
     request = "launch",
     mode = "test",
     program = "./${relativeFileDirname}",
+    args = function ()
+        local test_func = vim.fn.input("Test name: ", vim.fn.expand "<cword>")
+        return { "-test.run", test_func }
+    end
   },
 }
