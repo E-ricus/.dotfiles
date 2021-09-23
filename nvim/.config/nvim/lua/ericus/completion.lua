@@ -28,7 +28,7 @@ end
 
 local function super_tab(fallback)
   if cmp.visible() then
-    cmp.select_next_item { disables_insert_on_selection = true }
+    cmp.select_next_item()
   elseif luasnip.expand_or_jumpable() then
     luasnip.expand_or_jump()
   elseif has_words_before() then
@@ -43,7 +43,7 @@ end
 
 local function super_s_tab(fallback)
   if cmp.visible() then
-    cmp.select_prev_item { disables_insert_on_selection = true }
+    cmp.select_prev_item()
   elseif luasnip.jumpable(-1) then
     luasnip.jump(-1)
   else
@@ -73,8 +73,8 @@ cmp.setup {
     end,
   },
   mapping = {
-    ["<C-p>"] = cmp.mapping.select_prev_item { disables_insert_on_selection = true },
-    ["<C-n>"] = cmp.mapping.select_next_item { disables_insert_on_selection = true },
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-Space>"] = cmp.mapping.complete(),
@@ -85,6 +85,9 @@ cmp.setup {
     },
     ["<tab>"] = cmp.mapping(super_tab, { "i", "s" }),
     ["<S-tab>"] = cmp.mapping(super_s_tab, { "i", "s" }),
+  },
+  selection = {
+    default_behavior = cmp.SelectBehavior.Select,
   },
   experimental = {
     ghost_text = true,
