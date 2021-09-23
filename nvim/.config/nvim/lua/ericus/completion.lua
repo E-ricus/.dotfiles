@@ -80,7 +80,7 @@ cmp.setup {
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm {
-      -- behavior = cmp.ConfirmBehavior.Insert,
+      behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     },
     ["<tab>"] = cmp.mapping(super_tab, { "i", "s" }),
@@ -88,6 +88,7 @@ cmp.setup {
   },
   experimental = {
     ghost_text = true,
+    disables_insert_on_selection = true,
   },
   sources = {
     { name = "nvim_lsp" },
