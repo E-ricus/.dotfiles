@@ -1,5 +1,8 @@
 local dap = require "dap"
 
+-- For debugging dap
+-- dap.set_log_level('TRACE')
+
 dap.adapters.go = function(callback, _)
   local stdout = vim.loop.new_pipe(false)
   local handle
@@ -35,6 +38,12 @@ end
 dap.configurations.go = {
   {
     type = "go",
+    name = "Debug",
+    request = "launch",
+    program = "${file}",
+  },
+  {
+    type = "go",
     name = "Debug file",
     request = "launch",
     program = function()
@@ -43,21 +52,7 @@ dap.configurations.go = {
   },
   {
     type = "go",
-    name = "Debug",
-    request = "launch",
-    program = "${file}",
-  },
-  {
-    type = "go",
-    name = "Debug test", -- configuration for debugging test files
-    request = "launch",
-    mode = "test",
-    program = "${file}",
-  },
-  -- works with go.mod packages and sub packages
-  {
-    type = "go",
-    name = "Debug test (go.mod)",
+    name = "Debug test",
     request = "launch",
     mode = "test",
     program = "./${relativeFileDirname}",
