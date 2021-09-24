@@ -12,7 +12,10 @@ require("luasnip/loaders/from_vscode").lazy_load { include = { "lua", "go", "rus
 
 -- cmp
 local cmp = require "cmp"
+local mapping = require "cmp.config.mapping"
 local lspkind = require "lspkind"
+
+local select_option = { behavior = cmp.SelectBehavior.Select }
 
 local has_words_before = function()
   if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
@@ -28,7 +31,7 @@ end
 
 local function super_tab(fallback)
   if cmp.visible() then
-    cmp.select_next_item()
+    cmp.select_next_item(select_option)
   elseif luasnip.expand_or_jumpable() then
     luasnip.expand_or_jump()
   elseif has_words_before() then
@@ -43,7 +46,7 @@ end
 
 local function super_s_tab(fallback)
   if cmp.visible() then
-    cmp.select_prev_item()
+    cmp.select_prev_item(select_option)
   elseif luasnip.jumpable(-1) then
     luasnip.jump(-1)
   else
@@ -73,21 +76,18 @@ cmp.setup {
     end,
   },
   mapping = {
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(4),
-    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm {
+    ["<C-p>"] = mapping.select_prev_item(select_option),
+    ["<C-n>"] = mapping.select_next_item(select_option),
+    ["<C-d>"] = mapping.scroll_docs(4),
+    ["<C-u>"] = mapping.scroll_docs(-4),
+    ["<C-Space>"] = mapping.complete(),
+    ["<C-e>"] = mapping.close(),
+    ["<CR>"] = mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     },
-    ["<tab>"] = cmp.mapping(super_tab, { "i", "s" }),
-    ["<S-tab>"] = cmp.mapping(super_s_tab, { "i", "s" }),
-  },
-  selection = {
-    default_behavior = cmp.SelectBehavior.Select,
+    ["<tab>"] = mapping(super_tab, { "i", "s" }),
+    ["<S-tab>"] = mapping(super_s_tab, { "i", "s" }),
   },
   experimental = {
     ghost_text = true,
