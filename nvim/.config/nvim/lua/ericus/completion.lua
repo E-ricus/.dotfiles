@@ -17,28 +17,22 @@ local lspkind = require "lspkind"
 
 local select_option = { behavior = cmp.SelectBehavior.Select }
 
-local has_words_before = function()
+local has_dot_before = function()
   if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
     return false
   end
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col) == "."
 end
 
-local feedkey = function(key)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), "n", true)
-end
 
 local function super_tab(fallback)
   if cmp.visible() then
     cmp.select_next_item(select_option)
   elseif luasnip.expand_or_jumpable() then
     luasnip.expand_or_jump()
-  elseif has_words_before() then
+  elseif has_dot_before() then
     cmp.complete()
-    if not cmp.visible() then
-      feedkey "<Tab>"
-    end
   else
     fallback()
   end
@@ -88,6 +82,10 @@ cmp.setup {
     },
     ["<tab>"] = mapping(super_tab, { "i", "s" }),
     ["<S-tab>"] = mapping(super_s_tab, { "i", "s" }),
+  },
+  completion = {
+    autocomplete = true,
+    -- autocomplete = false, -- When performance is lagging
   },
   experimental = {
     ghost_text = true,

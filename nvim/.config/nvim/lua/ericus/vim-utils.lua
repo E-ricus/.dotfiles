@@ -21,13 +21,8 @@ function M.nvim_exec(txt)
   vim.api.nvim_exec(txt, false)
 end
 
-function M.t(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-function M.check_back_space()
-  local col = vim.fn.col "." - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s" ~= nil
+function M.feedkey(key)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), "n", true)
 end
 
 return M
