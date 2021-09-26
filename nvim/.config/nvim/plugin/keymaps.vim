@@ -59,3 +59,18 @@ nnoremap <leader>k :m .-2<CR>==
 " Normal mode on terminal with double esc
 tnoremap <silent> <C-[><C-[> <C-\><C-n>
 nnoremap <C-w>t <C-w>v \| :term<CR> \| a
+
+""" Windows
+" New
+nnoremap <M-v> <C-w>v
+nnoremap <M-s> <C-w>s
+" Resize
+nnoremap <M-H> <C-w>>
+nnoremap <M-L> <C-w><
+nnoremap <M-J> <C-w>-
+nnoremap <M-K> <C-w>+
+" Move
+nnoremap <M-h> <C-w>h
+nnoremap <M-l> <C-w>l
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k

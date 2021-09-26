@@ -25,7 +25,6 @@ local has_dot_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col) == "."
 end
 
-
 local function super_tab(fallback)
   if cmp.visible() then
     cmp.select_next_item(select_option)
@@ -87,9 +86,9 @@ cmp.setup {
     autocomplete = true,
     -- autocomplete = false, -- When performance is lagging
   },
-  experimental = {
-    ghost_text = true,
-  },
+  -- experimental = {
+  --   ghost_text = true,
+  -- },
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
