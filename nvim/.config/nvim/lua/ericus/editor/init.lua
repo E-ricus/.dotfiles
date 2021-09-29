@@ -9,6 +9,7 @@ require("nvim_comment").setup {
 }
 
 -- File Tree
+require("nvim-tree").setup()
 map("n", "<leader>`", "NvimTreeToggle")
 -- Trouble
 map("n", "<leader>qf", "TroubleToggle quickfix")

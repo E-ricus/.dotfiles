@@ -76,7 +76,7 @@ cmp.setup {
     ["<C-Space>"] = mapping.complete(),
     ["<C-e>"] = mapping.close(),
     ["<CR>"] = mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Insert,
+      behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
     ["<tab>"] = mapping(super_tab, { "i", "s" }),
