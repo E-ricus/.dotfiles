@@ -16,6 +16,10 @@ if [ -d "$HOME/go/bin" ] ;
   then export PATH="$HOME/go/bin:$PATH"
 fi
 
+if [ -d "/usr/local/go/" ] ;
+  then export PATH=$PATH:/usr/local/go/bin
+fi
+
 if [ -d "$HOME/.cargo/bin" ] ;
   then export PATH="$HOME/.cargo/bin:$PATH"
 fi
@@ -118,7 +122,7 @@ bindkey '^e' edit-command-line
 
 ### Eval plugins
 # Only needed to load at first time using eval null plugins
-zinit ice wait"1"
+# zinit ice wait"1"
 zinit light NICHOLAS85/z-a-eval 
 # Starship prompt
 zplugin ice from"gh-r" as"program" atload'!eval $(starship init zsh)'

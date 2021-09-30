@@ -4,7 +4,11 @@ My configs
 ## Dependencies for instalation
 ### stow
 MacOS: `brew install stow`
+
 Arch based: `paru -S stow`
+
+Debian based: `sudo apt install stow`
+
 ### $DOTFILES variable
 `export DOTFILES="$HOME/.dotfiles"`
 
@@ -15,6 +19,9 @@ There should not be en existing file where stow tries to create the symlink
 ## Uninstall
 `chmod +x ./clean && ./clean`
 
+## Rust 
+For other distros some installations of the following dependencies might be problematic, being rust programs can be installed with cargo
+
 ## Nvim optional requirements for telescope
 * fd
 * ripgrep
@@ -23,6 +30,11 @@ There should not be en existing file where stow tries to create the symlink
 Arch based: `paru -S fd ripgrep bat`
 
 MacOS: `brew install fd rigprep bat`
+
+Deiban based:
+`sudo apt install ripgrep`
+`cargo install bat`
+`cargo install fd-find`
 
 ## Fonts
 * Nerd fonts fira code
