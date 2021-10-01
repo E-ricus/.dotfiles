@@ -16,6 +16,7 @@ local settings = {
   },
   go = {
     gopls = {
+      gofumpt = true,
       analyses = {
         unusedparams = true,
       },
