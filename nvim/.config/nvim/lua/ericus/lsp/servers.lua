@@ -74,11 +74,6 @@ M.list_servers = function()
   end
 end
 
-lsp_install.post_install_hook = function()
-  M.setup_servers() -- reload installed servers
-  vim.cmd "bufdo e"
-end
-
 vim.cmd "command! LspRequire lua require('ericus.lsp.servers').require_servers()"
 vim.cmd "command! LspUpdateAll lua require('ericus.lsp.servers').update_all_servers()"
 vim.cmd "command! LspServers lua require('ericus.lsp.servers').list_servers()"
