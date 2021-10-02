@@ -64,6 +64,7 @@ dap.configurations.rust = {
       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/", "file")
     end,
     cwd = "${workspaceFolder}",
+    sourceLanguages = { "rust" },
     stopOnEntry = false,
     args = {},
     runInTerminal = false,
@@ -76,6 +77,7 @@ dap.configurations.rust = {
       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/", "file")
     end,
     cwd = "${workspaceFolder}",
+    sourceLanguages = { "rust" },
     stopOnEntry = false,
   },
 }

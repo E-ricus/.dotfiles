@@ -37,6 +37,13 @@ local on_attach = function(client)
         .. [[prefix = " » ", highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} ]]
         .. [[} ]]
     )
+    -- Add runnables commands
+    vim.lsp.commands["rust-analyzer.runSingle"] = function(command)
+      require("ericus.lang-tools.rust-runneables").run_command(command.arguments[1].args)
+    end
+    vim.lsp.commands["rust-analyzer.debugSingle"] = function(command)
+      require("ericus.lang-tools.rust-runneables").debug_command(command.arguments[1].args)
+    end
   end
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
