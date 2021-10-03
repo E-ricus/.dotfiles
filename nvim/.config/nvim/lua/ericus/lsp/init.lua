@@ -22,6 +22,7 @@ local on_attach = function(client)
   vu.buffer_lua_mapper("i", "<C-k>", "vim.lsp.buf.signature_help()")
   vu.buffer_lua_mapper("n", "<C-k>", "vim.lsp.buf.signature_help()")
   vu.buffer_lua_mapper("n", "<leader>l", "vim.lsp.codelens.run()")
+  vu.buffer_lua_mapper("n", "<leader>ca", "vim.lsp.buf.code_action()")
   -- Telescope/Trouble maps
   vu.buffer_mapper("n", "gi", "Telescope lsp_implementations")
   vu.buffer_mapper("n", "gr", "Telescope lsp_references")
@@ -30,6 +31,27 @@ local on_attach = function(client)
   vu.buffer_mapper("n", "<leader>a", "Telescope lsp_code_actions theme=get_cursor")
   vu.buffer_mapper("n", "<leader>we", "TroubleToggle lsp_workspace_diagnostics")
   vu.buffer_mapper("n", "<leader>be", "TroubleToggle lsp_document_diagnostics")
+
+  -- Set autocommands conditional on server_capabilities
+  if client.resolved_capabilities.document_highlight then
+    vu.nvim_exec [[
+            augroup lsp_document_highlight
+                autocmd! * <buffer>
+                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+        ]]
+  end
+  if client.resolved_capabilities.code_lens then
+    vim.cmd "highlight! link LspCodeLens Comment"
+    vim.cmd [[
+        augroup lsp_document_codelens
+          au! * <buffer>
+          autocmd BufEnter <buffer> lua require('ericus.lsp.codelens').refresh()
+          autocmd BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
+        augroup END
+      ]]
+  end
   -- Only rust has this
   if filetype == "rust" then
     vim.cmd(
@@ -45,16 +67,7 @@ local on_attach = function(client)
       require("ericus.lang-tools.rust-runneables").debug_command(command.arguments[1].args)
     end
   end
-  -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
-    vu.nvim_exec [[
-            augroup lsp_document_highlight
-                autocmd! * <buffer>
-                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-            augroup END
-        ]]
-  end
+
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
     vu.buffer_lua_mapper("n", "<leader>fr", "vim.lsp.buf.formatting()")
@@ -62,14 +75,6 @@ local on_attach = function(client)
   end
   if client.resolved_capabilities.document_range_formatting then
     vu.buffer_lua_mapper("v", "<leader>fr", "vim.lsp.buf.range_formatting()")
-  end
-
-  -- Codelenses
-  if client.resolved_capabilities.code_lens then
-    vim.cmd "highlight! link LspCodeLens Comment"
-    vu.nvim_exec [[
-            autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
-        ]]
   end
 end
 

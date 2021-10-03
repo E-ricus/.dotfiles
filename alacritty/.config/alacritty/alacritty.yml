@@ -89,32 +89,32 @@ env:
 # Font configuration
 font:
   normal:
-    family: SauceCodePro Nerd Font
-    # family: FiraCode Nerd Font
+    # family: SauceCodePro Nerd Font
+    family: FiraCode Nerd Font
     # family: Mononoki Nerd Font
     # family: JetBrainsMono Nerd Font
     style: Regular
 
   # Bold font face
   bold:
-    family: SauceCodePro Nerd Font
-    # family: FiraCode Nerd Font
+    # family: SauceCodePro Nerd Font
+    family: FiraCode Nerd Font
     # family: Mononoki Nerd Font
     # family: JetBrainsMono Nerd Font
     style: Bold
 
   # Italic font face
   italic:
-    family: SauceCodePro Nerd Font
-    # family: FiraCode Nerd Font
+    # family: SauceCodePro Nerd Font
+    family: FiraCode Nerd Font
     # family: Mononoki Nerd Font
     # family: JetBrainsMono Nerd Font
     style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: SauceCodePro Nerd Font
-    # family: FiraCode Nerd Font
+    # family: SauceCodePro Nerd Font
+    family: FiraCode Nerd Font
     # family: Mononoki Nerd Font
     # family: JetBrainsMono Nerd Font
     style: Bold Italic

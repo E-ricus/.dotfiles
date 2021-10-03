@@ -78,9 +78,6 @@ function M.run_command(args)
   -- make the new buffer smaller
   utils.resize(false, "-5")
 
-  -- close the buffer when escape is pressed :)
-  vim.api.nvim_buf_set_keymap(latest_buf_id, "n", "<Esc>", ":q<CR>", { noremap = true })
-
   local command = get_command(args)
 
   -- run the command
