@@ -21,6 +21,19 @@ vim.cmd "autocmd BufWritePost plugins.lua PackerCompile"
 
 return require("packer").startup {
   function(use)
+    local local_use = function(name, opts, path)
+      opts = opts or {}
+      local user = "ericpubu"
+      local plug_path = path or "~/Documents/nvim-plugins/"
+
+      if vim.fn.isdirectory(vim.fn.expand(plug_path .. name)) == 1 then
+        table.insert(opts, plug_path .. name)
+      else
+        table.insert(opts, string.format("%s/%s", user, name))
+      end
+
+      use(opts)
+    end
     use "wbthomason/packer.nvim"
     use { "lewis6991/impatient.nvim" }
     -- Icons
@@ -47,6 +60,11 @@ return require("packer").startup {
     use "nvim-lua/lsp_extensions.nvim"
     use "kabouzeid/nvim-lspinstall"
     use "nvim-lua/lsp-status.nvim"
+    local_use("lsp_codelens_extensions.nvim", {
+      config = function()
+        require("codelens_extensions").setup()
+      end,
+    })
     use {
       "folke/trouble.nvim",
       config = function()
@@ -58,7 +76,7 @@ return require("packer").startup {
     }
 
     -- Langs Enhacement
-    use "ericpubu/green_light.nvim"
+    local_use "green_light.nvim"
     use "ThePrimeagen/refactoring.nvim"
 
     -- Telescope
