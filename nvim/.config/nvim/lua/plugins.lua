@@ -60,11 +60,7 @@ return require("packer").startup {
     use "nvim-lua/lsp_extensions.nvim"
     use "kabouzeid/nvim-lspinstall"
     use "nvim-lua/lsp-status.nvim"
-    local_use("lsp_codelens_extensions.nvim", {
-      config = function()
-        require("codelens_extensions").setup()
-      end,
-    })
+    local_use "lsp_codelens_extensions.nvim"
     use {
       "folke/trouble.nvim",
       config = function()
