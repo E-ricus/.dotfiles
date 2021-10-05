@@ -21,7 +21,8 @@ local on_attach = function(client)
   vu.buffer_lua_mapper("n", "<leader>e", "vim.lsp.diagnostic.show_line_diagnostics()")
   vu.buffer_lua_mapper("i", "<C-k>", "vim.lsp.buf.signature_help()")
   vu.buffer_lua_mapper("n", "<C-k>", "vim.lsp.buf.signature_help()")
-  vu.buffer_lua_mapper("n", "<leader>l", "vim.lsp.codelens.run()")
+  vu.buffer_lua_mapper("n", "<leader>lr", "vim.lsp.codelens.run()")
+  vu.buffer_lua_mapper("n", "<leader>ll", "require('ericus.lsp.codelens').refresh()")
   vu.buffer_lua_mapper("n", "<leader>ca", "vim.lsp.buf.code_action()")
   -- Telescope/Trouble maps
   vu.buffer_mapper("n", "gi", "Telescope lsp_implementations")
@@ -47,8 +48,7 @@ local on_attach = function(client)
     vim.cmd [[
         augroup lsp_document_codelens
           au! * <buffer>
-          autocmd BufEnter <buffer> lua require('ericus.lsp.codelens').refresh()
-          autocmd BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
+          autocmd BufEnter,BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
         augroup END
       ]]
   end

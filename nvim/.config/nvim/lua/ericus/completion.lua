@@ -82,10 +82,6 @@ cmp.setup {
     ["<tab>"] = mapping(super_tab, { "i", "s" }),
     ["<S-tab>"] = mapping(super_s_tab, { "i", "s" }),
   },
-  completion = {
-    autocomplete = true,
-    -- autocomplete = false, -- When performance is lagging
-  },
   -- experimental = {
   --   ghost_text = true,
   -- },
