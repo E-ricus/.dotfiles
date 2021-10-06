@@ -46,12 +46,7 @@ return require("packer").startup {
     use "machakann/vim-highlightedyank"
     use "andymass/vim-matchup"
     use "terrortylor/nvim-comment"
-    use {
-      "Shatur/neovim-session-manager",
-      config = function()
-        vim.cmd "let g:autoload_last_session = v:false"
-      end,
-    }
+    use "rmagatti/auto-session"
     -- File Explorer
     use "kyazdani42/nvim-tree.lua"
 
@@ -60,7 +55,11 @@ return require("packer").startup {
     use "nvim-lua/lsp_extensions.nvim"
     use "kabouzeid/nvim-lspinstall"
     use "nvim-lua/lsp-status.nvim"
-    local_use "lsp_codelens_extensions.nvim"
+    local_use("lsp_codelens_extensions.nvim" , {
+        config = function ()
+            require("codelens_extensions").setup()
+        end
+    })
     use {
       "folke/trouble.nvim",
       config = function()
