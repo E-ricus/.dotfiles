@@ -13,7 +13,6 @@ require("luasnip/loaders/from_vscode").lazy_load { include = { "lua", "go", "rus
 -- cmp
 local cmp = require "cmp"
 local mapping = require "cmp.config.mapping"
-local lspkind = require "lspkind"
 
 local select_option = { behavior = cmp.SelectBehavior.Select }
 
@@ -54,19 +53,16 @@ cmp.setup {
     end,
   },
   formatting = {
-    format = function(entry, vim_item)
-      vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
-      -- set a name for each source
-      vim_item.menu = ({
+    format = require("lspkind").cmp_format {
+      with_text = true,
+      menu = {
         nvim_lsp = "(LSP)",
         luasnip = "(Snippets)",
         buffer = "(Buffer)",
         nvim_lua = "(Lua)",
         path = "(Path)",
-      })[entry.source.name]
-
-      return vim_item
-    end,
+      },
+    },
   },
   mapping = {
     ["<C-p>"] = mapping.select_prev_item(select_option),

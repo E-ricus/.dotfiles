@@ -25,6 +25,7 @@ if [ -d "$HOME/.cargo/bin" ] ;
 fi
 # Globals
 export EDITOR="nvim"
+export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
 
 # Alias
 alias e="nvim"
