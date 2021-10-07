@@ -45,7 +45,7 @@ return require("packer").startup {
     -- Editor enhancements
     use "machakann/vim-highlightedyank"
     use "andymass/vim-matchup"
-    use "terrortylor/nvim-comment"
+    use "numToStr/Comment.nvim"
     use "rmagatti/auto-session"
     -- File Explorer
     use "kyazdani42/nvim-tree.lua"

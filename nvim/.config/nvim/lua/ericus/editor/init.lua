@@ -2,10 +2,16 @@ local map = require("ericus.vim-utils").mapper
 local lmap = require("ericus.vim-utils").lua_mapper
 
 -- Comments
-require("nvim_comment").setup {
-  comment_empty = false,
-  line_mapping = "<leader>cc",
-  operator_mapping = "<leader>c",
+require('Comment').setup {
+    ignore = '^$',
+        toggler = {
+        line = '<leader>cc',
+        block = '<leader>cb',
+    },
+    opleader = {
+        line = '<leader>c',
+        block = '<leader>cb',
+    },
 }
 
 -- File Tree
