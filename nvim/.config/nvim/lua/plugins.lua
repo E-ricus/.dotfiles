@@ -133,6 +133,7 @@ return require("packer").startup {
     }
     use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" }
     use "sindrets/diffview.nvim"
+    use "tpope/vim-fugitive"
 
     -- Colors
     use "gruvbox-community/gruvbox"

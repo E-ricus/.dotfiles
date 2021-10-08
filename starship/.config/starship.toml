@@ -2,8 +2,10 @@
 add_newline = false
 #single line
 [line_break]
-disabled = true
+disabled = false
 
 # Replace the "❯" symbol in the prompt with "➜"
-## [character]                            # The name of the module we are configuring is "character"
-## success_symbol = "[➜](bold green)"     # The "suc
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+vicmd_symbol = "[V](bold green)"

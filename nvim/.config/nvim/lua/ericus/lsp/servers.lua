@@ -12,6 +12,11 @@ local settings = {
       diagnostics = {
         disabled = { "macro-error" },
       },
+      lens = {
+        implementations = false,
+        methodReferences = false,
+        references = false,
+      },
     },
   },
   go = {
