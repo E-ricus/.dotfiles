@@ -14,44 +14,75 @@ Debian based: `sudo apt install stow`
 
 ## Install
 There should not be en existing file where stow tries to create the symlink
+
 `chmod +x ./install && ./install`
 
 ## Uninstall
+
 `chmod +x ./clean && ./clean`
 
 ## Rust 
-For other distros some installations of the following dependencies might be problematic, being rust programs can be installed with cargo
+For debian based distros some installations of the following dependencies might be problematic, 
+being rust programs, these can be installed with cargo
 
-## Nvim optional requirements for telescope
+```sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo install cargo-edit
+```
+
+
+## Nvim optional requirements
 * fd
 * ripgrep
 * bat
+* Treesitter
 
-Arch based: `paru -S fd ripgrep bat`
+Arch based: `paru -S fd ripgrep bat tree-sitter`
 
-MacOS: `brew install fd rigprep bat`
+MacOS: `brew install fd rigprep bat tree-sitter`
 
 Deiban based:
-`sudo apt install ripgrep`
-`cargo install bat`
-`cargo install fd-find`
+```sh
+sudo apt install ripgrep
+cargo install bat
+cargo install fd-find
+cargo install tree-sitter
+```
 
 ## Fonts
 * Nerd fonts fira code
 * Nerd fonts Jetbrans mono
 * Noto fonts emoji (for arch)
 
+Unix based: 
+```sh
+# This might not yet published, compile from https://github.com/ericpubu/font-manager-cli
+cargo install font-manger-cli
+# Or path to executable from compiled source
+ln -s ~/.cargo/bin/font-manager ~/.local/bin/fm
+
+# Install any font
+fm install --nerd FiraCode
+fm install --nerd JetbrainsMono
+```
+
 Arch based: `paru -S nerd-fonts-fira-code nerd-fonts-jetbrains-mono noto-fonts-emoji`
 
 MacOS:
-`brew tap homebrew/cask-fonts`
-`brew install --cask font-fira-code-nerd-font`
-`brew install --cask font-jetbrains-mono-nerd-font`
+
+```sh
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code-nerd-font
+brew install --cask font-jetbrains-mono-nerd-font
+```
 
 ## Macos tmux true color suppot
-`curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz`
-`sudo /usr/bin/tic -xe tmux-256color terminfo.src`
-`sudo /usr/bin/tic -xe alacritty-direct,tmux-256color terminfo.src`
+
+```sh
+curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
+sudo /usr/bin/tic -xe tmux-256color terminfo.src
+sudo /usr/bin/tic -xe alacritty-direct,tmux-256color terminfo.src
+```
 
 ## System-76 laptops
 `paru -S sys76-kb`
