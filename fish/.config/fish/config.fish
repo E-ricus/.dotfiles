@@ -11,6 +11,7 @@ set PATH $HOME/.local/bin $PATH
 set EDITOR nvim
 
 alias rg "rg --files --hidden --glob '!.git'"
+alias ls "exa -la"
 
 #setenv FZF_DEFAULT_COMMAND 'rg --files'
 #setenv FZF_CTRL_T_COMMAND 'rg --files'
