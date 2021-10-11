@@ -56,14 +56,11 @@ cargo install tree-sitter
 
 Unix based: 
 ```sh
-# This might not yet published, compile from https://github.com/ericpubu/font-manager-cli
-cargo install font-manger-cli
-# Or path to executable from compiled source
-ln -s ~/.cargo/bin/font-manager ~/.local/bin/fm
+cargo install font-manger
 
 # Install any font
-fm install --nerd FiraCode
-fm install --nerd JetbrainsMono
+font-manager install --nerd FiraCode
+font-manager install --nerd JetbrainsMono
 ```
 
 Arch based: `paru -S nerd-fonts-fira-code nerd-fonts-jetbrains-mono noto-fonts-emoji`
