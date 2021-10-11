@@ -1,4 +1,5 @@
 -- Important globals settings
+vim.opt.shell = "/bin/bash"
 vim.g.mapleader = " "
 
 -- Improves startup time by speeding up require
