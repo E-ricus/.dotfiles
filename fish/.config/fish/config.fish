@@ -9,26 +9,26 @@ set DOTFILES $HOME/.dotfiles
 
 # PATH
 if test -d $HOME/.bin
-    set PATH $HOME/.bin $PATH
+    fish_add_path $HOME/.bin
 end
 
 if test -d $HOME/.local/bin
-    set PATH $HOME/.local/bin $PATH
+    fish_add_path $HOME/.local/bin
 end
 
 # Rust
 if test -d $HOME/.cargo/bin
-    set PATH $HOME/.cargo/bin $PATH
+    fish_add_path $HOME/.cargo/bin
 end
 
 # Golang
 if test -d $HOME/go
-    set PATH $HOME/go/bin $PATH
+    fish_add_path $HOME/go/bin
     set GOPATH $HOME/go
 end
 
 if test -d /usr/local/go
-    set PATH /usr/local/go/bin $PATH
+    fish_add_path /usr/local/go/bin
     set GOROOT /usr/local/go
 end
 

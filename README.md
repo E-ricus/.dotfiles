@@ -29,7 +29,11 @@ being rust programs, these can be installed with cargo
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install cargo-edit
 ```
-
+## Fish
+Ubuntu based distros use an older fish version, this repo fixes it
+```sh
+sudo apt-add-repository ppa:fish-shell/release-3
+```
 
 ## Nvim optional requirements
 * fd
