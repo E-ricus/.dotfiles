@@ -32,8 +32,10 @@ if test -d /usr/local/go
     set GOROOT /usr/local/go
 end
 
-# Colors
-custom_colors
+# Vim
+fish_vi_key_bindings
+
+set -U fish_greeting
 
 # Globals
 set EDITOR nvim
