@@ -32,6 +32,8 @@ if test -d /usr/local/go
     set GOROOT /usr/local/go
 end
 
+# Colors
+custom_colors
 
 # Globals
 set EDITOR nvim
