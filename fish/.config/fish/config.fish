@@ -1,6 +1,11 @@
+# Abbreviations
 abbr -a e nvim
 abbr -a c cargo
 abbr -a vimdiff 'nvim -d'
+
+# Enviroments
+set XDG_CONFIG_HOME $HOME/.config
+set DOTFILES $HOME/.dotfiles
 
 # PATH
 if test -d $HOME/.bin
