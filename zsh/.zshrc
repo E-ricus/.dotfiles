@@ -125,9 +125,9 @@ bindkey '^e' edit-command-line
 # Only needed to load at first time using eval null plugins
 # zinit ice wait"1"
 zinit light NICHOLAS85/z-a-eval 
-# Starship prompt
-zplugin ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
-zinit light starship/starship
+zinit ice wait id-as"starship_prompt" has"starship" lucid \
+      eval'starship init zsh' run-atpull
+zinit light zdharma/null
 
 # Better folder navigation
 zinit ice wait id-as"zoxide_movement" has"zoxide" lucid \
