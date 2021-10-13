@@ -34,6 +34,8 @@ end
 
 # Vim
 fish_vi_key_bindings
+set -U fish_cursor_default block
+set -U fish_cursor_insert line blink
 
 set -U fish_greeting
 
