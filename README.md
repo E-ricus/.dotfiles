@@ -50,7 +50,7 @@ Deiban based:
 sudo apt install ripgrep
 cargo install bat
 cargo install fd-find
-cargo install tree-sitter
+cargo install tree-sitter-cli
 ```
 
 ## Fonts
@@ -64,7 +64,7 @@ cargo install font-manger
 
 # Install any font
 font-manager install --nerd FiraCode
-font-manager install --nerd JetbrainsMono
+font-manager install --nerd JetBrainsMono
 ```
 
 Arch based: `paru -S nerd-fonts-fira-code nerd-fonts-jetbrains-mono noto-fonts-emoji`
