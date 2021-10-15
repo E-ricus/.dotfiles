@@ -271,7 +271,7 @@ bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace.sh
 # volume
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
-
+bindsym XF86AudioMute exec amixer -D pulse set Master toggle && pkill -RTMIN+1 i3blocks
 
 # Pulse Audio controls
 
@@ -289,7 +289,7 @@ bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill 
 # mute
 #bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
 #mute
-bindsym XF86AudioMute exec pamixer -t && notify-send "mute: $(pamixer --get-mute)"
+# bindsym XF86AudioMute exec pamixer -t && notify-send "mute: $(pamixer --get-mute)"
 
 bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
