@@ -90,3 +90,12 @@ sudo /usr/bin/tic -xe alacritty-direct,tmux-256color terminfo.src
 
 ## ZSA Keyboards on arch
 https://github.com/zsa/wally/wiki/Live-training-on-Linux
+
+## Base arch goodies
+- `playerctl` (media controller)
+- `xorg-backlight` (brightness intel graphics)
+- light(brightness amd graphics)
+```sh
+paru -S light
+sudo chmod +s /usr/bin/light
+```

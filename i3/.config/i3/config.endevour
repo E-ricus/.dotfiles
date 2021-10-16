@@ -64,6 +64,8 @@ gaps outer 3
 floating_modifier $mod
 
 # Dual screen 
+bindsym $mod+p move workspace to output right
+
 set $firstMonitor eDP
 set $secondMonitor DisplayPort-0
 
@@ -297,7 +299,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Redirect sound to headphones
-bindsym $mod+p exec /usr/local/bin/switch-audio-port
+bindsym $mod+ctrl+p exec /usr/local/bin/switch-audio-port
 
 ## App shortcuts
 bindsym $mod+w exec /usr/bin/firefox
@@ -313,13 +315,13 @@ bindsym Print exec "scrot ~/%Y-%m-%d-%T-screenshot.png"
 set $ws1 "1:"
 set $ws2 "2:"
 set $ws3 "3:"
-set $ws4 "4:"
+set $ws4 "4:"
 set $ws5 "5:"
 set $ws6 "6:"
 set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10:"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays 
@@ -332,9 +334,9 @@ set $ws10 "10:"
 
 # bind program to workspace and focus to them on startup:
 assign [class="Xfce4-terminal"] $ws1
-assign [class="(?i)firefox"] $ws2
+# assign [class="(?i)firefox"] $ws2
 assign [class="Thunar"] $ws3
-assign [class="Thunderbird"] $ws4
+assign [class="Spotify"] $ws4
 assign [class="TelegramDesktop"] $ws5
 
 
@@ -445,8 +447,8 @@ bar {
 #	    	i3bar_command i3bar --transparency
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
-        tray_output primary
-        tray_padding 0
+        tray_output $firstMonitor
+        tray_padding 1
 
 # When strip_workspace_numbers is set to yes, 
 # any workspace that has a name of the form 
