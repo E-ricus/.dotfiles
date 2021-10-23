@@ -1,6 +1,7 @@
+local telescope = require "telescope"
 local themes = require "telescope.themes"
 
-require("telescope").setup {
+telescope.setup {
   defaults = {
     -- prompt_prefix = "❯ ",
     prompt_prefix = "🔍",
@@ -55,9 +56,9 @@ require("telescope").setup {
 }
 
 -- Faster fuzzy
-require("telescope").load_extension "fzf"
+telescope.load_extension "fzf"
 -- DAP extension
-require("telescope").load_extension "dap"
+telescope.load_extension "dap"
 
 -- Keymaps
 local map = require("ericus.vim-utils").mapper
