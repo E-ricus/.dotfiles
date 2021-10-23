@@ -123,15 +123,18 @@ return require("packer").startup {
 
     -- Git
     use {
-      "lewis6991/gitsigns.nvim",
-      requires = { "nvim-lua/plenary.nvim" },
+      "tanvirtin/vgit.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim",
+      },
+    }
+    use {
+      "TimUntersberger/neogit",
+      requires = "nvim-lua/plenary.nvim",
       config = function()
-        require("gitsigns").setup()
+        require("neogit").setup()
       end,
     }
-    use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" }
-    use "sindrets/diffview.nvim"
-    use "tpope/vim-fugitive"
 
     -- Colors
     use "gruvbox-community/gruvbox"
