@@ -288,7 +288,7 @@ bindsym $mod+ctrl+p exec --no-startup-id /usr/local/bin/switch-audio-port
 bindsym $mod+w exec /usr/bin/firefox
 bindsym $mod+n exec /usr/bin/thunar
 bindsym Print exec --no-startup-id "scrot -u ~/Pictures/%Y-%m-%d-%T-screenshot.png"
-bindsym Control+Print exec --no-startup-id "scrot --select ~/Pictures/%Y-%m-%d-%T-screenshot.png"
+bindsym Control+Print exec --no-startup-id xfce4-screenshooter
 
 ##########################################
 # configuration for workspace behaviour: #
