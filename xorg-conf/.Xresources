@@ -1,4 +1,4 @@
-Xcursor.theme: capitaine-cursors-light
-Xcursor.size: 16
-# For 4k screens
-Xft.dpi: 192
+!Xcursor.theme: capitaine-cursors-light
+Xcursor.theme: Adwaita
+!Xcursor.size: 48
+Xft.dpi: 220

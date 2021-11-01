@@ -1,9 +1,10 @@
 /*******************************************************
  * ROFI configs i3 powermenu for EndeavourOS
  * Maintainer: joekamprad <joekamprad@endeavouros.com>
+ * Font to 10 and 120px for regular screens
  *******************************************************/
 configuration {
-    font:                           "Sourcecode Pro Regular 10";
+    font:                           "Sourcecode Pro Regular 20";
     show-icons:                     false;
     icon-theme: 		    "Arc-X-D";
     scroll-method:                  0;
@@ -18,10 +19,10 @@ window {
     border:                         0;
     padding:                        10;
     transparency:                   "real";
-    width:                          120px;
+    width:                          210px;
     location:                       east;
 /*y-offset:                       18;*/
-/*x-offset:	                    850;*/
+/* x-offset:	                    -100; */
     transparency:                   "real";
 }
 listview {

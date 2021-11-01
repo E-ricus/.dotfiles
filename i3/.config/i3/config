@@ -428,10 +428,10 @@ client.urgent		    $urgentred	$urgentred	$white		$purple		$yellowbrown
 # (plus the system information i3status finds out, if available)
 bar {
     # Normal laptops
-    height 24
+    # height 24
     # 4k laptops
     height 42
-        font pango:Noto Sans Regular 12, FontAwesome 12
+        font pango:Noto Sans Regular 11, FontAwesome 11
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
         position top 
 #	    	i3bar_command i3bar --transparency
