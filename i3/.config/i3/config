@@ -53,7 +53,10 @@ bindsym $mod+p move workspace to output right
 set $firstMonitor eDP
 set $secondMonitor DisplayPort-0
 
-exec --no-startup-id xrandr --output $firstMonitor --mode 1920x1080 --primary --auto
+# Normal screen
+# exec --no-startup-id xrandr --output $firstMonitor --mode 1920x1080 --primary --auto
+# 4k screen
+exec --no-startup-id xrandr --output $firstMonitor --mode 3840x2160 --primary --auto
 exec --no-startup-id xrandr --output $secondMonitor --mode 2560x1080 --noprimary --right-of $firstMonitor --auto
 
 
@@ -424,8 +427,11 @@ client.urgent		    $urgentred	$urgentred	$white		$purple		$yellowbrown
 # Start i3bar to display a workspace bar 
 # (plus the system information i3status finds out, if available)
 bar {
+    # Normal laptops
     height 24
-        font pango:Noto Sans Regular 10, FontAwesome 10
+    # 4k laptops
+    height 42
+        font pango:Noto Sans Regular 12, FontAwesome 12
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
         position top 
 #	    	i3bar_command i3bar --transparency
