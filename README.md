@@ -26,6 +26,7 @@ For debian based distros some installations of the following dependencies might 
 being rust programs, these can be installed with cargo
 
 ```sh
+sudo apt install libssl-dev
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install cargo-edit
 ```
