@@ -100,3 +100,30 @@ https://github.com/zsa/wally/wiki/Live-training-on-Linux
 paru -S light
 sudo chmod +s /usr/bin/light
 ```
+
+## pop-shell
+```sh
+paru -S gnome-shell-extension-pop-shell-git chrome-gnome-shell
+```
+
+## Nvidia cards arch
+* Install nvidia-settings and drivers if not already installed
+```sh
+paru -S nvidia-dkms nvidia-utils nvidia-settings
+```
+
+* Install nvidia-prime, gdm-prime and optimus-manager to change gpus
+```sh 
+paru -S nvidia-prime optimus-manager gdm-prime
+wget https://raw.githubusercontent.com/Askannz/optimus-manager/master/optimus-manager.conf
+sudo mv optimus-manager.conf /etc/optimus-manager/
+sudo vim /etc/optimus-manager/optimus-manager.conf
+# change startup_mode=nvidia
+```
+
+* If using gnome, force xorg start
+```sh
+sudo vim /etc/gdm/custom.conf
+# uncomment WaylandEnabled=false
+```
+
