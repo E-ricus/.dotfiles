@@ -32,6 +32,11 @@ if test -d /usr/local/go
     set GOROOT /usr/local/go
 end
 
+# Wayland
+if test "$XDG_SESSION_TYPE" = "wayland"
+    set -x QT_QPA_PLATFORM xcb
+end
+
 # Vim
 fish_vi_key_bindings
 set -U fish_cursor_default block
