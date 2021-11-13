@@ -50,14 +50,15 @@ floating_modifier $mod
 # Dual screen 
 bindsym $mod+p move workspace to output right
 
-set $firstMonitor eDP
-set $secondMonitor DisplayPort-0
+set $firstMonitor eDP-1-1
+set $secondMonitor DP-2
 
 # Normal screen
 # exec --no-startup-id xrandr --output $firstMonitor --mode 1920x1080 --primary --auto
+# exec --no-startup-id xrandr --output $secondMonitor --mode 2560x1080 --noprimary --right-of $firstMonitor --auto
 # 4k screen
 exec --no-startup-id xrandr --output $firstMonitor --mode 3840x2160 --primary --auto
-exec --no-startup-id xrandr --output $secondMonitor --mode 2560x1080 --noprimary --right-of $firstMonitor --auto
+exec --no-startup-id xrandr --output $secondMonitor --mode 2560x1080 --noprimary --right-of $firstMonitor --scale 2x2
 
 
 workspace $ws1 output $firstMonitor
