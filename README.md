@@ -44,7 +44,12 @@ sudo apt-add-repository ppa:fish-shell/release-3
 
 Arch based: `paru -S fd ripgrep bat tree-sitter`
 
-MacOS: `brew install fd rigprep bat tree-sitter`
+MacOS:
+```sh
+brew install fd rigprep bat
+brew install --HEAD tree-sitter
+brew install --HEAD luajit
+```
 
 Deiban based:
 ```sh
