@@ -16,6 +16,11 @@ if test -d $HOME/.local/bin
     fish_add_path $HOME/.local/bin
 end
 
+## brew M1
+if test -d /opt/homebrew/bin
+    fish_add_path /opt/homebrew/bin
+end
+
 # Rust
 if test -d $HOME/.cargo/bin
     fish_add_path $HOME/.cargo/bin
@@ -51,6 +56,10 @@ set FZF_DEFAULT_COMMAND 'fd --type file --hidden --no-ignore'
 # Alias
 alias rg "rg --files --hidden --glob '!.git'"
 alias ls "exa -la"
+# Brew on M1
+alias brew86 "arch -x86_64 /usr/local/homebrew/bin/brew"
+alias brewARM "arch -arm64 /opt/homebrew/bin/brew"
+alias brew "/opt/homebrew/bin/brew"
 
 # Prompt
 starship init fish | source
