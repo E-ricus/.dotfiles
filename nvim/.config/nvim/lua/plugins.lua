@@ -123,10 +123,11 @@ return require("packer").startup {
 
     -- Git
     use {
-      "tanvirtin/vgit.nvim",
-      requires = {
-        "nvim-lua/plenary.nvim",
-      },
+      "lewis6991/gitsigns.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("gitsigns").setup()
+      end,
     }
     use {
       "TimUntersberger/neogit",
