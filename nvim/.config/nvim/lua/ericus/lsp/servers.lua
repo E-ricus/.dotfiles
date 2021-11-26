@@ -1,10 +1,11 @@
-local lsp_install = require "lspinstall"
+local lsp_installer = require "nvim-lsp-installer"
 
 local M = {}
 
-local required_servers = { "lua", "rust", "go", "typescript", "python", "yaml", "json", "html", "elixir" }
+local required_servers = { "sumneko_lua", "rust_analyzer", "gopls", "tsserver", "pylsp", "yamlls", "jsonls", "html", "elixirls" }
+
 local settings = {
-  rust = {
+  rust_analyzer = {
     ["rust-analyzer"] = {
       checkOnSave = {
         command = "clippy",
@@ -19,7 +20,7 @@ local settings = {
       },
     },
   },
-  go = {
+  gopls = {
     gopls = {
       gofumpt = true,
       analyses = {
@@ -32,7 +33,7 @@ local settings = {
       },
     },
   },
-  lua = {
+  sumneko_lua = {
     Lua = {
       diagnostics = {
         -- Get the language server to recognize the `vim` global
@@ -43,44 +44,39 @@ local settings = {
 }
 
 M.setup_servers = function(on_attach, capabilities)
-  lsp_install.setup()
-  -- nvim_lsp object
-  local nvim_lsp = require "lspconfig"
-
-  local servers = lsp_install.installed_servers()
-  for _, server in ipairs(servers) do
-    nvim_lsp[server].setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      settings = settings[server],
+  lsp_installer.on_server_ready(function(server)
+    local opts = {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = settings[server.name]
     }
-  end
+    server:setup(opts)
+  end)
 end
 
 M.require_servers = function()
-  local installed_servers = lsp_install.installed_servers()
+  local lsp_installer_servers = require'nvim-lsp-installer.servers'
+
   for _, server in pairs(required_servers) do
-    if not vim.tbl_contains(installed_servers, server) then
-      lsp_install.install_server(server)
+    local _, requested_server = lsp_installer_servers.get_server(server)
+    if not requested_server:is_installed() then
+        -- Queue the server to be installed
+        requested_server:install()
     end
   end
 end
 
 M.update_all_servers = function()
+  local lsp_installer_servers = require'nvim-lsp-installer.servers'
+
   for _, server in pairs(required_servers) do
-    lsp_install.install_server(server)
+    local _, requested_server = lsp_installer_servers.get_server(server)
+    requested_server:install()
   end
 end
 
-M.list_servers = function()
-  local installed_servers = lsp_install.installed_servers()
-  for _, server in pairs(installed_servers) do
-    print(server)
-  end
-end
 
 vim.cmd "command! LspRequire lua require('ericus.lsp.servers').require_servers()"
 vim.cmd "command! LspUpdateAll lua require('ericus.lsp.servers').update_all_servers()"
-vim.cmd "command! LspServers lua require('ericus.lsp.servers').list_servers()"
 
 return M
