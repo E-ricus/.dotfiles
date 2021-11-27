@@ -73,6 +73,7 @@ return require("packer").startup {
     -- Langs Enhacement
     local_use "green_light.nvim"
     use "ThePrimeagen/refactoring.nvim"
+    use "vim-test/vim-test"
 
     -- Telescope
     use {

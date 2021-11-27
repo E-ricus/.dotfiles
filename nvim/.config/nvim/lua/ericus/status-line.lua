@@ -47,10 +47,8 @@ local diagnostic_counts = function(_, _)
   local info_count = ws_diagnostic.get_count(0, "Information")
   local hint_count = ws_diagnostic.get_count(0, "Hint")
 
-  table.insert(messages, "LSP: ")
-
   if error_count == 0 and warning_count == 0 and info_count == 0 and hint_count == 0 then
-    return "LSP:  "
+    return " "
   end
 
   if error_count ~= 0 then
@@ -85,6 +83,8 @@ require("el").setup {
       },
       git_branch,
       " ",
+      git_changes,
+      " ",
       sections.split,
       git_icon,
       sections.maximum_width(builtin.responsive_file(140, 90), 0.30),
@@ -93,10 +93,10 @@ require("el").setup {
         builtin.modified_flag,
       },
       sections.split,
+      "LSP: ",
       show_current_func,
       lsp_statusline.server_progress,
       diagnostic_counts,
-      git_changes,
       "[",
       builtin.line_with_width(3),
       ":",
