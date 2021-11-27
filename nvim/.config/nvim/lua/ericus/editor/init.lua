@@ -27,3 +27,8 @@ require "ericus.editor.colors"
 
 -- Treesitter
 require "ericus.editor.treesitter"
+
+-- Harpoon
+require("harpoon").setup({})
+lmap("n", "<leader>hm", 'require("harpoon.mark").add_file()')
+lmap("n", "<leader>hq", 'require("harpoon.ui").toggle_quick_menu()')

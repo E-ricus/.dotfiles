@@ -46,6 +46,7 @@ return require("packer").startup {
     use "machakann/vim-highlightedyank"
     use "andymass/vim-matchup"
     use "numToStr/Comment.nvim"
+    use "ThePrimeagen/harpoon"
     use "rmagatti/auto-session"
     -- File Explorer
     use "kyazdani42/nvim-tree.lua"

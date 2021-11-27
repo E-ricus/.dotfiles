@@ -59,6 +59,8 @@ telescope.setup {
 telescope.load_extension "fzf"
 -- DAP extension
 telescope.load_extension "dap"
+-- Harpoon
+telescope.load_extension "harpoon"
 
 -- Keymaps
 local map = require("ericus.vim-utils").mapper
@@ -74,11 +76,11 @@ lua_map("n", "<leader>f/", "require('ericus.telescope').grep_last_search()")
 lua_map("n", "<leader>fp", "require('ericus.telescope').grep_prompt()")
 lua_map("n", "<leader>f.", "require('ericus.telescope').file_tree()")
 map("n", "<leader>fb", "Telescope buffers")
-map("n", "<leader>fh", "Telescope help_tags")
+map("n", "<leader>fh", "Telescope harpoon marks")
+-- map("n", "<leader>fh", "Telescope help_tags")
 map("n", "<leader>ts", "Telescope treesitter")
 map("n", "<leader>fq", "Telescope quickfix")
 map("n", "<leader>th", "Telescope colorscheme")
-map("n", "<leader>fs", "Telescope sessions")
 
 local M = {}
 
