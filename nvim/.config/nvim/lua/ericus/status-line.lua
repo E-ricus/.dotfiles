@@ -93,7 +93,6 @@ require("el").setup {
         builtin.modified_flag,
       },
       sections.split,
-      "LSP: ",
       show_current_func,
       lsp_statusline.server_progress,
       diagnostic_counts,
