@@ -6,7 +6,7 @@ local lsp_statusline = require "el.plugins.lsp_status"
 
 local ws_diagnostic = require "lsp_extensions.workspace.diagnostic"
 
-local git_icon = subscribe.buf_autocmd("el_file_icon", "BufRead", function(_, bufnr)
+local file_icon = subscribe.buf_autocmd("el_file_icon", "BufRead", function(_, bufnr)
   local icon = extensions.file_icon(_, bufnr)
   if icon then
     return icon .. " "
@@ -86,12 +86,13 @@ require("el").setup {
       git_changes,
       " ",
       sections.split,
-      git_icon,
-      sections.maximum_width(builtin.responsive_file(140, 90), 0.30),
+      file_icon,
+      sections.maximum_width(builtin.make_responsive_file(140, 90), 0.25),
       sections.collapse_builtin {
         " ",
         builtin.modified_flag,
       },
+      "  ",
       sections.split,
       show_current_func,
       lsp_statusline.server_progress,
