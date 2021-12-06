@@ -48,6 +48,7 @@ return require("packer").startup {
     use "numToStr/Comment.nvim"
     use "ThePrimeagen/harpoon"
     use "rmagatti/auto-session"
+    use {'stevearc/dressing.nvim'}
     -- File Explorer
     use "kyazdani42/nvim-tree.lua"
 
@@ -81,7 +82,7 @@ return require("packer").startup {
       "nvim-telescope/telescope.nvim",
       requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
     }
-    -- Extensions
+    -- Telescope Extensions
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
     use "nvim-telescope/telescope-dap.nvim"
 
