@@ -44,6 +44,7 @@ return require("packer").startup {
 
     -- Editor enhancements
     use "machakann/vim-highlightedyank"
+    use "tpope/vim-surround"
     use "andymass/vim-matchup"
     use "numToStr/Comment.nvim"
     use "ThePrimeagen/harpoon"
