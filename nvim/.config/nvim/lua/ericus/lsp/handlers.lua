@@ -1,4 +1,4 @@
--- Enable diagnostics
+-- Enable workspace diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   require("lsp_extensions.workspace.diagnostic").handler,
   {

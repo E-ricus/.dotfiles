@@ -3,7 +3,6 @@ local vu = require "ericus.vim-utils"
 local nvim_status = require "lsp-status"
 
 require("ericus.lsp.status").activate()
-require "ericus.lsp.handlers"
 
 -- function to attach completion when setting up lsp
 local on_attach = function(client)
@@ -16,9 +15,9 @@ local on_attach = function(client)
   vu.buffer_lua_mapper("n", "gd", "vim.lsp.buf.definition()")
   vu.buffer_lua_mapper("n", "gD", "vim.lsp.buf.declaration()")
   vu.buffer_lua_mapper("n", "<leader>rn", "vim.lsp.buf.rename()")
-  vu.buffer_lua_mapper("n", "g[", "vim.diagnostic.goto_prev()")
-  vu.buffer_lua_mapper("n", "g]", "vim.diagnostic.goto_next()")
-  vu.buffer_lua_mapper("n", "<leader>e", "vim.diagnostic.open_float()")
+  vu.buffer_lua_mapper("n", "d[", "vim.diagnostic.goto_prev()")
+  vu.buffer_lua_mapper("n", "d]", "vim.diagnostic.goto_next()")
+  vu.buffer_lua_mapper("n", "<leader>df", "vim.diagnostic.open_float()")
   vu.buffer_lua_mapper("i", "<C-k>", "vim.lsp.buf.signature_help()")
   vu.buffer_lua_mapper("n", "<C-k>", "vim.lsp.buf.signature_help()")
   vu.buffer_lua_mapper("n", "<leader>lr", "vim.lsp.codelens.run()")
@@ -29,8 +28,8 @@ local on_attach = function(client)
   vu.buffer_mapper("n", "gr", "Telescope lsp_references")
   vu.buffer_mapper("n", "<leader>bs", "Telescope lsp_document_symbols")
   vu.buffer_mapper("n", "<leader>ws", "Telescope lsp_workspace_symbols")
-  vu.buffer_mapper("n", "<leader>we", "TroubleToggle lsp_workspace_diagnostics")
-  vu.buffer_mapper("n", "<leader>be", "TroubleToggle lsp_document_diagnostics")
+  vu.buffer_mapper("n", "<leader>wd", "TroubleToggle workspace_diagnostics")
+  vu.buffer_mapper("n", "<leader>bd", "TroubleToggle document_diagnostics")
 
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
