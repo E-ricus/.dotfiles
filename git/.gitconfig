@@ -34,3 +34,5 @@
 	path = nvim -d
 [mergetool]
 	path = nvim
+[pull]
+	rebase = true
