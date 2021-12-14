@@ -1,4 +1,3 @@
-!Xcursor.theme: capitaine-cursors-light
 Xcursor.theme: Adwaita
-!Xcursor.size: 48
-Xft.dpi: 220
+Xcursor.size: 48
+Xft.dpi: 192
