@@ -70,7 +70,8 @@ lua_map("n", "<leader>fd", "require('ericus.telescope').fd()")
 lua_map("n", "<leader>ff", "require('ericus.telescope').search_files()")
 lua_map("n", "<leader>fi", "require('ericus.telescope').search_all_files()")
 lua_map("n", "<leader>ft", "require('ericus.telescope').search_only_certain_files()")
-lua_map("n", "<leader>fg", "require('ericus.telescope').live_grep()")
+lua_map("n", "<leader>fg", "require('ericus.telescope').live_grep_preview()")
+lua_map("n", "<leader>fG", "require('ericus.telescope').live_grep()")
 lua_map("n", "<leader>fw", "require('telescope.builtin').grep_string()")
 lua_map("n", "<leader>f/", "require('ericus.telescope').grep_last_search()")
 lua_map("n", "<leader>fp", "require('ericus.telescope').grep_prompt()")
@@ -116,6 +117,12 @@ end
 function M.live_grep()
   require("telescope.builtin").live_grep {
     previewer = false,
+    fzf_separator = "|>",
+  }
+end
+
+function M.live_grep_preview()
+  require("telescope.builtin").live_grep {
     fzf_separator = "|>",
   }
 end
