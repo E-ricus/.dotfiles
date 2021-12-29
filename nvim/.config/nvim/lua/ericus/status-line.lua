@@ -4,8 +4,6 @@ local sections = require "el.sections"
 local subscribe = require "el.subscribe"
 local lsp_statusline = require "el.plugins.lsp_status"
 
-local lenght = require("ericus.vim-utils").tablelength
-
 local file_icon = subscribe.buf_autocmd("el_file_icon", "BufRead", function(_, bufnr)
   local icon = extensions.file_icon(_, bufnr)
   if icon then
@@ -43,10 +41,10 @@ local diagnostic_counts = function(_, _)
   local hint_icon = ""
 
   -- Show global for errors, but local for others
-  local error_count = lenght(vim.diagnostic.get(nil, { severity = vim.diagnostic.severity.ERROR }))
-  local warning_count = lenght(vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN }))
-  local info_count = lenght(vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO }))
-  local hint_count = lenght(vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT }))
+  local error_count = #vim.diagnostic.get(nil, { severity = vim.diagnostic.severity.ERROR })
+  local warning_count = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+  local info_count = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+  local hint_count = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
 
   if error_count == 0 and warning_count == 0 and info_count == 0 and hint_count == 0 then
     return " "

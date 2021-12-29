@@ -29,23 +29,23 @@ require "ericus.editor.colors"
 require "ericus.editor.treesitter"
 
 -- Harpoon
-require("harpoon").setup({})
+require("harpoon").setup {}
 lmap("n", "<leader>hm", 'require("harpoon.mark").add_file()')
 lmap("n", "<leader>hq", 'require("harpoon.ui").toggle_quick_menu()')
 
 -- Dressing
-require('dressing').setup({
+require("dressing").setup {
   select = {
     get_config = function(opts)
-      if opts.kind == 'codeaction' then
+      if opts.kind == "codeaction" then
         return {
-          backend = 'nui',
+          backend = "nui",
           nui = {
-            relative = 'cursor',
+            relative = "cursor",
             max_width = 40,
-          }
+          },
         }
       end
-    end
-  }
-})
+    end,
+  },
+}

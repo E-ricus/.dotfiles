@@ -49,7 +49,7 @@ return require("packer").startup {
     use "numToStr/Comment.nvim"
     use "ThePrimeagen/harpoon"
     use "rmagatti/auto-session"
-    use {'stevearc/dressing.nvim'}
+    use { "stevearc/dressing.nvim" }
     -- File Explorer
     use "kyazdani42/nvim-tree.lua"
 

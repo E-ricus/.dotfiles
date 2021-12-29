@@ -7,20 +7,20 @@ local is_impatient, impatient = pcall(require, "impatient") -- Workaround while 
 local profile = true
 
 if is_impatient and profile then
-    impatient.enable_profile()
+  impatient.enable_profile()
 end
 
 -- General configs
-require('ericus.settings')
-require('ericus.syntax')
+require "ericus.settings"
+require "ericus.syntax"
 -- Load plugins with packer
-require('plugins')
+require "plugins"
 -- Plugin required configs
-require('ericus.editor')
-require('ericus.status-line')
-require('ericus.lang-tools')
-require("ericus.completion")
-require("ericus.telescope")
-require("ericus.git")
-require("ericus.lsp")
-require("ericus.dap")
+require "ericus.editor"
+require "ericus.status-line"
+require "ericus.lang-tools"
+require "ericus.completion"
+require "ericus.telescope"
+require "ericus.git"
+require "ericus.lsp"
+require "ericus.dap"
