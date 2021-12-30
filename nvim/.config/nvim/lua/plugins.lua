@@ -152,5 +152,6 @@ return require("packer").startup {
       branch = "colorbuddy",
       requires = "tjdevries/colorbuddy.nvim",
     }
+    use "rebelot/kanagawa.nvim"
   end,
 }
