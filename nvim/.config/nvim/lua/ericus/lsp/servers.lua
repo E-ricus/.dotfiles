@@ -28,6 +28,11 @@ local settings = {
         methodReferences = false,
         references = false,
       },
+      completion = {
+        postfix = {
+          enable = false,
+        },
+      },
     },
   },
   gopls = {

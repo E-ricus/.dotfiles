@@ -39,4 +39,4 @@ vim.cmd "highlight default link ElInsertCompletion ElInsert"
 -- vim.cmd('colorscheme ayu')
 -- vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
 ----------------- Kangawa -------------------
-vim.cmd("colorscheme kanagawa")
+vim.cmd "colorscheme kanagawa"

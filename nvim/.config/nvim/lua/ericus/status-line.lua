@@ -86,7 +86,7 @@ require("el").setup {
       " ",
       sections.split,
       file_icon,
-      sections.maximum_width(builtin.make_responsive_file(140, 90), 0.25),
+      sections.maximum_width(builtin.make_responsive_file(140, 90), 0.35),
       sections.collapse_builtin {
         " ",
         builtin.modified_flag,
