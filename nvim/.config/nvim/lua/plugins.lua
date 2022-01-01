@@ -147,11 +147,7 @@ return require("packer").startup {
 
     use "norcalli/nvim-colorizer.lua"
     use "tjdevries/colorbuddy.nvim"
-    use {
-      "marko-cerovac/material.nvim",
-      branch = "colorbuddy",
-      requires = "tjdevries/colorbuddy.nvim",
-    }
+    use "marko-cerovac/material.nvim"
     use "rebelot/kanagawa.nvim"
   end,
 }
