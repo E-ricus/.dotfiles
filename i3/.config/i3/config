@@ -46,6 +46,7 @@ gaps outer 3
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+floating_maximum_size 1000x800
 
 # Dual screen 
 bindsym $mod+p move workspace to output right
