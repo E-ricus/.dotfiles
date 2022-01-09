@@ -51,7 +51,10 @@ floating_maximum_size 1000x800
 # Dual screen 
 bindsym $mod+p move workspace to output right
 
-set $firstMonitor eDP-1-1
+# Nvidia
+# set $firstMonitor eDP-1-1
+# AMD
+set $firstMonitor eDP-1
 set $secondMonitor DP-2
 
 # Normal screen
