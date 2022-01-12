@@ -11,18 +11,18 @@ local on_attach = function(client)
   nvim_status.on_attach(client)
 
   -- keymaps
-  vu.buffer_lua_mapper("n", "K", "vim.lsp.buf.hover()")
-  vu.buffer_lua_mapper("n", "gd", "vim.lsp.buf.definition()")
-  vu.buffer_lua_mapper("n", "gD", "vim.lsp.buf.declaration()")
-  vu.buffer_lua_mapper("n", "<leader>rn", "vim.lsp.buf.rename()")
-  vu.buffer_lua_mapper("n", "d[", "vim.diagnostic.goto_prev()")
-  vu.buffer_lua_mapper("n", "d]", "vim.diagnostic.goto_next()")
-  vu.buffer_lua_mapper("n", "<leader>df", "vim.diagnostic.open_float()")
-  vu.buffer_lua_mapper("i", "<C-k>", "vim.lsp.buf.signature_help()")
-  vu.buffer_lua_mapper("n", "<C-k>", "vim.lsp.buf.signature_help()")
-  vu.buffer_lua_mapper("n", "<leader>lr", "vim.lsp.codelens.run()")
-  vu.buffer_lua_mapper("n", "<leader>ll", "require('ericus.lsp.codelens').refresh()")
-  vu.buffer_lua_mapper("n", "<leader>a", "vim.lsp.buf.code_action()")
+  vu.buffer_lua_mapper("n", "K", vim.lsp.buf.hover)
+  vu.buffer_lua_mapper("n", "gd", vim.lsp.buf.definition)
+  vu.buffer_lua_mapper("n", "gD", vim.lsp.buf.declaration)
+  vu.buffer_lua_mapper("n", "<leader>rn", vim.lsp.buf.rename)
+  vu.buffer_lua_mapper("n", "d[", vim.diagnostic.goto_prev)
+  vu.buffer_lua_mapper("n", "d]", vim.diagnostic.goto_next)
+  vu.buffer_lua_mapper("n", "<leader>df", vim.diagnostic.open_float)
+  vu.buffer_lua_mapper("i", "<C-k>", vim.lsp.buf.signature_help)
+  vu.buffer_lua_mapper("n", "<C-k>", vim.lsp.buf.signature_help)
+  vu.buffer_lua_mapper("n", "<leader>lr", vim.lsp.codelens.run)
+  vu.buffer_lua_mapper("n", "<leader>ll", require('ericus.lsp.codelens').refresh)
+  vu.buffer_lua_mapper("n", "<leader>a", vim.lsp.buf.code_action)
   -- Telescope/Trouble maps
   vu.buffer_mapper("n", "gi", "Telescope lsp_implementations")
   vu.buffer_mapper("n", "gr", "Telescope lsp_references")
@@ -61,11 +61,11 @@ local on_attach = function(client)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
-    vu.buffer_lua_mapper("n", "<leader>fr", "vim.lsp.buf.formatting()")
+    vu.buffer_lua_mapper("n", "<leader>fr", vim.lsp.buf.formatting)
     vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
   end
   if client.resolved_capabilities.document_range_formatting then
-    vu.buffer_lua_mapper("v", "<leader>fr", "vim.lsp.buf.range_formatting()")
+    vu.buffer_lua_mapper("v", "<leader>fr", vim.lsp.buf.range_formatting)
   end
 end
 
