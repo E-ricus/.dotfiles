@@ -61,6 +61,8 @@ telescope.load_extension "fzf"
 telescope.load_extension "dap"
 -- Harpoon
 telescope.load_extension "harpoon"
+-- file browser
+telescope.load_extension "file_browser"
 
 -- Keymaps
 local map = require("ericus.vim-utils").mapper
@@ -129,7 +131,7 @@ end
 
 function M.file_tree()
   local opts = themes.get_ivy { hidden = true }
-  require("telescope.builtin").file_browser(opts)
+  telescope.extensions.file_browser.file_browser(opts)
 end
 
 function M.grep_last_search(opts)
