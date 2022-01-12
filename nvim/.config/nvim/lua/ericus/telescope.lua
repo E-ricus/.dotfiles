@@ -6,6 +6,9 @@ telescope.setup {
     -- prompt_prefix = "❯ ",
     prompt_prefix = "🔍",
     layout_strategy = "horizontal",
+    path_display = {
+      shorten = { len = 2, exclude = {-1, -2} },
+    },
     layout_config = {
       width = 0.95,
       height = 0.85,
