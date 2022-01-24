@@ -3,6 +3,7 @@ local extensions = require "el.extensions"
 local sections = require "el.sections"
 local subscribe = require "el.subscribe"
 local lsp_statusline = require "el.plugins.lsp_status"
+local diagnostic = require "el.diagnostic"
 
 local file_icon = subscribe.buf_autocmd("el_file_icon", "BufRead", function(_, bufnr)
   local icon = extensions.file_icon(_, bufnr)
@@ -24,46 +25,37 @@ local git_changes = subscribe.buf_autocmd("el_git_changes", "BufWritePost", func
   return extensions.git_changes(window, buffer)
 end)
 
-local function client_connected()
-  return not vim.tbl_isempty(vim.lsp.buf_get_clients(0))
-end
-
-local diagnostic_counts = function(_, _)
-  if not client_connected() then
-    return ""
-  end
-
-  local messages = {}
+local diagnostic_formatter = function(_, _, counts)
+  local items = {}
 
   local error_icon = ""
   local warning_icon = ""
   local info_icon = ""
   local hint_icon = ""
 
-  -- Show global for errors, but local for others
-  local error_count = #vim.diagnostic.get(nil, { severity = vim.diagnostic.severity.ERROR })
-  local warning_count = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-  local info_count = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
-  local hint_count = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+  local error_count = counts.errors
+  local warning_count = counts.warnings
+  local info_count = counts.infos
+  local hint_count = counts.hints
 
   if error_count == 0 and warning_count == 0 and info_count == 0 and hint_count == 0 then
-    return " "
+    return ""
   end
 
-  if error_count ~= 0 then
-    table.insert(messages, string.format("%s %d ", error_icon, error_count))
+  if error_count > 0 then
+    table.insert(items, string.format("%s %s", error_icon, error_count))
   end
-  if warning_count ~= 0 then
-    table.insert(messages, string.format("%s %d ", warning_icon, warning_count))
+  if warning_count > 0 then
+    table.insert(items, string.format("%s %s", warning_icon, warning_count))
   end
-  if info_count ~= 0 then
-    table.insert(messages, string.format("%s %d ", info_icon, info_count))
+  if info_count > 0 then
+    table.insert(items, string.format("%s %s", info_icon, info_count))
   end
-  if hint_count ~= 0 then
-    table.insert(messages, string.format("%s %d ", hint_icon, hint_count))
+  if hint_count > 0 then
+    table.insert(items, string.format("%s %s", hint_icon, hint_count))
   end
 
-  return table.concat(messages, "")
+  return table.concat(items, " ")
 end
 
 local show_current_func = function(window, buffer)
@@ -71,8 +63,10 @@ local show_current_func = function(window, buffer)
     return ""
   end
 
-  return lsp_statusline.current_function(window, vim.api.nvim_win_get_buf())
+  return lsp_statusline.current_function(window, buffer)
 end
+
+local diagnostic_display = diagnostic.make_buffer(diagnostic_formatter)
 
 require("el").setup {
   generator = function(_, _)
@@ -93,9 +87,11 @@ require("el").setup {
       },
       "  ",
       sections.split,
-      show_current_func,
+      " ",
       lsp_statusline.server_progress,
-      diagnostic_counts,
+      show_current_func,
+      diagnostic_display,
+      " ",
       "[",
       builtin.line_with_width(3),
       ":",
