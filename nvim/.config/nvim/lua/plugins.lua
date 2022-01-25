@@ -72,6 +72,7 @@ return require("packer").startup {
         }
       end,
     }
+    use "jose-elias-alvarez/null-ls.nvim"
 
     -- Langs Enhacement
     local_use "green_light.nvim"
