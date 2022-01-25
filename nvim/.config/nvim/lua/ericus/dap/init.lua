@@ -31,4 +31,3 @@ dapui.setup {
     position = "bottom", -- Can be "bottom" or "top"
   },
 }
-

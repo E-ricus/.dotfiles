@@ -21,7 +21,7 @@ local on_attach = function(client)
   vu.buffer_lua_mapper("i", "<C-k>", vim.lsp.buf.signature_help)
   vu.buffer_lua_mapper("n", "<C-k>", vim.lsp.buf.signature_help)
   vu.buffer_lua_mapper("n", "<leader>lr", vim.lsp.codelens.run)
-  vu.buffer_lua_mapper("n", "<leader>ll", require('ericus.lsp.codelens').refresh)
+  vu.buffer_lua_mapper("n", "<leader>ll", require("ericus.lsp.codelens").refresh)
   vu.buffer_lua_mapper("n", "<leader>a", vim.lsp.buf.code_action)
   -- Telescope/Trouble maps
   vu.buffer_mapper("n", "gi", "Telescope lsp_implementations")

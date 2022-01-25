@@ -7,7 +7,7 @@ telescope.setup {
     prompt_prefix = "🔍",
     layout_strategy = "horizontal",
     path_display = {
-      shorten = { len = 2, exclude = {-1, -2} },
+      shorten = { len = 2, exclude = { -1, -2 } },
     },
     layout_config = {
       width = 0.95,
@@ -66,7 +66,6 @@ telescope.load_extension "dap"
 telescope.load_extension "harpoon"
 -- file browser
 telescope.load_extension "file_browser"
-
 
 local M = {}
 

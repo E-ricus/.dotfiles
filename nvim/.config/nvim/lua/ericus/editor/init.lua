@@ -20,11 +20,11 @@ map("n", "<leader>`", "NvimTreeToggle")
 
 -- Trouble
 map("n", "<leader>qf", "TroubleToggle quickfix")
-lmap("n", "<leader>tn", function ()
-    require("trouble").next({skip_groups = true, jump = true})
+lmap("n", "<leader>tn", function()
+  require("trouble").next { skip_groups = true, jump = true }
 end)
-lmap("n", "<leader>tp", function ()
-    require("trouble").previous({skip_groups = true, jump = true})
+lmap("n", "<leader>tp", function()
+  require("trouble").previous { skip_groups = true, jump = true }
 end)
 
 -- colors
