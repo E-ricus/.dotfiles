@@ -59,6 +59,12 @@ local on_attach = function(client)
     )
   end
 
+  -- dissable tsserver format
+  if client.name == "tsserver" then
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end
+
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
     vu.buffer_lua_mapper("n", "<leader>fr", vim.lsp.buf.formatting)
