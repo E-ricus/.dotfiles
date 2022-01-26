@@ -25,6 +25,8 @@ nnoremap <leader>pp "+gP
 
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
+nnoremap <leader><left> :bp<CR>
+nnoremap <leader><right> :bn<CR>
 " Quick-save
 nmap <leader>w :w<CR>
 
