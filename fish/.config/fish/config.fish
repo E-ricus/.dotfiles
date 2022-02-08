@@ -51,6 +51,7 @@ set -U fish_greeting
 
 # Globals
 set EDITOR nvim
+set -x KUBE_EDITOR nvim
 set FZF_DEFAULT_COMMAND 'fd --type file --hidden --no-ignore'
 
 # Alias
