@@ -82,7 +82,8 @@ M.setup_servers = function(on_attach, capabilities)
       null_ls.builtins.code_actions.eslint.with {
         prefer_local = "node_modules/.bin",
       },
-      null_ls.builtins.code_actions.gitsigns,
+      -- too much actions
+      -- null_ls.builtins.code_actions.gitsigns,
     },
     on_attach = on_attach,
   }

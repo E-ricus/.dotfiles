@@ -21,4 +21,4 @@ vim.cmd "highlight default link ElInsertCompletion ElInsert"
 ------------------ (colorbuddy) --------------------
 -- require("colorbuddy").colorscheme "ericus/colors/doombuddy"
 ----------------- Normal schemes -------------------
-vim.cmd "colorscheme kanagawa"
+vim.cmd "colorscheme gruvbox"

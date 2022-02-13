@@ -10,6 +10,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartcase = true
+vim.opt.smartindent = true
 vim.opt.scrolloff = 5
 vim.opt.mouse = "a"
 vim.opt.shortmess:append "c"
