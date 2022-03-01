@@ -52,17 +52,18 @@ floating_maximum_size 1000x800
 bindsym $mod+p move workspace to output right
 
 # Nvidia
-# set $firstMonitor eDP-1-1
+set $firstMonitor eDP-1-1
+set $secondMonitor DP-0
 # AMD
-set $firstMonitor eDP-1
-set $secondMonitor DP-2
+# set $firstMonitor eDP-1
 
 # Normal screen
 # exec --no-startup-id xrandr --output $firstMonitor --mode 1920x1080 --primary --auto
 # exec --no-startup-id xrandr --output $secondMonitor --mode 2560x1080 --noprimary --right-of $firstMonitor --auto
 # 4k screen
 exec --no-startup-id xrandr --output $firstMonitor --mode 3840x2160 --primary --auto
-exec --no-startup-id xrandr --output $secondMonitor --mode 2560x1080 --noprimary --right-of $firstMonitor --scale 2x2
+exec --no-startup-id xrandr --output $secondMonitor --mode 3840x2160 --rate 60 --noprimary --right-of $firstMonitor
+# Use --scale 2x2 for no 4k displays
 
 
 workspace $ws1 output $firstMonitor
@@ -205,10 +206,10 @@ bindsym $mod+Shift+r restart
 bindsym $mod+F1 exec xed ~/.config/i3/keybindings
 
 # Backlight control
-# bindsym XF86MonBrightnessUp exec xbacklight +10
-# bindsym XF86MonBrightnessDown exec xbacklight -10
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+# Install Brillo: https://gitlab.com/cameronnemo/brillo
+
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.local/bin/changebrightness up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.local/bin/changebrightness down
 
 # change focus
 bindsym $mod+h focus left
@@ -502,10 +503,10 @@ bar {
 
 bindsym $mod+d exec rofi -modi drun -show drun \
             -config ~/.config/rofi/rofidmenu.rasi
-                
+
 bindsym F9 exec rofi -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
-		
+
 ## rofi bindings for window menu (two bindings F10/$mod+t)
 
 bindsym $mod+t exec rofi -show window \
