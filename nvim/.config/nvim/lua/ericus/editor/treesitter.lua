@@ -1,6 +1,6 @@
 require("nvim-treesitter.configs").setup {
   highlight = { enable = true },
-  indent = { enable = true },
+  indent = { enable = false },
   matchup = { enable = true },
 
   -- Text Objects

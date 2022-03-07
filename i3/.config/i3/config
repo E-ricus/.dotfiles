@@ -51,11 +51,12 @@ floating_maximum_size 1000x800
 # Dual screen 
 bindsym $mod+p move workspace to output right
 
-# Nvidia
-set $firstMonitor eDP-1-1
-set $secondMonitor DP-0
-# AMD
-# set $firstMonitor eDP-1
+# Nvidia only
+# set $firstMonitor eDP-1-1
+# set $secondMonitor DP-0
+# Hybrid
+set $firstMonitor eDP-1
+set $secondMonitor DP-1-0
 
 # Normal screen
 # exec --no-startup-id xrandr --output $firstMonitor --mode 1920x1080 --primary --auto
