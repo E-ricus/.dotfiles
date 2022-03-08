@@ -137,4 +137,10 @@ function M.grep_prompt()
   }
 end
 
+function M.help_tags()
+  require("telescope.builtin").help_tags {
+    show_version = true,
+  }
+end
+
 return M

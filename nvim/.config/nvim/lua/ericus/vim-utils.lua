@@ -17,6 +17,14 @@ function M.mapper(mode, key, result)
   vim.keymap.set(mode, key, "<cmd>" .. result .. "<CR>", { noremap = true, silent = true })
 end
 
+function M.buf_aucmd(events, callback, group)
+  vim.api.nvim_create_autocmd(events, { callback = callback, group = group, buffer = 0 })
+end
+
+function M.aucmd(events, callback, group)
+  vim.api.nvim_create_autocmd(events, { callback = callback, group = group })
+end
+
 function M.nvim_exec(txt)
   vim.api.nvim_exec(txt, false)
 end

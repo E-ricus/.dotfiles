@@ -33,30 +33,26 @@ local on_attach = function(client)
 
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
-    vu.nvim_exec [[
-            augroup lsp_document_highlight
-                autocmd! * <buffer>
-                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-            augroup END
-        ]]
+    local group = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+    vu.buf_aucmd("CursorHold", vim.lsp.buf.document_highlight, group)
+    vu.buf_aucmd("CursorMoved", vim.lsp.buf.clear_references, group)
   end
   if client.resolved_capabilities.code_lens then
     vim.cmd "highlight! link LspCodeLens Comment"
-    vim.cmd [[
-        augroup lsp_document_codelens
-          au! * <buffer>
-          autocmd BufEnter,BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
-        augroup END
-      ]]
+
+    local group = vim.api.nvim_create_augroup("lsp_document_codelens", { clear = true })
+    vu.buf_aucmd("BufEnter,BufWritePost,CursorHold", vim.lsp.codelens.refresh, group)
   end
   -- Only rust has this
   if filetype == "rust" then
-    vim.cmd(
-      [[autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer> :lua require('lsp_extensions').inlay_hints { ]]
-        .. [[prefix = " » ", highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} ]]
-        .. [[} ]]
-    )
+    local group = vim.api.nvim_create_augroup("lsp_rust_hints", { clear = true })
+    vu.buf_aucmd("CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost", function()
+      require("lsp_extensions").inlay_hints {
+        prefix = " » ",
+        highlight = "NonText",
+        enabled = { "TypeHint", "ChainingHint", "ParameterHint" },
+      }
+    end, group)
   end
 
   -- dissable tsserver format
@@ -68,7 +64,8 @@ local on_attach = function(client)
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
     vu.buffer_lua_mapper("n", "<leader>fr", vim.lsp.buf.formatting)
-    vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
+    local group = vim.api.nvim_create_augroup("lsp_document_format", { clear = true })
+    vu.buf_aucmd("BufWritePre", vim.lsp.buf.formatting_sync, group)
   end
   if client.resolved_capabilities.document_range_formatting then
     vu.buffer_lua_mapper("v", "<leader>fr", vim.lsp.buf.range_formatting)
