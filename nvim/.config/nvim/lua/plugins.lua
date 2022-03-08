@@ -119,12 +119,12 @@ return require("packer").startup {
     }
 
     -- Syntax
-    use {
-      "plasticboy/vim-markdown",
-      requires = {
-        "godlygeek/tabular",
-      },
-    }
+    -- use {
+    --   "plasticboy/vim-markdown",
+    --   requires = {
+    --     "godlygeek/tabular",
+    --   },
+    -- }
     use "ellisonleao/glow.nvim"
 
     -- Git

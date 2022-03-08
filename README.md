@@ -114,21 +114,18 @@ paru -S gnome-shell-extension-pop-shell-git chrome-gnome-shell
 ## Nvidia cards arch
 * Install nvidia-settings and drivers if not already installed
 ```sh
-paru -S nvidia-dkms nvidia-utils nvidia-settings
+paru -S nvidia nvidia-utils nvidia-settings
 ```
 
-* Install nvidia-prime, gdm-prime and optimus-manager to change gpus
+* Install nvidia-prime and optimus-manager to change gpus
 ```sh 
-paru -S nvidia-prime optimus-manager gdm-prime
-wget https://raw.githubusercontent.com/Askannz/optimus-manager/master/optimus-manager.conf
-sudo mv optimus-manager.conf /etc/optimus-manager/
+paru -S nvidia-prime optimus-manager
+sudo cp xorg-config/optimus-manager.conf /etc/optimus-manager/
 sudo vim /etc/optimus-manager/optimus-manager.conf
-# change startup_mode=nvidia
 ```
 
-* If using gnome, force xorg start
+* If using gnome install gdm-prmie, force xorg start
 ```sh
 sudo vim /etc/gdm/custom.conf
 # uncomment WaylandEnabled=false
 ```
-
