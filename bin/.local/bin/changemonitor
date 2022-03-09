@@ -1,0 +1,23 @@
+#!/bin/bash
+
+INTERNAL="eDP-1"
+EXTERNAL="DP-1-0"
+
+case $1 in
+
+  internal)
+    xrandr --output $INTERNAL --auto --primary --output $EXTERNAL --off 
+    ;;
+
+  external)
+    xrandr --output $INTERNAL --off --output $EXTERNAL --auto --primary
+    ;;
+
+  duplicated)
+    xrandr --output $INTERNAL --auto --output $EXTERNAL --auto
+    ;;
+
+  dual)
+    xrandr --output $INTERNAL --auto --primary --output $EXTERNAL --auto --noprimary --right-of $INTERNAL
+    ;;
+esac
