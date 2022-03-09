@@ -17,7 +17,7 @@ if fn.empty(fn.glob(treesitter_path)) > 0 then
   treesitter_hook = ":TSInstall lua go gomod rust typescript python yaml toml comment"
 end
 
-vim.cmd "autocmd BufWritePost plugins.lua PackerCompile"
+vim.api.nvim_create_autocmd("BufWritePost", { command = "PackerCompile", pattern = "lua/plugins.lua" })
 
 return require("packer").startup {
   function(use)
