@@ -51,16 +51,13 @@ floating_maximum_size 1000x800
 # Dual screen 
 bindsym $mod+p move workspace to output right
 
-# Nvidia only
+# Nvidia only for extra performance
 # set $firstMonitor eDP-1-1
 # set $secondMonitor DP-0
 # Hybrid
 set $firstMonitor eDP-1
 set $secondMonitor DP-1-0
 
-# Normal screen
-# exec --no-startup-id xrandr --output $firstMonitor --mode 1920x1080 --primary --auto
-# exec --no-startup-id xrandr --output $secondMonitor --mode 2560x1080 --noprimary --right-of $firstMonitor --auto
 # 4k screen
 exec --no-startup-id xrandr --output $firstMonitor --mode 3840x2160 --primary --output $secondMonitor --mode 3840x2160 --rate 60 --noprimary --right-of $firstMonitor
 # Use --scale 2x2 for no 4k displays

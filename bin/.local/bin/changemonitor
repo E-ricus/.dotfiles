@@ -3,6 +3,11 @@
 INTERNAL="eDP-1"
 EXTERNAL="DP-1-0"
 
+if [[ $2 == "nvidia" ]]; then
+    INTERNAL="eDP-1-1"
+    EXTERNAL="DP-0"
+fi
+
 case $1 in
 
   internal)
