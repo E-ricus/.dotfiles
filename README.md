@@ -129,3 +129,8 @@ sudo vim /etc/optimus-manager/optimus-manager.conf
 sudo vim /etc/gdm/custom.conf
 # uncomment WaylandEnabled=false
 ```
+
+* Screen tearing:
+```sh
+nvidia-settings --assign CurrentMetaMode="CONNECTION:RESOLUTION_RATE +0+0 { ForceFullCompositionPipeline = On }"
+```
