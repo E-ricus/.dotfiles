@@ -117,7 +117,7 @@ paru -S gnome-shell-extension-pop-shell-git chrome-gnome-shell
 paru -S nvidia nvidia-utils nvidia-settings
 ```
 
-## Dual GPU
+## Dual GPU with optimus
 
 * Install nvidia-prime and optimus-manager to change gpus
 ```sh 
@@ -126,7 +126,7 @@ paru -S nvidia-prime optimus-manager
 
 * Copy all optimus-manager files to the respective file on `/etc/optimus-manager/`
 
-* Install proprietary drivers for intel/amd gpu
+* Install drivers for intel/amd gpu if not alreay installed
 ```sh
 # For intel
 paru -S xf86-video-intel

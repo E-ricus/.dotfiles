@@ -1,11 +1,11 @@
 #!/bin/bash
 
-INTERNAL="eDP"
-EXTERNAL="DP-1-0"
+INTERNAL="eDP-1-0"
+EXTERNAL="DP-0"
 
-if [[ $2 == "nvidia" ]]; then
-    INTERNAL="eDP-1-1"
-    EXTERNAL="DP-0"
+if [[ $2 == "hybrid" ]]; then
+    INTERNAL="eDP"
+    EXTERNAL="DP-1-0"
 fi
 
 case $1 in
