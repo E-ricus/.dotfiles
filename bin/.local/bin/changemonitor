@@ -1,12 +1,18 @@
 #!/bin/bash
 
-INTERNAL="eDP-1-0"
-EXTERNAL="DP-0"
+GPU=$(system76-power graphics)
 
-if [[ $2 == "hybrid" ]]; then
+case $GPU in
+
+  nvidia)
+    INTERNAL="eDP-1-0"
+    EXTERNAL="DP-0"
+    ;;
+  hybrid | compute | integrated)
     INTERNAL="eDP"
     EXTERNAL="DP-1-0"
-fi
+    ;;
+esac
 
 case $1 in
 
