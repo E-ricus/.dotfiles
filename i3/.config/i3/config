@@ -51,16 +51,8 @@ floating_maximum_size 1000x800
 # Dual screen 
 bindsym $mod+p move workspace to output right
 
-# Nvidia only for extra performance
-set $firstMonitor eDP-1-0
-set $secondMonitor DP-0
-# Hybrid
-# set $firstMonitor eDP
-# set $secondMonitor DP-1-0
-
-# 4k screen
-exec --no-startup-id xrandr --output $firstMonitor --auto --primary --output $secondMonitor --auto --right-of $firstMonitor
-# Use --scale 2x2 for no 4k displays
+# Screens
+exec --no-startup-id ~/.local/bin/changemonitor
 
 
 workspace $ws1 output $firstMonitor

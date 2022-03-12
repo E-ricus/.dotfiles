@@ -114,14 +114,15 @@ paru -S gnome-shell-extension-pop-shell-git chrome-gnome-shell
 ## Nvidia cards arch
 * Install nvidia-settings and drivers if not already installed
 ```sh
-paru -S nvidia nvidia-utils nvidia-settings
+paru -S nvidia nvidia-utils nvidia-settings nvidia-prime
 ```
 
 ## Dual GPU with optimus
+This works almost out of the box, but the configuration is limited
 
-* Install nvidia-prime and optimus-manager to change gpus
+* Install optimus-manager to change gpus
 ```sh 
-paru -S nvidia-prime optimus-manager
+paru -S optimus-manager
 ```
 
 * Copy all optimus-manager files to the respective file on `/etc/optimus-manager/`
@@ -144,3 +145,18 @@ sudo vim /etc/gdm/custom.conf
 ```sh
 nvidia-settings --assign CurrentMetaMode="CONNECTION:RESOLUTION_RATE +0+0 { ForceFullCompositionPipeline = On }"
 ```
+
+## Dual GPU with xorg and system76-power
+
+* Install system76-power
+```sh
+paru -S system76-power
+sudo systemctl enable --now system76-power.service
+```
+
+* cp AMD config to xorg config
+```sh
+sudo cp ~/.dotfiles/xorg-conf/20-amdgpu.conf /etc/X11/xorg.conf.d/
+```
+
+* stow the bin folder to have the change gpu script
