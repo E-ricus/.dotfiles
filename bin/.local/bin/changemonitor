@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INTERNAL="eDP-1"
+INTERNAL="eDP"
 EXTERNAL="DP-1-0"
 
 if [[ $2 == "nvidia" ]]; then
@@ -19,7 +19,7 @@ case $1 in
     ;;
 
   duplicated)
-    xrandr --output $INTERNAL --auto --output $EXTERNAL --auto
+    xrandr --output $INTERNAL --auto --primary --output $EXTERNAL --auto --same-as $INTERNAL
     ;;
 
   dual)

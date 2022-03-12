@@ -117,14 +117,24 @@ paru -S gnome-shell-extension-pop-shell-git chrome-gnome-shell
 paru -S nvidia nvidia-utils nvidia-settings
 ```
 
+## Dual GPU
+
 * Install nvidia-prime and optimus-manager to change gpus
 ```sh 
 paru -S nvidia-prime optimus-manager
-sudo cp xorg-config/optimus-manager.conf /etc/optimus-manager/
-sudo vim /etc/optimus-manager/optimus-manager.conf
 ```
 
-* If using gnome install gdm-prmie, force xorg start
+* Copy all optimus-manager files to the respective file on `/etc/optimus-manager/`
+
+* Install proprietary drivers for intel/amd gpu
+```sh
+# For intel
+paru -S xf86-video-intel
+# For amd
+paru -S xf86-video-amdgpu
+```
+
+* If using gnome install gdm-prime, force xorg start
 ```sh
 sudo vim /etc/gdm/custom.conf
 # uncomment WaylandEnabled=false
