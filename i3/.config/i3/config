@@ -60,6 +60,7 @@ set $secondMonitor DP-1-0
 
 # 4k screen
 exec --no-startup-id xrandr --output $firstMonitor --mode 3840x2160 --primary --output $secondMonitor --mode 3840x2160 --rate 60 --noprimary --right-of $firstMonitor
+exec --no-startup-id xrandr --output $secondMonitor --mode 3840x2160 --rate 60 --right-of $firstMonitor
 # Use --scale 2x2 for no 4k displays
 
 
@@ -440,7 +441,7 @@ bar {
 #	    	i3bar_command i3bar --transparency
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
-        tray_output $firstMonitor
+        tray_output primary
         tray_padding 1
 
 # When strip_workspace_numbers is set to yes, 

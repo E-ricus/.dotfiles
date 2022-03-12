@@ -23,6 +23,6 @@ case $1 in
     ;;
 
   dual)
-    xrandr --output $INTERNAL --auto --primary --output $EXTERNAL --auto --noprimary --right-of $INTERNAL
+    xrandr --output $INTERNAL --auto --primary --output $EXTERNAL --auto --right-of $INTERNAL
     ;;
 esac
