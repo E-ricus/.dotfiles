@@ -51,9 +51,6 @@ floating_maximum_size 1000x800
 # Dual screen 
 bindsym $mod+p move workspace to output right
 
-# Screens
-exec --no-startup-id ~/.local/bin/changemonitor
-
 
 workspace $ws1 output $firstMonitor
 workspace $ws2 output $firstMonitor

@@ -4,7 +4,7 @@
  * Font to 10 and 120px for regular screens
  *******************************************************/
 configuration {
-    font:                           "Sourcecode Pro Regular 20";
+    font:                           "Sourcecode Pro Regular 15";
     show-icons:                     false;
     icon-theme: 		    "Arc-X-D";
     scroll-method:                  0;

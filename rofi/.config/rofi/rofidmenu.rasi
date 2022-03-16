@@ -4,7 +4,7 @@
  * Change font to 10 on regular screens
  *******************************************************/
 configuration {
-    font:				"Sourcecode Pro Regular 20";
+    font:				"Sourcecode Pro Regular 15";
     show-icons:				true;
     icon-theme:				"Arc-X-D";
     display-drun:			"Apps";
