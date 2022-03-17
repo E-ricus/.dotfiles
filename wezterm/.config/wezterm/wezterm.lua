@@ -34,6 +34,6 @@ return {
 	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
 	font = wezterm.font("JetBrainsMono Nerd Font"),
 	font_size = 17,
-	color_scheme = "Gruvbox Dark",
+	color_scheme = "DoomOne",
 	keys = mykeys,
 }
