@@ -19,6 +19,7 @@ local mykeys = {
 	{ key = "mapped:k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
 	{ key = "mapped:j", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
 	{ key = "mapped:q", mods = "CMD", action = "QuitApplication" },
+	{ key = "mapped:w", mods = "LEADER", action = wezterm.action({ CloseCurrentPane = { confirm = false } }) },
 }
 for i = 1, 8 do
 	-- CTRL number to activate that tab
@@ -33,6 +34,6 @@ return {
 	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
 	font = wezterm.font("JetBrainsMono Nerd Font"),
 	font_size = 17,
-	color_scheme = "DoomOne",
+	color_scheme = "Gruvbox Dark",
 	keys = mykeys,
 }
