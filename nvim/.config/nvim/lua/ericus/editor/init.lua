@@ -15,7 +15,7 @@ require("Comment").setup {
 }
 
 -- File Tree
-require("nvim-tree").setup()
+require("nvim-tree").setup {}
 map("n", "<leader>`", "NvimTreeToggle")
 
 -- Trouble
