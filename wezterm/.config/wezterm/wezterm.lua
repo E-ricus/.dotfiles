@@ -14,6 +14,8 @@ local mykeys = {
 	{ key = "mapped:c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
 	{ key = "mapped:V", mods = "CTRL", action = "Paste" },
 	{ key = "mapped:C", mods = "CTRL", action = "Copy" },
+	{ key = "mapped:=", mods = "CTRL", action = "IncreaseFontSize" },
+	{ key = "mapped:-", mods = "CTRL", action = "DecreaseFontSize" },
 	{ key = "mapped:h", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
 	{ key = "mapped:l", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
 	{ key = "mapped:k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
@@ -33,7 +35,7 @@ end
 return {
 	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
 	font = wezterm.font("JetBrainsMono Nerd Font"),
-	font_size = 16,
+	font_size = 20,
 	color_scheme = "DoomOne",
 	keys = mykeys,
 	window_padding = {

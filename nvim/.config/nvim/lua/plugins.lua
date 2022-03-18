@@ -64,6 +64,9 @@ return require("packer").startup {
       end,
     })
     use {
+      "ray-x/lsp_signature.nvim",
+    }
+    use {
       "folke/trouble.nvim",
       config = function()
         require("trouble").setup {

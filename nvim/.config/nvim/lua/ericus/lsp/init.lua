@@ -10,6 +10,14 @@ local on_attach = function(client)
 
   nvim_status.on_attach(client)
 
+  require("lsp_signature").on_attach {
+    doc_lines = 0,
+    hint_enable = false,
+    handler_opts = {
+      border = "none",
+    },
+  }
+
   -- keymaps
   vu.buffer_lua_mapper("n", "K", vim.lsp.buf.hover)
   vu.buffer_lua_mapper("n", "gd", vim.lsp.buf.definition)
