@@ -33,7 +33,13 @@ end
 return {
 	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
 	font = wezterm.font("JetBrainsMono Nerd Font"),
-	font_size = 17,
+	font_size = 16,
 	color_scheme = "DoomOne",
 	keys = mykeys,
+	window_padding = {
+		left = 0,
+		right = 0,
+		top = 0,
+		bottom = 0,
+	},
 }
