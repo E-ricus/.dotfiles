@@ -1,2 +1,7 @@
-# [[language]]
-# name = "rust"
+[[language]]
+name = "go"
+file-types = ["go", "go.mod"]
+
+[[language]]
+name = "rust"
+config = {checkOnSave = {command = "clippy"}}

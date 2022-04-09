@@ -5,7 +5,7 @@ GPU=$(system76-power graphics)
 case $GPU in
 
   nvidia)
-    INTERNAL="eDP-1-1"
+    INTERNAL="eDP-1-0"
     EXTERNAL="DP-0"
     ;;
   hybrid | compute | integrated)

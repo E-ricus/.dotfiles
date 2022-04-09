@@ -2,10 +2,13 @@ theme = "gruvbox"
 
 [editor]
 line-number = "relative"
-# auto-pairs = true
+auto-pairs = true
 
 [editor.lsp]
 display-messages = true
 
 [editor.cursor-shape]
 insert = "bar"
+
+[editor.file-picker]
+hidden = false
