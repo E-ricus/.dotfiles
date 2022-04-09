@@ -5,7 +5,7 @@ GPU=$(system76-power graphics)
 case $GPU in
 
   nvidia)
-    INTERNAL="eDP-1-0"
+    INTERNAL="eDP-1-1"
     EXTERNAL="DP-0"
     ;;
   hybrid | compute | integrated)
@@ -29,6 +29,6 @@ case $1 in
     ;;
 
   *)
-    xrandr --output $INTERNAL --auto --primary --output $EXTERNAL --auto --right-of $INTERNAL
+    xrandr --output $INTERNAL --auto --output $EXTERNAL --auto --primary --right-of $INTERNAL
     ;;
 esac

@@ -28,4 +28,4 @@ vim.opt.cmdheight = 2
 vim.opt.updatetime = 300
 
 vim.cmd "set noshowmode"
-vim.cmd "set colorcolumn=80"
+-- vim.cmd "set colorcolumn=80"

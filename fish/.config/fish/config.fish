@@ -16,6 +16,10 @@ if test -d $HOME/.local/bin
     fish_add_path $HOME/.local/bin
 end
 
+if test -d $HOME/Applications/
+    fish_add_path $HOME/Applications
+end
+
 ## brew M1
 if test -d /opt/homebrew/bin
     fish_add_path /opt/homebrew/bin
@@ -61,6 +65,10 @@ alias ls "exa -la"
 alias brew86 "arch -x86_64 /usr/local/homebrew/bin/brew"
 alias brewARM "arch -arm64 /opt/homebrew/bin/brew"
 alias brew "/opt/homebrew/bin/brew"
+
+if test $HOME/Applications/nvim.appimage
+    alias nvim nvim.appimage
+end
 
 # Prompt
 starship init fish | source
