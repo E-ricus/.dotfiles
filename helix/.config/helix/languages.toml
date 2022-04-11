@@ -5,3 +5,9 @@ file-types = ["go", "go.mod"]
 [[language]]
 name = "rust"
 config = {checkOnSave = {command = "clippy"}}
+
+[language.debugger]
+command = "codelldb"
+name = "codelldb"
+port-arg = "--port {}"
+transport = "tcp"

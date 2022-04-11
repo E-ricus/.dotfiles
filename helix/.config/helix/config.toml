@@ -12,3 +12,11 @@ insert = "bar"
 
 [editor.file-picker]
 hidden = false
+
+[keys.normal]
+H = "goto_line_start"
+L = "goto_line_end"
+
+[keys.select]
+H = "goto_line_start"
+L = "goto_line_end"
