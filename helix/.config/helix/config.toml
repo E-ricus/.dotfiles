@@ -20,3 +20,6 @@ L = "goto_line_end"
 [keys.select]
 H = "goto_line_start"
 L = "goto_line_end"
+
+[keys.insert]
+"C-space" = "completion"
