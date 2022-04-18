@@ -3,6 +3,7 @@ theme = "gruvbox"
 [editor]
 line-number = "relative"
 auto-pairs = true
+idle-timeout = 300
 
 [editor.lsp]
 display-messages = true
@@ -23,3 +24,4 @@ L = "goto_line_end"
 
 [keys.insert]
 "C-space" = "completion"
+"C-s" = "signature_help"
