@@ -63,8 +63,8 @@ local on_attach = function(client)
     end, group)
   end
 
-  -- dissable tsserver format
-  if client.name == "tsserver" then
+  -- dissable tsserver and sumnneko format
+  if client.name == "tsserver" or client.name == "sumneko_lua" then
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end

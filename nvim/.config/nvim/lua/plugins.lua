@@ -120,14 +120,6 @@ return require("packer").startup {
         "rcarriga/nvim-dap-ui",
       },
     }
-
-    -- Syntax
-    -- use {
-    --   "plasticboy/vim-markdown",
-    --   requires = {
-    --     "godlygeek/tabular",
-    --   },
-    -- }
     use "ellisonleao/glow.nvim"
 
     -- Git
@@ -139,11 +131,7 @@ return require("packer").startup {
       end,
     }
     use {
-      "TimUntersberger/neogit",
-      requires = "nvim-lua/plenary.nvim",
-      config = function()
-        require("neogit").setup()
-      end,
+      "tpope/vim-fugitive",
     }
 
     -- Colors
