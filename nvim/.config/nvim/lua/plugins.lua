@@ -67,6 +67,12 @@ return require("packer").startup {
       "ray-x/lsp_signature.nvim",
     }
     use {
+      "Mofiqul/trld.nvim",
+      config = function()
+        require("trld").setup()
+      end,
+    }
+    use {
       "folke/trouble.nvim",
       config = function()
         require("trouble").setup {
