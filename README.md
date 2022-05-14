@@ -111,13 +111,33 @@ sudo chmod +s /usr/bin/light
 paru -S gnome-shell-extension-pop-shell-git chrome-gnome-shell
 ```
 
-## Nvidia cards arch
+## Fedora
+
+* Install gcc utilities (for some reason is not present)
+```sh
+sudo dnf install gcc-c++
+```
+
+* Enabel RPM fusion and flathub
+https://rpmfusion.org/Configuration
+
+```sh
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf groupupdate core
+sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+sudo dnf groupupdate sound-and-video
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
+
+## Nvidia cards
+Ubuntu based and Fedora work almost out of the box, installing just the drivers, and a switch package.
+
+### Dual GPU with optimus (ARCH)
 * Install nvidia-settings and drivers if not already installed
 ```sh
 paru -S nvidia nvidia-utils nvidia-settings nvidia-prime
 ```
 
-## Dual GPU with optimus
 This works almost out of the box, but the configuration is limited
 
 * Install optimus-manager to change gpus
@@ -146,7 +166,11 @@ sudo vim /etc/gdm/custom.conf
 nvidia-settings --assign CurrentMetaMode="CONNECTION:RESOLUTION_RATE +0+0 { ForceFullCompositionPipeline = On }"
 ```
 
-## Dual GPU with xorg and system76-power
+### Dual GPU with xorg and system76-power (ARCH)
+* Install nvidia-settings and drivers if not already installed
+```sh
+paru -S nvidia nvidia-utils nvidia-settings nvidia-prime
+```
 
 * Install system76-power
 ```sh
@@ -160,3 +184,14 @@ sudo cp ~/.dotfiles/xorg-conf/20-amdgpu.conf /etc/X11/xorg.conf.d/
 ```
 
 * stow the bin folder to have the change gpu script
+
+### Dual GPU Fedora
+Optimus works out of the box.
+
+* Install nvidia drivers with rpm fusion
+```sh
+sudo dnf update -y 
+sudo dnf install akmod-nvidia
+sudo dnf install xorg-x11-drv-nvidia-cuda #optional for cuda/nvdec/nvenc support
+```
+
