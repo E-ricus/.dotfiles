@@ -70,6 +70,11 @@ if test -e $HOME/Applications/nvim.appimage
     alias nvim nvim.appimage
 end
 
+if test -e /usr/bin/minikube
+    alias kubectl="minikube kubectl --"
+end
+
+
 # Prompt
 starship init fish | source
 # Better folder navigation
