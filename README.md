@@ -128,6 +128,11 @@ sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=Pack
 sudo dnf groupupdate sound-and-video
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
+### Gaming
+* Gamemodrun for extra perfonmance, run steam games with:
+```sh
+LD_PRELOAD="$LD_PRELOAD:/usr/\$LIB/libgamemode.so.0" gamemoderun %commannd%
+```
 
 ## Nvidia cards
 Ubuntu based and Fedora work almost out of the box, installing just the drivers, and a switch package.

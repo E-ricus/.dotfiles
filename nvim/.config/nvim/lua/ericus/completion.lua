@@ -70,7 +70,7 @@ cmp.setup {
     ["<C-d>"] = mapping.scroll_docs(4),
     ["<C-u>"] = mapping.scroll_docs(-4),
     ["<C-Space>"] = mapping.complete(),
-    ["<C-e>"] = mapping.close(),
+    ["<C-e>"] = mapping.abort(),
     ["<CR>"] = mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
