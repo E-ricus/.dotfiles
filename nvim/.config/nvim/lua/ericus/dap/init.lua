@@ -13,21 +13,27 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
-dapui.setup {
-  sidebar = {
-    -- You can change the order of elements in the sidebar
-    elements = {
-      { id = "scopes", size = 0.50 },
-      { id = "breakpoints", size = 0.25 },
-      { id = "stacks", size = 0.25 },
-      -- { id = "watches", size = 0.25 },
+
+require('dapui').setup {
+  layouts = {
+    {
+      elements = {
+        'scopes',
+        'breakpoints',
+        'stacks',
+        'watches',
+      },
+      size = 40,
+      position = 'left',
     },
-    size = 50,
-    position = "left", -- Can be "left" or "right"
-  },
-  tray = {
-    elements = { "repl" },
-    size = 15,
-    position = "bottom", -- Can be "bottom" or "top"
+    {
+      elements = {
+        'repl',
+        'console',
+      },
+      size = 10,
+      position = 'bottom',
+    },
   },
 }
+
