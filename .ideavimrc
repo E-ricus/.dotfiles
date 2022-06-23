@@ -16,13 +16,7 @@ map H ^
 map L $
 
 " <leader><leader> toggles between buffers
-nnoremap <leader><leader> <c-^>
-
-"So I can move around in insert
-inoremap <C-k> <C-o>gk
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-inoremap <C-j> <C-o>gj
+nnoremap <leader><leader> :action GoToLastTab<CR>
 
 " delete without yanking
 nnoremap <leader>d "_d
@@ -49,15 +43,16 @@ nnoremap k gk
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap gr :action FindUsages<CR>
-nnoremap cc :action CommentByLineComment<CR>
+nnoremap <leader>cc :action CommentByLineComment<CR>
 vnoremap <leader>cc :action CommentByLineComment<CR>
 nnoremap <leader>a :action ShowIntentionActions<CR>
 nnoremap <leader>rn :action RenameElement<CR>
-nnoremap <leader>w :action ReformatCode<CR>
+nnoremap <leader>fr :action ReformatCode<CR>
 nnoremap <leader><TAB> :action FileStructurePopup<CR>
-nnoremap <silent> g[ :action GotoPreviousError<CR>
-nnoremap <silent> g] :action GotoNextError<CR>
+nnoremap <silent> [d :action GotoPreviousError<CR>
+nnoremap <silent> ]d :action GotoNextError<CR>
 
 
-nnoremap <leader>ff :action SearchEverywhere<CR>
-nnoremap <leader>s :action FindInPath<CR>
+nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader>fg :action FindInPath<CR>
+nnoremap <leader>fb :action Switcher<CR>
