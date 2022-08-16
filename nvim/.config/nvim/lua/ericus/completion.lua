@@ -73,7 +73,7 @@ cmp.setup {
     ["<C-e>"] = mapping.abort(),
     ["<CR>"] = mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     },
     ["<tab>"] = mapping(super_tab, { "i", "s" }),
     ["<S-tab>"] = mapping(super_s_tab, { "i", "s" }),
