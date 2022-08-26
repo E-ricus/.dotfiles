@@ -40,7 +40,13 @@ return require("packer").startup {
     use "kyazdani42/nvim-web-devicons"
     use "onsails/lspkind-nvim"
     -- Status line
-    use "tjdevries/express_line.nvim"
+    -- use "tjdevries/express_line.nvim"
+    use {
+      "nvim-lualine/lualine.nvim",
+      config = function()
+        require("lualine").setup()
+      end,
+    }
 
     -- Editor enhancements
     use "machakann/vim-highlightedyank"
@@ -143,10 +149,10 @@ return require("packer").startup {
     -- Colors
     use "gruvbox-community/gruvbox"
     use "ayu-theme/ayu-vim"
-
     use "norcalli/nvim-colorizer.lua"
     use "tjdevries/colorbuddy.nvim"
     use "marko-cerovac/material.nvim"
     use "rebelot/kanagawa.nvim"
+    use "folke/tokyonight.nvim"
   end,
 }

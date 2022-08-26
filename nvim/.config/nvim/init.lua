@@ -17,7 +17,7 @@ require "ericus.syntax"
 require "plugins"
 -- Plugin required configs
 require "ericus.editor"
-require "ericus.status-line"
+-- require "ericus.status-line"
 require "ericus.lang-tools"
 require "ericus.completion"
 require "ericus.telescope"
