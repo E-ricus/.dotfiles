@@ -30,7 +30,8 @@ local config = {
 	plugins = {
 		init = {
 			{ "machakann/vim-highlightedyank" },
-			{"gruvbox-community/gruvbox"},
+			{ "gruvbox-community/gruvbox" },
+			{ "catppuccin/nvim", as = "catppuccin" },
 
 		},
 	},
