@@ -5,11 +5,11 @@ local lmap = require("ericus.vim-utils").lua_mapper
 require("Comment").setup {
   ignore = "^$",
   toggler = {
-    line = "<leader>cc",
+    line = "<leader>/",
     block = "<leader>cb",
   },
   opleader = {
-    line = "<leader>c",
+    line = "<leader>/",
     block = "<leader>cb",
   },
 }

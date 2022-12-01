@@ -61,9 +61,7 @@ return require("packer").startup {
 
     -- LSP
     use "neovim/nvim-lspconfig"
-    use "nvim-lua/lsp_extensions.nvim"
     use "williamboman/nvim-lsp-installer"
-    use "nvim-lua/lsp-status.nvim"
     local_use("lsp_codelens_extensions.nvim", {
       config = function()
         require("codelens_extensions").setup()
