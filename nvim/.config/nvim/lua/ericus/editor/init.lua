@@ -54,3 +54,7 @@ require("dressing").setup {
     end,
   },
 }
+
+-- notify
+local notify = require "notify"
+vim.notify = notify

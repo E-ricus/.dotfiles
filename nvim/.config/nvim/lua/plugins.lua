@@ -55,6 +55,13 @@ return require("packer").startup {
     use "numToStr/Comment.nvim"
     use "ThePrimeagen/harpoon"
     use "rmagatti/auto-session"
+    use "rcarriga/nvim-notify"
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup {}
+        end
+    }
     use { "stevearc/dressing.nvim" }
     -- File Explorer
     use "kyazdani42/nvim-tree.lua"
@@ -149,8 +156,7 @@ return require("packer").startup {
     use "ayu-theme/ayu-vim"
     use "norcalli/nvim-colorizer.lua"
     use "tjdevries/colorbuddy.nvim"
-    use "marko-cerovac/material.nvim"
     use "rebelot/kanagawa.nvim"
-    use "folke/tokyonight.nvim"
+    use "catppuccin/nvim"
   end,
 }
