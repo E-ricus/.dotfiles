@@ -11,6 +11,6 @@ vim.cmd "command! GoTestPattern lua require('ericus.lang-tools.go-tests').go_tes
 
 -- Refactoring
 
-map("v", "<leader>re", "require('refactoring').refactor('Extract Function')")
-map("v", "<leader>rf", "require('refactoring').refactor('Extract Function To File')")
-map("v", "<leader>rt", "require('ericus.lang-tools.refactoring').refactors()")
+map("v", "<leader>re", "require('refactoring').refactor('Extract Function')", "Refactoring extract function")
+map("v", "<leader>rf", "require('refactoring').refactor('Extract Function To File')", "Refactor extract to file")
+map("v", "<leader>rt", "require('ericus.lang-tools.refactoring').refactors()", "Refactors")

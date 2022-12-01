@@ -16,16 +16,16 @@ require("Comment").setup {
 
 -- File Tree
 require("nvim-tree").setup {}
-map("n", "<leader>`", "NvimTreeToggle")
+map("n", "<leader>`", "NvimTreeToggle", "Toogle tree")
 
 -- Trouble
-map("n", "<leader>qf", "TroubleToggle quickfix")
+map("n", "<leader>qf", "TroubleToggle quickfix", "Trouble quickfix")
 lmap("n", "<leader>tn", function()
   require("trouble").next { skip_groups = true, jump = true }
-end)
+end, "Trouble next")
 lmap("n", "<leader>tp", function()
   require("trouble").previous { skip_groups = true, jump = true }
-end)
+end, "Trouble previous")
 
 -- colors
 require "ericus.editor.colors"

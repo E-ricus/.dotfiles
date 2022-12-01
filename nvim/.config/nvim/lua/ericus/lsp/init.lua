@@ -10,25 +10,25 @@ local on_attach = function(client)
         },
     }
     -- keymaps
-    vu.buffer_lua_mapper("n", "K", vim.lsp.buf.hover)
-    vu.buffer_lua_mapper("n", "gd", vim.lsp.buf.definition)
-    vu.buffer_lua_mapper("n", "gD", vim.lsp.buf.declaration)
-    vu.buffer_lua_mapper("n", "<leader>rn", vim.lsp.buf.rename)
-    vu.buffer_lua_mapper("n", "[d", vim.diagnostic.goto_prev)
-    vu.buffer_lua_mapper("n", "]d", vim.diagnostic.goto_next)
-    vu.buffer_lua_mapper("n", "<leader>df", vim.diagnostic.open_float)
-    vu.buffer_lua_mapper("i", "<C-k>", vim.lsp.buf.signature_help)
-    vu.buffer_lua_mapper("n", "<C-k>", vim.lsp.buf.signature_help)
-    vu.buffer_lua_mapper("n", "<leader>lr", vim.lsp.codelens.run)
-    vu.buffer_lua_mapper("n", "<leader>ll", require("ericus.lsp.codelens").refresh)
-    vu.buffer_lua_mapper("n", "<leader>la", vim.lsp.buf.code_action)
+    vu.buffer_lua_mapper("n", "K", vim.lsp.buf.hover, "LSP Hover")
+    vu.buffer_lua_mapper("n", "gd", vim.lsp.buf.definition, "LSP go to definition")
+    vu.buffer_lua_mapper("n", "gD", vim.lsp.buf.declaration, "LSP go to declaration")
+    vu.buffer_lua_mapper("n", "<leader>rn", vim.lsp.buf.rename, "LSP rename")
+    vu.buffer_lua_mapper("n", "[d", vim.diagnostic.goto_prev, "LSP go to previous diagnostic")
+    vu.buffer_lua_mapper("n", "]d", vim.diagnostic.goto_next, "LSP go to next diagnostic")
+    vu.buffer_lua_mapper("n", "<leader>df", vim.diagnostic.open_float, "LSP diagnostic float")
+    vu.buffer_lua_mapper("i", "<C-k>", vim.lsp.buf.signature_help, "LSP signature help")
+    vu.buffer_lua_mapper("n", "<C-k>", vim.lsp.buf.signature_help, "LSP signature help")
+    vu.buffer_lua_mapper("n", "<leader>lr", vim.lsp.codelens.run, "LSP run lens")
+    vu.buffer_lua_mapper("n", "<leader>ll", require("ericus.lsp.codelens").refresh, "LSP refresh lens")
+    vu.buffer_lua_mapper("n", "<leader>la", vim.lsp.buf.code_action, "LSP code actions")
     -- Telescope/Trouble maps
-    vu.buffer_mapper("n", "gi", "Telescope lsp_implementations")
-    vu.buffer_mapper("n", "gr", "Telescope lsp_references")
-    vu.buffer_mapper("n", "<leader>bs", "Telescope lsp_document_symbols")
-    vu.buffer_mapper("n", "<leader>ws", "Telescope lsp_workspace_symbols")
-    vu.buffer_mapper("n", "<leader>wd", "TroubleToggle workspace_diagnostics")
-    vu.buffer_mapper("n", "<leader>bd", "TroubleToggle document_diagnostics")
+    vu.buffer_mapper("n", "gi", "Telescope lsp_implementations", "Telescope LSP Implementations")
+    vu.buffer_mapper("n", "gr", "Telescope lsp_references", "Telescope LSP references")
+    vu.buffer_mapper("n", "<leader>bs", "Telescope lsp_document_symbols", "Telescope LSP document symbols")
+    vu.buffer_mapper("n", "<leader>ws", "Telescope lsp_workspace_symbols", "Telescope LSP workspace symbols")
+    vu.buffer_mapper("n", "<leader>wd", "TroubleToggle workspace_diagnostics", "Trouble workspace diagnostics")
+    vu.buffer_mapper("n", "<leader>bd", "TroubleToggle document_diagnostics", "Trouble document diagnostics")
 
     -- Set autocommands conditional on server_capabilities
     if client.server_capabilities.document_highlight then
@@ -52,12 +52,12 @@ local on_attach = function(client)
 
     -- Set some keybinds conditional on server capabilities
     if client.server_capabilities.document_formatting then
-        vu.buffer_lua_mapper("n", "<leader>fr", vim.lsp.buf.formatting)
+        vu.buffer_lua_mapper("n", "<leader>fr", vim.lsp.buf.formatting, "LSP format document")
         local group = vim.api.nvim_create_augroup("lsp_document_format", { clear = true })
         vu.buf_aucmd("BufWritePre", vim.lsp.buf.formatting_sync, group)
     end
     if client.server_capabilities.document_range_formatting then
-        vu.buffer_lua_mapper("v", "<leader>fr", vim.lsp.buf.range_formatting)
+        vu.buffer_lua_mapper("v", "<leader>fr", vim.lsp.buf.range_formatting, "LSP format document")
     end
 end
 

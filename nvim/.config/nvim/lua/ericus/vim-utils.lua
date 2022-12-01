@@ -1,20 +1,20 @@
 -- Useful functions for vim commands
 local M = {}
 
-function M.buffer_lua_mapper(mode, key, result)
-  vim.keymap.set(mode, key, result, { noremap = true, silent = true, buffer = true })
+function M.buffer_lua_mapper(mode, key, result, desc)
+  vim.keymap.set(mode, key, result, { noremap = true, silent = true, buffer = true, desc = desc })
 end
 
-function M.buffer_mapper(mode, key, result)
-  vim.keymap.set(mode, key, "<cmd>" .. result .. "<CR>", { noremap = true, silent = true, buffer = true })
+function M.buffer_mapper(mode, key, result, desc)
+  vim.keymap.set(mode, key, "<cmd>" .. result .. "<CR>", { noremap = true, silent = true, buffer = true, desc=desc })
 end
 
-function M.lua_mapper(mode, key, result)
-  vim.keymap.set(mode, key, result, { noremap = true, silent = true })
+function M.lua_mapper(mode, key, result, desc)
+  vim.keymap.set(mode, key, result, { noremap = true, silent = true, desc=desc})
 end
 
-function M.mapper(mode, key, result)
-  vim.keymap.set(mode, key, "<cmd>" .. result .. "<CR>", { noremap = true, silent = true })
+function M.mapper(mode, key, result, desc)
+  vim.keymap.set(mode, key, "<cmd>" .. result .. "<CR>", { noremap = true, silent = true, desc=desc })
 end
 
 function M.buf_aucmd(events, callback, group)
