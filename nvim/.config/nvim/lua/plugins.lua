@@ -63,6 +63,9 @@ return require("packer").startup {
         end
     }
     use { "stevearc/dressing.nvim" }
+    use { "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
     -- File Explorer
     use "kyazdani42/nvim-tree.lua"
 

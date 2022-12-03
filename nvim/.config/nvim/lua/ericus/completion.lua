@@ -73,7 +73,7 @@ cmp.setup {
     ["<C-e>"] = mapping.abort(),
     ["<CR>"] = mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = false,
+      select = true,
     },
     ["<tab>"] = mapping(super_tab, { "i", "s" }),
     ["<S-tab>"] = mapping(super_s_tab, { "i", "s" }),
@@ -86,3 +86,4 @@ cmp.setup {
     { name = "path" },
   },
 }
+cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done { tex = false })
