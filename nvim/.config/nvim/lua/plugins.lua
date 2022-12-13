@@ -71,7 +71,8 @@ return require("packer").startup {
 
     -- LSP
     use "neovim/nvim-lspconfig"
-    use "williamboman/nvim-lsp-installer"
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
     local_use("lsp_codelens_extensions.nvim", {
       config = function()
         require("codelens_extensions").setup()
