@@ -6,15 +6,15 @@ function M.buffer_lua_mapper(mode, key, result, desc)
 end
 
 function M.buffer_mapper(mode, key, result, desc)
-  vim.keymap.set(mode, key, "<cmd>" .. result .. "<CR>", { noremap = true, silent = true, buffer = true, desc=desc })
+  vim.keymap.set(mode, key, "<cmd>" .. result .. "<CR>", { noremap = true, silent = true, buffer = true, desc = desc })
 end
 
 function M.lua_mapper(mode, key, result, desc)
-  vim.keymap.set(mode, key, result, { noremap = true, silent = true, desc=desc})
+  vim.keymap.set(mode, key, result, { noremap = true, silent = true, desc = desc })
 end
 
 function M.mapper(mode, key, result, desc)
-  vim.keymap.set(mode, key, "<cmd>" .. result .. "<CR>", { noremap = true, silent = true, desc=desc })
+  vim.keymap.set(mode, key, "<cmd>" .. result .. "<CR>", { noremap = true, silent = true, desc = desc })
 end
 
 function M.buf_aucmd(events, callback, group, buffnr)
@@ -72,9 +72,9 @@ function M.contains_client(list, x)
 end
 
 function M.print_table(table)
-    for key, _ in pairs(table) do
-        require("notify")(key)
-    end
+  for key, _ in pairs(table) do
+    require "notify"(key)
+  end
 end
 
 return M

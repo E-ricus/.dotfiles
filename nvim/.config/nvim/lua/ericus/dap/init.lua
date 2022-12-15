@@ -14,26 +14,25 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
 
-require('dapui').setup {
+require("dapui").setup {
   layouts = {
     {
       elements = {
-        'scopes',
-        'breakpoints',
-        'stacks',
-        'watches',
+        "scopes",
+        "breakpoints",
+        "stacks",
+        "watches",
       },
       size = 40,
-      position = 'left',
+      position = "left",
     },
     {
       elements = {
-        'repl',
-        'console',
+        "repl",
+        "console",
       },
       size = 10,
-      position = 'bottom',
+      position = "bottom",
     },
   },
 }
-

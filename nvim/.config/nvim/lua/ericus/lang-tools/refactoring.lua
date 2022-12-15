@@ -11,18 +11,20 @@ M = {}
 
 M.refactors = function()
   local opts = require("telescope.themes").get_cursor() -- set personal telescope options
-  require("telescope.pickers").new(opts, {
-    prompt_title = "refactors",
-    finder = require("telescope.finders").new_table {
-      results = refactoring.get_refactors(),
-    },
-    sorter = require("telescope.config").values.generic_sorter(opts),
-    attach_mappings = function(_, map)
-      map("i", "<CR>", refactors)
-      map("n", "<CR>", refactors)
-      return true
-    end,
-  }):find()
+  require("telescope.pickers")
+    .new(opts, {
+      prompt_title = "refactors",
+      finder = require("telescope.finders").new_table {
+        results = refactoring.get_refactors(),
+      },
+      sorter = require("telescope.config").values.generic_sorter(opts),
+      attach_mappings = function(_, map)
+        map("i", "<CR>", refactors)
+        map("n", "<CR>", refactors)
+        return true
+      end,
+    })
+    :find()
 end
 
 return M

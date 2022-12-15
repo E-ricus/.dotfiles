@@ -1,5 +1,5 @@
-local mason = require("mason")
-local mason_lsp = require("mason-lspconfig")
+local mason = require "mason"
+local mason_lsp = require "mason-lspconfig"
 
 local M = {}
 
@@ -48,18 +48,18 @@ local settings = {
 }
 
 M.setup_servers = function(on_attach, capabilities)
-    mason.setup()
-    mason_lsp.setup()
-    mason_lsp.setup_handlers {
-        function (server_name) -- default handler (optional)
-        local server = require("lspconfig")[server_name]
-        server.setup {
-                on_attach = on_attach,
-                capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {}),
-                settings = settings[server_name],
-            }
-        end,
-    }
+  mason.setup()
+  mason_lsp.setup()
+  mason_lsp.setup_handlers {
+    function(server_name) -- default handler (optional)
+      local server = require("lspconfig")[server_name]
+      server.setup {
+        on_attach = on_attach,
+        capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {}),
+        settings = settings[server_name],
+      }
+    end,
+  }
 
   -- null-ls
   local null_ls = require "null-ls"
