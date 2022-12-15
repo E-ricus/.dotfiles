@@ -54,17 +54,35 @@ return require("packer").startup {
     use "andymass/vim-matchup"
     use "numToStr/Comment.nvim"
     use "ThePrimeagen/harpoon"
-    use "rmagatti/auto-session"
+    use {
+      "rmagatti/auto-session",
+      config = function()
+        require("auto-session").setup {
+          log_level = "error",
+          auto_session_suppress_dirs = { "~/", "~/Documents", "~/Downloads", "/" },
+        }
+      end,
+    }
     use "rcarriga/nvim-notify"
     use {
-        "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup {}
-        end
+      "folke/which-key.nvim",
+      config = function()
+        require("which-key").setup {}
+      end,
     }
     use { "stevearc/dressing.nvim" }
-    use { "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
+    use {
+      "windwp/nvim-autopairs",
+      config = function()
+        require("nvim-autopairs").setup {}
+      end,
+    }
+    use {
+      "akinsho/toggleterm.nvim",
+      tag = "*",
+      config = function()
+        require("toggleterm").setup()
+      end,
     }
     -- File Explorer
     use "kyazdani42/nvim-tree.lua"
@@ -102,6 +120,7 @@ return require("packer").startup {
     local_use "green_light.nvim"
     use "ThePrimeagen/refactoring.nvim"
     use "vim-test/vim-test"
+    -- use "ziglang/zig.vim"
 
     -- Telescope
     use {

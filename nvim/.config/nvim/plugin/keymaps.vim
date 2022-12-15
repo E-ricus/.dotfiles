@@ -60,7 +60,7 @@ nnoremap <leader>k :m .-2<CR>==
 
 " Normal mode on terminal with double esc
 tnoremap <silent> <C-[><C-[> <C-\><C-n>
-nnoremap <C-w>t <C-w>v \| :term<CR> \| a
+nnoremap <C-w>t <C-w>s \| :term<CR> \| a
 
 """ Windows
 " New

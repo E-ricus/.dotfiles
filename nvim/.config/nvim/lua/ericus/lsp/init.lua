@@ -1,7 +1,7 @@
 local vu = require "ericus.vim-utils"
 
 -- function to attach completion when setting up lsp
-local on_attach = function(client)
+local on_attach = function(client, buffnr)
     require("lsp_signature").on_attach {
         doc_lines = 0,
         hint_enable = true,
@@ -30,34 +30,49 @@ local on_attach = function(client)
     vu.buffer_mapper("n", "<leader>wd", "TroubleToggle workspace_diagnostics", "Trouble workspace diagnostics")
     vu.buffer_mapper("n", "<leader>bd", "TroubleToggle document_diagnostics", "Trouble document diagnostics")
 
+    local capabilities = client.server_capabilities
+
     -- Set autocommands conditional on server_capabilities
-    if client.server_capabilities.document_highlight then
-        local group = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-        vu.buf_aucmd("CursorHold", vim.lsp.buf.document_highlight, group)
-        vu.buf_aucmd("CursorMoved", vim.lsp.buf.clear_references, group)
+    if capabilities.documentHighlightProvider then
+        local group_name = "lsp_document_highlight" .. buffnr
+        local group = vim.api.nvim_create_augroup(group_name, { clear = true })
+        local callback = function()
+            vim.lsp.buf.document_highlight()
+        end
+        vu.buf_aucmd("CursorHold,CursorHoldI", callback, group, buffnr)
+        callback = function()
+            vim.lsp.buf.clear_references()
+        end
+        vu.buf_aucmd("CursorMoved", callback, group, buffnr)
     end
 
-    if client.server_capabilities.code_lens then
+    if capabilities.codeLensProvider then
         vim.cmd("highlight! link LspCodeLens Comment")
 
-        local group = vim.api.nvim_create_augroup("lsp_document_codelens", { clear = true })
-        vu.buf_aucmd("BufEnter,BufWritePost,CursorHold", vim.lsp.codelens.refresh, group)
+        local group_name = "lsp_document_codelens" .. buffnr
+        local group = vim.api.nvim_create_augroup(group_name, { clear = true })
+        local callback = function()
+            vim.lsp.codelens.refresh()
+        end
+        vu.buf_aucmd("BufEnter,BufWritePost", callback, group, buffnr)
+        vu.buffer_lua_mapper("n", "<leader>lr", vim.lsp.codelens.run, "LSP run lens")
+        vu.buffer_lua_mapper("n", "<leader>ll", require("ericus.lsp.codelens").refresh, "LSP refresh lens")
     end
 
     -- dissable tsserver and sumnneko format
     if client.name == "tsserver" or client.name == "sumneko_lua" then
-        client.server_capabilities.document_formatting = false
-        client.server_capabilities.document_range_formatting = false
+        capabilities.documentFormattingProvider = false
     end
 
     -- Set some keybinds conditional on server capabilities
-    if client.server_capabilities.document_formatting then
-        vu.buffer_lua_mapper("n", "<leader>fr", vim.lsp.buf.formatting, "LSP format document")
-        local group = vim.api.nvim_create_augroup("lsp_document_format", { clear = true })
-        vu.buf_aucmd("BufWritePre", vim.lsp.buf.formatting_sync, group)
-    end
-    if client.server_capabilities.document_range_formatting then
-        vu.buffer_lua_mapper("v", "<leader>fr", vim.lsp.buf.range_formatting, "LSP format document")
+    if capabilities.documentFormattingProvider then
+        vu.buffer_lua_mapper("n", "<leader>fr", vim.lsp.buf.format, "LSP format code")
+        local group_name = "lsp_document_format" .. buffnr
+        local group = vim.api.nvim_create_augroup(group_name, { clear = true })
+        local callback = function()
+            vim.lsp.buf.format()
+        end
+        vu.buf_aucmd("BufWritePre", callback, group, buffnr)
     end
 end
 

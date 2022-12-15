@@ -17,8 +17,8 @@ function M.mapper(mode, key, result, desc)
   vim.keymap.set(mode, key, "<cmd>" .. result .. "<CR>", { noremap = true, silent = true, desc=desc })
 end
 
-function M.buf_aucmd(events, callback, group)
-  vim.api.nvim_create_autocmd(events, { callback = callback, group = group, buffer = 0 })
+function M.buf_aucmd(events, callback, group, buffnr)
+  vim.api.nvim_create_autocmd(events, { callback = callback, group = group, buffer = buffnr })
 end
 
 function M.aucmd(events, callback, group)
@@ -69,6 +69,12 @@ function M.contains_client(list, x)
     end
   end
   return false
+end
+
+function M.print_table(table)
+    for key, _ in pairs(table) do
+        require("notify")(key)
+    end
 end
 
 return M

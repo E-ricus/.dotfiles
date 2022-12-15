@@ -52,9 +52,10 @@ M.setup_servers = function(on_attach, capabilities)
     mason_lsp.setup()
     mason_lsp.setup_handlers {
         function (server_name) -- default handler (optional)
-            require("lspconfig")[server_name].setup {
+        local server = require("lspconfig")[server_name]
+        server.setup {
                 on_attach = on_attach,
-                capabilities = capabilities,
+                capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {}),
                 settings = settings[server_name],
             }
         end,
