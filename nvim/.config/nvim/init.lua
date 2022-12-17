@@ -1,5 +1,5 @@
 -- Important globals settings
-vim.opt.shell = "/bin/bash"
+-- vim.opt.shell = "/bin/bash"
 vim.g.mapleader = " "
 
 -- Improves startup time by speeding up require
@@ -15,9 +15,7 @@ require "plugins"
 require "ericus.settings"
 require "ericus.remap"
 require "ericus.editor"
-require "ericus.lang-tools"
 require "ericus.completion"
 require "ericus.telescope"
-require "ericus.git"
 require "ericus.lsp"
 require "ericus.dap"

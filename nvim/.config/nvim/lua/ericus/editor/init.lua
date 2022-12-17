@@ -1,6 +1,4 @@
-local map = require("ericus.vim-utils").mapper
-local lmap = require("ericus.vim-utils").lua_mapper
-
+local map = vim.keymap.set
 -- Comments
 require("Comment").setup {
   ignore = "^$",
@@ -16,24 +14,29 @@ require("Comment").setup {
 
 -- File Tree
 require("nvim-tree").setup {}
-map("n", "<leader>`", "NvimTreeToggle", "Toogle tree")
+map("n", "<leader>`", "<cmd>NvimTreeToggle<CR>", { noremap = true, desc = "Toogle tree" })
 
 -- Trouble
-map("n", "<leader>qf", "TroubleToggle quickfix", "Trouble quickfix")
-lmap("n", "<leader>tn", function()
+map("n", "<leader>qf", "<cmd>TroubleToggle quickfix<CR>", { noremap = true, desc = "Trouble quickfix" })
+map("n", "<leader>tn", function()
   require("trouble").next { skip_groups = true, jump = true }
-end, "Trouble next")
-lmap("n", "<leader>tp", function()
+end, { noremap = true, desc = "Trouble next" })
+map("n", "<leader>tp", function()
   require("trouble").previous { skip_groups = true, jump = true }
-end, "Trouble previous")
+end, { noremap = true, desc = "Trouble previous" })
 
 -- Treesitter
 require "ericus.editor.treesitter"
 
 -- Harpoon
 require("harpoon").setup {}
-lmap("n", "<leader>hm", require("harpoon.mark").add_file)
-lmap("n", "<leader>hq", require("harpoon.ui").toggle_quick_menu)
+
+map("n", "<leader>hm", function()
+  require("harpoon.mark").add_file()
+end, { noremap = true, desc = "Harpoon mark file" })
+map("n", "<leader>hq", function()
+  require("harpoon.ui").toggle_quick_menu()
+end, { noremap = true, desc = "Harpoon files" })
 
 -- Dressing
 require("dressing").setup {

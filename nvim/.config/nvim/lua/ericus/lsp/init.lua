@@ -1,4 +1,5 @@
-local vu = require "ericus.vim-utils"
+local aucmd = vim.api.nvim_create_autocmd
+local map = vim.keymap.set
 
 -- function to attach completion when setting up lsp
 local on_attach = function(client, buffnr)
@@ -10,25 +11,58 @@ local on_attach = function(client, buffnr)
     },
   }
   -- keymaps
-  vu.buffer_lua_mapper("n", "K", vim.lsp.buf.hover, "LSP Hover")
-  vu.buffer_lua_mapper("n", "gd", vim.lsp.buf.definition, "LSP go to definition")
-  vu.buffer_lua_mapper("n", "gD", vim.lsp.buf.declaration, "LSP go to declaration")
-  vu.buffer_lua_mapper("n", "<leader>rn", vim.lsp.buf.rename, "LSP rename")
-  vu.buffer_lua_mapper("n", "[d", vim.diagnostic.goto_prev, "LSP go to previous diagnostic")
-  vu.buffer_lua_mapper("n", "]d", vim.diagnostic.goto_next, "LSP go to next diagnostic")
-  vu.buffer_lua_mapper("n", "<leader>df", vim.diagnostic.open_float, "LSP diagnostic float")
-  vu.buffer_lua_mapper("i", "<C-k>", vim.lsp.buf.signature_help, "LSP signature help")
-  vu.buffer_lua_mapper("n", "<C-k>", vim.lsp.buf.signature_help, "LSP signature help")
-  vu.buffer_lua_mapper("n", "<leader>lr", vim.lsp.codelens.run, "LSP run lens")
-  vu.buffer_lua_mapper("n", "<leader>ll", require("ericus.lsp.codelens").refresh, "LSP refresh lens")
-  vu.buffer_lua_mapper("n", "<leader>la", vim.lsp.buf.code_action, "LSP code actions")
+  map("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
+  map("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP go to definition", buffer = buffnr })
+  map("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "LSP go to declaration", buffer = buffnr })
+  map("n", "<leader>rn", vim.lsp.buf.rename, { noremap = true, desc = "LSP rename", buffer = buffnr })
+  map("n", "[d", vim.diagnostic.goto_prev, { noremap = true, desc = "LSP go to previous diagnostic", buffer = buffnr })
+  map("n", "]d", vim.diagnostic.goto_next, { noremap = true, desc = "LSP go to next diagnostic", buffer = buffnr })
+  map("n", "<leader>df", vim.diagnostic.open_float, { noremap = true, desc = "LSP diagnostic float", buffer = buffnr })
+  map(
+    { "n", "i" },
+    "<C-k>",
+    vim.lsp.buf.signature_help,
+    { noremap = true, desc = "LSP signature help", buffer = buffnr }
+  )
+  map("n", "<leader>lr", vim.lsp.codelens.run, { noremap = true, desc = "LSP run lens", buffer = buffnr })
+  map("n", "<leader>la", vim.lsp.buf.code_action, { noremap = true, desc = "LSP code actions", buffer = buffnr })
   -- Telescope/Trouble maps
-  vu.buffer_mapper("n", "gi", "Telescope lsp_implementations", "Telescope LSP Implementations")
-  vu.buffer_mapper("n", "gr", "Telescope lsp_references", "Telescope LSP references")
-  vu.buffer_mapper("n", "<leader>bs", "Telescope lsp_document_symbols", "Telescope LSP document symbols")
-  vu.buffer_mapper("n", "<leader>ws", "Telescope lsp_workspace_symbols", "Telescope LSP workspace symbols")
-  vu.buffer_mapper("n", "<leader>wd", "TroubleToggle workspace_diagnostics", "Trouble workspace diagnostics")
-  vu.buffer_mapper("n", "<leader>bd", "TroubleToggle document_diagnostics", "Trouble document diagnostics")
+  map(
+    "n",
+    "gi",
+    "<cmd>Telescope lsp_implementations<CR>",
+    { noremap = true, desc = "Telescope LSP Implementations", buffer = buffnr }
+  )
+  map(
+    "n",
+    "gr",
+    "<cmd>Telescope lsp_references<CR>",
+    { noremap = true, desc = "Telescope LSP references", buffer = buffnr }
+  )
+  map(
+    "n",
+    "<leader>bs",
+    "<cmd>Telescope lsp_document_symbols<CR>",
+    { noremap = true, desc = "Telescope LSP document symbols", buffer = buffnr }
+  )
+  map(
+    "n",
+    "<leader>ws",
+    "<cmd>Telescope lsp_workspace_symbols<CR>",
+    { noremap = true, desc = "Telescope LSP workspace symbols", buffer = buffnr }
+  )
+  map(
+    "n",
+    "<leader>wd",
+    "<cmd>TroubleToggle workspace_diagnostics<CR>",
+    { noremap = true, desc = "Trouble workspace diagnostics", buffer = buffnr }
+  )
+  map(
+    "n",
+    "<leader>bd",
+    "<cmd>TroubleToggle document_diagnostics<CR>",
+    { noremap = true, desc = "Trouble document diagnostics", buffer = buffnr }
+  )
 
   local capabilities = client.server_capabilities
 
@@ -39,11 +73,11 @@ local on_attach = function(client, buffnr)
     local callback = function()
       vim.lsp.buf.document_highlight()
     end
-    vu.buf_aucmd("CursorHold,CursorHoldI", callback, group, buffnr)
+    aucmd("CursorHold,CursorHoldI", { callback = callback, group = group, buffer = buffnr })
     callback = function()
       vim.lsp.buf.clear_references()
     end
-    vu.buf_aucmd("CursorMoved", callback, group, buffnr)
+    aucmd("CursorMoved", { callback = callback, group = group, buffer = buffnr })
   end
 
   if capabilities.codeLensProvider then
@@ -54,9 +88,9 @@ local on_attach = function(client, buffnr)
     local callback = function()
       vim.lsp.codelens.refresh()
     end
-    vu.buf_aucmd("BufEnter,BufWritePost", callback, group, buffnr)
-    vu.buffer_lua_mapper("n", "<leader>lr", vim.lsp.codelens.run, "LSP run lens")
-    vu.buffer_lua_mapper("n", "<leader>ll", require("ericus.lsp.codelens").refresh, "LSP refresh lens")
+    aucmd("BufEnter,BufWritePost", { callback = callback, group = group, buffer = buffnr })
+    map("n", "<leader>lr", vim.lsp.codelens.run, { noremap = true, desc = "LSP run lens", buffer = buffnr })
+    map("n", "<leader>ll", vim.lsp.codelens.refresh, { noremap = true, desc = "LSP refresh lens", buffer = buffnr })
   end
 
   -- dissable tsserver and sumnneko format
@@ -66,13 +100,13 @@ local on_attach = function(client, buffnr)
 
   -- Set some keybinds conditional on server capabilities
   if capabilities.documentFormattingProvider then
-    vu.buffer_lua_mapper("n", "<leader>fr", vim.lsp.buf.format, "LSP format code")
+    map("n", "<leader>fr", vim.lsp.buf.format, { noremap = true, desc = "LSP format code", buffer = buffnr })
     local group_name = "lsp_document_format" .. buffnr
     local group = vim.api.nvim_create_augroup(group_name, { clear = true })
     local callback = function()
       vim.lsp.buf.format()
     end
-    vu.buf_aucmd("BufWritePre", callback, group, buffnr)
+    aucmd("BufWritePre", { callback = callback, group = group, buffer = buffnr })
   end
 end
 

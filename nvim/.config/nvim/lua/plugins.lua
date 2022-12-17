@@ -111,7 +111,6 @@ return require("packer").startup {
     use "jose-elias-alvarez/null-ls.nvim"
 
     -- Langs Enhacement
-    use "ThePrimeagen/refactoring.nvim"
     use "vim-test/vim-test"
     use "ziglang/zig.vim"
 
