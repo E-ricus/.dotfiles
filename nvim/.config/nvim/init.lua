@@ -10,14 +10,11 @@ if is_impatient and profile then
   impatient.enable_profile()
 end
 
--- General configs
-require "ericus.settings"
-require "ericus.syntax"
--- Load plugins with packer
 require "plugins"
--- Plugin required configs
+
+require "ericus.settings"
+require "ericus.remap"
 require "ericus.editor"
--- require "ericus.status-line"
 require "ericus.lang-tools"
 require "ericus.completion"
 require "ericus.telescope"

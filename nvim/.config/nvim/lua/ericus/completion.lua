@@ -8,7 +8,7 @@ luasnip.config.set_config {
   delete_check_events = "TextChanged",
 }
 
-require("luasnip/loaders/from_vscode").lazy_load { include = { "lua", "go", "rust" } }
+require("luasnip/loaders/from_vscode").lazy_load { include = { "lua", "go", "rust", "zig" } }
 
 -- cmp
 local cmp = require "cmp"

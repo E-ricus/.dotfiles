@@ -49,8 +49,9 @@ return require("packer").startup {
     }
 
     -- Editor enhancements
-    use "machakann/vim-highlightedyank"
     use "tpope/vim-surround"
+    use "tpope/vim-sleuth"
+    use "lukas-reineke/indent-blankline.nvim"
     use "andymass/vim-matchup"
     use "numToStr/Comment.nvim"
     use "ThePrimeagen/harpoon"
@@ -70,18 +71,11 @@ return require("packer").startup {
         require("which-key").setup {}
       end,
     }
-    use { "stevearc/dressing.nvim" }
+    use "stevearc/dressing.nvim"
     use {
       "windwp/nvim-autopairs",
       config = function()
         require("nvim-autopairs").setup {}
-      end,
-    }
-    use {
-      "akinsho/toggleterm.nvim",
-      tag = "*",
-      config = function()
-        require("toggleterm").setup()
       end,
     }
     -- File Explorer
@@ -90,6 +84,12 @@ return require("packer").startup {
     -- LSP
     use "neovim/nvim-lspconfig"
     use "williamboman/mason.nvim"
+    use {
+      "j-hui/fidget.nvim",
+      config = function()
+        require("fidget").setup {}
+      end,
+    }
     use "williamboman/mason-lspconfig.nvim"
     local_use("lsp_codelens_extensions.nvim", {
       config = function()
@@ -98,12 +98,6 @@ return require("packer").startup {
     })
     use {
       "ray-x/lsp_signature.nvim",
-    }
-    use {
-      "Mofiqul/trld.nvim",
-      config = function()
-        require("trld").setup()
-      end,
     }
     use {
       "folke/trouble.nvim",
@@ -117,10 +111,9 @@ return require("packer").startup {
     use "jose-elias-alvarez/null-ls.nvim"
 
     -- Langs Enhacement
-    local_use "green_light.nvim"
     use "ThePrimeagen/refactoring.nvim"
     use "vim-test/vim-test"
-    -- use "ziglang/zig.vim"
+    use "ziglang/zig.vim"
 
     -- Telescope
     use {
@@ -178,7 +171,6 @@ return require("packer").startup {
     use "gruvbox-community/gruvbox"
     use "ayu-theme/ayu-vim"
     use "norcalli/nvim-colorizer.lua"
-    use "tjdevries/colorbuddy.nvim"
     use "rebelot/kanagawa.nvim"
     use "catppuccin/nvim"
   end,

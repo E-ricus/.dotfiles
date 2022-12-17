@@ -1,16 +1,11 @@
-vim.opt.smartindent = true
+---- General settings ----
 vim.opt.timeoutlen = 300
 vim.opt.number = true
 vim.opt.relativenumber = true
 -- Make diffing better: https://vimways.org/2018/the-power-of-diff/
 vim.opt.diffopt:append { "algorithm:patience", "indent-heuristic" }
 vim.opt.hidden = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
 vim.opt.smartcase = true
-vim.opt.smartindent = true
 vim.opt.scrolloff = 5
 vim.opt.mouse = "a"
 vim.opt.shortmess:append "c"
@@ -28,4 +23,22 @@ vim.opt.cmdheight = 2
 vim.opt.updatetime = 300
 
 vim.cmd "set noshowmode"
--- vim.cmd "set colorcolumn=80"
+
+-- Autocmds
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = "*",
+})
+
+-- Colors settings
+vim.cmd "syntax on"
+vim.o.termguicolors = true -- set term gui colors most terminals support this
+vim.opt.background = "dark"
+
+require("colorizer").setup()
+
+vim.cmd "colorscheme catppuccin"

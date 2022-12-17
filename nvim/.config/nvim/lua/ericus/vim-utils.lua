@@ -21,24 +21,6 @@ function M.buf_aucmd(events, callback, group, buffnr)
   vim.api.nvim_create_autocmd(events, { callback = callback, group = group, buffer = buffnr })
 end
 
-function M.aucmd(events, callback, group)
-  vim.api.nvim_create_autocmd(events, { callback = callback, group = group })
-end
-
-function M.nvim_exec(txt)
-  vim.api.nvim_exec(txt, false)
-end
-
-function M.feedkey(key)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), "n", true)
-end
-
-function M.delete_buf(bufnr)
-  if bufnr ~= nil then
-    vim.api.nvim_buf_delete(bufnr, { force = true })
-  end
-end
-
 function M.split(vertical, bufnr)
   local cmd = vertical and "vsplit" or "split"
 
@@ -60,15 +42,6 @@ function M.tablelength(T)
     count = count + 1
   end
   return count
-end
-
-function M.contains_client(list, x)
-  for _, v in pairs(list) do
-    if v == x then
-      return true
-    end
-  end
-  return false
 end
 
 function M.print_table(table)

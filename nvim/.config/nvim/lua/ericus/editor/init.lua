@@ -27,9 +27,6 @@ lmap("n", "<leader>tp", function()
   require("trouble").previous { skip_groups = true, jump = true }
 end, "Trouble previous")
 
--- colors
-require "ericus.editor.colors"
-
 -- Treesitter
 require "ericus.editor.treesitter"
 

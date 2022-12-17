@@ -1,13 +1,5 @@
-require "ericus.lang-tools.go-tests"
 require "ericus.lang-tools.refactoring"
 local map = require("ericus.vim-utils").lua_mapper
-
--- Golang Tests
-vim.cmd "command! GoTest lua require('ericus.lang-tools.go-tests').go_test()"
-vim.cmd "command! GoTestAll lua require('ericus.lang-tools.go-tests').go_test_all()"
-vim.cmd "command! GoTestPackage lua require('ericus.lang-tools.go-tests').go_test_package()"
-vim.cmd "command! GoTestFile lua require('ericus.lang-tools.go-tests').go_test_file()"
-vim.cmd "command! GoTestPattern lua require('ericus.lang-tools.go-tests').go_test_pattern()"
 
 -- Refactoring
 
