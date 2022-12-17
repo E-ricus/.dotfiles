@@ -40,7 +40,6 @@ return require("packer").startup {
     use "kyazdani42/nvim-web-devicons"
     use "onsails/lspkind-nvim"
     -- Status line
-    -- use "tjdevries/express_line.nvim"
     use {
       "nvim-lualine/lualine.nvim",
       config = function()
@@ -113,6 +112,7 @@ return require("packer").startup {
     -- Langs Enhacement
     use "vim-test/vim-test"
     use "ziglang/zig.vim"
+    use "ellisonleao/glow.nvim"
 
     -- Telescope
     use {
@@ -152,7 +152,6 @@ return require("packer").startup {
         "rcarriga/nvim-dap-ui",
       },
     }
-    use "ellisonleao/glow.nvim"
 
     -- Git
     use {

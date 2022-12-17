@@ -4,7 +4,6 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 -- Make diffing better: https://vimways.org/2018/the-power-of-diff/
 vim.opt.diffopt:append { "algorithm:patience", "indent-heuristic" }
-vim.opt.hidden = true
 vim.opt.smartcase = true
 vim.opt.scrolloff = 5
 vim.opt.mouse = "a"
@@ -19,10 +18,9 @@ vim.opt.gdefault = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 -- Better display for messages
-vim.opt.cmdheight = 2
+vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 300
-
-vim.cmd "set noshowmode"
+vim.opt.showmode = false
 
 -- Autocmds
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
