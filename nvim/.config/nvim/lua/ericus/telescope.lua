@@ -60,8 +60,6 @@ telescope.setup {
 
 -- Faster fuzzy
 telescope.load_extension "fzf"
--- DAP extension
-telescope.load_extension "dap"
 -- Harpoon
 telescope.load_extension "harpoon"
 -- file browser

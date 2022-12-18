@@ -111,7 +111,6 @@ local on_attach = function(client, buffnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-local final_capabilities = vim.tbl_extend("keep", capabilities, cmp_capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-require("ericus.lsp.servers").setup_servers(on_attach, final_capabilities)
+require("ericus.lsp.servers").setup_servers(on_attach, capabilities)
