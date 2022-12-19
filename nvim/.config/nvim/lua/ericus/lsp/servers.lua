@@ -3,7 +3,8 @@ local mason_lsp = require "mason-lspconfig"
 
 local M = {}
 
-local servers = { "clangd", "rust_analyzer", "tsserver", "sumneko_lua", "gopls", "zls" }
+local handled_servers = { "clangd", "rust_analyzer", "tsserver", "sumneko_lua", "gopls" }
+local manual_servers = { "zls" }
 
 local settings = {
   rust_analyzer = {
@@ -51,20 +52,17 @@ local settings = {
 
 M.setup_servers = function(on_attach, capabilities)
   mason.setup()
-  mason_lsp.setup()
   mason_lsp.setup {
-    ensure_installed = servers,
+    ensure_installed = handled_servers,
   }
-  mason_lsp.setup_handlers {
-    function(server_name)
-      local server = require("lspconfig")[server_name]
-      server.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        settings = settings[server_name],
-      }
-    end,
-  }
+  local servers = require("ericus.vim-utils").table_concat(handled_servers, manual_servers)
+  for _, lsp in ipairs(servers) do
+    require("lspconfig")[lsp].setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = settings[lsp],
+    }
+  end
 
   -- null-ls
   local null_ls = require "null-ls"
@@ -76,6 +74,7 @@ M.setup_servers = function(on_attach, capabilities)
       null_ls.builtins.code_actions.eslint,
     },
     on_attach = on_attach,
+    capabilities = capabilities,
   }
 end
 
