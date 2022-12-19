@@ -24,9 +24,18 @@ function M.tablelength(T)
   return count
 end
 
-function M.print_table(table)
-  for key, _ in pairs(table) do
-    require "notify"(key)
+function M.print_table(o)
+  if type(o) == "table" then
+    local s = "{ "
+    for k, v in pairs(o) do
+      if type(k) ~= "number" then
+        k = '"' .. k .. '"'
+      end
+      s = s .. "[" .. k .. "] = " .. M.dump(v) .. ","
+    end
+    return s .. "} "
+  else
+    return tostring(o)
   end
 end
 
