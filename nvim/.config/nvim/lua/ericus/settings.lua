@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Colors settings
 vim.cmd "syntax on"
-vim.o.termguicolors = true -- set term gui colors most terminals support this
+vim.opt.termguicolors = true -- set term gui colors most terminals support this
 vim.opt.background = "dark"
 
 require("colorizer").setup()
