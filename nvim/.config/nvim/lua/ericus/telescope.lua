@@ -1,4 +1,5 @@
 local themes = require "telescope.themes"
+local telescope = require "telescope"
 
 local M = {}
 

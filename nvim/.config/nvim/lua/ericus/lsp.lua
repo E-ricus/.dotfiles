@@ -1,8 +1,10 @@
+local M = {}
+
 local aucmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
 -- function to attach completion when setting up lsp
-local on_attach = function(client, buffnr)
+function M.on_attach(client, buffnr)
   require("lsp_signature").on_attach {
     doc_lines = 0,
     hint_enable = true,
@@ -110,7 +112,62 @@ local on_attach = function(client, buffnr)
   end
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+M.handled_servers = { "clangd", "rust_analyzer", "tsserver", "sumneko_lua", "gopls" }
+local manual_servers = { "zls" }
 
-require("ericus.lsp.servers").setup_servers(on_attach, capabilities)
+local settings = {
+  rust_analyzer = {
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy",
+      },
+      diagnostics = {
+        disabled = { "macro-error" },
+      },
+      lens = {
+        implementations = false,
+        methodReferences = false,
+        references = false,
+      },
+      completion = {
+        postfix = {
+          enable = false,
+        },
+      },
+    },
+  },
+  gopls = {
+    gopls = {
+      gofumpt = true,
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      codelenses = {
+        gc_details = true, --  // Show a code lens toggling the display of gc's choices.
+        test = true,
+      },
+    },
+  },
+  sumneko_lua = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { "vim" },
+      },
+    },
+  },
+}
+
+M.setup_servers = function(on_attach, capabilities)
+  local servers = require("util").table_concat(M.handled_servers, manual_servers)
+  for _, lsp in ipairs(servers) do
+    require("lspconfig")[lsp].setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = settings[lsp],
+    }
+  end
+end
+
+return M
