@@ -13,7 +13,11 @@ local M = {
         "williamboman/mason-lspconfig.nvim",
         config = function()
           require("mason").setup {
-            ensure_installed = lspf.handled_servers,
+            ensure_installed = {
+              "rust_analyzer",
+              "sumneko_lua",
+              "gopls",
+            },
           }
         end,
       },
@@ -30,7 +34,18 @@ local M = {
         require("codelens_extensions").setup()
       end,
     },
-    "ray-x/lsp_signature.nvim",
+    {
+      "ray-x/lsp_signature.nvim",
+      config = function()
+        require("lsp_signature").on_attach {
+          doc_lines = 0,
+          hint_enable = true,
+          handler_opts = {
+            border = "none",
+          },
+        }
+      end,
+    },
     {
       "jose-elias-alvarez/null-ls.nvim",
       config = function()
@@ -43,7 +58,6 @@ local M = {
             null_ls.builtins.diagnostics.eslint,
             null_ls.builtins.code_actions.eslint,
           },
-          on_attach = lspf.on_attach,
           capabilities = capabilities,
         }
       end,
@@ -52,10 +66,17 @@ local M = {
 }
 
 function M.config()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+  lspf.on_attach(function(client, buffnr)
+    lspf.keymaps(client, buffnr)
+    lspf.capabilities(client, buffnr)
+  end)
 
-  lspf.setup_servers(lspf.on_attach, capabilities)
+  local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+  for server, opts in pairs(lspf.servers) do
+    opts.capabilities = capabilities
+    require("lspconfig")[server].setup(opts)
+  end
 end
 
 return M

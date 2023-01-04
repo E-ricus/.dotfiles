@@ -4,14 +4,7 @@ local aucmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
 -- function to attach completion when setting up lsp
-function M.on_attach(client, buffnr)
-  require("lsp_signature").on_attach {
-    doc_lines = 0,
-    hint_enable = true,
-    handler_opts = {
-      border = "none",
-    },
-  }
+function M.keymaps(_, buffnr)
   -- keymaps
   map("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
   map("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP go to definition", buffer = buffnr })
@@ -65,7 +58,9 @@ function M.on_attach(client, buffnr)
     "<cmd>TroubleToggle document_diagnostics<CR>",
     { noremap = true, desc = "Trouble document diagnostics", buffer = buffnr }
   )
+end
 
+function M.capabilities(client, buffnr)
   local capabilities = client.server_capabilities
 
   -- Set autocommands conditional on server_capabilities
@@ -112,62 +107,67 @@ function M.on_attach(client, buffnr)
   end
 end
 
-M.handled_servers = { "clangd", "rust_analyzer", "tsserver", "sumneko_lua", "gopls" }
-local manual_servers = { "zls" }
-
-local settings = {
+M.servers = {
+  clangd = {},
+  zls = {},
   rust_analyzer = {
-    ["rust-analyzer"] = {
-      checkOnSave = {
-        command = "clippy",
+    settings = {
+      ["rust-analyzer"] = {
+        checkOnSave = {
+          command = "clippy",
+        },
+        diagnostics = {
+          disabled = { "macro-error" },
+        },
+        lens = {
+          implementations = false,
+          methodReferences = false,
+          references = false,
+        },
+        completion = {
+          postfix = {
+            enable = false,
+          },
+        },
       },
-      diagnostics = {
-        disabled = { "macro-error" },
-      },
-      lens = {
-        implementations = false,
-        methodReferences = false,
-        references = false,
-      },
-      completion = {
-        postfix = {
-          enable = false,
+    },
+  },
+  tsserver = {},
+  sumneko_lua = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = { "vim" },
         },
       },
     },
   },
   gopls = {
-    gopls = {
-      gofumpt = true,
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-      codelenses = {
-        gc_details = true, --  // Show a code lens toggling the display of gc's choices.
-        test = true,
-      },
-    },
-  },
-  sumneko_lua = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { "vim" },
+    settings = {
+      gopls = {
+        gofumpt = true,
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+        codelenses = {
+          gc_details = true, --  // Show a code lens toggling the display of gc's choices.
+          test = true,
+        },
       },
     },
   },
 }
 
-M.setup_servers = function(on_attach, capabilities)
-  local servers = require("util").table_concat(M.handled_servers, manual_servers)
-  for _, lsp in ipairs(servers) do
-    require("lspconfig")[lsp].setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      settings = settings[lsp],
-    }
-  end
+function M.on_attach(on_attach)
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      local buffer = args.buf
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      on_attach(client, buffer)
+    end,
+  })
 end
 
 return M

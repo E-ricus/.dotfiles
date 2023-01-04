@@ -31,7 +31,7 @@ function M.print_table(o)
       if type(k) ~= "number" then
         k = '"' .. k .. '"'
       end
-      s = s .. "[" .. k .. "] = " .. M.dump(v) .. ","
+      s = s .. "[" .. k .. "] = " .. M.print_table(v) .. ","
     end
     return s .. "} "
   else
