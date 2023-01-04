@@ -3,14 +3,14 @@ return {
   "onsails/lspkind-nvim",
   {
     "nvim-lualine/lualine.nvim",
-    lazy = false,
+    event = "VeryLazy",
     config = function()
       require("lualine").setup()
     end,
   },
   {
     "akinsho/bufferline.nvim",
-    lazy = false,
+    event = "VeryLazy",
     version = "v3.*",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
@@ -19,7 +19,7 @@ return {
   },
   {
     "stevearc/dressing.nvim",
-    event = "BufReadPre",
+    event = "VeryLazy",
     config = function()
       require("dressing").setup {
         select = {
@@ -40,7 +40,7 @@ return {
   },
   {
     "kyazdani42/nvim-tree.lua",
-    event = "BufReadPre",
+    event = "VeryLazy",
     config = function()
       require("nvim-tree").setup {}
       vim.keymap.set("n", "<leader>`", "<cmd>NvimTreeToggle<CR>", { noremap = true, desc = "Toogle tree" })

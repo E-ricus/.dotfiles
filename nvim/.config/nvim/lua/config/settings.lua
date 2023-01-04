@@ -21,6 +21,7 @@ vim.opt.splitbelow = true
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 300
 vim.opt.showmode = false
+vim.cmd "syntax on"
 
 -- Autocmds
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
@@ -31,12 +32,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   group = highlight_group,
   pattern = "*",
 })
-
--- Colors settings
-vim.cmd "syntax on"
-vim.opt.termguicolors = true -- set term gui colors most terminals support this
-vim.opt.background = "dark"
-
-require("colorizer").setup()
-
-vim.cmd "colorscheme catppuccin"

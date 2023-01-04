@@ -1,13 +1,13 @@
 return {
-  { "nvim-lua/plenary.nvim", lazy = false },
+  { "nvim-lua/plenary.nvim", event = "VeryLazy" },
   -- Editor enhancements
-  { "tpope/vim-surround", event = "BufReadPre" },
+  { "tpope/vim-surround", event = "VeryLazy" },
   { "tpope/vim-sleuth", event = "BufReadPre" },
-  { "lukas-reineke/indent-blankline.nvim", event = "BufReadPre" },
+  { "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" },
   { "andymass/vim-matchup", event = "BufReadPre" },
   {
     "numToStr/Comment.nvim",
-    event = "BufReadPre",
+    event = "VeryLazy",
     config = function()
       require("Comment").setup {
         ignore = "^$",
@@ -47,7 +47,7 @@ return {
   },
   {
     "rcarriga/nvim-notify",
-    event = "BufReadPre",
+    event = "VeryLazy",
     config = function()
       local notify = require "notify"
       vim.notify = notify
@@ -55,7 +55,7 @@ return {
   },
   {
     "folke/which-key.nvim",
-    lazy = false,
+    event = "VeryLazy",
     config = function()
       require("which-key").setup {}
     end,
@@ -69,17 +69,24 @@ return {
   -- Git
   {
     "lewis6991/gitsigns.nvim",
-    event = "BufReadPre",
+    event = "VeryLazy",
     config = function()
       require("gitsigns").setup()
     end,
   },
-  { "tpope/vim-fugitive", event = "BufReadPre" },
+  { "tpope/vim-fugitive", event = "VeryLazy" },
 
   -- Colors
   "gruvbox-community/gruvbox",
   "ayu-theme/ayu-vim",
-  "norcalli/nvim-colorizer.lua",
   "rebelot/kanagawa.nvim",
-  "catppuccin/nvim",
+  {
+    "catppuccin/nvim",
+    lazy = false,
+    config = function()
+      vim.cmd.colorscheme "catppuccin"
+      vim.opt.termguicolors = true
+      vim.opt.background = "dark"
+    end,
+  },
 }

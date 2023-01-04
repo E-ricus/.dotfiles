@@ -21,7 +21,7 @@ local M = {
         require("luasnip/loaders/from_vscode").lazy_load { include = { "lua", "go", "rust", "zig" } }
       end,
     },
-    { "rafamadriz/friendly-snippets", event = "BufReadPre" },
+    "rafamadriz/friendly-snippets",
   },
 }
 

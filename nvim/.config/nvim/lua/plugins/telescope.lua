@@ -1,5 +1,5 @@
 local M = {
-  event = "BufReadPre",
+  event = "VeryLazy",
   "nvim-telescope/telescope.nvim",
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -11,8 +11,8 @@ function M.config()
   local telescope = require "telescope"
   telescope.setup {
     defaults = {
-      -- prompt_prefix = "❯ ",
-      prompt_prefix = "🔍",
+      prompt_prefix = "❯ ",
+      -- prompt_prefix = "🔍",
       layout_strategy = "horizontal",
       path_display = {
         shorten = { len = 2, exclude = { -1, -2 } },
