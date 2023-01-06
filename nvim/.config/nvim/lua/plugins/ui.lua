@@ -58,7 +58,7 @@ return {
       local map = vim.keymap.set
 
       -- Trouble
-      map("n", "<leader>qf", "<cmd>TroubleToggle quickfix<CR>", { noremap = true, desc = "Trouble quickfix" })
+      map("n", "<leader>tq", "<cmd>TroubleToggle quickfix<CR>", { noremap = true, desc = "Trouble quickfix" })
       map("n", "<leader>tn", function()
         trouble.next { skip_groups = true, jump = true }
       end, { noremap = true, desc = "Trouble next" })

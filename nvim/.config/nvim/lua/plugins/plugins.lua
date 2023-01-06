@@ -17,7 +17,7 @@ return {
         },
         opleader = {
           line = "<leader>/",
-          block = "<leader>cb",
+          block = "<leader>c",
         },
       }
     end,
@@ -57,7 +57,20 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     config = function()
-      require("which-key").setup {}
+      local wk = require "which-key"
+      wk.setup {}
+      wk.register {
+        mode = { "n", "v" },
+        ["g"] = { name = "+goto" },
+        ["]"] = { name = "+next" },
+        ["["] = { name = "+prev" },
+        ["<leader>d"] = { name = "+diagnostics" },
+        ["<leader>f"] = { name = "+find" },
+        ["<leader>l"] = { name = "+lsp" },
+        ["<leader>t"] = { name = "+toogle" },
+        ["<leader>g"] = { name = "+git" },
+        ["<leader>h"] = { name = "+harpoon" },
+      }
     end,
   },
 

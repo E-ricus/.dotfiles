@@ -9,7 +9,7 @@ function M.keymaps(_, buffnr)
   map("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
   map("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP go to definition", buffer = buffnr })
   map("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "LSP go to declaration", buffer = buffnr })
-  map("n", "<leader>rn", vim.lsp.buf.rename, { noremap = true, desc = "LSP rename", buffer = buffnr })
+  map("n", "<leader>lr", vim.lsp.buf.rename, { noremap = true, desc = "LSP rename", buffer = buffnr })
   map("n", "[d", vim.diagnostic.goto_prev, { noremap = true, desc = "LSP go to previous diagnostic", buffer = buffnr })
   map("n", "]d", vim.diagnostic.goto_next, { noremap = true, desc = "LSP go to next diagnostic", buffer = buffnr })
   map("n", "<leader>df", vim.diagnostic.open_float, { noremap = true, desc = "LSP diagnostic float", buffer = buffnr })
@@ -19,7 +19,6 @@ function M.keymaps(_, buffnr)
     vim.lsp.buf.signature_help,
     { noremap = true, desc = "LSP signature help", buffer = buffnr }
   )
-  map("n", "<leader>lr", vim.lsp.codelens.run, { noremap = true, desc = "LSP run lens", buffer = buffnr })
   map("n", "<leader>la", vim.lsp.buf.code_action, { noremap = true, desc = "LSP code actions", buffer = buffnr })
   -- Telescope/Trouble maps
   map(
@@ -36,25 +35,25 @@ function M.keymaps(_, buffnr)
   )
   map(
     "n",
-    "<leader>bs",
+    "<leader>ls",
     "<cmd>Telescope lsp_document_symbols<CR>",
     { noremap = true, desc = "Telescope LSP document symbols", buffer = buffnr }
   )
   map(
     "n",
-    "<leader>ws",
+    "<leader>lS",
     "<cmd>Telescope lsp_workspace_symbols<CR>",
     { noremap = true, desc = "Telescope LSP workspace symbols", buffer = buffnr }
   )
   map(
     "n",
-    "<leader>wd",
+    "<leader>dw",
     "<cmd>TroubleToggle workspace_diagnostics<CR>",
     { noremap = true, desc = "Trouble workspace diagnostics", buffer = buffnr }
   )
   map(
     "n",
-    "<leader>bd",
+    "<leader>db",
     "<cmd>TroubleToggle document_diagnostics<CR>",
     { noremap = true, desc = "Trouble document diagnostics", buffer = buffnr }
   )
@@ -86,7 +85,7 @@ function M.capabilities(client, buffnr)
       vim.lsp.codelens.refresh()
     end
     aucmd("BufEnter,BufWritePost", { callback = callback, group = group, buffer = buffnr })
-    map("n", "<leader>lr", vim.lsp.codelens.run, { noremap = true, desc = "LSP run lens", buffer = buffnr })
+    map("n", "<leader>lR", vim.lsp.codelens.run, { noremap = true, desc = "LSP run lens", buffer = buffnr })
     map("n", "<leader>ll", vim.lsp.codelens.refresh, { noremap = true, desc = "LSP refresh lens", buffer = buffnr })
   end
 
