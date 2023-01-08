@@ -1,5 +1,6 @@
 local M = {
   "hrsh7th/nvim-cmp",
+  event = "VeryLazy",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
@@ -87,7 +88,7 @@ function M.config()
       ["<C-d>"] = mapping.scroll_docs(4),
       ["<C-u>"] = mapping.scroll_docs(-4),
       ["<C-Space>"] = mapping.complete(),
-      ["<C-e>"] = mapping.abort(),
+      ["<C-x>"] = mapping.abort(),
       ["<CR>"] = mapping.confirm {
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,

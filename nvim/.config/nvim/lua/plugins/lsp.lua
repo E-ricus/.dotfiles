@@ -12,7 +12,7 @@ local M = {
       dependencies = {
         "williamboman/mason-lspconfig.nvim",
         config = function()
-          require("mason").setup {
+          require("mason-lspconfig").setup {
             ensure_installed = {
               "rust_analyzer",
               "sumneko_lua",
@@ -29,7 +29,7 @@ local M = {
       end,
     },
     {
-      "ericpubu/lsp_codelens_extensions.nvim",
+      "E-ricus/lsp_codelens_extensions.nvim",
       config = function()
         require("codelens_extensions").setup()
       end,
