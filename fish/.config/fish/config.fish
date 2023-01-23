@@ -30,6 +30,11 @@ if test -d $HOME/.cargo/bin
     fish_add_path $HOME/.cargo/bin
 end
 
+# Zig
+if test -d $HOME/zig
+    fish_add_path $HOME/zig/bin
+end
+
 # Golang
 if test -d $HOME/go
     fish_add_path $HOME/go/bin
@@ -40,11 +45,6 @@ if test -d /usr/local/go
     fish_add_path /usr/local/go/bin
     set GOROOT /usr/local/go
 end
-
-# Wayland
-# if test "$XDG_SESSION_TYPE" = "wayland"
-#     set -x QT_QPA_PLATFORM xcb
-# end
 
 # Vim
 fish_vi_key_bindings
@@ -69,11 +69,6 @@ alias brew "/opt/homebrew/bin/brew"
 if test -e $HOME/Applications/nvim.appimage
     alias nvim nvim.appimage
 end
-
-# if test -e /usr/bin/minikube
-#     alias kubectl="minikube kubectl --"
-# end
-
 
 # Prompt
 starship init fish | source
