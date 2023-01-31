@@ -112,16 +112,11 @@ M.servers = {
   rust_analyzer = {
     settings = {
       ["rust-analyzer"] = {
-        checkOnSave = {
+        check = {
           command = "clippy",
         },
-        diagnostics = {
-          disabled = { "macro-error" },
-        },
         lens = {
-          implementations = false,
-          methodReferences = false,
-          references = false,
+          implementations = { enable = false },
         },
         completion = {
           postfix = {
