@@ -54,5 +54,5 @@ return {
       },
     }
   end,
-  dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
+  dependencies = { "nvim-treesitter/nvim-treesitter-textobjects", "nvim-treesitter/nvim-treesitter-context" },
 }

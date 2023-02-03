@@ -70,6 +70,8 @@ if test -e $HOME/Applications/nvim.appimage
     alias nvim nvim.appimage
 end
 
+set GOPRIVATE 'https://github.com/goflink'
+
 # Prompt
 starship init fish | source
 # Better folder navigation

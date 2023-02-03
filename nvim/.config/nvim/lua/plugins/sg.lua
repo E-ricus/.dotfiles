@@ -1,5 +1,6 @@
 local M = {
   "tjdevries/sg.nvim",
+  event = "VeryLazy",
   build = "cargo build --workspace",
   dependencies = { "nvim-lua/plenary.nvim" },
 }
