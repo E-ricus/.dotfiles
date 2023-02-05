@@ -4,7 +4,7 @@ local aucmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
 -- function to attach completion when setting up lsp
-function M.keymaps(_, buffnr)
+function M.keymaps(client, buffnr)
   -- keymaps
   map("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
   map("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP go to definition", buffer = buffnr })
@@ -57,6 +57,15 @@ function M.keymaps(_, buffnr)
     "<cmd>TroubleToggle document_diagnostics<CR>",
     { noremap = true, desc = "Trouble document diagnostics", buffer = buffnr }
   )
+  if client.name == "rust_analyzer" then
+    -- TODO: Make this a proper plugin
+    map(
+      "n",
+      "<leader>le",
+      require("ericus.expand_rs").expand_macro,
+      { noremap = true, desc = "Expand Rust macro", buffer = buffnr }
+    )
+  end
 end
 
 function M.capabilities(client, buffnr)
