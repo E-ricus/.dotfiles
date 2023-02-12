@@ -32,7 +32,7 @@ end
 
 # Zig
 if test -d $HOME/zig
-    fish_add_path $HOME/zig/bin
+    fish_add_path $HOME/zig
 end
 
 # Golang
