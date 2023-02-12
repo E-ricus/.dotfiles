@@ -105,7 +105,7 @@ function M.capabilities(client, buffnr)
 
   -- Set some keybinds conditional on server capabilities
   if capabilities.documentFormattingProvider then
-    map("n", "<leader>fr", vim.lsp.buf.format, { noremap = true, desc = "LSP format code", buffer = buffnr })
+    map("n", "<leader>lf", vim.lsp.buf.format, { noremap = true, desc = "LSP format code", buffer = buffnr })
     local group_name = "lsp_document_format" .. buffnr
     local group = vim.api.nvim_create_augroup(group_name, { clear = true })
     local callback = function()
