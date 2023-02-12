@@ -98,8 +98,8 @@ function M.capabilities(client, buffnr)
     map("n", "<leader>ll", vim.lsp.codelens.refresh, { noremap = true, desc = "LSP refresh lens", buffer = buffnr })
   end
 
-  -- dissable tsserver and sumnneko format
-  if client.name == "tsserver" or client.name == "sumneko_lua" then
+  -- dissable tsserver and lua format
+  if client.name == "tsserver" or client.name == "lua_ls" then
     capabilities.documentFormattingProvider = false
   end
 
@@ -136,7 +136,7 @@ M.servers = {
     },
   },
   tsserver = {},
-  sumneko_lua = {
+  lua_ls = {
     settings = {
       Lua = {
         diagnostics = {

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Install Brillo: https://gitlab.com/cameronnemo/brillo
-
 function send_notification() {
 	brightness=$(printf "%.0f\n" $(brillo -G))
 	dunstify -a "changebrightness" -u low -r 9991 -h int:value:"$brightness" -i "brightness-$1" "Brightness: $brightness%" -t 2000
