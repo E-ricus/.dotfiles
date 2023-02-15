@@ -1,5 +1,5 @@
 # Abbreviations
-abbr -a e nvim
+abbr -a e hx
 abbr -a c cargo
 abbr -a vimdiff 'nvim -d'
 
@@ -65,10 +65,7 @@ alias ls "exa -la"
 alias brew86 "arch -x86_64 /usr/local/homebrew/bin/brew"
 alias brewARM "arch -arm64 /opt/homebrew/bin/brew"
 alias brew "/opt/homebrew/bin/brew"
-
-if test -e $HOME/Applications/nvim.appimage
-    alias nvim nvim.appimage
-end
+alias hx helix
 
 set GOPRIVATE 'https://github.com/goflink'
 
