@@ -65,7 +65,10 @@ alias ls "exa -la"
 alias brew86 "arch -x86_64 /usr/local/homebrew/bin/brew"
 alias brewARM "arch -arm64 /opt/homebrew/bin/brew"
 alias brew "/opt/homebrew/bin/brew"
-alias hx helix
+
+if type -q $helix
+    alias hx helix
+end
 
 set GOPRIVATE 'https://github.com/goflink'
 

@@ -2,8 +2,7 @@ theme = "catppuccin_mocha"
 
 [editor]
 line-number = "relative"
-auto-pairs = true
-idle-timeout = 300
+# bufferline = "multiple"
 
 [editor.lsp]
 display-messages = true
@@ -24,4 +23,3 @@ L = "goto_line_end"
 
 [keys.insert]
 "C-space" = "completion"
-"C-s" = "signature_help"
