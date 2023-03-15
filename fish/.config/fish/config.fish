@@ -1,5 +1,5 @@
 # Abbreviations
-abbr -a e hx
+abbr -a e nvim
 abbr -a c cargo
 abbr -a vimdiff 'nvim -d'
 
@@ -28,6 +28,11 @@ end
 # Rust
 if test -d $HOME/.cargo/bin
     fish_add_path $HOME/.cargo/bin
+end
+
+# Mason
+if test -d $HOME/.local/share/nvim/mason/bin
+    fish_add_path $HOME/.local/share/nvim/mason/bin
 end
 
 # Zig
@@ -60,7 +65,8 @@ set FZF_DEFAULT_COMMAND 'fd --type file --hidden --no-ignore'
 
 # Alias
 alias rg "rg --files --hidden --glob '!.git'"
-alias ls "exa -la"
+alias la "exa -la"
+alias ls "exa -a"
 # Brew on M1
 alias brew86 "arch -x86_64 /usr/local/homebrew/bin/brew"
 alias brewARM "arch -arm64 /opt/homebrew/bin/brew"
