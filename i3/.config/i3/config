@@ -20,6 +20,9 @@ set $mod Mod4
 # default i3 tiling mode:
 workspace_layout default
 
+# Compose key
+exec --no-startup-id setxkbmap -option compose:ralt
+
 # i3 stacking layout:
 # Each window will be fullscreen and tabbed top to bottom.
 #workspace_layout stacking
