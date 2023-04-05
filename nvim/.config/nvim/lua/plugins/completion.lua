@@ -93,6 +93,9 @@ function M.config()
         },
       },
     },
+    completion = {
+      autocomplete = false,
+    },
     mapping = {
       ["<C-p>"] = mapping.select_prev_item(),
       ["<C-n>"] = mapping.select_next_item(),
@@ -108,18 +111,16 @@ function M.config()
             fallback()
           end
         end,
-        s = cmp.mapping.confirm { select = true },
-        c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
       },
       ["<tab>"] = mapping(super_tab, { "i", "s" }),
       ["<S-tab>"] = mapping(super_s_tab, { "i", "s" }),
     },
     sources = {
-      { name = "nvim_lsp", keyword_length = 3 },
-      { name = "luasnip", keyword_length = 3 },
-      { name = "buffer", keyword_length = 3 },
-      { name = "nvim_lua", keyword_length = 3 },
-      { name = "path", keyword_length = 3 },
+      { name = "nvim_lsp" },
+      { name = "luasnip" },
+      { name = "buffer" },
+      { name = "nvim_lua" },
+      { name = "path" },
     },
   }
 end
