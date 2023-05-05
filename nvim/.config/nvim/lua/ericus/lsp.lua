@@ -99,9 +99,9 @@ function M.capabilities(client, buffnr)
   end
 
   -- dissable tsserver and lua format
-  if client.name == "tsserver" or client.name == "lua_ls" then
-    capabilities.documentFormattingProvider = false
-  end
+  -- if client.name == "tsserver" or client.name == "lua_ls" then
+  --   capabilities.documentFormattingProvider = false
+  -- end
 
   -- Set some keybinds conditional on server capabilities
   if capabilities.documentFormattingProvider then

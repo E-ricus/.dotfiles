@@ -82,6 +82,3 @@ set GOPRIVATE 'https://github.com/goflink'
 starship init fish | source
 # Better folder navigation
 zoxide init fish | source
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ericdavid.puentesbulla@goflink.com/google-cloud-sdk/path.fish.inc' ]; . '/Users/ericdavid.puentesbulla@goflink.com/google-cloud-sdk/path.fish.inc'; end
