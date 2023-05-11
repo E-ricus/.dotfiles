@@ -98,10 +98,10 @@ function M.capabilities(client, buffnr)
     map("n", "<leader>ll", vim.lsp.codelens.refresh, { noremap = true, desc = "LSP refresh lens", buffer = buffnr })
   end
 
-  -- dissable tsserver and lua format
-  -- if client.name == "tsserver" or client.name == "lua_ls" then
-  --   capabilities.documentFormattingProvider = false
-  -- end
+  -- dissable tsserver format in pro of prettier/prettierd
+  if client.name == "tsserver" then
+    capabilities.documentFormattingProvider = false
+  end
 
   -- Set some keybinds conditional on server capabilities
   if capabilities.documentFormattingProvider then
