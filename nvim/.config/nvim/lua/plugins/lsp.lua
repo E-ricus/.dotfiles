@@ -16,7 +16,6 @@ local M = {
             ensure_installed = {
               "rust_analyzer",
               "lua_ls",
-              "gopls",
             },
           }
         end,
