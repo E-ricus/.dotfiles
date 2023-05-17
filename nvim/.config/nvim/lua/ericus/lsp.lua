@@ -118,6 +118,7 @@ end
 M.servers = {
   clangd = {},
   zls = {},
+  ols = {},
   rust_analyzer = {
     settings = {
       ["rust-analyzer"] = {
