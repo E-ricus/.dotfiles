@@ -40,6 +40,10 @@ if test -d $HOME/zig
     fish_add_path $HOME/zig
 end
 
+if test -d $HOME/build/Odin
+    set ODIN_ROOT $HOME/build/Odin
+end
+
 # Golang
 if test -d $HOME/go
     fish_add_path $HOME/go/bin
