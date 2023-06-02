@@ -1,10 +1,10 @@
 return {
-  { "nvim-lua/plenary.nvim", event = "VeryLazy" },
+  { "nvim-lua/plenary.nvim",               event = "VeryLazy" },
   -- Editor enhancements
-  { "tpope/vim-surround", event = "VeryLazy" },
-  { "tpope/vim-sleuth", event = "BufReadPre" },
+  { "tpope/vim-surround",                  event = "VeryLazy" },
+  { "tpope/vim-sleuth",                    event = "BufReadPre" },
   { "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" },
-  { "andymass/vim-matchup", event = "BufReadPre" },
+  { "andymass/vim-matchup",                event = "BufReadPre" },
   {
     "numToStr/Comment.nvim",
     event = "VeryLazy",
@@ -76,7 +76,8 @@ return {
 
   -- Langs Enhacement
   "vim-test/vim-test",
-  { "ziglang/zig.vim", event = "BufReadPre *.zig" },
+  { "ziglang/zig.vim",        event = "BufReadPre *.zig" },
+  { "ChrisWellsWood/roc.vim", event = "BufReadPre *.roc" },
   "ellisonleao/glow.nvim",
 
   -- Git
