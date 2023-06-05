@@ -127,12 +127,36 @@ return {
   "rebelot/kanagawa.nvim",
   {
     "catppuccin/nvim",
-    lazy = false,
+    -- lazy = false,
     -- priority = 1000,
     config = function()
-      vim.cmd.colorscheme "catppuccin"
+      -- vim.cmd.colorscheme "catppuccin"
       vim.opt.termguicolors = true
       vim.opt.background = "dark"
+    end,
+  },
+  {
+    "ribru17/bamboo.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("bamboo").setup {
+        -- optional configuration here
+      }
+      require("bamboo").load()
+    end,
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
+    -- lazy = false,
+    -- priority = 1000,
+    config = function()
+      require("gruvbox").setup {
+        -- optional configuration here
+      }
+      vim.opt.termguicolors = true
+      vim.opt.background = "dark"
+      vim.cmd "colorscheme gruvbox"
     end,
   },
 }
