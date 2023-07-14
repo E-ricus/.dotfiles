@@ -105,8 +105,9 @@ function M.config()
       ["<C-x>"] = mapping.abort(),
       ["<CR>"] = cmp.mapping {
         i = function(fallback)
-          if cmp.visible() and cmp.get_active_entry() then
-            cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+          if cmp.visible() then
+            -- if cmp.visible() and cmp.get_active_entry() then -- TODO: Acting weird, gotta check it
+            cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true }
           else
             fallback()
           end

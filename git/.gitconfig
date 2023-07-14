@@ -22,6 +22,7 @@
 	ss = "!f() { git stash show stash^{/$*} -p; }; f"
 	sa = "!f() { git stash apply stash^{/$*}; }; f"
 	sl = stash list
+	br = branch
 [diff]
 	tool = vimdiff
 	algorithm = patience
