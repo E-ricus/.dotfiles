@@ -9,42 +9,43 @@ local M = {
 
 function M.config()
   local telescope = require "telescope"
+  local actions_layout = require "telescope.actions.layout"
   telescope.setup {
     defaults = {
-      prompt_prefix = "❯ ",
-      -- prompt_prefix = "🔍",
-      layout_strategy = "horizontal",
-      path_display = {
-        shorten = { len = 2, exclude = { -1, -2 } },
-      },
-      layout_config = {
-        width = 0.95,
-        height = 0.85,
-        prompt_position = "top",
-
-        horizontal = {
-          preview_width = function(_, cols, _)
-            if cols > 200 then
-              return math.floor(cols * 0.4)
-            else
-              return math.floor(cols * 0.6)
-            end
-          end,
+      mappings = {
+        n = {
+          ["<C-k>"] = actions_layout.toggle_preview,
         },
-
-        vertical = {
-          width = 0.9,
-          height = 0.95,
-          preview_height = 0.5,
-        },
-
-        flex = {
-          horizontal = {
-            preview_width = 0.9,
-          },
+        i = {
+          ["<C-k>"] = actions_layout.toggle_preview,
         },
       },
-      file_ignore_patterns = { "node_modules/", "deps/", ".git/" },
+      prompt_prefix = "   ",
+      selection_caret = "  ",
+      multi_icon = "",
+      sorting_strategy = "ascending",
+      layout_strategy = nil,
+      layout_config = nil,
+      borderchars = {
+        "─",
+        "│",
+        "─",
+        "│",
+        "┌",
+        "┐",
+        "┘",
+        "└",
+      },
+      color_devicons = true,
+      set_env = { ["COLORTERM"] = "truecolor" },
+      extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
+        },
+      },
       vimgrep_arguments = {
         "rg",
         "--color=never",
@@ -56,12 +57,70 @@ function M.config()
         "--hidden",
       },
     },
-    extensions = {
-      fzf = {
-        fuzzy = true,
-        override_generic_sorter = true,
-        override_file_sorter = true,
-        case_mode = "smart_case",
+    pickers = {
+      buffers = {
+        previewer = false,
+        layout_config = {
+          width = 0.7,
+          prompt_position = "top",
+        },
+      },
+      builtin = {
+        previewer = false,
+        layout_config = {
+          width = 0.3,
+          prompt_position = "top",
+        },
+      },
+      find_files = {
+        previewer = false,
+        layout_config = {
+          width = 0.7,
+          prompt_position = "top",
+        },
+      },
+      help_tags = {
+        layout_config = {
+          prompt_position = "top",
+          scroll_speed = 4,
+          height = 0.9,
+          width = 0.9,
+          preview_width = 0.55,
+        },
+      },
+      live_grep = {
+        layout_strategy = "vertical",
+        layout_config = {
+          width = 0.9,
+          height = 0.9,
+          preview_cutoff = 1,
+          mirror = false,
+        },
+      },
+      lsp_implementations = {
+        layout_strategy = "vertical",
+        layout_config = {
+          width = 0.9,
+          height = 0.9,
+          preview_cutoff = 1,
+          mirror = false,
+        },
+      },
+      lsp_references = {
+        layout_strategy = "vertical",
+        layout_config = {
+          width = 0.9,
+          height = 0.9,
+          preview_cutoff = 1,
+          mirror = false,
+        },
+      },
+      oldfiles = {
+        previewer = false,
+        layout_config = {
+          width = 0.9,
+          prompt_position = "top",
+        },
       },
     },
   }
