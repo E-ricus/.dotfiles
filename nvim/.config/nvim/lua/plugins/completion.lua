@@ -19,10 +19,12 @@ local M = {
           delete_check_events = "TextChanged",
         }
 
-        require("luasnip/loaders/from_vscode").lazy_load { include = { "lua", "go", "rust", "zig" } }
+        require("luasnip.loaders.from_vscode").lazy_load { include = { "lua", "go", "rust", "zig" } }
       end,
+      dependencies = {
+        "rafamadriz/friendly-snippets",
+      },
     },
-    "rafamadriz/friendly-snippets",
   },
 }
 

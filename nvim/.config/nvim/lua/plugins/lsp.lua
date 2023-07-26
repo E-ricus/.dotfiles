@@ -52,7 +52,6 @@ local M = {
         local null_ls = require "null-ls"
         null_ls.setup {
           sources = {
-            null_ls.builtins.formatting.stylua,
             null_ls.builtins.formatting.prettier,
           },
           capabilities = capabilities,
@@ -74,6 +73,8 @@ function M.config()
     opts.capabilities = capabilities
     require("lspconfig")[server].setup(opts)
   end
+  -- Diagnostics
+  vim.diagnostic.config { virtual_text = false }
 end
 
 return M

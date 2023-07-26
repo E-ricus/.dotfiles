@@ -48,6 +48,7 @@ return {
 
   {
     "folke/trouble.nvim",
+    event = "VeryLazy",
     config = function()
       local trouble = require "trouble"
       trouble.setup {
