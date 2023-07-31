@@ -4,6 +4,7 @@ return {
   -- optional for icon support
   config = function() -- calling `setup` is optional for customization
     local fzf = require("fzf-lua")
+    fzf.setup({ 'skim' })
     local ext = require("ericus.fzf")
     local map = vim.keymap.set
     map("n", "<leader>ff", fzf.files, { noremap = true, desc = "Search files" })
@@ -15,6 +16,7 @@ return {
     map("n", "<leader>fp", fzf.grep, { noremap = true, desc = "Fzf grep promopt" })
     map("n", "<leader>fb", fzf.buffers, { noremap = true, desc = "List buffers" })
     map("n", "<leader>fq", fzf.quickfix, { noremap = true, desc = "Fzf quickfix" })
+    map("n", "<leader>fl", fzf.builtin, { noremap = true, desc = "Fzf builtins" })
     map("n", "<leader>th", fzf.colorschemes, { noremap = true, desc = "Theme list" })
     map("n", "<leader>gb", fzf.git_branches, { noremap = true, desc = "Git branches" })
   end
