@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 
-return {
+local config = {
 	-- font = wezterm.font("JetBrainsMono Nerd Font"),
 	font_size = 16,
 	color_scheme = "Catppuccin Mocha",
@@ -12,3 +12,7 @@ return {
 		bottom = 0,
 	},
 }
+
+config.default_prog = { '/home/ericus/.cargo/bin/nu' }
+
+return config
