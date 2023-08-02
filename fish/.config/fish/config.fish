@@ -53,6 +53,7 @@ end
 if test -d /usr/local/go
     fish_add_path /usr/local/go/bin
     set GOROOT /usr/local/go
+    go env -w GOPRIVATE=github.com/goflink
 end
 
 # Vim
@@ -79,8 +80,6 @@ alias brew "/opt/homebrew/bin/brew"
 if type -q $helix
     alias hx helix
 end
-
-set GOPRIVATE 'https://github.com/goflink'
 
 # Prompt
 starship init fish | source
