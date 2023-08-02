@@ -13,6 +13,6 @@ local config = {
 	},
 }
 
-config.default_prog = { '/home/ericus/.cargo/bin/nu' }
+-- config.default_prog = { '/home/ericus/.cargo/bin/nu' }
 
 return config
