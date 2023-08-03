@@ -82,13 +82,33 @@ $env.KUBE_EDITOR = nvim
 $env.XDG_CONFIG_HOME = $env.HOME + /.config
 $env.DOTFILES = $env.HOME + /.dotfiles
 
-# TODO: Create a function to validate paths and add them if exist
-# Brew M1
+# TODO: Debug why this doesn't work
+# def add_to_path [route] {
+#     if ($route | path exists) {
+#         $env.PATH = ($env.PATH | split row (char esep) | prepend $route)
+#     }
+# }
+
+# let paths = [
+#     $"($env.HOME)/.bin"
+#     $"($env.HOME)/.local/bin"
+#     $"($env.HOME)/Applications"
+#     '/opt/homebrew/bin/'
+#     $"($env.HOME)/.cargo/bin"
+#     $"($env.HOME)/zig"
+#     $"($env.HOME)/.local/share/nvim/mason/bin"
+#     $"($env.HOME)/go/bin"
+#     $"($env.HOME)/google-cloud-sdk/bin"
+# ]
+
+# $paths | each { |it| add_to_path $it }
+
+# TODO: Remove each if when the def works
 if ($"($env.HOME)/.bin" | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend env.$HOME/.bin)
+    $env.PATH = ($env.PATH | split row (char esep) | prepend "($env.HOME)/.bin")
 } 
 if ($"($env.HOME)/.local/bin" | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend env.$HOME/.local/bin)
+    $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/.local/bin")
 } 
 if ($"($env.HOME)/Applications" | path exists) { 
     $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/Applications" )
@@ -108,13 +128,12 @@ if ( $"($env.HOME)/.local/share/nvim/mason/bin" | path exists) {
 if ( $"($env.HOME)/go" | path exists) { 
     $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/go/bin")
 } 
+if ( $"($env.HOME)/google-cloud-sdk/bin" | path exists) { 
+    $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/google-cloud-sdk/bin")
+} 
 if ( '/usr/local/go' | path exists) { 
     $env.PATH = ($env.PATH | split row (char esep) | prepend '/usr/local/go/bin')
     go env -w GOPRIVATE=github.com/goflink
-
-} 
-if ( $"($env.HOME)/google-cloud-sdk" | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/google-cloud-sdk/bin")
 } 
 
 # TODO: Zoxide enable when zoxide update source code
