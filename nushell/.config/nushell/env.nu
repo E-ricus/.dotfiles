@@ -109,11 +109,11 @@ if ( $"($env.HOME)/go" | path exists) {
     $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/go/bin")
 } 
 if ( '/usr/local/go' | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend '/usr/local/go')
+    $env.PATH = ($env.PATH | split row (char esep) | prepend '/usr/local/go/bin')
     go env -w GOPRIVATE=github.com/goflink
 
 } 
-if ( $"($env.HOME)/google-cloud-sdk/" | path exists) { 
+if ( $"($env.HOME)/google-cloud-sdk" | path exists) { 
     $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/google-cloud-sdk/bin")
 } 
 
