@@ -78,6 +78,13 @@ return {
   "vim-test/vim-test",
   { "ziglang/zig.vim",        event = "BufReadPre *.zig" },
   { "ChrisWellsWood/roc.vim", event = "BufReadPre *.roc" },
+  {
+    "LhKipp/nvim-nu",
+    event = "BufReadPre *.nu",
+    config = function()
+      require 'nu'.setup {}
+    end,
+  },
   "ellisonleao/glow.nvim",
 
   -- Git
