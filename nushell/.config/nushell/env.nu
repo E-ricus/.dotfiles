@@ -82,13 +82,13 @@ $env.KUBE_EDITOR = nvim
 $env.XDG_CONFIG_HOME = $env.HOME + /.config
 $env.DOTFILES = $env.HOME + /.dotfiles
 
-# TODO: Debug why this doesn't work
-# def add_to_path [route] {
-#     if ($route | path exists) {
-#         $env.PATH = ($env.PATH | split row (char esep) | prepend $route)
-#     }
-# }
+def-env add_to_path [route: string] {
+    if (($route | path exists) and ($route not-in $env.PATH)) {
+        $env.PATH = ($env.PATH | prepend $route)
+    }
+}
 
+# TODO: Debug why this doesn't work
 # let paths = [
 #     $"($env.HOME)/.bin"
 #     $"($env.HOME)/.local/bin"
@@ -103,36 +103,19 @@ $env.DOTFILES = $env.HOME + /.dotfiles
 
 # $paths | each { |it| add_to_path $it }
 
-# TODO: Remove each if when the def works
-if ($"($env.HOME)/.bin" | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend "($env.HOME)/.bin")
-} 
-if ($"($env.HOME)/.local/bin" | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/.local/bin")
-} 
-if ($"($env.HOME)/Applications" | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/Applications" )
-} 
-if ('/opt/homebrew/bin/' | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
-} 
-if ( $"($env.HOME)/.cargo/bin" | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/.cargo/bin")
-} 
-if ( $"($env.HOME)/zig" | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/zig")
-} 
-if ( $"($env.HOME)/.local/share/nvim/mason/bin" | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/.local/share/nvim/mason/bin")
-} 
-if ( $"($env.HOME)/go" | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/go/bin")
-} 
-if ( $"($env.HOME)/google-cloud-sdk/bin" | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/google-cloud-sdk/bin")
-} 
+# TODO: Remove each call when each works
+add_to_path $"($env.HOME)/.bin"
+add_to_path $"($env.HOME)/.local/bin"
+add_to_path $"($env.HOME)/Applications"
+add_to_path '/opt/homebrew/bin/'
+add_to_path $"($env.HOME)/.cargo/bin"
+add_to_path $"($env.HOME)/zig"
+add_to_path $"($env.HOME)/.local/share/nvim/mason/bin"
+add_to_path $"($env.HOME)/go/bin"
+add_to_path $"($env.HOME)/google-cloud-sdk/bin"
+
 if ( '/usr/local/go' | path exists) { 
-    $env.PATH = ($env.PATH | split row (char esep) | prepend '/usr/local/go/bin')
+    $env.PATH = ($env.PATH | prepend '/usr/local/go/bin')
     go env -w GOPRIVATE=github.com/goflink
 } 
 
