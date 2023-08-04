@@ -9,6 +9,7 @@ disabled = true
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]
+disabled = true
 # success_symbol = "[➜](bold green)"
 # error_symbol = "[➜](bold red)"
 # vicmd_symbol = "[V](bold green)"

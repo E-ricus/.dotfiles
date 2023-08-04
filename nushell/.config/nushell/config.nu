@@ -736,5 +736,3 @@ source ~/.zoxide.nu
 # source ~/.cache/zoxide/init.nu
 # carapace
 source ~/.cache/carapace/init.nu
-# starship
-# source ~/.cache/starship/init.nu
