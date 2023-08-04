@@ -73,16 +73,16 @@ def create_starship_prompt [] {
 }
 
 # TODO: Check if use this instead of starship
-# $env.PROMPT_COMMAND = { create_left_prompt }
-# $env.PROMPT_COMMAND_RIGHT = { create_right_prompt }
-$env.PROMPT_COMMAND = { create_starship_prompt }
-$env.PROMPT_COMMAND_RIGHT = ""
+$env.PROMPT_COMMAND = { create_left_prompt }
+$env.PROMPT_COMMAND_RIGHT = { create_right_prompt }
+# $env.PROMPT_COMMAND = { create_starship_prompt }
+# $env.PROMPT_COMMAND_RIGHT = ""
 
 # avoid same PROMPT_INDICATOR
 $env.PROMPT_INDICATOR = { "" }
-$env.PROMPT_INDICATOR_VI_INSERT = { "❯ " }
-$env.PROMPT_INDICATOR_VI_NORMAL = { "❮ " }
-$env.PROMPT_MULTILINE_INDICATOR = { "::: " }
+$env.PROMPT_INDICATOR_VI_INSERT = { " ❯ " }
+$env.PROMPT_INDICATOR_VI_NORMAL = { " ❮ " }
+$env.PROMPT_MULTILINE_INDICATOR = { " ::: " }
 
 $env.EDITOR = nvim
 $env.KUBE_EDITOR = nvim
@@ -126,10 +126,12 @@ if ( '/usr/local/go' | path exists) {
     go env -w GOPRIVATE=github.com/goflink
 } 
 
-# TODO: Zoxide enable when zoxide update source code
+# Zoxide
+# TODO: enable when zoxide update source code
 # mkdir ~/.cache/zoxide
 # zoxide init nushell | save -f ~/.cache/zoxide/init.nu
 
 # Carapace
-mkdir ~/.cache/carapace
-carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+# TODO: probably remove
+# mkdir ~/.cache/carapace
+# carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
