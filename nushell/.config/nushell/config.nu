@@ -109,7 +109,7 @@ $env.config = {
     }
 
     cd: {
-        abbreviations: false # allows `cd s/o/f` to expand to `cd some/other/folder`
+        abbreviations: true # allows `cd s/o/f` to expand to `cd some/other/folder`
     }
 
     table: {
@@ -734,7 +734,7 @@ alias rg = rg --hidden --glob '!.git'
 # TODO: Enable when zoxide updates version
 # source ~/.cache/zoxide/init.nu
 # Now using the updated version as a script
-source ~/.config/nushell/scripts/zoxide.nu
+# source ~/.config/nushell/scripts/zoxide.nu
 # carapace
 # source ~/.cache/carapace/init.nu
 source ~/.config/nushell/scripts/carapace.nu
