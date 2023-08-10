@@ -95,22 +95,6 @@ def-env add_to_path [route: string] {
     }
 }
 
-# TODO: Debug why this doesn't work
-# let paths = [
-#     $"($env.HOME)/.bin"
-#     $"($env.HOME)/.local/bin"
-#     $"($env.HOME)/Applications"
-#     '/opt/homebrew/bin/'
-#     $"($env.HOME)/.cargo/bin"
-#     $"($env.HOME)/zig"
-#     $"($env.HOME)/.local/share/nvim/mason/bin"
-#     $"($env.HOME)/go/bin"
-#     $"($env.HOME)/google-cloud-sdk/bin"
-# ]
-
-# $paths | each { |it| add_to_path $it }
-
-# TODO: Remove each call when each works
 add_to_path $"($env.HOME)/.bin"
 add_to_path $"($env.HOME)/.local/bin"
 add_to_path $"($env.HOME)/Applications"
@@ -120,18 +104,9 @@ add_to_path $"($env.HOME)/zig"
 add_to_path $"($env.HOME)/.local/share/nvim/mason/bin"
 add_to_path $"($env.HOME)/go/bin"
 add_to_path $"($env.HOME)/google-cloud-sdk/bin"
+add_to_path $"($env.XDG_CONFIG_HOME)/carapace/bin"
 
 if ( '/usr/local/go' | path exists) { 
     $env.PATH = ($env.PATH | prepend '/usr/local/go/bin')
     go env -w GOPRIVATE=github.com/goflink
 } 
-
-# Zoxide
-# TODO: enable when zoxide update source code
-# mkdir ~/.cache/zoxide
-# zoxide init nushell | save -f ~/.cache/zoxide/init.nu
-
-# Carapace
-# TODO: probably remove
-# mkdir ~/.cache/carapace
-# carapace _carapace nushell | save --force ~/.cache/carapace/init.nu

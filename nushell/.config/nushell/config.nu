@@ -90,10 +90,32 @@ let dark_theme = {
     shape_vardecl: purple
 }
 
-# External completer example
-# let carapace_completer = {|spans|
-#     carapace $spans.0 nushell $spans | from json
-# }
+## External completer
+let carapace_completer = {|spans: list<string>|
+    carapace $spans.0 nushell $spans
+    | from json
+    | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
+}
+
+let fish_completer = {|spans|
+    fish --command $'complete "--do-complete=($spans | str join " ")"'
+    | $"value(char tab)description(char newline)" + $in
+    | from tsv --flexible --no-infer
+}
+
+# This completer will use carapace by default
+let external_completer = {|spans|
+    let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
+    let spans = (if $expanded_alias != null  {
+        $spans | skip 1 | prepend ($expanded_alias | split words)
+    } else { $spans })
+
+    {
+        # carapace completions are incorrect for nu
+        nu: $fish_completer
+    } | get -i $spans.0 | default $carapace_completer | do $in $spans
+
+}
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
@@ -175,7 +197,7 @@ $env.config = {
         external: {
             enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up may be very slow
             max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-            completer: null # check 'carapace_completer' above as an example
+            completer: $external_completer
         }
     }
 
@@ -730,11 +752,4 @@ alias la = ls -la
 alias ls = ls
 alias rg = rg --hidden --glob '!.git'
 
-# zoxide
-# TODO: Enable when zoxide updates version
-# source ~/.cache/zoxide/init.nu
-# Now using the updated version as a script
-# source ~/.config/nushell/scripts/zoxide.nu
-# carapace
-# source ~/.cache/carapace/init.nu
-source ~/.config/nushell/scripts/carapace.nu
+use ~/.config/nushell/scripts/git-completion.nu *
