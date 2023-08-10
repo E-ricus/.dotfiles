@@ -113,6 +113,7 @@ let external_completer = {|spans|
     {
         # carapace completions are incorrect for nu
         nu: $fish_completer
+        kubectl: $fish_completer
     } | get -i $spans.0 | default $carapace_completer | do $in $spans
 
 }
