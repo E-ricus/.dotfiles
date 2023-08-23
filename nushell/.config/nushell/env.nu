@@ -1,6 +1,6 @@
 # Nushell Environment Config File
 #
-# version = 0.83.1
+# version = 0.84
 
 # Specifies how environment variables are:
 # - converted from a string to a value on Nushell startup (from_string)
@@ -100,6 +100,6 @@ add_to_path $"($env.HOME)/google-cloud-sdk/bin"
 add_to_path $"($env.XDG_CONFIG_HOME)/carapace/bin"
 
 if ( '/usr/local/go' | path exists) { 
-    $env.PATH = ($env.PATH | prepend '/usr/local/go/bin')
+    add_to_path '/usr/local/go/bin'
     go env -w GOPRIVATE=github.com/goflink
 } 
