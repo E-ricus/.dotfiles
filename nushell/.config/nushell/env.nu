@@ -98,6 +98,7 @@ add_to_path $"($env.HOME)/.local/share/nvim/mason/bin"
 add_to_path $"($env.HOME)/go/bin"
 add_to_path $"($env.HOME)/google-cloud-sdk/bin"
 add_to_path $"($env.XDG_CONFIG_HOME)/carapace/bin"
+add_to_path $"($env.HOME)/.local/share/coursier/bin"
 
 if ( '/usr/local/go' | path exists) { 
     add_to_path '/usr/local/go/bin'
