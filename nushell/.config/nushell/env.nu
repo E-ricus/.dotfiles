@@ -104,3 +104,5 @@ if ( '/usr/local/go' | path exists) {
     add_to_path '/usr/local/go/bin'
     go env -w GOPRIVATE=github.com/goflink
 } 
+
+$env.ASDF_NU_DIR = ($env.HOME | path join '.asdf')

@@ -93,6 +93,7 @@ M.servers = {
   clangd = {},
   zls = {},
   ols = {},
+  elixirls = {},
   rust_analyzer = {
     settings = {
       ["rust-analyzer"] = {

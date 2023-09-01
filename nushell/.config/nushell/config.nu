@@ -754,3 +754,7 @@ alias ls = ls
 alias rg = rg --hidden --glob '!.git'
 
 use ~/.config/nushell/scripts/git-completion.nu *
+
+if ($"($env.HOME)/.asdf" | path exists) {
+    source ~/.asdf/asdf.nu
+}
