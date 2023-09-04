@@ -94,6 +94,7 @@ M.servers = {
   zls = {},
   ols = {},
   elixirls = {},
+  hls = { filetypes = { 'haskell', 'lhaskell', 'cabal' } },
   rust_analyzer = {
     settings = {
       ["rust-analyzer"] = {
