@@ -82,6 +82,6 @@ if type -q $helix
 end
 
 # Prompt
-starship init fish | source
+# starship init fish | source
 # Better folder navigation
-zoxide init fish | source
+# zoxide init fish | source

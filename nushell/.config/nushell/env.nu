@@ -94,6 +94,7 @@ add_to_path $"($env.HOME)/Applications"
 add_to_path '/opt/homebrew/bin/'
 add_to_path $"($env.HOME)/.cargo/bin"
 add_to_path $"($env.HOME)/zig"
+add_to_path $"($env.HOME)/roc"
 add_to_path $"($env.HOME)/.local/share/nvim/mason/bin"
 add_to_path $"($env.HOME)/go/bin"
 add_to_path $"($env.HOME)/google-cloud-sdk/bin"
