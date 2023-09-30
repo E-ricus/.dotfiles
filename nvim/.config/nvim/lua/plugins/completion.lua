@@ -19,7 +19,7 @@ local M = {
           delete_check_events = "TextChanged",
         }
 
-        require("luasnip.loaders.from_vscode").lazy_load { include = { "lua", "go", "rust", "zig", "scala", "haskell" } }
+        require("luasnip.loaders.from_vscode").lazy_load { include = { "lua", "go", "rust", "zig", "clojure" } }
       end,
       dependencies = {
         "rafamadriz/friendly-snippets",
@@ -124,6 +124,7 @@ function M.config()
       { name = "buffer" },
       { name = "nvim_lua" },
       { name = "path" },
+      { name = "conjure" },
     },
   }
 end

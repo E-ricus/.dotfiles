@@ -90,6 +90,7 @@ function M.capabilities(client, buffnr)
 end
 
 M.servers = {
+  clojure_lsp = {},
   clangd = {},
   zls = {},
   ols = {},
