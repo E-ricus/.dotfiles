@@ -2,14 +2,16 @@
 add_newline = false
 #single line
 [line_break]
-disabled = false
+disabled = true
 
 [gcloud]
 disabled = true
 
-# Replace the "❯" symbol in the prompt with "➜"
-[character]
+[cmd_duration]
 disabled = true
-# success_symbol = "[➜](bold green)"
-# error_symbol = "[➜](bold red)"
-# vicmd_symbol = "[V](bold green)"
+
+[java]
+disabled = true
+
+[package]
+disabled = true
