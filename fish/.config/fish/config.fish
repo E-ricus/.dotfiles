@@ -7,52 +7,37 @@ abbr -a vimdiff 'nvim -d'
 set XDG_CONFIG_HOME $HOME/.config
 set DOTFILES $HOME/.dotfiles
 
+function add_to_path -a path
+    if test -e $path
+        fish_add_path $path
+    end
+end
+
 # PATH
-if test -d $HOME/.bin
-    fish_add_path $HOME/.bin
+add_to_path $HOME/.bin
+add_to_path $HOME/.local/bin
+add_to_path $HOME/Applications
+add_to_path /opt/homebrew/bin
+add_to_path $HOME/.cargo/bin
+add_to_path $HOME/zig
+add_to_path $HOME/roc
+add_to_path $HOME/.local/share/nvim/mason/bin
+add_to_path $HOME/go/bin
+add_to_path $HOME/google-cloud-sdk/bin
+add_to_path $HOME/.local/share/coursier/bin
+add_to_path $HOME/.ghcup/bin
+add_to_path $HOME/.cabal/bin
+add_to_path $HOME/Odin
+
+
+# Odin
+if test -d $HOME/Odin
+    set ODIN_ROOT $HOME/Odin
 end
 
-if test -d $HOME/.local/bin
-    fish_add_path $HOME/.local/bin
-end
-
-if test -d $HOME/Applications/
-    fish_add_path $HOME/Applications
-end
-
-## brew M1
-if test -d /opt/homebrew/bin
-    fish_add_path /opt/homebrew/bin
-end
-
-# Rust
-if test -d $HOME/.cargo/bin
-    fish_add_path $HOME/.cargo/bin
-end
-
-# Mason
-if test -d $HOME/.local/share/nvim/mason/bin
-    fish_add_path $HOME/.local/share/nvim/mason/bin
-end
-
-# Zig
-if test -d $HOME/zig
-    fish_add_path $HOME/zig
-end
-
-if test -d $HOME/build/Odin
-    set ODIN_ROOT $HOME/build/Odin
-end
-
-# Golang
-if test -d $HOME/go
-    fish_add_path $HOME/go/bin
-    set GOPATH $HOME/go
-end
 
 if test -d /usr/local/go
     fish_add_path /usr/local/go/bin
-    set GOROOT /usr/local/go
     go env -w GOPRIVATE=github.com/goflink
 end
 
@@ -72,16 +57,16 @@ set FZF_DEFAULT_COMMAND 'fd --type file --hidden --no-ignore'
 alias rg "rg --files --hidden --glob '!.git'"
 alias la "exa -la"
 alias ls "exa -a"
-# Brew on M1
-alias brew86 "arch -x86_64 /usr/local/homebrew/bin/brew"
-alias brewARM "arch -arm64 /opt/homebrew/bin/brew"
-alias brew "/opt/homebrew/bin/brew"
 
 if type -q $helix
     alias hx helix
 end
 
 # Prompt
-# starship init fish | source
+if type -q starship
+    starship init fish | source
+end
 # Better folder navigation
-# zoxide init fish | source
+if type -q zoxide
+    zoxide init fish | source
+end
