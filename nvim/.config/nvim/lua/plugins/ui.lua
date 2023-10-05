@@ -9,14 +9,6 @@ return {
     end,
   },
   {
-    "akinsho/bufferline.nvim",
-    event = "VeryLazy",
-    version = "v3.*",
-    config = function()
-      require("bufferline").setup()
-    end,
-  },
-  {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
     config = function()
