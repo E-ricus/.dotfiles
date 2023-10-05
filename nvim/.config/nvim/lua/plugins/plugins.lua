@@ -144,22 +144,20 @@ return {
   },
   {
     "ribru17/bamboo.nvim",
-    -- lazy = false,
-    -- priority = 1000,
+    lazy = false,
+    priority = 1000,
     config = function()
-      require("bamboo").setup {
-        -- optional configuration here
-      }
-      -- require("bamboo").load()
+      require("bamboo").setup {}
+      require("bamboo").load()
     end,
   },
   {
     "AstroNvim/astrotheme",
-    lazy = false,
-    priority = 1000,
+    -- lazy = false,
+    -- priority = 1000,
     config = function()
       require("astrotheme").setup({})
-      vim.cmd.colorscheme "astrodark"
+      -- vim.cmd.colorscheme "astrodark"
       vim.opt.termguicolors = true
       vim.opt.background = "dark"
     end,
