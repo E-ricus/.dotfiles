@@ -52,7 +52,7 @@ function M.capabilities(client, buffnr)
     local callback = function()
       vim.lsp.buf.document_highlight()
     end
-    aucmd("CursorHold,CursorHoldI", { callback = callback, group = group, buffer = buffnr })
+    aucmd({"CursorHold","CursorHoldI"}, { callback = callback, group = group, buffer = buffnr })
     callback = function()
       vim.lsp.buf.clear_references()
     end
@@ -67,7 +67,7 @@ function M.capabilities(client, buffnr)
     local callback = function()
       vim.lsp.codelens.refresh()
     end
-    aucmd("BufEnter,BufWritePost", { callback = callback, group = group, buffer = buffnr })
+    aucmd({"BufEnter", "BufWritePost"}, { callback = callback, group = group, buffer = buffnr })
     map("n", "<leader>lR", vim.lsp.codelens.run, { noremap = true, desc = "LSP run lens", buffer = buffnr })
     map("n", "<leader>ll", vim.lsp.codelens.refresh, { noremap = true, desc = "LSP refresh lens", buffer = buffnr })
   end
