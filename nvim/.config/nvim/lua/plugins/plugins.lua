@@ -76,7 +76,7 @@ return {
 
   -- Langs Enhacement
   "vim-test/vim-test",
-  { "ziglang/zig.vim",        event = "BufReadPre *.zig" },
+  -- { "ziglang/zig.vim",        event = "BufReadPre *.zig" },
   { "ChrisWellsWood/roc.vim", event = "BufReadPre *.roc" },
   {
     "LhKipp/nvim-nu",
@@ -126,7 +126,7 @@ return {
       }
     end,
   },
-  { "tpope/vim-fugitive", event = "VeryLazy" },
+  { "tpope/vim-fugitive",     event = "VeryLazy" },
 
   -- Colors
   "gruvbox-community/gruvbox",
