@@ -4,7 +4,7 @@ file-types = ["go", "go.mod"]
 
 [[language]]
 name = "rust"
-config = {checkOnSave = {command = "clippy"}}
+# config = {checkOnSave = {command = "clippy"}}
 
 [language.debugger]
 command = "codelldb"
@@ -29,7 +29,7 @@ scope = "scope.odin"
 file-types = ["odin"]
 comment-token = "//"
 indent = { tab-width = 2, unit = " " }
-language-server = { command = "ols" }
+language-servers = [ "ols" ]
 injection-regex = "odin"
 roots = ["ols.json"]
 formatter = { command = "odinfmt", args = [ "-stdin", "true" ] }
