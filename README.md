@@ -199,3 +199,20 @@ sudo dnf update -y
 sudo dnf install akmod-nvidia
 sudo dnf install xorg-x11-drv-nvidia-cuda #optional for cuda/nvdec/nvenc support
 ```
+
+## Mac configuration
+* Window manager: https://github.com/ianyh/Amethyst
+```sh
+brew install --cask amethyst
+```
+Currently there is no way to save the configuration the mapping has to be done manually.
+- Allow to control computer and start in login
+- disable automatic
+
+* Unnatural scroll: https://github.com/ther0n/UnnaturalScrollWheels
+Allows for different scroll movement between the pane and the mouse
+```sh
+brew install --cask unnaturalscrollwheels
+```
+* Move through spaces
+Settings -> Keyboard -> Keyboard Shortcuts -> mission control -> set to move spaces
