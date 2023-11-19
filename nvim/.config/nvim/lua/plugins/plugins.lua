@@ -2,7 +2,6 @@ return {
   { "nvim-lua/plenary.nvim",               event = "VeryLazy" },
   -- Editor enhancements
   { "tpope/vim-surround",                  event = "VeryLazy" },
-  { "tpope/vim-sleuth",                    event = "BufReadPre" },
   { "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" },
   { "andymass/vim-matchup",                event = "BufReadPre" },
   {

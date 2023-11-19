@@ -28,8 +28,8 @@ name = "odin"
 scope = "scope.odin"
 file-types = ["odin"]
 comment-token = "//"
-indent = { tab-width = 2, unit = " " }
+indent = { tab-width = 4, unit = " " }
 language-servers = [ "ols" ]
 injection-regex = "odin"
 roots = ["ols.json"]
-formatter = { command = "odinfmt", args = [ "-stdin", "true" ] }
+auto-format = true

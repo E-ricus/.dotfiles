@@ -3,6 +3,7 @@ theme = "catppuccin_mocha"
 [editor]
 line-number = "relative"
 bufferline = "multiple"
+auto-format = true
 
 [editor.lsp]
 display-messages = true

@@ -9,6 +9,10 @@ vim.opt.scrolloff = 5
 vim.opt.mouse = "a"
 vim.opt.shortmess:append "c"
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" } --Better completion
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 -- vim.opt.colorcolumn = 80
 -- Proper search
 vim.opt.ignorecase = true
