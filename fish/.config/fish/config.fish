@@ -28,6 +28,7 @@ add_to_path $HOME/.local/share/coursier/bin
 add_to_path $HOME/.ghcup/bin
 add_to_path $HOME/.cabal/bin
 add_to_path $HOME/Odin
+add_to_path $HOME/swift/usr/bin
 
 
 # Odin
