@@ -2,8 +2,8 @@ local M = {
   "scalameta/nvim-metals",
   event = { "BufReadPre *.scala", "BufReadPre *.sbt" },
   dependencies = {
-    "nvim-lua/plenary.nvim"
-  }
+    "nvim-lua/plenary.nvim",
+  },
 }
 
 function M.config()

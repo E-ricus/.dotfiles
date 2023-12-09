@@ -6,7 +6,7 @@ return {
     {
       "PaterJason/cmp-conjure",
       config = function()
-        local cmp = require("cmp")
+        local cmp = require "cmp"
         local config = cmp.get_config()
         table.insert(config.sources, {
           name = "buffer",
@@ -24,7 +24,9 @@ return {
     vim.api.nvim_create_autocmd("BufNewFile", {
       group = vim.api.nvim_create_augroup("conjure_log_disable_lsp", { clear = true }),
       pattern = { "conjure-log-*" },
-      callback = function() vim.diagnostic.disable(0) end,
+      callback = function()
+        vim.diagnostic.disable(0)
+      end,
       desc = "Conjure Log disable LSP diagnostics",
     })
     require("conjure.main").main()

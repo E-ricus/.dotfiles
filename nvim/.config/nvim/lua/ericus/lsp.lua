@@ -5,7 +5,7 @@ local map = vim.keymap.set
 
 -- function to attach completion when setting up lsp
 function M.keymaps(client, buffnr)
-  local fzf = require("fzf-lua")
+  local fzf = require "fzf-lua"
   -- keymaps
   map("n", "<leader>k", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
   map("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP go to definition", buffer = buffnr })
@@ -25,12 +25,19 @@ function M.keymaps(client, buffnr)
   map("n", "gi", fzf.lsp_implementations, { noremap = true, desc = "LSP Implementations", buffer = buffnr })
   map("n", "gr", fzf.lsp_references, { noremap = true, desc = "LSP references", buffer = buffnr })
   map("n", "<leader>ls", fzf.lsp_document_symbols, { noremap = true, desc = "LSP document symbols", buffer = buffnr })
-  map("n", "<leader>lS", fzf.lsp_workspace_symbols,
-    { noremap = true, desc = "LSP workspace symbols", buffer = buffnr })
-  map("n", "<leader>dw", "<cmd>TroubleToggle workspace_diagnostics<CR>",
-    { noremap = true, desc = "Trouble workspace diagnostics", buffer = buffnr })
-  map("n", "<leader>db", "<cmd>TroubleToggle document_diagnostics<CR>",
-    { noremap = true, desc = "Trouble document diagnostics", buffer = buffnr })
+  map("n", "<leader>lS", fzf.lsp_workspace_symbols, { noremap = true, desc = "LSP workspace symbols", buffer = buffnr })
+  map(
+    "n",
+    "<leader>dw",
+    "<cmd>TroubleToggle workspace_diagnostics<CR>",
+    { noremap = true, desc = "Trouble workspace diagnostics", buffer = buffnr }
+  )
+  map(
+    "n",
+    "<leader>db",
+    "<cmd>TroubleToggle document_diagnostics<CR>",
+    { noremap = true, desc = "Trouble document diagnostics", buffer = buffnr }
+  )
   if client.name == "rust_analyzer" then
     -- TODO: Make this a proper plugin
     map(
@@ -91,11 +98,11 @@ end
 
 M.servers = {
   clojure_lsp = {},
-  -- clangd = {},
+  sourcekit = {},
   zls = {},
   ols = {},
   elixirls = {},
-  hls = { filetypes = { 'haskell', 'lhaskell', 'cabal' } },
+  hls = { filetypes = { "haskell", "lhaskell", "cabal" } },
   rust_analyzer = {
     settings = {
       ["rust-analyzer"] = {
