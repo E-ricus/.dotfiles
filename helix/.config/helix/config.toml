@@ -1,4 +1,4 @@
-theme = "base16_default_dark"
+theme = "darcula-solid"
 
 [editor]
 line-number = "relative"
