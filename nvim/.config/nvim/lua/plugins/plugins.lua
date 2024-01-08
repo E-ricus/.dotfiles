@@ -46,11 +46,11 @@ return {
     end,
   },
   {
-    "rcarriga/nvim-notify",
+    "echasnovski/mini.notify",
+    version = false,
     event = "VeryLazy",
     config = function()
-      local notify = require "notify"
-      vim.notify = notify
+      require("mini.notify").setup()
     end,
   },
   {
