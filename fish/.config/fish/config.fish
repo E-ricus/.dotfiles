@@ -30,6 +30,9 @@ add_to_path $HOME/.cabal/bin
 add_to_path $HOME/Odin
 add_to_path $HOME/swift/usr/bin
 
+# MacOnly
+add_to_path /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+
 
 # Odin
 if test -d $HOME/Odin
@@ -78,3 +81,8 @@ end
 if type -q zoxide
     zoxide init fish | source
 end
+
+#>>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+eval $HOME/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
