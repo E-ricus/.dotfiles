@@ -26,13 +26,13 @@ add_to_path() {
     if [[ -e "$1" ]]; then
         if [[ -d "$1" ]]; then
             export PATH="$1:$PATH"
-            echo "$1 added to PATH"
+            # echo "$1 added to PATH"
         else
-            echo "$1 is not a directory"
+            # echo "$1 is not a directory"
             return 1
         fi
     else
-        echo "$1 does not exist"
+        # echo "$1 does not exist"
         return 1
     fi
 }
