@@ -66,8 +66,8 @@ set FZF_DEFAULT_COMMAND 'fd --type file --hidden --no-ignore'
 
 # Alias
 alias rg "rg --files --hidden --glob '!.git'"
-alias la "exa -la"
-alias ls "exa -a"
+alias la "eza -la"
+alias ls "eza -a"
 
 if type -q $helix
     alias hx helix
@@ -84,5 +84,7 @@ end
 
 #>>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-eval $HOME/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+if test -d $HOME/miniconda3/bin/
+    eval $HOME/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+end
 # <<< conda initialize <<<

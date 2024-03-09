@@ -4,45 +4,106 @@ export XDG_CONFIG_HOME=$HOME/.config
 export ZSH_CUSTOM="$XDG_CONFIG_HOME/zsh"
 export DOTFILES="$HOME/.dotfiles"
 
-# PATH
-if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/bin" ] ;
-  then export PATH="$HOME/.local/bin:$PATH"
-fi
-if [ -d "$HOME/go/bin" ] ;
-  then export PATH="$HOME/go/bin:$PATH"
-fi
-
-if [ -d "/usr/local/go/" ] ;
-  then export PATH=$PATH:/usr/local/go/bin
-fi
-
-if [ -d "$HOME/.cargo/bin" ] ;
-  then export PATH="$HOME/.cargo/bin:$PATH"
-fi
 # Globals
 export EDITOR="nvim"
+export KUBE_EDITOR="nvim"
 export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
 
 # Alias
 alias e="nvim"
 alias czsh="nvim ~/.zshrc"
 alias cnvim="cd $XDG_CONFIG_HOME/nvim/ && nvim"
-alias ls="exa -la"
+alias ls="eza"
+alias la="eza -la"
+
+# Function to add a parameter to the path if it exists
+add_to_path() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: add_to_path_if_exists <parameter>"
+        return 1
+    fi
+
+    if [[ -e "$1" ]]; then
+        if [[ -d "$1" ]]; then
+            export PATH="$1:$PATH"
+            echo "$1 added to PATH"
+        else
+            echo "$1 is not a directory"
+            return 1
+        fi
+    else
+        echo "$1 does not exist"
+        return 1
+    fi
+}
+
+# PATH
+add_to_path "$HOME/.bin"
+add_to_path "$HOME/.local/bin"
+add_to_path "$HOME/Applications"
+add_to_path "/opt/homebrew/bin"
+add_to_path "$HOME/.cargo/bin"
+add_to_path "$HOME/.zig/bin"
+add_to_path "$HOME/roc"
+add_to_path "$HOME/.local/share/nvim/mason/bin"
+add_to_path "$HOME/go/bin"
+add_to_path "$HOME/google-cloud-sdk/bin"
+add_to_path "$HOME/.local/share/coursier/bin"
+add_to_path "$HOME/.ghcup/bin"
+add_to_path "$HOME/.cabal/bin"
+add_to_path "$HOME/Odin"
+add_to_path "$HOME/swift/usr/bin"
+# MacOnly
+add_to_path "/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin"
+
+# Odin
+if [[ -d "$HOME/Odin" ]]; then
+    export ODIN_ROOT "$HOME/Odin"
+fi
+
+# Go
+if [[ -d "/usr/local/go" ]]; then
+    export PATH="/usr/local/go/bin:$PATH"
+    command go env -w GOPRIVATE=github.com/goflink
+fi
+
+#Mojo
+if [[ -d "$HOME/.modular" ]]; then
+    export MODULAR_HOME "$HOME/.modular"
+    add_to_path "$MODULAR_HOME/pkg/packages.modular.com_mojo/bin"
+fi
+
 
 # Enable colors and change prompt:
 autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/ericus/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/ericus/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ericus/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/ericus/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+
+
+#################################################################
 ### PLUGINS
 ## Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
@@ -63,7 +124,7 @@ zinit wait lucid for \
     atload"!_zsh_autosuggest_start" \
         zsh-users/zsh-autosuggestions \
     atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-        zdharma/fast-syntax-highlighting
+        zdharma-continuum/fast-syntax-highlighting
 
 ## Plugins configuration
 # History substring config
@@ -127,9 +188,10 @@ bindkey '^e' edit-command-line
 zinit light NICHOLAS85/z-a-eval 
 zinit ice wait id-as"starship_prompt" has"starship" lucid \
       eval'starship init zsh' run-atpull
-zinit light zdharma/null
+zinit light zdharma-continuum/null
 
 # Better folder navigation
 zinit ice wait id-as"zoxide_movement" has"zoxide" lucid \
       eval'zoxide init zsh' run-atpull
-zinit light zdharma/null
+zinit light zdharma-continuum/null
+
