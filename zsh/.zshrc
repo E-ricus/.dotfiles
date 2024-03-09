@@ -58,7 +58,7 @@ add_to_path "/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin"
 
 # Odin
 if [[ -d "$HOME/Odin" ]]; then
-    export ODIN_ROOT "$HOME/Odin"
+    export ODIN_ROOT="$HOME/Odin"
 fi
 
 # Go
@@ -69,7 +69,7 @@ fi
 
 #Mojo
 if [[ -d "$HOME/.modular" ]]; then
-    export MODULAR_HOME "$HOME/.modular"
+    export MODULAR_HOME="$HOME/.modular"
     add_to_path "$MODULAR_HOME/pkg/packages.modular.com_mojo/bin"
 fi
 
