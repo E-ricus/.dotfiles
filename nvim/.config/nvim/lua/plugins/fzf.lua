@@ -4,7 +4,7 @@ return {
     -- optional for icon support
     config = function() -- calling `setup` is optional for customization
         local fzf = require "fzf-lua"
-        fzf.setup { "skim" }
+        fzf.setup {}
         local ext = require "ericus.fzf"
         local map = vim.keymap.set
         map("n", "<leader>ff", fzf.files, { noremap = true, desc = "Search files" })
