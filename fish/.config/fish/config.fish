@@ -19,7 +19,7 @@ add_to_path $HOME/.local/bin
 add_to_path $HOME/Applications
 add_to_path /opt/homebrew/bin
 add_to_path $HOME/.cargo/bin
-add_to_path $HOME/.zig/bin
+add_to_path $HOME/zigup/zig-out/bin
 add_to_path $HOME/roc
 add_to_path $HOME/.local/share/nvim/mason/bin
 add_to_path $HOME/go/bin
