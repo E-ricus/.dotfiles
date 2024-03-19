@@ -29,6 +29,7 @@ add_to_path $HOME/.ghcup/bin
 add_to_path $HOME/.cabal/bin
 add_to_path $HOME/Odin
 add_to_path $HOME/swift/usr/bin
+add_to_path $HOME/miniconda3/bin
 
 # MacOnly
 add_to_path /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
@@ -82,9 +83,10 @@ if type -q zoxide
     zoxide init fish | source
 end
 
-#>>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -d $HOME/miniconda3/bin/
-    eval $HOME/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-end
-# <<< conda initialize <<<
+# TO SLOW
+# #>>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# if test -d $HOME/miniconda3/bin/
+#     eval $HOME/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+# end
+# # <<< conda initialize <<<
