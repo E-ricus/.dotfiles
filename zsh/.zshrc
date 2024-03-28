@@ -56,6 +56,15 @@ add_to_path "$HOME/swift/usr/bin"
 # MacOnly
 add_to_path "/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin"
 
+# asdf
+if [[ -d "$HOME/.asdf" ]]; then
+    . "$HOME/.asdf/asdf.sh"
+    # append completions to fpath
+    fpath=(${ASDF_DIR}/completions $fpath)
+    # initialise completions with ZSH's compinit
+    autoload -Uz compinit && compinit
+fi
+
 # Odin
 if [[ -d "$HOME/Odin" ]]; then
     export ODIN_ROOT="$HOME/Odin"
@@ -195,3 +204,7 @@ zinit ice wait id-as"zoxide_movement" has"zoxide" lucid \
       eval'zoxide init zsh' run-atpull
 zinit light zdharma-continuum/null
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

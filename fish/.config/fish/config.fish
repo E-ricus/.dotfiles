@@ -34,6 +34,12 @@ add_to_path $HOME/miniconda3/bin
 # MacOnly
 add_to_path /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 
+# Asdf
+if test -d $HOME/.asdf
+    source $HOME/.asdf/asdf.fish
+end
+
+
 
 # Odin
 if test -d $HOME/Odin

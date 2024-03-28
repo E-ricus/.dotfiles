@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local config = {
     -- font = wezterm.font("JetBrainsMono Nerd Font"),
-    font_size = 16,
+    font_size = 13,
     color_scheme = "Catppuccin Mocha",
     hide_tab_bar_if_only_one_tab = true,
     window_padding = {
