@@ -50,6 +50,7 @@ return {
         config = function()
             local mini = require('mini.sessions')
             mini.setup {
+                autoread = true,
             }
             local write = function()
                 local name = vim.fn.input("Session name: ")
