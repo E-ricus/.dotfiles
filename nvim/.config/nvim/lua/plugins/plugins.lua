@@ -157,6 +157,7 @@ return {
     "ellisonleao/glow.nvim",
 
     -- Git
+    { "tpope/vim-fugitive",     event = "VeryLazy" },
     {
         "lewis6991/gitsigns.nvim",
         event = "VeryLazy",
@@ -195,24 +196,20 @@ return {
             }
         end,
     },
-    { "tpope/vim-fugitive",     event = "VeryLazy" },
 
     -- Colors
-    "gruvbox-community/gruvbox",
-    "ayu-theme/ayu-vim",
-    "rebelot/kanagawa.nvim",
     {
         "catppuccin/nvim",
-        -- lazy = false,
-        -- priority = 1000,
+        enabled = false,
+        lazy = false,
+        priority = 1000,
         config = function()
-            -- vim.cmd.colorscheme "catppuccin"
-            vim.opt.termguicolors = true
-            vim.opt.background = "dark"
+            vim.cmd.colorscheme "catppuccin"
         end,
     },
     {
         "ribru17/bamboo.nvim",
+        enabled = false,
         lazy = false,
         priority = 1000,
         config = function()
@@ -221,28 +218,21 @@ return {
         end,
     },
     {
-        "AstroNvim/astrotheme",
-        -- lazy = false,
-        -- priority = 1000,
+        "sainnhe/everforest",
+        enabled = false,
+        lazy = false,
+        priority = 1000,
         config = function()
-            require("astrotheme").setup {}
-            -- vim.cmd.colorscheme "astrodark"
-            vim.opt.termguicolors = true
-            vim.opt.background = "dark"
+            vim.cmd "colorscheme everforest"
         end,
     },
-
     {
-        "ellisonleao/gruvbox.nvim",
-        -- lazy = false,
-        -- priority = 1000,
+        "sainnhe/gruvbox-material",
+        enabled = true,
+        lazy = false,
+        priority = 1000,
         config = function()
-            require("gruvbox").setup {
-                -- optional configuration here
-            }
-            vim.opt.termguicolors = true
-            vim.opt.background = "dark"
-            vim.cmd "colorscheme gruvbox"
+            vim.cmd "colorscheme gruvbox-material"
         end,
     },
 }
