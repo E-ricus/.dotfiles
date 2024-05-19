@@ -46,19 +46,6 @@ local M = {
                 }
             end,
         },
-        {
-            "jose-elias-alvarez/null-ls.nvim",
-            config = function()
-                local capabilities = vim.lsp.protocol.make_client_capabilities()
-                local null_ls = require "null-ls"
-                null_ls.setup {
-                    sources = {
-                        null_ls.builtins.formatting.prettier,
-                    },
-                    capabilities = capabilities,
-                }
-            end,
-        },
     },
 }
 
