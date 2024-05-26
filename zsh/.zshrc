@@ -117,9 +117,14 @@ zinit light Aloxaf/fzf-tab
 # Add in snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::aws
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::kubectx
+if command -v kubectl &> /dev/null
+then
+    zinit snippet OMZP::kubectl
+fi
+if command -v kubectx &> /dev/null
+then
+    zinit snippet OMZP::kubectx
+fi
 zinit snippet OMZP::command-not-found
 
 # Load completions
@@ -158,7 +163,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Shell integrations
-eval "$(fzf --zsh)"
+source <(fzf --zsh)
 eval "$(zoxide init --cmd cd zsh)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
