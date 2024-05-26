@@ -39,13 +39,10 @@ if test -d $HOME/.asdf
     source $HOME/.asdf/asdf.fish
 end
 
-
-
 # Odin
 if test -d $HOME/Odin
     set ODIN_ROOT $HOME/Odin
 end
-
 
 # Go
 if test -d /usr/local/go
@@ -86,13 +83,5 @@ if type -q starship
 end
 # Better folder navigation
 if type -q zoxide
-    zoxide init fish | source
+    zoxide init --cmd cd fish | source
 end
-
-# TO SLOW
-# #>>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# if test -d $HOME/miniconda3/bin/
-#     eval $HOME/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-# end
-# # <<< conda initialize <<<
