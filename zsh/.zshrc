@@ -1,3 +1,15 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+    # MacOs only
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 ### ENVIROMENTS
 export ZSH_ENV_HOME=$HOME
 export XDG_CONFIG_HOME=$HOME/.config
@@ -53,6 +65,7 @@ add_to_path "$HOME/.ghcup/bin"
 add_to_path "$HOME/.cabal/bin"
 add_to_path "$HOME/Odin"
 add_to_path "$HOME/swift/usr/bin"
+add_to_path "$HOME/miniconda3/bin"
 # MacOnly
 add_to_path "/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin"
 
@@ -61,8 +74,6 @@ if [[ -d "$HOME/.asdf" ]]; then
     . "$HOME/.asdf/asdf.sh"
     # append completions to fpath
     fpath=(${ASDF_DIR}/completions $fpath)
-    # initialise completions with ZSH's compinit
-    autoload -Uz compinit && compinit
 fi
 
 # Odin
@@ -82,128 +93,73 @@ if [[ -d "$HOME/.modular" ]]; then
     add_to_path "$MODULAR_HOME/pkg/packages.modular.com_mojo/bin"
 fi
 
+# Set the directory we want to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-# Enable colors and change prompt:
-autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/ericus/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/ericus/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/ericus/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/ericus/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-
-
-
-#################################################################
-### PLUGINS
-## Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+# Download Zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-## End of Zinit's installer chunk
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
 
-# Benchmark prompt
-# source $ZSH_CUSTOM/plugins/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
+# Add in Powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-zinit wait lucid for \
-    atload'_history_substring_search_config' \
-        zsh-users/zsh-history-substring-search \
-    blockf \
-        zsh-users/zsh-completions \
-    atload"!_zsh_autosuggest_start" \
-        zsh-users/zsh-autosuggestions \
-    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-        zdharma-continuum/fast-syntax-highlighting
+# Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
 
-## Plugins configuration
-# History substring config
-function _history_substring_search_config() {
-    bindkey '^[[A' history-substring-search-up
-    bindkey '^[[B' history-substring-search-down
-}
+# Add in snippets
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::aws
+zinit snippet OMZP::kubectl
+zinit snippet OMZP::kubectx
+zinit snippet OMZP::command-not-found
 
-# History in cache directory:
-export HISTSIZE=100000000
-export SAVEHIST=$HISTSIZE
-export HISTFILE="$HOME/.cache/zsh/history"
-setopt SHARE_HISTORY
+# Load completions
+autoload -Uz compinit && compinit
 
-## COMPLETION
-# Basic auto/tab complete:
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-_comp_options+=(globdots) # Include hidden files.
+zinit cdreplay -q
 
-# vi mode
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Keybindings
 bindkey -v
 export KEYTIMEOUT=1
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^[w' kill-region
 
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect '\e' send-break
-bindkey -v '^?' backward-delete-char
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
-
-### Eval plugins
-# Only needed to load at first time using eval null plugins
-# zinit ice wait"1"
-zinit light NICHOLAS85/z-a-eval 
-zinit ice wait id-as"starship_prompt" has"starship" lucid \
-      eval'starship init zsh' run-atpull
-zinit light zdharma-continuum/null
-
-# Better folder navigation
-zinit ice wait id-as"zoxide_movement" has"zoxide" lucid \
-      eval'zoxide init zsh' run-atpull
-zinit light zdharma-continuum/null
-
+# Shell integrations
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
