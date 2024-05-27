@@ -4,7 +4,14 @@ return {
     { "tpope/vim-surround",                  event = "VeryLazy" },
     { "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" },
     { "andymass/vim-matchup",                event = "BufReadPre" },
-    { "shortcuts/no-neck-pain.nvim",         event = "VeryLazy",  version = "*" },
+    {
+        "shortcuts/no-neck-pain.nvim",
+        event = "VeryLazy",
+        version = "*",
+        config = function()
+            vim.cmd "NoNeckPain"
+        end
+    },
     {
         "numToStr/Comment.nvim",
         event = "VeryLazy",
@@ -54,7 +61,11 @@ return {
                 local name = vim.fn.input("Session name: ")
                 mini.write(name)
             end
-            vim.keymap.set("n", "<leader>sl", mini.read, { noremap = true, desc = "Load session" })
+            local read = function()
+                local name = vim.fn.input("Session name: ")
+                mini.read(name)
+            end
+            vim.keymap.set("n", "<leader>sl", read, { noremap = true, desc = "Load session" })
             vim.keymap.set("n", "<leader>sw", write, { noremap = true, desc = "Write session" })
         end,
         version = false
