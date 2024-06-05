@@ -5,7 +5,7 @@ local map = vim.keymap.set
 
 -- function to attach completion when setting up lsp
 function M.keymaps(client, buffnr)
-    local fzf = require "fzf-lua"
+    local tb = require "telescope.builtin"
     -- keymaps
     map("n", "<leader>k", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
     map("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP go to definition", buffer = buffnr })
@@ -21,23 +21,11 @@ function M.keymaps(client, buffnr)
         { noremap = true, desc = "LSP signature help", buffer = buffnr }
     )
     map("n", "<leader>la", vim.lsp.buf.code_action, { noremap = true, desc = "LSP code actions", buffer = buffnr })
-    -- FZF/Trouble maps
-    map("n", "gi", fzf.lsp_implementations, { noremap = true, desc = "LSP Implementations", buffer = buffnr })
-    map("n", "gr", fzf.lsp_references, { noremap = true, desc = "LSP references", buffer = buffnr })
-    map("n", "<leader>ls", fzf.lsp_document_symbols, { noremap = true, desc = "LSP document symbols", buffer = buffnr })
-    map("n", "<leader>lS", fzf.lsp_workspace_symbols, { noremap = true, desc = "LSP workspace symbols", buffer = buffnr })
-    map(
-        "n",
-        "<leader>dw",
-        "<cmd>TroubleToggle workspace_diagnostics<CR>",
-        { noremap = true, desc = "Trouble workspace diagnostics", buffer = buffnr }
-    )
-    map(
-        "n",
-        "<leader>db",
-        "<cmd>TroubleToggle document_diagnostics<CR>",
-        { noremap = true, desc = "Trouble document diagnostics", buffer = buffnr }
-    )
+    -- Telescope maps
+    map("n", "gi", tb.lsp_implementations, { noremap = true, desc = "LSP Implementations", buffer = buffnr })
+    map("n", "gr", tb.lsp_references, { noremap = true, desc = "LSP references", buffer = buffnr })
+    map("n", "<leader>ls", tb.lsp_document_symbols, { noremap = true, desc = "LSP document symbols", buffer = buffnr })
+    map("n", "<leader>lS", tb.lsp_workspace_symbols, { noremap = true, desc = "LSP workspace symbols", buffer = buffnr })
     if client.name == "rust_analyzer" then
         -- TODO: Make this a proper plugin
         map(
@@ -72,7 +60,7 @@ function M.capabilities(client, buffnr)
         local group_name = "lsp_document_codelens" .. buffnr
         local group = vim.api.nvim_create_augroup(group_name, { clear = true })
         local callback = function()
-            vim.lsp.codelens.refresh()
+            vim.lsp.codelens.refresh({ bufnr = 0 })
         end
         aucmd({ "BufEnter", "BufWritePost" }, { callback = callback, group = group, buffer = buffnr })
         map("n", "<leader>lR", vim.lsp.codelens.run, { noremap = true, desc = "LSP run lens", buffer = buffnr })

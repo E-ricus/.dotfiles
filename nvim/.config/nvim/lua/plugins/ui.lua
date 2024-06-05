@@ -45,23 +45,39 @@ return {
 
     {
         "folke/trouble.nvim",
-        event = "VeryLazy",
-        config = function()
-            local trouble = require "trouble"
-            trouble.setup {
-                auto_preview = true,
-                auto_fold = true,
-            }
-            local map = vim.keymap.set
-
-            -- Trouble
-            map("n", "<leader>tq", "<cmd>TroubleToggle quickfix<CR>", { noremap = true, desc = "Trouble quickfix" })
-            map("n", "<leader>tn", function()
-                trouble.next { skip_groups = true, jump = true }
-            end, { noremap = true, desc = "Trouble next" })
-            map("n", "<leader>tp", function()
-                trouble.previous { skip_groups = true, jump = true }
-            end, { noremap = true, desc = "Trouble previous" })
-        end,
-    },
+        opts = {}, -- for default options, refer to the configuration section for custom setup.
+        cmd = "Trouble",
+        keys = {
+            {
+                "<leader>dw",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
+            },
+            {
+                "<leader>db",
+                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
+            },
+            {
+                "<leader>ts",
+                "<cmd>Trouble symbols toggle focus=false<cr>",
+                desc = "Symbols (Trouble)",
+            },
+            {
+                "<leader>tl",
+                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+                desc = "LSP Definitions / references / ... (Trouble)",
+            },
+            {
+                "<leader>tL",
+                "<cmd>Trouble loclist toggle<cr>",
+                desc = "Location List (Trouble)",
+            },
+            {
+                "<leader>tq",
+                "<cmd>Trouble qflist toggle<cr>",
+                desc = "Quickfix List (Trouble)",
+            },
+        },
+    }
 }

@@ -1,6 +1,7 @@
 return {
     "ibhagwan/fzf-lua",
     event = "VeryLazy",
+    enabled = false,
     -- optional for icon support
     config = function() -- calling `setup` is optional for customization
         local fzf = require "fzf-lua"
