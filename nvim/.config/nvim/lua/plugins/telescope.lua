@@ -11,14 +11,23 @@ local M = {
 function M.config()
     local telescope = require "telescope"
     local actions_layout = require "telescope.actions.layout"
+    local open_with_trouble = require("trouble.sources.telescope").open
+
+    -- Use this to add more results without clearing the trouble list
+    local add_to_trouble = require("trouble.sources.telescope").add
+
     telescope.setup {
         defaults = {
             mappings = {
                 n = {
                     ["<C-k>"] = actions_layout.toggle_preview,
+                    ["<C-t>"] = open_with_trouble,
+                    ["<M-t>"] = add_to_trouble,
                 },
                 i = {
                     ["<C-k>"] = actions_layout.toggle_preview,
+                    ["<C-t>"] = open_with_trouble,
+                    ["<M-t>"] = add_to_trouble,
                 },
             },
             prompt_prefix = "   ",
