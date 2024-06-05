@@ -9,7 +9,8 @@ return {
         event = "VeryLazy",
         version = "*",
         config = function()
-            vim.cmd "NoNeckPain"
+            -- Start with it
+            -- vim.cmd "NoNeckPain"
         end
     },
     {
