@@ -1,11 +1,5 @@
 local M = {}
 
-function M.search_files()
-    require("telescope.builtin").find_files {
-        find_command = { "rg", "--hidden", "--files" },
-    }
-end
-
 function M.search_all_files()
     require("telescope.builtin").find_files {
         find_command = { "rg", "--no-ignore", "--hidden", "--files" },

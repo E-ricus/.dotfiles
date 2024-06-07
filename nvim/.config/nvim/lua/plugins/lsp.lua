@@ -22,13 +22,6 @@ local M = {
             },
         },
         {
-            "j-hui/fidget.nvim",
-            tag = "legacy",
-            config = function()
-                require("fidget").setup {}
-            end,
-        },
-        {
             "E-ricus/lsp_codelens_extensions.nvim",
             config = function()
                 require("codelens_extensions").setup()

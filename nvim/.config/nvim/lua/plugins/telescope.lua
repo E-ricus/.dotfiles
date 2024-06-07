@@ -34,8 +34,6 @@ function M.config()
             selection_caret = "  ",
             multi_icon = "",
             sorting_strategy = "ascending",
-            layout_strategy = nil,
-            layout_config = nil,
             borderchars = {
                 "─",
                 "│",
@@ -69,7 +67,7 @@ function M.config()
         },
         pickers = {
             buffers = {
-                previewer = true,
+                previewer = false,
                 layout_config = {
                     width = 0.7,
                     prompt_position = "top",
@@ -142,7 +140,7 @@ function M.config()
     local builtin = require('telescope.builtin')
     local map = vim.keymap.set
 
-    map("n", "<leader>ff", ext.search_files, { noremap = true, desc = "Search files" })
+    map("n", "<leader>ff", builtin.find_files, { noremap = true, desc = "Search files" })
     map("n", "<leader>fF", ext.search_all_files, { noremap = true, desc = "Search all files" })
     map("n", "<leader>ft", ext.search_only_certain_files, { noremap = true, desc = "Search files by type" })
     map("n", "<leader>fw", ext.live_grep_preview, { noremap = true, desc = "Live grep word" })
