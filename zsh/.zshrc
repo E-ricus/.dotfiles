@@ -1,15 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-if [[ -f "/opt/homebrew/bin/brew" ]] then
-    # MacOs only
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
 ### ENVIROMENTS
 export ZSH_ENV_HOME=$HOME
 export XDG_CONFIG_HOME=$HOME/.config
@@ -27,9 +15,13 @@ alias czsh="nvim ~/.zshrc"
 alias cnvim="cd $XDG_CONFIG_HOME/nvim/ && nvim"
 alias ls="eza"
 alias la="eza -la"
-alias setdotenv="export $(grep -v '^#' .env | xargs)"
-alias unsetdotenv="unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)"
 
+# MacOs only
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+## Functions
 # Function to add a parameter to the path if it exists
 add_to_path() {
     if [[ -z "$1" ]]; then
@@ -49,6 +41,24 @@ add_to_path() {
         # echo "$1 does not exist"
         return 1
     fi
+}
+
+# Sets the enviroment variables in the given file
+set_dot_env() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: set_dot_env <env_file_path>"
+        return 1
+    fi
+    export $(grep -v '^#' $1 | xargs)
+}
+
+# Unses the enviroment variables in the given file
+unset_dot_env() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: set_dot_env <env_file_path>"
+        return 1
+    fi
+    unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)
 }
 
 # PATH
@@ -107,35 +117,42 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Add in Powerlevel10k
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+# Fixes missing snippets
+if [ ! -d "$ZSH_CACHE_DIR/completions" ]; then
+    mkdir -p "$ZSH_CACHE_DIR/completions"
+    (( ${fpath[(Ie)"$ZSH_CACHE_DIR/completions"]} )) || fpath=("$ZSH_CACHE_DIR/completions" $fpath)
+fi
 
 # Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
+zi wait lucid for \
+    zsh-users/zsh-completions \
+    zsh-users/zsh-syntax-highlighting \
+    zsh-users/zsh-autosuggestions \
+    Aloxaf/fzf-tab
+#
+# Load completions
+autoload -Uz compinit && compinit
+zi cdreplay -q
 
 # Add in snippets
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
+zi wait lucid for \
+    OMZP::git \
+    OMZP::sudo \
+    OMZP::command-not-found
+
 if command -v kubectl &> /dev/null
 then
-    zinit snippet OMZP::kubectl
+    # Snippet not working loading it manually
+    # zi snippet OMZP::kubectx
+    zi ice as"program" id-as'kubecomp' run-atpull \
+        atinit"source <(kubectl completion zsh)"
+    zi light zdharma-continuum/null
 fi
 if command -v kubectx &> /dev/null
 then
-    zinit snippet OMZP::kubectx
+    zi ice wait lucid OMZP::kubectx
 fi
-zinit snippet OMZP::command-not-found
 
-# Load completions
-autoload -Uz compinit && compinit
-
-zinit cdreplay -q
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Keybindings
 bindkey -v
@@ -165,8 +182,16 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Shell integrations
-source <(fzf --zsh)
-eval "$(zoxide init --cmd cd zsh)"
+zi ice as"program" id-as'shell-integrations' run-atpull \
+    atinit"source <(fzf --zsh);eval $(zoxide init --cmd cd zsh)"
+zi light zdharma-continuum/null
+
+# Prompt
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
