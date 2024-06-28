@@ -124,11 +124,15 @@ if [ ! -d "$ZSH_CACHE_DIR/completions" ]; then
 fi
 
 # Add in zsh plugins
-zi wait lucid for \
-    zsh-users/zsh-completions \
-    zsh-users/zsh-syntax-highlighting \
-    zsh-users/zsh-autosuggestions \
-    Aloxaf/fzf-tab
+zinit wait lucid light-mode for \
+  atinit"zicompinit; zicdreplay" \
+      zdharma-continuum/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
+
+zi light Aloxaf/fzf-tab
 #
 # Load completions
 autoload -Uz compinit && compinit
