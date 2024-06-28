@@ -12,10 +12,8 @@ map({ "n", "v" }, "<C-h>", "<cmd>noh<CR>", { noremap = true, desc = "Clear searc
 
 map({ "n", "v" }, "<leader>d", [["_d]], { noremap = true, desc = "Delete without yank" })
 
-map({ "x", "v" }, "<leader>p", [["_dP]], { noremap = true, desc = "Replace selected with yanked" })
-
 map({ "n", "v" }, "<leader>y", [["+y]], { noremap = true, desc = "Copy to clipboard" })
-map("n", "<leader>Y", [["+Y]], { noremap = true, desc = "Copy to clipboard" })
+map("n", "<leader>p", [["+p]], { noremap = true, desc = "Paste from clipboard" })
 
 map("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, desc = "Move line down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, desc = "Move line up" })

@@ -27,6 +27,8 @@ alias czsh="nvim ~/.zshrc"
 alias cnvim="cd $XDG_CONFIG_HOME/nvim/ && nvim"
 alias ls="eza"
 alias la="eza -la"
+alias setdotenv="export $(grep -v '^#' .env | xargs)"
+alias unsetdotenv="unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)"
 
 # Function to add a parameter to the path if it exists
 add_to_path() {
@@ -57,7 +59,7 @@ add_to_path "/opt/homebrew/bin"
 add_to_path "$HOME/.cargo/bin"
 add_to_path "$HOME/.zig/bin"
 add_to_path "$HOME/roc"
-add_to_path "$HOME/.local/share/nvim/mason/bin"
+# add_to_path "$HOME/.local/share/nvim/mason/bin"
 add_to_path "$HOME/go/bin"
 add_to_path "$HOME/google-cloud-sdk/bin"
 add_to_path "$HOME/.local/share/coursier/bin"
