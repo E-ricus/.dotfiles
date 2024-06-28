@@ -132,14 +132,15 @@ zinit wait lucid light-mode for \
   blockf atpull'zinit creinstall -q .' \
       zsh-users/zsh-completions
 
-zi light Aloxaf/fzf-tab
+zi ice wait"1" lucid
+zi load Aloxaf/fzf-tab
 #
 # Load completions
 autoload -Uz compinit && compinit
 zi cdreplay -q
 
 # Add in snippets
-zi wait lucid for \
+zi wait"2" lucid for \
     OMZP::git \
     OMZP::sudo \
     OMZP::command-not-found
@@ -148,13 +149,14 @@ if command -v kubectl &> /dev/null
 then
     # Snippet not working loading it manually
     # zi snippet OMZP::kubectx
-    zi ice as"program" id-as'kubecomp' run-atpull \
+    zi ice wait"1" lucid as"program" id-as'kubecomp' run-atpull \
         atinit"source <(kubectl completion zsh)"
     zi light zdharma-continuum/null
 fi
 if command -v kubectx &> /dev/null
 then
-    zi ice wait lucid OMZP::kubectx
+    zi ice wait"1" lucid
+    zi snippet OMZP::kubectx
 fi
 
 
@@ -186,12 +188,13 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Shell integrations
-zi ice as"program" id-as'shell-integrations' run-atpull \
+zi ice wait"1" lucid as"program" id-as'shell-integrations' run-atpull \
     atinit"source <(fzf --zsh);eval $(zoxide init --cmd cd zsh)"
 zi light zdharma-continuum/null
 
 # Prompt
-zinit ice as"command" from"gh-r" \
+PS1="READY > "
+zi ice wait"!0" lucid as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
