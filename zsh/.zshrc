@@ -114,14 +114,18 @@ if [ ! -d "$ZINIT_HOME" ]; then
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-# Source/Load zinit
-source "${ZINIT_HOME}/zinit.zsh"
-
 # Fixes missing snippets
+# TODO: Remove if it is fixed in zinit
 if [ ! -d "$ZSH_CACHE_DIR/completions" ]; then
     mkdir -p "$ZSH_CACHE_DIR/completions"
-    (( ${fpath[(Ie)"$ZSH_CACHE_DIR/completions"]} )) || fpath=("$ZSH_CACHE_DIR/completions" $fpath)
 fi
+(( ${fpath[(Ie)"$ZSH_CACHE_DIR/completions"]} )) || fpath=("$ZSH_CACHE_DIR/completions" $fpath)
+
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
 
 # Add in zsh plugins
 zinit wait lucid light-mode for \
@@ -135,9 +139,6 @@ zinit wait lucid light-mode for \
 zi ice wait"1" lucid
 zi load Aloxaf/fzf-tab
 #
-# Load completions
-autoload -Uz compinit && compinit
-zi cdreplay -q
 
 # Add in snippets
 zi wait"2" lucid for \
@@ -147,16 +148,8 @@ zi wait"2" lucid for \
 
 if command -v kubectl &> /dev/null
 then
-    # Snippet not working loading it manually
-    # zi snippet OMZP::kubectx
-    zi ice wait"1" lucid as"program" id-as'kubecomp' run-atpull \
-        atinit"source <(kubectl completion zsh)"
-    zi light zdharma-continuum/null
-fi
-if command -v kubectx &> /dev/null
-then
-    zi ice wait"1" lucid
-    zi snippet OMZP::kubectx
+    zi ice wait lucid
+    zi snippet OMZP::kubectl
 fi
 
 
