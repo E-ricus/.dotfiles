@@ -114,18 +114,17 @@ if [ ! -d "$ZINIT_HOME" ]; then
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-# Fixes missing snippets
-# TODO: Remove if it is fixed in zinit
-if [ ! -d "$ZSH_CACHE_DIR/completions" ]; then
-    mkdir -p "$ZSH_CACHE_DIR/completions"
-fi
-(( ${fpath[(Ie)"$ZSH_CACHE_DIR/completions"]} )) || fpath=("$ZSH_CACHE_DIR/completions" $fpath)
-
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+# Fixes missing snippets
+# # TODO: Remove if it is fixed in zinit
+if [[ ! -d "$ZSH_CACHE_DIR/completions" ]]; then
+    mkdir -p "$ZSH_CACHE_DIR/completions"
+fi
+(( ${fpath[(Ie)"$ZSH_CACHE_DIR/completions"]} )) || fpath=("$ZSH_CACHE_DIR/completions" $fpath)
 
 # Add in zsh plugins
 zinit wait lucid light-mode for \
