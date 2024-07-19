@@ -1,4 +1,4 @@
-theme = "darcula-solid"
+theme = "gruvbox"
 
 [editor]
 line-number = "relative"

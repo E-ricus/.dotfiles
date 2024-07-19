@@ -61,6 +61,19 @@ unset_dot_env() {
     unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)
 }
 
+# Conda init
+condainit() {
+    __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "$HOME/miniconda3/etc/profile.d/conda.sh"
+        fi
+    fi
+    unset __conda_setup
+}
+
 # PATH
 add_to_path "$HOME/.bin"
 add_to_path "$HOME/.local/bin"
@@ -69,7 +82,7 @@ add_to_path "/opt/homebrew/bin"
 add_to_path "$HOME/.cargo/bin"
 add_to_path "$HOME/.zig/bin"
 add_to_path "$HOME/roc"
-# add_to_path "$HOME/.local/share/nvim/mason/bin"
+add_to_path "$HOME/.local/share/nvim/mason/bin"
 add_to_path "$HOME/go/bin"
 add_to_path "$HOME/google-cloud-sdk/bin"
 add_to_path "$HOME/.local/share/coursier/bin"
@@ -179,11 +192,6 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# Shell integrations
-zi ice wait"1" lucid as"program" id-as'shell-integrations' run-atpull \
-    atinit"source <(fzf --zsh);eval $(zoxide init --cmd cd zsh)"
-zi light zdharma-continuum/null
-
 # Prompt
 PS1="READY > "
 zi ice wait"!0" lucid as"command" from"gh-r" \
@@ -191,7 +199,12 @@ zi ice wait"!0" lucid as"command" from"gh-r" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
+# Shell integrations
+zi ice wait"1" lucid as"program" id-as'zoxide' run-atpull \
+    atinit"source <(fzf --zsh);eval $(zoxide init --cmd cd zsh)"
+zi light zdharma-continuum/null
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+zi ice wait"1" lucid as"program" id-as'condainit' run-atpull \
+    atinit"condainit"
+zi light zdharma-continuum/null
+
