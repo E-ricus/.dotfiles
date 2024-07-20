@@ -74,6 +74,54 @@ condainit() {
     unset __conda_setup
 }
 
+# Activate mojo
+activate_mojo() {
+    if [[ ! -d "$HOME/.modular" ]]; then
+        echo "Modular not installed"
+        return 1
+    fi
+
+    eval "conda activate mojo"
+
+    if [ ! $? -eq 0 ]; then
+        eval "conda create -n mojo python=3.10 -y && conda activate mojo"
+    fi
+
+    if [[ ! -d "$MODULAR_HOME/pkg/packages.modular.com_mojo/" ]]; then
+        echo "Installing mojo"
+        eval "modular install mojo"
+    fi
+
+    # Fedora Only (mojo not fully supported natively) Workaround:
+    # https://github.com/modularml/mojo/issues/855#issuecomment-2116834443
+    # export LD_LIBRARY_PATH=/opt/missing-mojo-deps/lib/x86_64-linux-gnu:/opt/missing-mojo-deps/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+    add_to_path "$MODULAR_HOME/pkg/packages.modular.com_mojo/bin"
+}
+
+# Activate mojo nightly
+activate_mojo_nightly () {
+    if [[ ! -d "$HOME/.modular" ]]; then
+        echo "Modular not installed"
+        return 1
+    fi
+
+    eval "conda activate mojo-nightly"
+
+    if [ ! $? -eq 0 ]; then
+        eval "conda create -n mojo-nightly python=3.10 -y && conda activate mojo-nightly"
+    fi
+
+    if [[ ! -d "$MODULAR_HOME/pkg/packages.modular.com_nightly_mojo/" ]]; then
+        echo "Installing mojo nightly"
+        eval "modular install nightly/mojo"
+    fi
+
+    # Fedora Only (mojo not fully supported natively) Workaround:
+    # https://github.com/modularml/mojo/issues/855#issuecomment-2116834443
+    # export LD_LIBRARY_PATH=/opt/missing-mojo-deps/lib/x86_64-linux-gnu:/opt/missing-mojo-deps/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+    add_to_path "$MODULAR_HOME/pkg/packages.modular.com_nightly_mojo/bin"
+}
+
 # PATH
 add_to_path "$HOME/.bin"
 add_to_path "$HOME/.local/bin"
@@ -115,7 +163,6 @@ fi
 #Mojo
 if [[ -d "$HOME/.modular" ]]; then
     export MODULAR_HOME="$HOME/.modular"
-    add_to_path "$MODULAR_HOME/pkg/packages.modular.com_mojo/bin"
 fi
 
 # Set the directory we want to store zinit and plugins
