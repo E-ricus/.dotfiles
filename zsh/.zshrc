@@ -21,106 +21,13 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-## Functions
-# Function to add a parameter to the path if it exists
-add_to_path() {
-    if [[ -z "$1" ]]; then
-        echo "Usage: add_to_path_if_exists <parameter>"
-        return 1
-    fi
-
-    if [[ -e "$1" ]]; then
-        if [[ -d "$1" ]]; then
-            export PATH="$1:$PATH"
-            # echo "$1 added to PATH"
-        else
-            # echo "$1 is not a directory"
-            return 1
-        fi
-    else
-        # echo "$1 does not exist"
-        return 1
-    fi
-}
-
-# Sets the enviroment variables in the given file
-set_dot_env() {
-    if [[ -z "$1" ]]; then
-        echo "Usage: set_dot_env <env_file_path>"
-        return 1
-    fi
-    export $(grep -v '^#' $1 | xargs)
-}
-
-# Unses the enviroment variables in the given file
-unset_dot_env() {
-    if [[ -z "$1" ]]; then
-        echo "Usage: set_dot_env <env_file_path>"
-        return 1
-    fi
-    unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)
-}
-
-# Conda init
-condainit() {
-    __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "$HOME/miniconda3/etc/profile.d/conda.sh"
-        fi
-    fi
-    unset __conda_setup
-}
-
-# Activate mojo
-activate_mojo() {
-    if [[ ! -d "$HOME/.modular" ]]; then
-        echo "Modular not installed"
-        return 1
-    fi
-
-    eval "conda activate mojo"
-
-    if [ ! $? -eq 0 ]; then
-        eval "conda create -n mojo python=3.10 -y && conda activate mojo"
-    fi
-
-    if [[ ! -d "$MODULAR_HOME/pkg/packages.modular.com_mojo/" ]]; then
-        echo "Installing mojo"
-        eval "modular install mojo"
-    fi
-
-    # Fedora Only (mojo not fully supported natively) Workaround:
-    # https://github.com/modularml/mojo/issues/855#issuecomment-2116834443
-    # export LD_LIBRARY_PATH=/opt/missing-mojo-deps/lib/x86_64-linux-gnu:/opt/missing-mojo-deps/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
-    add_to_path "$MODULAR_HOME/pkg/packages.modular.com_mojo/bin"
-}
-
-# Activate mojo nightly
-activate_mojo_nightly () {
-    if [[ ! -d "$HOME/.modular" ]]; then
-        echo "Modular not installed"
-        return 1
-    fi
-
-    eval "conda activate mojo-nightly"
-
-    if [ ! $? -eq 0 ]; then
-        eval "conda create -n mojo-nightly python=3.10 -y && conda activate mojo-nightly"
-    fi
-
-    if [[ ! -d "$MODULAR_HOME/pkg/packages.modular.com_nightly_mojo/" ]]; then
-        echo "Installing mojo nightly"
-        eval "modular install nightly/mojo"
-    fi
-
-    # Fedora Only (mojo not fully supported natively) Workaround:
-    # https://github.com/modularml/mojo/issues/855#issuecomment-2116834443
-    # export LD_LIBRARY_PATH=/opt/missing-mojo-deps/lib/x86_64-linux-gnu:/opt/missing-mojo-deps/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
-    add_to_path "$MODULAR_HOME/pkg/packages.modular.com_nightly_mojo/bin"
-}
+# Functions
+if [[ -d "$HOME/.zfuncs" ]]; then
+    fpath+=("$HOME/.zfuncs")
+    for funcfile in ~/.zfuncs/*.zsh; do
+        source $funcfile
+    done
+fi
 
 # PATH
 add_to_path "$HOME/.bin"
@@ -139,8 +46,6 @@ add_to_path "$HOME/.cabal/bin"
 add_to_path "$HOME/Odin"
 add_to_path "$HOME/swift/usr/bin"
 add_to_path "$HOME/miniconda3/bin"
-# MacOnly
-add_to_path "/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin"
 
 # asdf
 if [[ -d "$HOME/.asdf" ]]; then
