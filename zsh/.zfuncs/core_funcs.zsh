@@ -1,7 +1,7 @@
 # Function to add a parameter to the path if it exists
 add_to_path() {
     if [[ -z "$1" ]]; then
-        echo "Usage: add_to_path_if_exists <parameter>"
+        echo "Usage: add_to_path <parameter>"
         return 1
     fi
 
