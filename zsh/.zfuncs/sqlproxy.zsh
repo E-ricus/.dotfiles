@@ -1,4 +1,4 @@
-sql_proxy_connect() {
+function sql_proxy_connect() {
     if [[ -z "$1" || -z "$2" ]]; then
         echo "Usage: sql_proxy_connect <db_name> <env>"
         return 1

@@ -1,5 +1,5 @@
 # Conda init
-condainit() {
+function condainit() {
     __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
@@ -12,7 +12,7 @@ condainit() {
 }
 
 # Activate mojo
-activate_mojo() {
+function activate_mojo() {
     if [[ ! -d "$HOME/.modular" ]]; then
         echo "Modular not installed"
         return 1
@@ -36,7 +36,7 @@ activate_mojo() {
 }
 
 # Activate mojo nightly
-activate_mojo_nightly () {
+function activate_mojo_nightly () {
     if [[ ! -d "$HOME/.modular" ]]; then
         echo "Modular not installed"
         return 1

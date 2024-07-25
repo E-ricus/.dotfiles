@@ -1,5 +1,5 @@
 # Sets the enviroment variables in the given file
-set_dot_env() {
+function set_dot_env() {
     if [[ -z "$1" ]]; then
         echo "Usage: set_dot_env <env_file_path>"
         return 1
@@ -8,7 +8,7 @@ set_dot_env() {
 }
 
 # Unses the enviroment variables in the given file
-unset_dot_env() {
+function unset_dot_env() {
     if [[ -z "$1" ]]; then
         echo "Usage: set_dot_env <env_file_path>"
         return 1

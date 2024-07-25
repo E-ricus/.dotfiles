@@ -153,7 +153,7 @@ zinit light starship/starship
 
 # Shell integrations
 zi ice wait"1" lucid as"program" id-as'zoxide' run-atpull \
-    atinit"source <(fzf --zsh);eval $(zoxide init --cmd cd zsh)"
+    atinit"source <(fzf --zsh);eval $(zoxide init zsh)"
 zi light zdharma-continuum/null
 
 zi ice wait"1" lucid as"program" id-as'condainit' run-atpull \
