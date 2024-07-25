@@ -102,7 +102,6 @@ zinit wait lucid light-mode for \
 
 zi ice wait"1" lucid
 zi load Aloxaf/fzf-tab
-#
 
 # Add in snippets
 zi wait"2" lucid for \
@@ -115,7 +114,6 @@ then
     zi ice wait lucid
     zi snippet OMZP::kubectl
 fi
-
 
 # Keybindings
 bindkey -v
@@ -145,11 +143,12 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Prompt
-PS1="READY > "
-zi ice wait"!0" lucid as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-          atpull"%atclone" src"init.zsh"
-zinit light starship/starship
+eval "$(starship init zsh)"
+# Something weird happening
+# PS1="READY > "
+# zi ice wait"0" lucid as"program" id-as'starship' run-atpull \
+#     atinit"eval $(starship init zsh)"
+# zi light zdharma-continuum/null
 
 # Shell integrations
 zi ice wait"1" lucid as"program" id-as'zoxide' run-atpull \
