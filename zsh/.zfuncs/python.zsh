@@ -11,20 +11,20 @@ function condainit() {
     unset __conda_setup
 }
 
-function activate_mojo() {
+function mojo_activate() {
     local nightly=0
     if [[ "$1" == "--nightly" ]]; then
         nightly=1
     fi
 
     local conda_env="mojo"
-    local mojo_dir="modular.com_mojo"
+    local mojo_dir="packages.modular.com_mojo"
     local install_msg="Installing mojo"
     local install_cmd="modular install mojo"
 
     if [[ $nightly -eq 1 ]]; then
         conda_env="mojo-nightly"
-        mojo_dir="modular.com_nightly_mojo"
+        mojo_dir="packages.modular.com_nightly_mojo"
         install_msg="Installing nightly mojo"
         install_cmd="modular install nightly/mojo"
     fi

@@ -1,4 +1,4 @@
-function activate_mojo
+function mojo_activate
     set nightly 0
     if test (count $argv) -gt 0
         if test $argv[1] = "--nightly"
@@ -7,13 +7,13 @@ function activate_mojo
     end
 
     set conda_env "mojo"
-    set mojo_dir "modular.com_mojo"
+    set mojo_dir "packages.modular.com_mojo"
     set install_msg "Installing mojo"
     set install_cmd "modular install mojo"
 
     if test $nightly -eq 1
         set conda_env "mojo-nightly"
-        set mojo_dir "modular.com_nightly_mojo"
+        set mojo_dir "packages.modular.com_nightly_mojo"
         set install_msg "Installing nightly mojo"
         set install_cmd "modular install nightly/mojo"
     end
