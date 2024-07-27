@@ -12,23 +12,32 @@ function sql_proxy_connect() {
     local connection=""
     case "$1" in
       fulfillment)
-        connection="flink-core-${2}:europe-west3:fulfillment"
+        connection="flink-core-"$2":europe-west3:fulfillment"
         ;;
       flow-management)
-        connection="flink-rider-engagement-${2}:europe-west3:flow-management"
+        connection="flink-rider-engagement-"$2":europe-west3:flow-management"
         ;;
       rider-state)
-        connection="flink-ridertech-${$2}:europe-west3:rider-state-service-${$2}"
+        connection="flink-ridertech-"$2":europe-west3:rider-state-service-$2"
         ;;
       equipment)
-        connection="flink-rider-engagement-${$2}:europe-west3:rider-equipment"
+        connection="flink-rider-engagement-"$2":europe-west3:rider-equipment"
         ;;
       fleet)
-        connection="flink-fleet-management-${$2}:europe-west3:fleet-management-${$2}"
+        connection="flink-fleet-management-"$2":europe-west3:fleet-management-$2"
+        ;;
+      ops-staff-info)
+        connection="flink-core-"$2":europe-west3:ops-staff-info"
         ;;
       *)
-        echo "Undefined db"
-        return 1
+        echo "Undefined database name: $1."
+        read -q "CHOICE?Do you want to connect in flink-core [y/n]?\n"
+        if [[ $CHOICE == "Y" || $CHOICE == "y" ]]; then
+            connection="flink-core-"$2":europe-west3:$1"
+        else
+            echo "Add the database in the script with the correct connection string."
+            return 1
+        fi
         ;;
     esac
     local cmd="$HOME/cloud-sql-proxy --address 0.0.0.0 --port $port $connection"
