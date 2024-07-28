@@ -35,6 +35,24 @@
         },
         {
             "before": [
+                "]",
+                "g"
+            ],
+            "commands": [
+                "workbench.action.editor.nextChange"
+            ]
+        },
+        {
+            "before": [
+                "[",
+                "g"
+            ],
+            "commands": [
+                "workbench.action.editor.previousChange`"
+            ]
+        },
+        {
+            "before": [
                 "g",
                 "i"
             ],
@@ -192,5 +210,7 @@
     },
     "workbench.colorTheme": "Gruvbox Material Dark",
     "rust-analyzer.inlayHints.typeHints.enable": false,
-    "gitlens.currentLine.enabled": false
+    "gitlens.currentLine.enabled": false,
+    "vim.highlightedyank.enable": true,
+    "vim.searchHighlightTextColor": "rgba(250, 240, 170, 0.5)"
 }

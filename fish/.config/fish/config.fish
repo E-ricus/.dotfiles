@@ -84,6 +84,6 @@ if type -q fzf
     fzf --fish | source
 end
 
-if type -q conda
-    conda_init
-end
+# if type -q conda
+#     conda_init
+# end

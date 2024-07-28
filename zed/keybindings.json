@@ -1,0 +1,59 @@
+[
+  {
+    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "space `": "workspace::ToggleLeftDock",
+      "space space": "pane::AlternateFile",
+      "space k": "editor::Hover",
+      "space t": "workspace::ToggleBottomDock",
+      "g r": "editor::FindAllReferences",
+      "g d": "editor::GoToDefinition",
+      "g i": "editor::GoToImplementation",
+      "ctrl-space": "editor::ShowCompletions",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPrevDiagnostic",
+      "] g": "editor::GoToHunk",
+      "[ g": "editor::GoToPrevHunk",
+      "space f f": "file_finder::Toggle",
+      "space f b": "tab_switcher::Toggle",
+      "space f w": "workspace::NewSearch",
+      "space l a": "editor::ToggleCodeActions",
+      "space l r": "editor::Rename",
+      "space /": [
+        "editor::ToggleComments",
+        {
+          "advance_downwards": false
+        }
+      ]
+    }
+  },
+  {
+    "context": "AssistantPanel && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "ctrl-n": "search::SelectNextMatch",
+      "ctrl-shift-n": "search::SelectPrevMatch"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "space `": "workspace::ToggleLeftDock",
+      "space space": "pane::AlternateFile",
+      "space k": "editor::Hover",
+      "space t": "workspace::ToggleBottomDock",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPrevDiagnostic",
+      "] g": "editor::GoToHunk",
+      "[ g": "editor::GoToPrevHunk",
+      "space f f": "file_finder::Toggle",
+      "space f b": "tab_switcher::Toggle",
+      "space f w": "search::FocusSearch",
+      "space /": [
+        "editor::ToggleComments",
+        {
+          "advance_downwards": false
+        }
+      ]
+    }
+  }
+]
