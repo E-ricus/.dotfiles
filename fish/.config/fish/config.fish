@@ -31,7 +31,7 @@ add_to_path /opt/homebrew/bin
 add_to_path $HOME/.cargo/bin
 add_to_path $HOME/zigup/zig-out/bin
 add_to_path $HOME/roc
-add_to_path $HOME/.local/share/nvim/mason/bin
+# add_to_path $HOME/.local/share/nvim/mason/bin
 add_to_path $HOME/go/bin
 add_to_path $HOME/google-cloud-sdk/bin
 add_to_path $HOME/.local/share/coursier/bin

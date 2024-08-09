@@ -209,7 +209,7 @@ return {
         end,
     },
 
-    -- Colors
+    -- Themes
     {
         "catppuccin/nvim",
         enabled = false,
@@ -217,16 +217,6 @@ return {
         priority = 1000,
         config = function()
             vim.cmd.colorscheme "catppuccin"
-        end,
-    },
-    {
-        "ribru17/bamboo.nvim",
-        enabled = false,
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require("bamboo").setup {}
-            require("bamboo").load()
         end,
     },
     {
@@ -240,11 +230,21 @@ return {
     },
     {
         "sainnhe/gruvbox-material",
-        enabled = true,
+        enabled = false,
         lazy = false,
         priority = 1000,
         config = function()
             vim.cmd "colorscheme gruvbox-material"
         end,
     },
+    {
+        "ellisonleao/gruvbox.nvim",
+        enabled = true,
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd "colorscheme gruvbox"
+        end,
+        opts = ...
+    }
 }

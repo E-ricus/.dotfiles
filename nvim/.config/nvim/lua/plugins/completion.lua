@@ -95,9 +95,9 @@ function M.config()
                 },
             },
         },
-        completion = {
-            autocomplete = false,
-        },
+        -- completion = {
+        --     autocomplete = false,
+        -- },
         mapping = {
             ["<C-p>"] = mapping.select_prev_item(),
             ["<C-n>"] = mapping.select_next_item(),
@@ -121,7 +121,7 @@ function M.config()
         sources = {
             { name = "nvim_lsp" },
             { name = "luasnip" },
-            { name = "buffer" },
+            -- { name = "buffer" },
             { name = "nvim_lua" },
             { name = "path" },
             { name = "conjure" },
