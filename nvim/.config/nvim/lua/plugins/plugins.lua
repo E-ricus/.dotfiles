@@ -239,12 +239,22 @@ return {
     },
     {
         "ellisonleao/gruvbox.nvim",
-        enabled = true,
+        enabled = false,
         lazy = false,
         priority = 1000,
         config = function()
             vim.cmd "colorscheme gruvbox"
         end,
         opts = ...
+    },
+    {
+        "folke/tokyonight.nvim",
+        enabled = true,
+        config = function()
+            vim.cmd "colorscheme tokyonight"
+        end,
+        lazy = false,
+        priority = 1000,
+        opts = {},
     }
 }
