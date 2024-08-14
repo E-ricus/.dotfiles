@@ -8,6 +8,7 @@ function M.keymaps(client, buffnr)
     local tb = require "telescope.builtin"
     -- keymaps
     map("n", "<leader>k", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
+    map("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
     map("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP go to definition", buffer = buffnr })
     map("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "LSP go to declaration", buffer = buffnr })
     map("n", "<leader>lr", vim.lsp.buf.rename, { noremap = true, desc = "LSP rename", buffer = buffnr })
