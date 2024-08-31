@@ -195,3 +195,7 @@ run = "move-node-to-workspace W"
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
 run = "move-node-to-workspace B"
+
+[[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
+run = "move-node-to-workspace Z"

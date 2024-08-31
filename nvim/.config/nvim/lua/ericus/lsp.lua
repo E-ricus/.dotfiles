@@ -86,7 +86,6 @@ function M.capabilities(client, buffnr)
 end
 
 M.servers = {
-    als = {},
     mojo = {},
     pyright = {},
     clojure_lsp = {},
