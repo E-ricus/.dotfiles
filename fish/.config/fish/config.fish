@@ -40,6 +40,7 @@ add_to_path $HOME/.cabal/bin
 add_to_path $HOME/Odin
 add_to_path $HOME/swift/usr/bin
 add_to_path $HOME/miniconda3/bin
+add_to_path $HOME/c3c/build
 
 # Asdf
 if test -d $HOME/.asdf

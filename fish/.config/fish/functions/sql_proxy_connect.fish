@@ -6,7 +6,7 @@ function sql_proxy_connect
 
     set db_name $argv[1]
     set env $argv[2]
-    set port "1234"
+    set port 1234
     if test (count $argv) -ge 3
         set port $argv[3]
     end
@@ -23,12 +23,14 @@ function sql_proxy_connect
             set connection "flink-rider-engagement-$env:europe-west3:rider-equipment"
         case fleet
             set connection "flink-fleet-management-$env:europe-west3:fleet-management-$env"
-        case ops-staff-info
+        case ops-staff
             set connection "flink-core-$env:europe-west3:ops-staff-info"
+        case qsm
+            set connection "flink-ridertech-$env:europe-west3:quinyx-rider-shifts-$env"
         case '*'
             echo "Undefined database name: $db_name."
             read -P "Do you want to connect in flink-core [y/n]? " choice
-            if test $choice = "Y" -o $choice = "y"
+            if test $choice = Y -o $choice = y
                 set connection "flink-core-$env:europe-west3:$db_name"
             else
                 echo "Add the database in the script with the correct connection string."
