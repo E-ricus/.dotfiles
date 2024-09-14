@@ -68,8 +68,8 @@ function M.capabilities(client, buffnr)
         map("n", "<leader>ll", vim.lsp.codelens.refresh, { noremap = true, desc = "LSP refresh lens", buffer = buffnr })
     end
 
-    -- dissable tsserver format in pro of prettier/prettierd
-    if client.name == "tsserver" then
+    -- dissable ts_ls format in pro of prettier/prettierd
+    if client.name == "ts_ls" then
         capabilities.documentFormattingProvider = false
     end
 
@@ -111,7 +111,7 @@ M.servers = {
             },
         },
     },
-    tsserver = {},
+    ts_ls = {},
     lua_ls = {
         settings = {
             Lua = {

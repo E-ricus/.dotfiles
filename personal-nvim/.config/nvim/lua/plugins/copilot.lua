@@ -1,6 +1,7 @@
 return {
     "zbirenbaum/copilot.lua",
     event = "InsertEnter",
+    enabled = false,
     config = function()
         local copilot = require("copilot")
         copilot.setup({
