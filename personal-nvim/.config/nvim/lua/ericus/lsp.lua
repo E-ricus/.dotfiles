@@ -3,6 +3,21 @@ local M = {}
 local aucmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
+local function hide_diagnostics()
+    vim.diagnostic.config({ -- https://neovim.io/doc/user/diagnostic.html
+        virtual_text = false,
+        signs = false,
+        underline = false,
+    })
+end
+local function show_diagnostics()
+    vim.diagnostic.config({
+        virtual_text = true,
+        signs = true,
+        underline = true,
+    })
+end
+
 -- function to attach completion when setting up lsp
 function M.keymaps(client, buffnr)
     local tb = require "telescope.builtin"
@@ -36,6 +51,8 @@ function M.keymaps(client, buffnr)
             { noremap = true, desc = "Expand Rust macro", buffer = buffnr }
         )
     end
+    vim.keymap.set("n", "<leader>dh", hide_diagnostics)
+    vim.keymap.set("n", "<leader>ds", show_diagnostics)
 end
 
 function M.capabilities(client, buffnr)
