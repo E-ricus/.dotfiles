@@ -26,9 +26,12 @@ function sql_proxy_connect() {
       fleet)
         connection="flink-fleet-management-"$2":europe-west3:fleet-management-$2"
         ;;
-      ops-staff-info)
+      ops-staff)
         connection="flink-core-"$2":europe-west3:ops-staff-info"
         ;;
+      qsm)
+        connection="flink-ridertech-"$2":europe-west3:quinyx-rider-shifts-$2"
+
       *)
         echo "Undefined database name: $1."
         read -q "CHOICE?Do you want to connect in flink-core [y/n]?\n"
