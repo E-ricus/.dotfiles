@@ -31,7 +31,7 @@ function sql_proxy_connect() {
         ;;
       qsm)
         connection="flink-ridertech-"$2":europe-west3:quinyx-rider-shifts-$2"
-
+        ;;
       *)
         echo "Undefined database name: $1."
         read -q "CHOICE?Do you want to connect in flink-core [y/n]?\n"
