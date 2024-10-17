@@ -45,8 +45,26 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
-(setq doom-modeline-vcs-max-length 40)
+;; Keymaps
+;;
+;; Git overrides
+(evil-define-key 'normal 'global
+  (kbd "]g") #'+vc-gutter/next-hunk
+  (kbd "[g") #'+vc-gutter/previous-hunk)
+;; LSP Errors
+(evil-define-key 'normal flycheck-mode-map
+  (kbd "]d") #'flycheck-next-error
+  (kbd "[d") #'flycheck-previous-error
+  (kbd "SPC d w") #'flycheck-list-errors)
 
+;; Workaround while this is fixed: https://github.com/doomemacs/doomemacs/issues/8113
+(defun vcs-fixed ()
+  "Display the vcs name."
+  (and vc-mode (cadr (split-string (string-trim vc-mode) "^[A-Z]+[-:]+"))))
+
+
+(after! doom-modeline
+  (setq doom-modeline-vcs-display-function #'vcs-fixed))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
