@@ -130,6 +130,7 @@ M.servers = {
         },
     },
     ts_ls = {},
+    denols = {},
     lua_ls = {
         settings = {
             Lua = {

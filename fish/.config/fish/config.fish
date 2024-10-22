@@ -41,6 +41,7 @@ add_to_path $HOME/Odin
 add_to_path $HOME/swift/usr/bin
 add_to_path $HOME/miniconda3/bin
 add_to_path $HOME/c3c/build
+add_to_path $HOME/.deno/bin
 add_to_path $XDG_CONFIG_HOME/emacs/bin
 
 # Asdf

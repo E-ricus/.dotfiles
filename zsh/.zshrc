@@ -47,6 +47,7 @@ add_to_path "$HOME/Odin"
 add_to_path "$HOME/swift/usr/bin"
 add_to_path "$HOME/miniconda3/bin"
 add_to_path "$HOME/c3c/build"
+add_to_path "$HOME/.deno/bin"
 add_to_path "$XDG_CONFIG_HOME/emacs/bin"
 
 
@@ -161,4 +162,3 @@ zi light zdharma-continuum/null
 zi ice wait"1" lucid as"program" id-as'condainit' run-atpull \
     atinit"condainit"
 zi light zdharma-continuum/null
-
