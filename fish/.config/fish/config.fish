@@ -43,10 +43,16 @@ add_to_path $HOME/miniconda3/bin
 add_to_path $HOME/c3c/build
 add_to_path $HOME/.deno/bin
 add_to_path $XDG_CONFIG_HOME/emacs/bin
+add_to_path $HOME/.bun/bin
 
 # Asdf
 if test -d $HOME/.asdf
     source $HOME/.asdf/asdf.fish
+end
+
+# Bun
+if test -d $HOME/.bun
+    set --export BUN_INSTALL $HOME/.bun
 end
 
 # Odin
@@ -90,3 +96,6 @@ end
 # if type -q conda
 #     conda_init
 # end
+
+# bun
+set --export PATH $BUN_INSTALL/bin $PATH
