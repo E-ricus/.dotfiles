@@ -19,6 +19,8 @@ function sql_proxy_connect
             set connection "flink-rider-engagement-$env:europe-west3:flow-management"
         case rider-state
             set connection "flink-ridertech-$env:europe-west3:rider-state-service-$env"
+        case rider-profile
+            set connection "flink-ridertech-$env:europe-west3:rider-profile-service-$env"
         case equipment
             set connection "flink-rider-engagement-$env:europe-west3:rider-equipment"
         case fleet

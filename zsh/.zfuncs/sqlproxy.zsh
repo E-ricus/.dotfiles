@@ -20,6 +20,9 @@ function sql_proxy_connect() {
       rider-state)
         connection="flink-ridertech-"$2":europe-west3:rider-state-service-$2"
         ;;
+      rider-profile)
+        connection="flink-ridertech-"$2":europe-west3:rider-profile-service-$2"
+        ;;
       equipment)
         connection="flink-rider-engagement-"$2":europe-west3:rider-equipment"
         ;;
