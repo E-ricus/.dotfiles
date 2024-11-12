@@ -49,6 +49,7 @@ add_to_path "$HOME/miniconda3/bin"
 add_to_path "$HOME/c3c/build"
 add_to_path "$HOME/.deno/bin"
 add_to_path "$XDG_CONFIG_HOME/emacs/bin"
+add_to_path "$HOME/.bun/bin"
 
 
 # asdf
@@ -159,6 +160,6 @@ zi ice wait"1" lucid as"program" id-as'zoxide' run-atpull \
     atinit"source <(fzf --zsh);eval $(zoxide init zsh)"
 zi light zdharma-continuum/null
 
-zi ice wait"1" lucid as"program" id-as'condainit' run-atpull \
-    atinit"condainit"
-zi light zdharma-continuum/null
+# zi ice wait"1" lucid as"program" id-as'condainit' run-atpull \
+#     atinit"condainit"
+# zi light zdharma-continuum/null

@@ -96,6 +96,3 @@ end
 # if type -q conda
 #     conda_init
 # end
-
-# bun
-set --export PATH $BUN_INSTALL/bin $PATH
