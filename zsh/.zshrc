@@ -160,6 +160,10 @@ zi ice wait"1" lucid as"program" id-as'zoxide' run-atpull \
     atinit"source <(fzf --zsh);eval $(zoxide init zsh)"
 zi light zdharma-continuum/null
 
+# Automatically load conda and nvm, too slow for not that much use
 # zi ice wait"1" lucid as"program" id-as'condainit' run-atpull \
 #     atinit"condainit"
+# zi light zdharma-continuum/null
+# zi ice wait"1" lucid as"program" id-as'nvminit' run-atpull \
+#     atinit"nvminit"
 # zi light zdharma-continuum/null
