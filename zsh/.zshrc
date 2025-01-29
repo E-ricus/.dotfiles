@@ -21,13 +21,27 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# Functions
-if [[ -d "$HOME/.zfuncs" ]]; then
-    fpath+=("$HOME/.zfuncs")
-    for funcfile in ~/.zfuncs/*.zsh; do
-        source $funcfile
-    done
-fi
+function add_to_path() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: add_to_path <parameter>"
+        return 1
+    fi
+
+    if [[ -e "$1" ]]; then
+        if [[ -d "$1" ]]; then
+            export PATH="$1:$PATH"
+            # echo "$1 added to PATH"
+        else
+            # echo "$1 is not a directory"
+            return 1
+        fi
+    else
+        # echo "$1 does not exist"
+        return 1
+    fi
+}
+
+
 
 # PATH
 add_to_path "$HOME/.bin"
@@ -159,6 +173,14 @@ eval "$(starship init zsh)"
 zi ice wait"1" lucid as"program" id-as'zoxide' run-atpull \
     atinit"source <(fzf --zsh);eval $(zoxide init zsh)"
 zi light zdharma-continuum/null
+
+# Functions
+if [[ -d "$HOME/.zfuncs" ]]; then
+    fpath+=("$HOME/.zfuncs")
+    for funcfile in ~/.zfuncs/*.zsh; do
+        source $funcfile
+    done
+fi
 
 # Automatically load conda and nvm, too slow for not that much use
 # zi ice wait"1" lucid as"program" id-as'condainit' run-atpull \

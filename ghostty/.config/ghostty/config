@@ -1,3 +1,4 @@
+# To show config: ghostty +show-config | grep keybind | fzf
 theme = catppuccin-frappe
 
 # Tmux like navigation
@@ -14,3 +15,7 @@ keybind = ctrl+a>8=goto_tab:8
 keybind = ctrl+a>9=goto_tab:9
 keybind = ctrl+a>s=new_split:down
 keybind = ctrl+a>v=new_split:right
+keybind = ctrl+a>h=goto_split:left
+keybind = ctrl+a>j=goto_split:bottom
+keybind = ctrl+a>k=goto_split:top
+keybind = ctrl+a>l=goto_split:right
