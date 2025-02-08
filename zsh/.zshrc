@@ -189,3 +189,6 @@ fi
 # zi ice wait"1" lucid as"program" id-as'nvminit' run-atpull \
 #     atinit"nvminit"
 # zi light zdharma-continuum/null
+
+# bun completions
+[ -s "/Users/ericdavid.puentesbulla@goflink.com/.bun/_bun" ] && source "/Users/ericdavid.puentesbulla@goflink.com/.bun/_bun"
