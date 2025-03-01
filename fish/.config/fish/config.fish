@@ -60,6 +60,13 @@ if test -d $HOME/Odin
     set ODIN_ROOT $HOME/Odin
 end
 
+# ZVM
+if test -d $HOME/.zvm
+    set ZVM_INSTALL $HOME/.zvm/self
+    add_to_path $HOME/.zvm/self
+    add_to_path $HOME/.zvm/bin
+end
+
 # Go
 if test -d /usr/local/go
     fish_add_path /usr/local/go/bin
@@ -96,3 +103,8 @@ end
 # if type -q conda
 #     conda_init
 # end
+
+# ZVM
+set -gx ZVM_INSTALL "$HOME/.zvm/self"
+set -gx PATH $PATH "$HOME/.zvm/bin"
+set -gx PATH $PATH "$ZVM_INSTALL/"
