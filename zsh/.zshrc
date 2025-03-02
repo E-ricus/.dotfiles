@@ -87,6 +87,7 @@ fi
 #Mojo
 if [[ -d "$HOME/.modular" ]]; then
     export MODULAR_HOME="$HOME/.modular"
+    export PATH="$HOME/.modular/bin:$PATH"
 fi
 
 # Set the directory we want to store zinit and plugins
@@ -189,6 +190,3 @@ fi
 # zi ice wait"1" lucid as"program" id-as'nvminit' run-atpull \
 #     atinit"nvminit"
 # zi light zdharma-continuum/null
-
-# bun completions
-[ -s "/Users/ericdavid.puentesbulla@goflink.com/.bun/_bun" ] && source "/Users/ericdavid.puentesbulla@goflink.com/.bun/_bun"
