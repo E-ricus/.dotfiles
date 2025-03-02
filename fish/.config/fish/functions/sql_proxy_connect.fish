@@ -18,8 +18,14 @@ function sql_proxy_connect
         case flow-management
             set connection "flink-rider-engagement-$env:europe-west3:flow-management"
         case rider-state
+            if test $env = staging
+                set env dev
+            end
             set connection "flink-ridertech-$env:europe-west3:rider-state-service-$env"
         case rider-profile
+            if test $env = staging
+                set env dev
+            end
             set connection "flink-ridertech-$env:europe-west3:rider-profile-service-$env"
         case equipment
             set connection "flink-rider-engagement-$env:europe-west3:rider-equipment"
@@ -29,11 +35,6 @@ function sql_proxy_connect
             set connection "flink-core-$env:europe-west3:ops-staff-info"
         case qsm
             set connection "flink-ridertech-$env:europe-west3:quinyx-rider-shifts-$env"
-        case profile
-            if test $env = 'staging'
-                set env 'dev'
-            end
-            set connection "flink-ridertech-$env:europe-west3:rider-profile-service-$env"
         case '*'
             echo "Undefined database name: $db_name."
             read -P "Do you want to connect in flink-core [y/n]? " choice

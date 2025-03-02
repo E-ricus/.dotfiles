@@ -78,6 +78,13 @@ if [[ -d "$HOME/Odin" ]]; then
     export ODIN_ROOT="$HOME/Odin"
 fi
 
+# ZVM
+if [[ -d "$HOME/.zvm" ]]; then
+    export ZVM_INSTALL="$HOME/.zvm/self"
+    export PATH="$HOME/.zvm/self:$PATH"
+    export PATH="$HOME/.zvm/bin:$PATH"
+fi
+
 # Go
 if [[ -d "/usr/local/go" ]]; then
     export PATH="/usr/local/go/bin:$PATH"

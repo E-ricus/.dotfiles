@@ -76,6 +76,7 @@ end
 #Mojo
 if test -d $HOME/.modular
     set MODULAR_HOME $HOME/.modular
+    add_to_path $HOME/.modular/bin
 end
 
 # Vim
