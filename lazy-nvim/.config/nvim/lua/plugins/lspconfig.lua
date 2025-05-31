@@ -13,6 +13,20 @@ return {
             or util.root_pattern("Package.swift")(filename)
         end,
       },
+      denols = {
+        root_dir = function(filename, _)
+          local util = require("lspconfig.util")
+          return util.root_pattern("deno.json", "deno.jsonc", "deno.lock", "deno.lock.json")(filename)
+        end,
+        single_file_support = false,
+      },
+      ts_ls = {
+        root_dir = function(filename, _)
+          local util = require("lspconfig.util")
+          return util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git")(filename)
+        end,
+        single_file_support = false,
+      },
     },
   },
 }
