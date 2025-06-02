@@ -9,6 +9,7 @@ return {
       },
     },
   },
+  { "akinsho/toggleterm.nvim", version = "*", config = true },
   -- TODO: Why is this not working
   -- {
   --   "MeanderingProgrammer/render-markdown.nvim", -- Make Markdown buffers look beautiful
