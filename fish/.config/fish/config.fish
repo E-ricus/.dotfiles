@@ -81,7 +81,7 @@ if test -d $HOME/.modular
 end
 
 if test -d $HOME/.claude
-    lias claude "~/.claude/local/claude"
+    # alias claude "~/.claude/local/claude"
 end
 
 # Vim
@@ -109,4 +109,3 @@ end
 # if type -q conda
 #     conda_init
 # end
-alias claude="/Users/ericdavid.puentesbulla@goflink.com/.claude/local/claude"
