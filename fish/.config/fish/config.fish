@@ -44,6 +44,7 @@ add_to_path $HOME/c3c/build
 add_to_path $HOME/.deno/bin
 add_to_path $XDG_CONFIG_HOME/emacs/bin
 add_to_path $HOME/.bun/bin
+add_to_path $HOME/.opencode/bin
 
 # Asdf
 if test -d $HOME/.asdf
@@ -79,6 +80,10 @@ if test -d $HOME/.modular
     add_to_path $HOME/.modular/bin
 end
 
+if test -d $HOME/.claude
+    lias claude "~/.claude/local/claude"
+end
+
 # Vim
 fish_vi_key_bindings
 set -U fish_cursor_default block
@@ -97,10 +102,11 @@ if type -q zoxide
     zoxide init fish | source
 end
 
-# if type -q fzf
-#     fzf --fish | source
-# end
+if type -q zoxide
+    zoxide init fish | source
+end
 
 # if type -q conda
 #     conda_init
 # end
+alias claude="/Users/ericdavid.puentesbulla@goflink.com/.claude/local/claude"
