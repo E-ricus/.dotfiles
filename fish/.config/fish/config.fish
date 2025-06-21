@@ -81,7 +81,7 @@ if test -d $HOME/.modular
 end
 
 if test -d $HOME/.claude
-    # alias claude "~/.claude/local/claude"
+    alias claude "~/.claude/local/claude"
 end
 
 # Vim
