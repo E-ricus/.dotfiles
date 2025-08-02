@@ -46,7 +46,7 @@ add_to_path $XDG_CONFIG_HOME/emacs/bin
 add_to_path $HOME/.bun/bin
 add_to_path $HOME/.opencode/bin
 add_to_path $HOME/.pixi/bin
-add_to_path $HOME/linuxbrew/.linuxbrew/bin
+add_to_path /home/linuxbrew/.linuxbrew/bin
 
 # Asdf
 if test -d $HOME/.asdf
