@@ -94,7 +94,7 @@ if test -d $HOME/.modular
     add_to_path $HOME/.modular/bin
 end
 
-if test -d $HOME/.claude
+if test -d $HOME/.claude/local/
     alias claude "~/.claude/local/claude"
 end
 

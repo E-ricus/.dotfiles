@@ -5,6 +5,7 @@ return {
     servers = {
       mojo = {},
       ols = {},
+      gleam = {},
       sourcekit = {
         root_dir = function(filename, _)
           local util = require("lspconfig.util")
