@@ -61,31 +61,20 @@ add_to_path $HOME/.opencode/bin
 add_to_path $HOME/.pixi/bin
 add_to_path /home/linuxbrew/.linuxbrew/bin
 
-# Asdf
-if test -d $HOME/.asdf
-    # ASDF configuration code
-    if test -z $ASDF_DATA_DIR
-        set _asdf_shims "$HOME/.asdf/shims"
-    else
-        set _asdf_shims "$ASDF_DATA_DIR/shims"
-    end
-
-    # Do not use fish_add_path (added in Fish 3.2) because it
-    # potentially changes the order of items in PATH
-    if not contains $_asdf_shims $PATH
-        set -gx --prepend PATH $_asdf_shims
-    end
-    set --erase _asdf_shims
-end
-
 # Bun
 if test -d $HOME/.bun
     set --export BUN_INSTALL $HOME/.bun
 end
 
+# pnpm
+if test -d $HOME/Library/pnpm
+    set --export PNPM_HOME $HOME/Library/pnpm
+    add_to_path $HOME/Library/pnpm
+end
+
 # Odin
 if test -d $HOME/Odin
-    set ODIN_ROOT $HOME/Odin
+    set --export ODIN_ROOT $HOME/Odin
 end
 
 # ZVM
@@ -130,4 +119,8 @@ end
 
 if type -q zoxide
     zoxide init fish | source
+end
+
+if test -f ~/.nelly_secrets.fish
+    source ~/.nelly_secrets.fish
 end

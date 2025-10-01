@@ -66,11 +66,16 @@ add_to_path "$XDG_CONFIG_HOME/emacs/bin"
 add_to_path "$HOME/.bun/bin"
 
 
-# asdf
-if [[ -d "$HOME/.asdf" ]]; then
-    . "$HOME/.asdf/asdf.sh"
-    # append completions to fpath
-    fpath=(${ASDF_DIR}/completions $fpath)
+#  Bun
+if [[ -d "$HOME/.bun" ]]; then
+    export ODIN_ROOT="$HOME/Odin"
+    export BUN_INSTALL="$HOME/.bun"
+fi
+
+#  pnpm
+if [[ -d "$HOME/Library/pnpm" ]]; then
+    export PNPM_HOME="$HOME/Library/pnpm"
+    export PATH="$HOME/Library/pnpm:$PATH"
 fi
 
 # Odin
@@ -189,6 +194,9 @@ if [[ -d "$HOME/.zfuncs" ]]; then
     done
 fi
 
+[ -f ~/.nelly_secrets ] && source ~/.nelly_secrets
+
+
 # Automatically load conda and nvm, too slow for not that much use
 # zi ice wait"1" lucid as"program" id-as'condainit' run-atpull \
 #     atinit"condainit"
@@ -196,3 +204,4 @@ fi
 # zi ice wait"1" lucid as"program" id-as'nvminit' run-atpull \
 #     atinit"nvminit"
 # zi light zdharma-continuum/null
+#
