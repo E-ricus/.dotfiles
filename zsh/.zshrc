@@ -88,7 +88,6 @@ fi
 # Go
 if [[ -d "/usr/local/go" ]]; then
     export PATH="/usr/local/go/bin:$PATH"
-    command go env -w GOPRIVATE=github.com/goflink
 fi
 
 #Mojo

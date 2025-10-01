@@ -1,6 +1,6 @@
 [user]
 	name = Eric Puentes
-	email = eric.david2333@gmail.com
+	email = ericdpb@pm.me
 [ui "color"]
 	ui = always
 [color]
@@ -33,5 +33,3 @@
     conflictstyle = diff3
 [pull]
 	rebase = true
-[url "git@github.com:goflink"]
-	insteadOf = https://github.com/goflink

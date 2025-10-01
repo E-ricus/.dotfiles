@@ -14,8 +14,21 @@ abbr -a e nvim
 abbr -a vimdiff 'nvim -d'
 # Alias
 alias rg "rg --files --hidden --glob '!.git'"
-alias la "eza -la"
-alias ls "eza -a"
+alias ls='eza -lh --group-directories-first --icons=auto'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt -a'
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+
+function cd --description "Enhanced cd with zoxide integration"
+    if test (count $argv) -eq 0
+        builtin cd ~ && return
+    else if test -d $argv[1]
+        builtin cd $argv[1]
+    else
+        z $argv && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+    end
+end
 
 function add_to_path -a path
     if test -e $path
@@ -85,7 +98,6 @@ end
 # Go
 if test -d /usr/local/go
     fish_add_path /usr/local/go/bin
-    go env -w GOPRIVATE=github.com/goflink
 end
 
 #Mojo
