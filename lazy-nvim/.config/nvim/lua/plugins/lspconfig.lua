@@ -1,5 +1,8 @@
 return {
   "neovim/nvim-lspconfig",
+  config = function()
+    require("config.rust_target")
+  end,
   opts = {
     inlay_hints = { enabled = false },
     servers = {

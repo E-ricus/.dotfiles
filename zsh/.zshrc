@@ -13,8 +13,11 @@ export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
 alias e="nvim"
 alias czsh="nvim ~/.zshrc"
 alias cnvim="cd $XDG_CONFIG_HOME/nvim/ && nvim"
-alias ls="eza"
-alias la="eza -la"
+alias ls="eza -lh --group-directories-first --icons=auto"
+alias lsa="ls -a"
+alias lt="eza --tree --level=2 --long --icons --git"
+alias lta="lt -a"
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 # MacOs only
 if [[ -f "/opt/homebrew/bin/brew" ]] then
