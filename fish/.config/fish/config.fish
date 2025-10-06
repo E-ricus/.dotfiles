@@ -121,6 +121,10 @@ if type -q zoxide
     zoxide init fish | source
 end
 
+if type -q nvm
+    set --universal nvm_default_version 20
+end
+
 if test -f ~/.nelly_secrets.fish
     source ~/.nelly_secrets.fish
 end
