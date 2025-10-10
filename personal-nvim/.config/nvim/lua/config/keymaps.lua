@@ -1,5 +1,13 @@
 local map = vim.keymap.set
 
+-- WTF NVIM
+--I don't want these defaults?
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "grt")
+
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 map({ "n", "v" }, "H", "^")
@@ -13,7 +21,7 @@ map({ "n", "v" }, "<C-h>", "<cmd>noh<CR>", { noremap = true, desc = "Clear searc
 map({ "n", "v" }, "<leader>d", [["_d]], { noremap = true, desc = "Delete without yank" })
 
 map({ "n", "v" }, "<leader>y", [["+y]], { noremap = true, desc = "Copy to clipboard" })
-map("n", "<leader>p", [["+p]], { noremap = true, desc = "Paste from clipboard" })
+map({ "n", "v" }, "<leader>p", [["+p]], { noremap = true, desc = "Paste from clipboard" })
 
 map("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, desc = "Move line down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, desc = "Move line up" })

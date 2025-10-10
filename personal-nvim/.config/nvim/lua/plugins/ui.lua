@@ -1,82 +1,85 @@
 return {
-    "kyazdani42/nvim-web-devicons",
+    -- Smooth scrolling
+    {
+        "karb94/neoscroll.nvim",
+        opts = {}
+    },
     "onsails/lspkind-nvim",
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
-        config = function()
-            require("lualine").setup()
-        end,
+        opts = {
+            options = {
+                extensions = { "fzf", "nvim-tree", "fugitive" },
+                globalstatus = true,
+                section_separators = { left = "", right = "" },
+                component_separators = { left = "|", right = "|" },
+            },
+        },
     },
     {
-        "stevearc/dressing.nvim",
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        ---@type snacks.Config
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+            bigfile = { enabled = true },
+            dashboard = { enabled = true },
+            explorer = { enabled = true },
+            indent = { enabled = true },
+            input = { enabled = true },
+            picker = { enabled = true },
+            notifier = { enabled = true },
+            quickfile = { enabled = true },
+            scope = { enabled = true },
+            scroll = { enabled = true },
+            statuscolumn = { enabled = true },
+            words = { enabled = true },
+        },
+    },
+    {
+        "folke/noice.nvim",
         event = "VeryLazy",
-        config = function()
-            require("dressing").setup {
-                select = {
-                    get_config = function(opts)
-                        if opts.kind == "codeaction" then
-                            return {
-                                backend = "nui",
-                                nui = {
-                                    relative = "cursor",
-                                    max_width = 40,
-                                },
-                            }
-                        end
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            {
+                "rcarriga/nvim-notify",
+                opts = {
+                    timeout = 3000,
+                    max_height = function()
+                        return math.floor(vim.o.lines * 0.75)
+                    end,
+                    max_width = function()
+                        return math.floor(vim.o.columns * 0.75)
+                    end,
+                    on_open = function(win)
+                        vim.api.nvim_win_set_config(win, { zindex = 100 })
                     end,
                 },
+                init = function()
+                    -- Use notify for vim.notify
+                    vim.notify = require("notify")
+                end,
             }
-        end,
-    },
-    {
-        'echasnovski/mini.files',
-        version = false,
-        event = "VeryLazy",
-        config = function()
-            local minifiles = require('mini.files')
-            minifiles.setup()
-            local minifiles_toggle = function(...)
-                if not minifiles.close() then minifiles.open(...) end
-            end
-            vim.keymap.set("n", "<leader>`", minifiles_toggle, { noremap = true, desc = "Toggle mini files" })
-        end,
-    },
-
-    {
-        "folke/trouble.nvim",
-        opts = {}, -- for default options, refer to the configuration section for custom setup.
-        cmd = "Trouble",
-        keys = {
-            {
-                "<leader>dw",
-                "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics (Trouble)",
+        },
+        opts = {
+            lsp = {
+                override = {
+                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                    ["vim.lsp.util.stylize_markdown"] = true,
+                },
             },
-            {
-                "<leader>db",
-                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-                desc = "Buffer Diagnostics (Trouble)",
+            cmdline = {
+                view = "cmdline",
             },
-            {
-                "<leader>ts",
-                "<cmd>Trouble symbols toggle focus=false<cr>",
-                desc = "Symbols (Trouble)",
-            },
-            {
-                "<leader>tl",
-                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-                desc = "LSP Definitions / references / ... (Trouble)",
-            },
-            {
-                "<leader>tL",
-                "<cmd>Trouble loclist toggle<cr>",
-                desc = "Location List (Trouble)",
-            },
-            {
-                "<leader>tq",
-                "<cmd>Trouble qflist toggle<cr>",
-                desc = "Quickfix List (Trouble)",
+            presets = {
+                bottom_search = true,         -- use a classic bottom cmdline for search
+                command_palette = true,       -- position the cmdline and popupmenu together
+                long_message_to_split = true, -- long messages will be sent to a split
+                lsp_doc_border = true,        -- add a border to hover docs and signature help
             },
         },
     }

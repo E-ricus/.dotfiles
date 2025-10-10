@@ -9,8 +9,6 @@ local M = {
             config = function()
                 require("mason-lspconfig").setup {
                     ensure_installed = {
-                        "rust_analyzer",
-                        "lua_ls",
                     },
                 }
             end,
@@ -21,24 +19,6 @@ local M = {
                 end,
             },
         },
-        {
-            "E-ricus/lsp_codelens_extensions.nvim",
-            config = function()
-                require("codelens_extensions").setup()
-            end,
-        },
-        {
-            "ray-x/lsp_signature.nvim",
-            config = function()
-                require("lsp_signature").on_attach {
-                    doc_lines = 0,
-                    hint_enable = true,
-                    handler_opts = {
-                        border = "none",
-                    },
-                }
-            end,
-        },
     },
 }
 
@@ -48,23 +28,26 @@ function M.config()
         lspf.capabilities(client, buffnr)
     end)
 
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-    local nvim_lsp = require("lspconfig")
+    local servers = lspf.servers
 
-    for server, opts in pairs(lspf.servers) do
-        opts.capabilities = capabilities
+    for server, config in pairs(servers) do
+        -- Merge capabilities
         if server == "denols" then
-            opts.root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc")
-            opts.single_file_support = false
+            config.root_markers = { "deno.json", "deno.jsonc" }
+            config.filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" }
         end
-        if server == "ts_ls" then
-            opts.root_dir = nvim_lsp.util.root_pattern("package.json")
-            opts.single_file_support = false
+        if server == "vtsls" then
+            config.root_markers = { "package.json" }
+            config.filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" }
         end
-        nvim_lsp[server].setup(opts)
+        -- Set up the LSP config
+        vim.lsp.config[server] = config
+        -- Enable the server
+        vim.lsp.enable(server)
     end
+
     -- Diagnostics
-    vim.diagnostic.config { virtual_text = false }
+    vim.diagnostic.config { virtual_text = true }
 end
 
 return M

@@ -1,132 +1,120 @@
-local M = {
-    "hrsh7th/nvim-cmp",
-    event = "VeryLazy",
+return {
+    "saghen/blink.cmp",
+    version = "1.*",
+    event = "VimEnter",
     dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-nvim-lua",
+        -- Snippet Engine
         {
             "L3MON4D3/LuaSnip",
-            config = function()
-                local luasnip = require "luasnip"
-
-                luasnip.config.set_config {
-                    -- Update more often, :h events for more info.
-                    updateevents = "TextChanged,TextChangedI",
-                    region_check_events = "CursorMoved",
-                    delete_check_events = "TextChanged",
-                }
-
-                require("luasnip.loaders.from_vscode").lazy_load { include = { "lua", "go", "rust", "zig", "clojure" } }
-            end,
+            build = (function()
+                -- Build Step is needed for regex support in snippets.
+                -- This step is not supported in many windows environments.
+                -- Remove the below condition to re-enable on windows.
+                if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+                    return
+                end
+                return "make install_jsregexp"
+            end)(),
             dependencies = {
-                "rafamadriz/friendly-snippets",
+                {
+                    "rafamadriz/friendly-snippets",
+                    config = function()
+                        require("luasnip.loaders.from_vscode").lazy_load()
+                    end,
+                },
             },
+            opts = {},
         },
+        "folke/lazydev.nvim",
+        { "xzbdmw/colorful-menu.nvim", opts = {} },
+        "moyiz/blink-emoji.nvim",
     },
-}
+    --- @module 'blink.cmp'
+    --- @type blink.cmp.Config
+    opts = {
+        keymap = {
+            preset = "default",
 
-function M.config()
-    local cmp = require "cmp"
-    local mapping = require "cmp.config.mapping"
-    local luasnip = require "luasnip"
+            ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+            ["<C-e>"] = { "hide" },
+            ["<Enter>"] = { "select_and_accept", "fallback" },
 
-    local has_dot_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col) == "."
-    end
+            ["<Up>"] = { "select_prev", "fallback" },
+            ["<Down>"] = { "select_next", "fallback" },
 
-    local has_word_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
-    end
+            ["<C-d>"] = { "scroll_documentation_up", "fallback" },
+            ["<C-f>"] = { "scroll_documentation_down", "fallback" },
 
-    local function super_tab(fallback)
-        if cmp.visible() then
-            cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-        elseif has_dot_before() then
-            cmp.complete()
-        else
-            fallback()
-        end
-    end
+            ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
 
-    local function super_s_tab(fallback)
-        if cmp.visible() then
-            cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-        else
-            fallback()
-        end
-    end
-
-    cmp.setup {
-        enabled = function()
-            -- disable completion in comments
-            local context = require "cmp.config.context"
-            -- keep command mode completion enabled when cursor is in a comment
-            if vim.api.nvim_get_mode().mode == "c" then
-                return true
-            else
-                return not context.in_treesitter_capture "comment" and not context.in_syntax_group "Comment"
-            end
-        end,
-        snippet = {
-            expand = function(args)
-                luasnip.lsp_expand(args.body)
-            end,
         },
-        formatting = {
-            format = require("lspkind").cmp_format {
-                with_text = true,
-                menu = {
-                    nvim_lsp = "(LSP)",
-                    luasnip = "(Snippets)",
-                    buffer = "(Buffer)",
-                    nvim_lua = "(Lua)",
-                    path = "(Path)",
+
+        appearance = {
+            -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+            -- Adjusts spacing to ensure icons are aligned
+            nerd_font_variant = "mono",
+        },
+
+        completion = {
+            documentation = { auto_show = true, auto_show_delay_ms = 0 },
+            list = {
+                selection = {
+                    preselect = false,
+                },
+            },
+            menu = {
+                draw = {
+                    -- We don't need label_description now because label and label_description are already
+                    -- combined together in label by colorful-menu.nvim.
+                    columns = { { "kind_icon" }, { "label", gap = 1 } },
+                    components = {
+                        label = {
+                            text = function(ctx)
+                                return require("colorful-menu").blink_components_text(ctx)
+                            end,
+                            highlight = function(ctx)
+                                return require("colorful-menu").blink_components_highlight(ctx)
+                            end,
+                        },
+                    },
                 },
             },
         },
-        -- completion = {
-        --     autocomplete = false,
-        -- },
-        mapping = {
-            ["<C-p>"] = mapping.select_prev_item(),
-            ["<C-n>"] = mapping.select_next_item(),
-            ["<C-d>"] = mapping.scroll_docs(4),
-            ["<C-u>"] = mapping.scroll_docs(-4),
-            ["<C-Space>"] = mapping.complete(),
-            ["<C-x>"] = mapping.abort(),
-            ["<CR>"] = cmp.mapping {
-                i = function(fallback)
-                    if cmp.visible() then
-                        -- if cmp.visible() and cmp.get_active_entry() then -- TODO: Acting weird, gotta check it
-                        cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true }
-                    else
-                        fallback()
-                    end
-                end,
-            },
-            ["<tab>"] = mapping(super_tab, { "i", "s" }),
-            ["<S-tab>"] = mapping(super_s_tab, { "i", "s" }),
-        },
-        sources = {
-            { name = "nvim_lsp" },
-            { name = "luasnip" },
-            -- { name = "buffer" },
-            { name = "nvim_lua" },
-            { name = "path" },
-            { name = "conjure" },
-        },
-    }
-end
 
-return M
+        sources = {
+            default = {
+                "lsp",
+                "path",
+                "lazydev",
+                "emoji",
+                "buffer",
+            },
+            providers = {
+                lsp = {
+                    async = true,
+                },
+                lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
+                emoji = {
+                    module = "blink-emoji",
+                    name = "Emoji",
+                    score_offset = 15, -- Tune by preference
+                    opts = {
+                        insert = true, -- Insert emoji (default) or complete its name
+                        ---@type string|table|fun():table
+                        trigger = function()
+                            return { ":" }
+                        end,
+                    },
+                },
+            },
+        },
+
+        snippets = { preset = "luasnip" },
+
+        -- See :h blink-cmp-config-fuzzy for more information
+        fuzzy = { implementation = "prefer_rust_with_warning" },
+
+        -- Shows a signature help window while you type arguments for a function
+        signature = { enabled = true },
+    },
+}

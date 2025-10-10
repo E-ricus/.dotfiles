@@ -19,16 +19,17 @@ local function show_diagnostics()
 end
 
 -- function to attach completion when setting up lsp
-function M.keymaps(client, buffnr)
-    local tb = require "telescope.builtin"
+function M.keymaps(_, buffnr)
     -- keymaps
     map("n", "<leader>k", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
     map("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
     map("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP go to definition", buffer = buffnr })
     map("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "LSP go to declaration", buffer = buffnr })
-    map("n", "<leader>lr", vim.lsp.buf.rename, { noremap = true, desc = "LSP rename", buffer = buffnr })
-    map("n", "[d", vim.diagnostic.goto_prev, { noremap = true, desc = "LSP go to previous diagnostic", buffer = buffnr })
-    map("n", "]d", vim.diagnostic.goto_next, { noremap = true, desc = "LSP go to next diagnostic", buffer = buffnr })
+    map("n", "<leader>cr", vim.lsp.buf.rename, { noremap = true, desc = "LSP rename", buffer = buffnr })
+    vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end,
+        { noremap = true, desc = "LSP go to previous diagnostic", buffer = buffnr })
+    vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end,
+        { noremap = true, desc = "LSP go to next diagnostic", buffer = buffnr })
     map("n", "<leader>df", vim.diagnostic.open_float, { noremap = true, desc = "LSP diagnostic float", buffer = buffnr })
     map(
         { "n", "i" },
@@ -36,23 +37,16 @@ function M.keymaps(client, buffnr)
         vim.lsp.buf.signature_help,
         { noremap = true, desc = "LSP signature help", buffer = buffnr }
     )
-    map("n", "<leader>la", vim.lsp.buf.code_action, { noremap = true, desc = "LSP code actions", buffer = buffnr })
-    -- Telescope maps
-    map("n", "gi", tb.lsp_implementations, { noremap = true, desc = "LSP Implementations", buffer = buffnr })
-    map("n", "gr", tb.lsp_references, { noremap = true, desc = "LSP references", buffer = buffnr })
-    map("n", "<leader>ls", tb.lsp_document_symbols, { noremap = true, desc = "LSP document symbols", buffer = buffnr })
-    map("n", "<leader>lS", tb.lsp_workspace_symbols, { noremap = true, desc = "LSP workspace symbols", buffer = buffnr })
-    if client.name == "rust_analyzer" then
-        -- TODO: Make this a proper plugin
-        map(
-            "n",
-            "<leader>le",
-            require("ericus.expand_rs").expand_macro,
-            { noremap = true, desc = "Expand Rust macro", buffer = buffnr }
-        )
-    end
-    vim.keymap.set("n", "<leader>dh", hide_diagnostics)
-    vim.keymap.set("n", "<leader>ds", show_diagnostics)
+    map("n", "<leader>ca", vim.lsp.buf.code_action, { noremap = true, desc = "LSP code actions", buffer = buffnr })
+    -- Fzf maps
+
+    local fzf = require "fzf-lua"
+    map("n", "gi", fzf.lsp_implementations, { noremap = true, desc = "LSP Implementations", buffer = buffnr })
+    map("n", "gr", fzf.lsp_references, { noremap = true, desc = "LSP references", buffer = buffnr })
+    map("n", "<leader>ls", fzf.lsp_document_symbols, { noremap = true, desc = "LSP document symbols", buffer = buffnr })
+    map("n", "<leader>lS", fzf.lsp_workspace_symbols, { noremap = true, desc = "LSP workspace symbols", buffer = buffnr })
+    map("n", "<leader>dh", hide_diagnostics, { noremap = true, desc = "LSP hide diagnostics", buffer = buffnr })
+    map("n", "<leader>ds", show_diagnostics, { noremap = true, desc = "LSP show diagnostics", buffer = buffnr })
 end
 
 function M.capabilities(client, buffnr)
@@ -84,22 +78,6 @@ function M.capabilities(client, buffnr)
         map("n", "<leader>lR", vim.lsp.codelens.run, { noremap = true, desc = "LSP run lens", buffer = buffnr })
         map("n", "<leader>ll", vim.lsp.codelens.refresh, { noremap = true, desc = "LSP refresh lens", buffer = buffnr })
     end
-
-    -- dissable ts_ls format in pro of prettier/prettierd
-    if client.name == "ts_ls" then
-        capabilities.documentFormattingProvider = false
-    end
-
-    -- Set some keybinds conditional on server capabilities
-    if capabilities.documentFormattingProvider then
-        map("n", "<leader>lf", vim.lsp.buf.format, { noremap = true, desc = "LSP format code", buffer = buffnr })
-        local group_name = "lsp_document_format" .. buffnr
-        local group = vim.api.nvim_create_augroup(group_name, { clear = true })
-        local callback = function()
-            vim.lsp.buf.format()
-        end
-        aucmd("BufWritePre", { callback = callback, group = group, buffer = buffnr })
-    end
 end
 
 M.servers = {
@@ -110,37 +88,11 @@ M.servers = {
     sourcekit = {},
     zls = {},
     ols = {},
+    gleam = {},
     elixirls = {},
     hls = { filetypes = { "haskell", "lhaskell", "cabal" } },
-    rust_analyzer = {
-        settings = {
-            ["rust-analyzer"] = {
-                check = {
-                    command = "clippy",
-                },
-                lens = {
-                    implementations = { enable = false },
-                },
-                completion = {
-                    postfix = {
-                        enable = false,
-                    },
-                },
-            },
-        },
-    },
-    ts_ls = {},
+    vtsls = {},
     denols = {},
-    lua_ls = {
-        settings = {
-            Lua = {
-                diagnostics = {
-                    -- Get the language server to recognize the `vim` global
-                    globals = { "vim" },
-                },
-            },
-        },
-    },
     gopls = {
         settings = {
             gopls = {
