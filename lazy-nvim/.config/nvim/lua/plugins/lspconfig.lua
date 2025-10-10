@@ -3,7 +3,6 @@ return {
   ---@param opts cmp.ConfigSchema
   opts = function(_, opts)
     -- custom scripts
-    require("config.rust_target")
     -- config
     opts.inlay_hints.enabled = false
     -- servers
