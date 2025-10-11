@@ -1,0 +1,69 @@
+
+{ pkgs, ... }:
+
+{
+  programs.tmux = {
+    enable = true;
+    plugins = with pkgs.tmuxPlugins; [
+      catppuccin
+      yank
+    ];
+    extraConfig = ''
+      set-option -sa terminal-overrides ",xterm*:Tc"
+      set -g mouse on
+
+      unbind C-b
+      set -g prefix C-a
+      bind C-a send-prefix
+
+      # Vim style pane selection
+      bind h select-pane -L
+      bind j select-pane -D 
+      bind k select-pane -U
+      bind l select-pane -R
+
+      # Start windows and panes at 1, not 0
+      set -g base-index 1
+      set -g pane-base-index 1
+      set-window-option -g pane-base-index 1
+      set-option -g renumber-windows on
+      # enable clipboard
+      set-option -g -s set-clipboard on
+
+      # Use Alt-arrow keys without prefix key to switch panes
+      bind -n M-Left select-pane -L
+      bind -n M-Right select-pane -R
+      bind -n M-Up select-pane -U
+      bind -n M-Down select-pane -D
+
+      # Shift arrow to switch windows
+      bind -n S-Left  previous-window
+      bind -n S-Right next-window
+
+      # Shift Alt vim keys to switch windows
+      bind -n M-H previous-window
+      bind -n M-L next-window
+      # set -g default-command "~/.cargo/bin/nu -l"
+      set-option -g default-shell "/bin/zsh"
+
+      # Catpuccin config
+      set -g @catppuccin_window_status "icon"
+      set -g @catppuccin_icon_window_zoom " 󰁌"
+      set -g @catppuccin_window_left_separator ""
+      set -g @catppuccin_window_right_separator " "
+      set -g @catppuccin_status_left_separator  " "
+      set -g @catppuccin_status_right_separator ""
+      # Yank config
+      set -g @yank_action 'copy-pipe'
+
+      # set vi-mode
+      set-window-option -g mode-keys vi
+      # keybindings
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+
+      bind s split-window -v -c "#{pane_current_path}"
+      bind v split-window -h -c "#{pane_current_path}"
+    '';
+  };
+}
