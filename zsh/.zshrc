@@ -18,6 +18,18 @@ alias lsa="ls -a"
 alias lt="eza --tree --level=2 --long --icons --git"
 alias lta="lt -a"
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+# Enhanced cd with zoxide
+zd() {
+  if [ $# -eq 0 ]; then
+    cd ~ && return
+  elif [ -d "$1" ]; then
+    cd "$1"
+  else
+    z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+  fi
+}
+alias cd=zd
+
 
 # MacOs only
 if [[ -f "/opt/homebrew/bin/brew" ]] then
@@ -33,13 +45,10 @@ function add_to_path() {
     if [[ -e "$1" ]]; then
         if [[ -d "$1" ]]; then
             export PATH="$1:$PATH"
-            # echo "$1 added to PATH"
         else
-            # echo "$1 is not a directory"
             return 1
         fi
     else
-        # echo "$1 does not exist"
         return 1
     fi
 }

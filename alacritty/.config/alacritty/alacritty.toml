@@ -1,11 +1,15 @@
-[colors]
-draw_bold_text_with_bright_colors = false
-
+[general]
+import = [
+    "~/.config/alacritty/themes/nordfox.toml"
+]
 [env]
 TERM = "xterm-256color"
 
+[colors]
+draw_bold_text_with_bright_colors = false
+
 [font]
-size = 18.0
+size = 14.0
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"
@@ -22,153 +26,3 @@ style = "Italic"
 [font.normal]
 family = "JetBrainsMono Nerd Font"
 style = "Regular"
-
-# [schemes.doom-one.bright]
-# black = "#5b6268"
-# blue = "#3071db"
-# cyan = "#46d9ff"
-# green = "#4db5bd"
-# magenta = "#a9a1e1"
-# red = "#da8548"
-# white = "#dfdfdf"
-# yellow = "#ecbe7b"
-
-# [schemes.doom-one.cursor]
-# cursor = "#dfdfdf"
-# text = "CellBackground"
-
-# [schemes.doom-one.normal]
-# black = "#1c1f24"
-# blue = "#51afef"
-# cyan = "#5699af"
-# green = "#98be65"
-# magenta = "#c678dd"
-# red = "#ff6c6b"
-# white = "#202328"
-# yellow = "#da8548"
-
-# [schemes.doom-one.primary]
-# background = "#282c34"
-# foreground = "#bbc2cf"
-
-# [schemes.doom-one.selection]
-# background = "#3e4451"
-# text = "CellForeground"
-
-# [schemes.dracula.colors.bright]
-# black = "#4d4d4d"
-# blue = "#caa9fa"
-# cyan = "#9aedfe"
-# green = "#5af78e"
-# magenta = "#ff92d0"
-# red = "#ff6e67"
-# white = "#e6e6e6"
-# yellow = "#f4f99d"
-
-# [schemes.dracula.colors.cursor]
-# cursor = "CellForeground"
-# text = "CellBackground"
-
-# [schemes.dracula.colors.dim]
-# black = "#14151b"
-# blue = "#4d5b86"
-# cyan = "#59dffc"
-# green = "#1ef956"
-# magenta = "#ff46b0"
-# red = "#ff2222"
-# white = "#e6e6d1"
-# yellow = "#ebf85b"
-
-# [schemes.dracula.colors.line_indicator]
-# background = "None"
-# foreground = "None"
-
-# [schemes.dracula.colors.normal]
-# black = "#000000"
-# blue = "#bd93f9"
-# cyan = "#8be9fd"
-# green = "#50fa7b"
-# magenta = "#ff79c6"
-# red = "#ff5555"
-# white = "#bfbfbf"
-# yellow = "#f1fa8c"
-
-# [schemes.dracula.colors.primary]
-# background = "#282a36"
-# foreground = "#f8f8f2"
-
-# [schemes.dracula.colors.search.bar]
-# background = "#282a36"
-# foreground = "#f8f8f2"
-
-# [schemes.dracula.colors.search.focused_match]
-# background = "#ffb86c"
-# foreground = "#44475a"
-
-# [schemes.dracula.colors.search.matches]
-# background = "#50fa7b"
-# foreground = "#44475a"
-
-# [schemes.dracula.colors.selection]
-# background = "#44475a"
-# text = "CellForeground"
-
-# [schemes.dracula.colors.vi_mode_cursor]
-# cursor = "CellForeground"
-# text = "CellBackground"
-
-# [schemes.solarized-dark.bright]
-# black = "#002b36"
-# blue = "#839496"
-# cyan = "#93a1a1"
-# green = "#586e75"
-# magenta = "#6c71c4"
-# red = "#cb4b16"
-# white = "#fdf6e3"
-# yellow = "#657b83"
-
-# [schemes.solarized-dark.cursor]
-# cursor = "#839496"
-# text = "#002b36"
-
-# [schemes.solarized-dark.normal]
-# black = "#073642"
-# blue = "#268bd2"
-# cyan = "#2aa198"
-# green = "#859900"
-# magenta = "#d33682"
-# red = "#dc322f"
-# white = "#eee8d5"
-# yellow = "#b58900"
-
-# [schemes.solarized-dark.primary]
-# background = "#002b36"
-# foreground = "#839496"
-
-# [schemes.solarized-light.bright]
-# black = "#002b36"
-# blue = "#839496"
-# cyan = "#93a1a1"
-# green = "#586e75"
-# magenta = "#6c71c4"
-# red = "#cb4b16"
-# white = "#fdf6e3"
-# yellow = "#657b83"
-
-# [schemes.solarized-light.cursor]
-# cursor = "#657b83"
-# text = "#fdf6e3"
-
-# [schemes.solarized-light.normal]
-# black = "#073642"
-# blue = "#268bd2"
-# cyan = "#2aa198"
-# green = "#859900"
-# magenta = "#d33682"
-# red = "#dc322f"
-# white = "#eee8d5"
-# yellow = "#b58900"
-
-# [schemes.solarized-light.primary]
-# background = "#fdf6e3"
-# foreground = "#657b83"
