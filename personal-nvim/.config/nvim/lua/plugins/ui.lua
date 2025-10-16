@@ -3,8 +3,8 @@ return {
   {
     "karb94/neoscroll.nvim",
     opts = {},
+    event = "VeryLazy",
   },
-  "onsails/lspkind-nvim",
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",

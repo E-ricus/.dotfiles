@@ -96,7 +96,6 @@ return {
     "nvim-mini/mini.pairs",
     event = "VeryLazy",
     opts = {
-      modes = { insert = true, command = true, terminal = false },
       -- skip autopair when next character is one of these
       skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
       -- skip autopair when the cursor is inside these treesitter nodes
@@ -107,9 +106,9 @@ return {
       -- better deal with markdown code blocks
       markdown = true,
     },
-    config = function(_, _)
-      require("mini.pairs").setup()
-    end,
+    -- init = function()
+    --   require("mini.pairs").setup()
+    -- end,
   },
   {
     "nvim-mini/mini.icons",

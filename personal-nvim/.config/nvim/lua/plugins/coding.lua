@@ -8,7 +8,7 @@ return {
     "shortcuts/no-neck-pain.nvim",
     event = "VeryLazy",
     version = "*",
-    config = function()
+    init = function()
       -- Start with it
       -- vim.cmd "NoNeckPain"
     end,
@@ -24,12 +24,12 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {},
-    ft = "md",
+    ft = "markdown",
   },
   {
     "folke/trouble.nvim",
     opts = {
-      focuse = true,
+      focus = true,
     },
     cmd = "Trouble",
     init = function()

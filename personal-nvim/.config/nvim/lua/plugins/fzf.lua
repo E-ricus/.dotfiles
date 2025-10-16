@@ -1,24 +1,29 @@
 return {
   "ibhagwan/fzf-lua",
-  event = "VeryLazy",
-  enabled = true,
-  -- optional for icon support
-  config = function() -- calling `setup` is optional for customization
+  cmd = "FzfLua",
+  opts = function(_, _)
     local fzf = require("fzf-lua")
-    fzf.setup({})
-    local ext = require("ericus.fzf")
-    local map = vim.keymap.set
-    map("n", "<leader>ff", fzf.files, { noremap = true, desc = "Search files" })
-    map("n", "<leader>fF", ext.all_files, { noremap = true, desc = "Search all files" })
-    map("n", "<leader>ft", ext.files_type, { noremap = true, desc = "Search files by extension" })
-    map("n", "<leader>/", fzf.live_grep_native, { noremap = true, desc = "Live grep word" })
-    map("n", "<leader>fc", fzf.grep_cword, { noremap = true, desc = "Search word under cursor" })
-    map("n", "<leader>fg", fzf.grep_project, { noremap = true, desc = "Search word on all files" })
-    map("n", "<leader>fp", fzf.grep, { noremap = true, desc = "Fzf grep prompt" })
-    map("n", "<leader>fb", fzf.buffers, { noremap = true, desc = "List buffers" })
-    map("n", "<leader>fq", fzf.quickfix, { noremap = true, desc = "Fzf quickfix" })
-    map("n", "<leader>fl", fzf.builtin, { noremap = true, desc = "Fzf builtins" })
-    map("n", "<leader>th", fzf.colorschemes, { noremap = true, desc = "Theme list" })
-    map("n", "<leader>gb", fzf.git_branches, { noremap = true, desc = "Git branches" })
+    local config = fzf.config
+
+    -- Quickfix
+    config.defaults.keymap.fzf["ctrl-q"] = "select-all+accept"
+    config.defaults.keymap.fzf["ctrl-u"] = "half-page-up"
+    config.defaults.keymap.fzf["ctrl-d"] = "half-page-down"
+    config.defaults.keymap.fzf["ctrl-x"] = "jump"
+    config.defaults.keymap.fzf["ctrl-f"] = "preview-page-down"
+    config.defaults.keymap.fzf["ctrl-b"] = "preview-page-up"
+    config.defaults.keymap.builtin["<c-f>"] = "preview-page-down"
+    config.defaults.keymap.builtin["<c-b>"] = "preview-page-up"
+    config.defaults.keymap.builtin["<c-h>"] = "toggle-preview"
   end,
+  keys = {
+    { "<leader>fb", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "List Buffers" },
+    { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "List Buffers" },
+    { "<leader>ft", "<cmd>FzfLua filetypes<cr>", desc = "Search files by extension" },
+    { "<leader>gb", "<cmd>FzfLua git_branches<cr>", desc = "Show git branches" },
+    { "<leader>fc", "<cmd>FzfLua grep_cword<cr>", desc = "Grep word under cursor" },
+    { "<leader>fg", "<cmd>FzfLua grep_project<cr>", desc = "Grep word in project" },
+    { "<leader>/", "<cmd>FzfLua live_grep<cr>", desc = "Live grep" },
+    { "<leader>fq", "<cmd>FzfLua quickfix<cr>", desc = "Open quickfix" },
+  },
 }

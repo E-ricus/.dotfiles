@@ -1,10 +1,20 @@
 return {
-  { "tpope/vim-fugitive", event = "VeryLazy" },
-  { "tpope/vim-rhubarb", event = "VeryLazy" },
+  {
+    "tpope/vim-fugitive",
+    event = "VeryLazy",
+  },
+  init = function()
+    -- Why is it there tpope?
+    vim.cmd("delcommand Gbrowse")
+  end,
+  dependencies = {
+    "tpope/vim-rhubarb",
+    event = "VeryLazy",
+  },
   {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
-    config = function()
+    init = function()
       require("gitsigns").setup({
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
