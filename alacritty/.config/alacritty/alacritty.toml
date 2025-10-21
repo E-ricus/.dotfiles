@@ -26,3 +26,6 @@ style = "Italic"
 [font.normal]
 family = "JetBrainsMono Nerd Font"
 style = "Regular"
+
+[terminal]
+shell = { program = "/opt/homebrew/bin/fish", args = ["--login", "--interactive"] }
