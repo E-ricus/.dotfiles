@@ -34,11 +34,16 @@ return {
     cmd = "Trouble",
     init = function()
       -- overwrites native quickfix to use trouble
-      vim.api.nvim_create_user_command("Copen", function()
-        vim.cmd("Trouble quickfix")
-      end, {})
-      -- Alias `:copen` to the custom command (case-insensitive)
-      vim.cmd([[cnoreabbrev <expr> copen getcmdtype() == ':' && getcmdline() == 'copen' ? 'Copen' : 'copen']])
+      vim.api.nvim_create_autocmd("BufRead", {
+        callback = function(ev)
+          if vim.bo[ev.buf].buftype == "quickfix" then
+            vim.schedule(function()
+              vim.cmd([[cclose]])
+              vim.cmd([[Trouble qflist open]])
+            end)
+          end
+        end,
+      })
     end,
     keys = {
       {
