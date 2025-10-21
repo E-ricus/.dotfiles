@@ -4,6 +4,7 @@ fish/.config/fish/conf.d/fisher.fish
 fish/.config/fish/completions/fisher.fish
 fish/.config/fish/functions/fisher.fish
 fish/.config/fish/functions/_nvm*
+fish/.config/fish/functions/nvm.fish
 fish/.config/fish/conf.d/nvm.fish
 fish/.config/fish/functions/nvm.fish
 fish/.config/fish/completions/nvm.fish
