@@ -93,6 +93,7 @@ local servers = {
   zls = {},
   ols = {},
   gleam = {},
+  lua_ls = {},
   elixirls = {},
   hls = { filetypes = { "haskell", "lhaskell", "cabal" } },
   vtsls = {},

@@ -10,10 +10,16 @@ return {
         server = {
           default_settings = {
             ["rust-analyzer"] = {
-              check = {
-                command = "clippy",
-                workspace = false,
+              checkOnSave = {
+                enable = false,
               },
+              diagnostics = {
+                enable = false,
+              },
+              -- check = {
+              --   command = "clippy",
+              --   workspace = false,
+              -- },
               semanticHighlighting = {
                 -- So that SQL injections are highlighted
                 strings = {
@@ -41,6 +47,9 @@ return {
       map("<leader>grrd", "renderDiagnostic", "[G]oto [R]ust [R]ender [D]iagnostic")
       map("<leader>grc", "openCargo", "[G]oto [R]ust Open [C]argo")
     end,
+    init = function()
+      require("local.compilemode").setup()
+    end,
   },
   {
     "saecki/crates.nvim",
@@ -48,7 +57,7 @@ return {
     lazy = true,
     event = { "BufReadPre Cargo.toml" },
     config = function()
-      require("crates").setup()
+      require("crates").setup({})
     end,
   },
 }
