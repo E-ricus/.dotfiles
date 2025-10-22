@@ -1,10 +1,4 @@
 return {
-  -- Smooth scrolling
-  {
-    "karb94/neoscroll.nvim",
-    opts = {},
-    event = "VeryLazy",
-  },
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
@@ -18,52 +12,10 @@ return {
     },
   },
   {
-    "folke/snacks.nvim",
-    priority = 1000,
-    lazy = false,
-    ---@type snacks.Config
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-      bigfile = { enabled = true },
-      dashboard = { enabled = true },
-      explorer = { enabled = true },
-      indent = { enabled = true },
-      input = { enabled = true },
-      picker = { enabled = true },
-      notifier = { enabled = true },
-      quickfile = { enabled = true },
-      scope = { enabled = true },
-      scroll = { enabled = true },
-      statuscolumn = { enabled = true },
-      words = { enabled = true },
-    },
-  },
-  {
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
-      {
-        "rcarriga/nvim-notify",
-        opts = {
-          timeout = 3000,
-          max_height = function()
-            return math.floor(vim.o.lines * 0.75)
-          end,
-          max_width = function()
-            return math.floor(vim.o.columns * 0.75)
-          end,
-          on_open = function(win)
-            vim.api.nvim_win_set_config(win, { zindex = 100 })
-          end,
-        },
-        init = function()
-          -- Use notify for vim.notify
-          vim.notify = require("notify")
-        end,
-      },
     },
     opts = {
       lsp = {

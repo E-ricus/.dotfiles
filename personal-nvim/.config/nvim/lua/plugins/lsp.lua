@@ -21,8 +21,8 @@ local function keymaps(_, buffnr)
   -- keymaps
   map("n", "<leader>k", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
   map("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
-  map("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP go to definition", buffer = buffnr })
-  map("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "LSP go to declaration", buffer = buffnr })
+  -- map("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP go to definition", buffer = buffnr })
+  -- map("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "LSP go to declaration", buffer = buffnr })
   map("n", "<leader>cr", vim.lsp.buf.rename, { noremap = true, desc = "LSP rename", buffer = buffnr })
   vim.keymap.set("n", "[d", function()
     vim.diagnostic.jump({ count = -1 })
@@ -43,13 +43,12 @@ local function keymaps(_, buffnr)
   )
   map("n", "<leader>ca", vim.lsp.buf.code_action, { noremap = true, desc = "LSP code actions", buffer = buffnr })
   -- Fzf maps
-
   -- TODO: Maybe move to fzf?
-  local fzf = require("fzf-lua")
-  map("n", "gi", fzf.lsp_implementations, { noremap = true, desc = "LSP Implementations", buffer = buffnr })
-  map("n", "gr", fzf.lsp_references, { noremap = true, desc = "LSP references", buffer = buffnr })
-  map("n", "<leader>ls", fzf.lsp_document_symbols, { noremap = true, desc = "LSP document symbols", buffer = buffnr })
-  map("n", "<leader>lS", fzf.lsp_workspace_symbols, { noremap = true, desc = "LSP workspace symbols", buffer = buffnr })
+  --  local fzf = require("fzf-lua")
+  -- map("n", "gi", fzf.lsp_implementations, { noremap = true, desc = "LSP Implementations", buffer = buffnr })
+  -- -- map("n", "gr", fzf.lsp_references, { noremap = true, desc = "LSP references", buffer = buffnr })
+  -- map("n", "<leader>ls", fzf.lsp_document_symbols, { noremap = true, desc = "LSP document symbols", buffer = buffnr })
+  -- map("n", "<leader>lS", fzf.lsp_workspace_symbols, { noremap = true, desc = "LSP workspace symbols", buffer = buffnr })
 end
 
 local function capabilities(client, buffnr)

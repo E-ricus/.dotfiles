@@ -35,9 +35,8 @@ map("n", "N", "Nzzzv")
 
 map("i", "<C-c>", "<Esc>")
 
-map("n", "<leader><leader>", "<C-^>", { noremap = true, desc = "Last buffer" })
+map("n", "<leader><tab>", "<C-^>", { noremap = true, desc = "Last buffer" })
 map("n", "<leader><left>", "<cmd>bp<CR>", { noremap = true, desc = "Previous buffer" })
 map("n", "<leader><right>", "<cmd>bn<CR>", { noremap = true, desc = "Next buffer" })
 
-map("n", "<C-w>t", "<C-w>s | <cmd>term<CR> | 9<C-w>- | a", { noremap = true, desc = "Open terminal" })
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { silent = true, desc = "Exit term mode" })
