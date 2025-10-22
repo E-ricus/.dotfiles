@@ -26,5 +26,9 @@ return {
     { "<leader>fg", "<cmd>FzfLua grep_project<cr>", desc = "Grep word in project" },
     { "<leader>/", "<cmd>FzfLua live_grep<cr>", desc = "Live grep" },
     { "<leader>fq", "<cmd>FzfLua quickfix<cr>", desc = "Open quickfix" },
+    { "gi", "<cmd>FzfLua lsp_implementations<cr>", desc = "LSP Implementations" },
+    { "gr", "<cmd>FzfLua lsp_references<cr>", desc = "LSP references" },
+    { "<leader>ls", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "LSP document symbols" },
+    { "<leader>lS", "<cmd>FzfLua lsp_workspace_symbols<cr>", desc = "LSP workspace symbols" },
   },
 }

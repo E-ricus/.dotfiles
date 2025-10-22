@@ -1,4 +1,3 @@
-local aucmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
 local function hide_diagnostics()
@@ -19,10 +18,11 @@ end
 -- function to attach completion when setting up lsp
 local function keymaps(_, buffnr)
   -- keymaps
-  map("n", "<leader>k", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
-  map("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
+  -- Moved to snacks
   -- map("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP go to definition", buffer = buffnr })
   -- map("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "LSP go to declaration", buffer = buffnr })
+  map("n", "<leader>k", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
+  map("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
   map("n", "<leader>cr", vim.lsp.buf.rename, { noremap = true, desc = "LSP rename", buffer = buffnr })
   vim.keymap.set("n", "[d", function()
     vim.diagnostic.jump({ count = -1 })
@@ -42,44 +42,8 @@ local function keymaps(_, buffnr)
     { noremap = true, desc = "LSP signature help", buffer = buffnr }
   )
   map("n", "<leader>ca", vim.lsp.buf.code_action, { noremap = true, desc = "LSP code actions", buffer = buffnr })
-  -- Fzf maps
-  -- TODO: Maybe move to fzf?
-  --  local fzf = require("fzf-lua")
-  -- map("n", "gi", fzf.lsp_implementations, { noremap = true, desc = "LSP Implementations", buffer = buffnr })
-  -- -- map("n", "gr", fzf.lsp_references, { noremap = true, desc = "LSP references", buffer = buffnr })
-  -- map("n", "<leader>ls", fzf.lsp_document_symbols, { noremap = true, desc = "LSP document symbols", buffer = buffnr })
-  -- map("n", "<leader>lS", fzf.lsp_workspace_symbols, { noremap = true, desc = "LSP workspace symbols", buffer = buffnr })
-end
-
-local function capabilities(client, buffnr)
-  local capabilities = client.server_capabilities
-
-  -- Set autocommands conditional on server_capabilities
-  if capabilities.documentHighlightProvider then
-    local group_name = "lsp_document_highlight" .. buffnr
-    local group = vim.api.nvim_create_augroup(group_name, { clear = true })
-    local callback = function()
-      vim.lsp.buf.document_highlight()
-    end
-    aucmd({ "CursorHold", "CursorHoldI" }, { callback = callback, group = group, buffer = buffnr })
-    callback = function()
-      vim.lsp.buf.clear_references()
-    end
-    aucmd("CursorMoved", { callback = callback, group = group, buffer = buffnr })
-  end
-
-  if capabilities.codeLensProvider then
-    vim.cmd("highlight! link LspCodeLens Comment")
-
-    local group_name = "lsp_document_codelens" .. buffnr
-    local group = vim.api.nvim_create_augroup(group_name, { clear = true })
-    local callback = function()
-      vim.lsp.codelens.refresh({ bufnr = 0 })
-    end
-    aucmd({ "BufEnter", "BufWritePost" }, { callback = callback, group = group, buffer = buffnr })
-    map("n", "<leader>lR", vim.lsp.codelens.run, { noremap = true, desc = "LSP run lens", buffer = buffnr })
-    map("n", "<leader>ll", vim.lsp.codelens.refresh, { noremap = true, desc = "LSP refresh lens", buffer = buffnr })
-  end
+  map("n", "<leader>lR", vim.lsp.codelens.run, { noremap = true, desc = "LSP run lens", buffer = buffnr })
+  map("n", "<leader>ll", vim.lsp.codelens.refresh, { noremap = true, desc = "LSP refresh lens", buffer = buffnr })
 end
 
 local servers = {
@@ -114,16 +78,6 @@ local servers = {
   },
 }
 
-local function on_attach(attach)
-  vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-      local buffer = args.buf
-      local client = vim.lsp.get_client_by_id(args.data.client_id)
-      attach(client, buffer)
-    end,
-  })
-end
-
 return {
   "neovim/nvim-lspconfig",
   event = "BufReadPre",
@@ -137,13 +91,15 @@ return {
     "onsails/lspkind-nvim",
   },
   config = function()
-    on_attach(function(client, buffnr)
-      keymaps(client, buffnr)
-      capabilities(client, buffnr)
-    end)
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        local buffer = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        keymaps(client, buffer)
+      end,
+    })
 
     for server, config in pairs(servers) do
-      -- Merge capabilities
       if server == "denols" then
         config.root_markers = { "deno.json", "deno.jsonc" }
         config.filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" }
