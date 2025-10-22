@@ -175,6 +175,7 @@ function private.compile(command, formatter, success_message, error_message)
   local items = {}
   local stdout_lines = {}
 
+  vim.notify("Compiling command: " .. command[1], vim.log.levels.INFO)
   Job:new({
     command = command[1],
     args = vim.list_slice(command, 2),
@@ -245,10 +246,6 @@ function private.create_compile_command()
     if #args == 0 then
       -- If there's a last command, recompile it
       if last_command then
-        vim.notify(
-          "Recompiling: " .. last_command.mode .. " " .. table.concat(last_command.args, " "),
-          vim.log.levels.INFO
-        )
         if last_command.mode == "cargo" and config.cargo.enabled then
           cargo.compile(last_command.args)
         end

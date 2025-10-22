@@ -1,5 +1,3 @@
-local map = vim.keymap.set
-
 local function hide_diagnostics()
   vim.diagnostic.config({ -- https://neovim.io/doc/user/diagnostic.html
     virtual_text = false,
@@ -13,37 +11,6 @@ local function show_diagnostics()
     signs = true,
     underline = true,
   })
-end
-
--- function to attach completion when setting up lsp
-local function keymaps(_, buffnr)
-  -- keymaps
-  -- Moved to snacks
-  -- map("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP go to definition", buffer = buffnr })
-  -- map("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "LSP go to declaration", buffer = buffnr })
-  map("n", "<leader>k", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
-  map("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "LSP Hover", buffer = buffnr })
-  map("n", "<leader>cr", vim.lsp.buf.rename, { noremap = true, desc = "LSP rename", buffer = buffnr })
-  vim.keymap.set("n", "[d", function()
-    vim.diagnostic.jump({ count = -1 })
-    vim.diagnostic.open_float()
-  end, { noremap = true, desc = "LSP go to previous diagnostic", buffer = buffnr })
-  vim.keymap.set("n", "]d", function()
-    vim.diagnostic.jump({ count = 1 })
-    vim.diagnostic.open_float()
-  end, { noremap = true, desc = "LSP go to next diagnostic", buffer = buffnr })
-  map("n", "<leader>df", vim.diagnostic.open_float, { noremap = true, desc = "LSP diagnostic float", buffer = buffnr })
-  map("n", "<leader>dh", hide_diagnostics, { noremap = true, desc = "LSP hide diagnostics", buffer = buffnr })
-  map("n", "<leader>ds", show_diagnostics, { noremap = true, desc = "LSP show diagnostics", buffer = buffnr })
-  map(
-    { "n", "i" },
-    "<C-k>",
-    vim.lsp.buf.signature_help,
-    { noremap = true, desc = "LSP signature help", buffer = buffnr }
-  )
-  map("n", "<leader>ca", vim.lsp.buf.code_action, { noremap = true, desc = "LSP code actions", buffer = buffnr })
-  map("n", "<leader>lR", vim.lsp.codelens.run, { noremap = true, desc = "LSP run lens", buffer = buffnr })
-  map("n", "<leader>ll", vim.lsp.codelens.refresh, { noremap = true, desc = "LSP refresh lens", buffer = buffnr })
 end
 
 local servers = {
@@ -91,14 +58,6 @@ return {
     "onsails/lspkind-nvim",
   },
   config = function()
-    vim.api.nvim_create_autocmd("LspAttach", {
-      callback = function(args)
-        local buffer = args.buf
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        keymaps(client, buffer)
-      end,
-    })
-
     for server, config in pairs(servers) do
       if server == "denols" then
         config.root_markers = { "deno.json", "deno.jsonc" }
@@ -116,4 +75,35 @@ return {
     -- Diagnostics
     vim.diagnostic.config({ virtual_text = true })
   end,
+  keys = {
+    -- Moved to snacks
+    -- { "gd", vim.lsp.buf.definition, desc = "LSP go to definition" },
+    -- { "gD", vim.lsp.buf.declaration, desc = "LSP go to declaration" },
+    -- { "gi", vim.lsp.buf.implementation, desc = "LSP go to implementation" },
+    { "<leader>k", vim.lsp.buf.hover, desc = "LSP Hover" },
+    { "<leader>cr", vim.lsp.buf.rename, desc = "LSP rename" },
+    {
+      "[d",
+      function()
+        vim.diagnostic.jump({ count = -1 })
+        vim.diagnostic.open_float()
+      end,
+      desc = "LSP go to previous diagnostic",
+    },
+    {
+      "]d",
+      function()
+        vim.diagnostic.jump({ count = 1 })
+        vim.diagnostic.open_float()
+      end,
+      desc = "LSP go to next diagnostic",
+    },
+    { "<leader>df", vim.diagnostic.open_float, desc = "LSP diagnostic float" },
+    { "<leader>dh", hide_diagnostics, desc = "LSP hide diagnostics" },
+    { "<leader>ds", show_diagnostics, desc = "LSP show diagnostics" },
+    { "<C-k>", vim.lsp.buf.signature_help, mode = { "n", "i" }, desc = "LSP signature help" },
+    { "<leader>ca", vim.lsp.buf.code_action, desc = "LSP code actions" },
+    { "<leader>lR", vim.lsp.codelens.run, desc = "LSP run lens" },
+    { "<leader>ll", vim.lsp.codelens.refresh, desc = "LSP refresh lens" },
+  },
 }

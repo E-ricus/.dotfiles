@@ -39,13 +39,13 @@ return {
         vim.keymap.set(mode, keys, func, { desc = "RustLSP: " .. desc })
       end
 
-      map("<leader>grd", "openDocs", "[G]oto [R]ust [D]ocs")
-      map("<leader>grem", "expandMacro", "[G]oto [R]ust [E]xpand [M]acro")
-      map("<leader>gree", "explainError", "[G]oto [R]ust [E]xplain [E]rror")
-      map("<leader>grmd", { "moveItem", "down" }, "[G]oto [R]ust [M]ove [D]own")
-      map("<leader>grmu", { "moveItem", "up" }, "[G]oto [R]ust [M]ove [U]p")
-      map("<leader>grrd", "renderDiagnostic", "[G]oto [R]ust [R]ender [D]iagnostic")
-      map("<leader>grc", "openCargo", "[G]oto [R]ust Open [C]argo")
+      map("<leader>rd", "openDocs", "Rust [D]ocs")
+      map("<leader>rem", "expandMacro", "Rust Expand Macro")
+      map("<leader>ree", "explainError", "Rust Explain Error")
+      map("<leader>rmd", { "moveItem", "down" }, "Rust Move Down")
+      map("<leader>rmu", { "moveItem", "up" }, "Rust Move [U]p")
+      map("<leader>rrd", "renderDiagnostic", " Rust Render Diagnostic")
+      map("<leader>rc", "openCargo", "Rust Open Cargo")
     end,
     init = function()
       require("local.compilemode").setup()

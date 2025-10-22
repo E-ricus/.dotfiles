@@ -3,14 +3,6 @@ return {
     "tpope/vim-fugitive",
     event = "VeryLazy",
   },
-  init = function()
-    -- Why is it there tpope?
-    vim.cmd("delcommand Gbrowse")
-  end,
-  dependencies = {
-    "tpope/vim-rhubarb",
-    event = "VeryLazy",
-  },
   {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",

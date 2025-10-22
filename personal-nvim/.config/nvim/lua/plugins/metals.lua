@@ -1,3 +1,4 @@
+-- TODO: Review if still usable
 local M = {
   "scalameta/nvim-metals",
   event = { "BufReadPre *.scala", "BufReadPre *.sbt" },
@@ -13,9 +14,6 @@ function M.config()
     showImplicitArguments = true,
     excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
   }
-
-  metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
-
   -- Autocmd that will actually be in charging of starting the whole thing
   local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
   vim.api.nvim_create_autocmd("FileType", {

@@ -1,3 +1,4 @@
+-- TODO: Move it to sidekick.nvim when added.
 return {
   "zbirenbaum/copilot.lua",
   event = "InsertEnter",
