@@ -29,3 +29,7 @@ style = "Regular"
 
 [terminal]
 shell = { program = "/usr/bin/env", args = ["fish", "--login", "--interactive"] }
+
+[window]
+# Mac....
+option_as_alt = 'Both'
