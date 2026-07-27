@@ -1,0 +1,12 @@
+{
+  "lsp": {
+    "json-language-server": {
+      "binary": {
+        "allow_binary_download": false
+      },
+      "enable_lsp_tasks": true
+    }
+  },
+  "vim_mode": true,
+  "relative_line_numbers": "enabled"
+}
