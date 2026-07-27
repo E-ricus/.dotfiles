@@ -1,10 +1,46 @@
 {
+  // Load .envrc / flake devshell env per worktree ("direct" = the default,
+  // spelled out for clarity). Applies to LSPs, tasks and the terminal.
+  "load_direnv": "direct",
   "lsp": {
     "json-language-server": {
       "binary": {
         "allow_binary_download": false
       },
       "enable_lsp_tasks": true
+    },
+    // rust-analyzer through lspmux, same as nvim/helix/emacs. RA_TARGET keys
+    // the lspmux instance per cargo target ("" = host). Switch targets with
+    // `gram-rust-target` (space r t h/w) — it writes a project-local
+    // .gram/settings.jsonc that overrides this block.
+    "rust-analyzer": {
+      "binary": {
+        "path": "lspmux",
+        "arguments": ["client", "--server-path", "rust-analyzer"],
+        "env": {
+          "RA_TARGET": ""
+        }
+      },
+      "initialization_options": {
+        "checkOnSave": false,
+        "check": {
+          "command": "clippy",
+          "workspace": false
+        },
+        "cargo": {
+          "buildScripts": {
+            "enable": true
+          }
+        },
+        "procMacro": {
+          "enable": true
+        },
+        "semanticHighlighting": {
+          "strings": {
+            "enable": false
+          }
+        }
+      }
     }
   },
   "vim_mode": true,

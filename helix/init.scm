@@ -45,8 +45,7 @@
       (r
         (t
           (h ":rust-target-host")
-          (w ":rust-target-windows")
-          (c ":rust-target-windows-codebase"))))))
+          (w ":rust-target-windows"))))))
 
 ;;;;;;;;;;;;;;;;;;;;; Plugins ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Notify forge pkg install --git https://github.com/chuwy/notify.hx.git

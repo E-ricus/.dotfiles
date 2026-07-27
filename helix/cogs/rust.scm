@@ -7,10 +7,9 @@
 ;;;     keys the lspmux instance per target (so each target gets a warm server).
 ;;;   * cargo.target / cargo.features are passed as rust-analyzer settings.
 ;;;
-;;; Three presets (same as nvim):
+;;; Two presets (same as nvim):
 ;;;   host                -> target "",                 no features
 ;;;   windows             -> x86_64-pc-windows-gnu,     no features
-;;;   windows-codebase    -> x86_64-pc-windows-gnu,     allow-window use-codebase-lib
 ;;;
 ;;; NOTE: rust-analyzer must be on PATH (from project's devshell / rustup),
 ;;; exactly as with neovim. lspmux forwards the full env (pass_environment=["*"]),
@@ -23,8 +22,7 @@
 (require "notify/notify.scm")
 
 (provide rust-target-host
-         rust-target-windows
-         rust-target-windows-codebase)
+         rust-target-windows)
 
 ;; Build the RA_TARGET fingerprint that keys the lspmux instance:
 ;;   "target|feat1|feat2..."  ("" for host)
@@ -93,13 +91,4 @@
 ;; Switches rust target to windows
 (define (rust-target-windows)
   (apply-rust-target "x86_64-pc-windows-gnu" '() "windows-gnu")
-  (notify "Switch rust-analyzer to windows"))
-
-
-;;@doc
-;; Switches rust target to windows + codebase
-(define (rust-target-windows-codebase)
-  (apply-rust-target "x86_64-pc-windows-gnu"
-                     '("allow-window" "use-codebase-lib")
-                     "windows-gnu + codebase")
   (notify "Switch rust-analyzer to windows"))

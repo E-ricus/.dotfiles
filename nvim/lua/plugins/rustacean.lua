@@ -13,17 +13,13 @@ return {
       end
 
       -- Prompt for target selection before server starts (synchronous)
-      local choice = vim.fn.confirm("Select Rust target:", "&Host\n&Windows\nWindows-&codebase", 1)
+      local choice = vim.fn.confirm("Select Rust target:", "&Host\n&Windows", 1)
 
       -- Set target and features based on selection
       if choice == 2 then
         -- Windows only
         vim.g.rust_analyzer_cargo_target = "x86_64-pc-windows-gnu"
         vim.g.rust_analyzer_cargo_features = {}
-      elseif choice == 3 then
-        -- Windows with codebase features
-        vim.g.rust_analyzer_cargo_target = "x86_64-pc-windows-gnu"
-        vim.g.rust_analyzer_cargo_features = { "allow-window", "use-codebase-lib" }
       else
         -- Host (choice 1 or 0 for cancelled)
         vim.g.rust_analyzer_cargo_target = ""
@@ -115,9 +111,6 @@ return {
       vim.keymap.set("n", "<leader>rtw", function()
         set_rust_target("x86_64-pc-windows-gnu")
       end, { desc = "Set target to windows x86-gnu" })
-      vim.keymap.set("n", "<leader>rtwc", function()
-        set_rust_target("x86_64-pc-windows-gnu", { "allow-window", "use-codebase-lib" })
-      end, { desc = "Set target to windows x86-gnu with codebase features" })
       vim.keymap.set("n", "<leader>rth", function()
         set_rust_target("")
       end, { desc = "Set target back to host" })

@@ -3,7 +3,7 @@
 ;;; Commentary:
 ;; Runs rust-analyzer behind lspmux. RA_TARGET keys the lspmux instance per
 ;; cargo target, so `C-c r t' switches target (host default on first connect).
-;; Edit targets in `my/rust-targets': (NAME . (TARGET FEATURES)), TARGET "" = host.
+;; Edit targets in `my/rust-targets': (NAME . TARGET), TARGET "" = host.
 
 ;;; Code:
 
@@ -12,32 +12,26 @@
 (defvar my/rust-target ""
   "Current cargo target for rust-analyzer (\"\" = host default).")
 
-(defvar my/rust-features nil
-  "List of cargo features currently enabled for rust-analyzer.")
-
 (defvar my/rust-targets
-  '(("host"                   . (""                       nil))
-    ("windows-gnu"            . ("x86_64-pc-windows-gnu"   nil))
-    ("windows-gnu + codebase" . ("x86_64-pc-windows-gnu"  ("allow-window" "use-codebase-lib"))))
-  "Alist of NAME -> (TARGET FEATURES) presets for `my/rust-set-target'.")
+  '(("host"        . "")
+    ("windows-gnu" . "x86_64-pc-windows-gnu"))
+  "Alist of NAME -> TARGET presets for `my/rust-set-target'.")
 
 (defun my/rust-fingerprint ()
-  "RA_TARGET value for the current target+features (\"target|feat|feat\")."
-  (mapconcat #'identity (cons my/rust-target my/rust-features) "|"))
+  "RA_TARGET value for the current target (\"\" = host)."
+  my/rust-target)
 
 (defun my/rust-settings ()
-  "rust-analyzer settings for the current target/features (unwrapped).
+  "rust-analyzer settings for the current target (unwrapped).
 
 This is the inner settings object rust-analyzer expects under
-`initializationOptions' (no `:rust-analyzer' wrapper). cargo.target and
-cargo.features are applied only when set. checkOnSave off; run a check
-manually for diagnostics."
+`initializationOptions' (no `:rust-analyzer' wrapper). cargo.target is
+applied only when set. checkOnSave off; run a check manually for
+diagnostics."
   `( :checkOnSave :json-false
      :cargo ( :buildScripts (:enable t)
               ,@(unless (string-empty-p my/rust-target)
-                  (list :target my/rust-target))
-              ,@(when my/rust-features
-                  (list :features (vconcat my/rust-features))))
+                  (list :target my/rust-target)))
      :procMacro (:enable t)))
 
 (defun my/rust-init-options (&rest _)
@@ -54,7 +48,7 @@ initial handshake, so it would send an empty config on a fresh connect."
 (defun my/rust-eglot-server (&optional _interactive _project)
   "rust-analyzer-via-lspmux server command; sets RA_TARGET for the instance key.
 
-Ends with `:initializationOptions' so the target/features ride the
+Ends with `:initializationOptions' so the target rides the
 `initialize' request rather than a (mistimed) post-handshake
 `didChangeConfiguration'."
   (setenv "RA_TARGET" (my/rust-fingerprint))
@@ -79,22 +73,19 @@ channel at connect time."
 
 Updates RA_TARGET, then `eglot-reconnect's the running server. Because
 `:initializationOptions' is a function (`my/rust-init-options'), eglot
-re-evaluates it on reconnect and sends the new target/features in the
-fresh `initialize' request. The reconnect re-manages every buffer of the
+re-evaluates it on reconnect and sends the new target in the fresh
+`initialize' request. The reconnect re-manages every buffer of the
 server (i.e. the whole project) automatically."
   (interactive
    (list (completing-read "Rust target: " (mapcar #'car my/rust-targets) nil t)))
-  (let ((preset (cdr (assoc name my/rust-targets))))
+  (let ((preset (assoc name my/rust-targets)))
     (unless preset (user-error "Unknown target: %s" name))
-    (setq my/rust-target (nth 0 preset)
-          my/rust-features (nth 1 preset))
+    (setq my/rust-target (cdr preset))
     (setenv "RA_TARGET" (my/rust-fingerprint))
     (when (and (fboundp 'eglot-current-server) (eglot-current-server))
       (eglot-reconnect (eglot-current-server)))
-    (message "Rust target: %s%s"
-             (if (string-empty-p my/rust-target) "host" my/rust-target)
-             (if my/rust-features
-                 (format " [%s]" (string-join my/rust-features ", ")) ""))))
+    (message "Rust target: %s"
+             (if (string-empty-p my/rust-target) "host" my/rust-target))))
 
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs

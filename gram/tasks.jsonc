@@ -1,0 +1,15 @@
+// Gram tasks 
+[
+  {
+    "label": "rust-analyzer target: host",
+    "command": "gram-rust-target",
+    "args": ["host", "$GRAM_WORKTREE_ROOT"],
+    "reveal": "never"
+  },
+  {
+    "label": "rust-analyzer target: windows",
+    "command": "gram-rust-target",
+    "args": ["windows", "$GRAM_WORKTREE_ROOT"],
+    "reveal": "never"
+  }
+]
