@@ -20,6 +20,8 @@
       "space /": "workspace::NewSearch",
       "space l a": "editor::ToggleCodeActions",
       "space l r": "editor::Rename",
+      "space g g": "git_panel::ToggleFocus",
+      "space e": "project_panel::ToggleFocus",
       // rust-analyzer target switching (same keys as helix/nvim)
       "space r t h": ["task::Spawn", { "task_name": "rust-analyzer target: host" }],
       "space r t w": ["task::Spawn", { "task_name": "rust-analyzer target: windows" }],

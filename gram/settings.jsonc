@@ -1,6 +1,10 @@
 {
   // Load .envrc / flake devshell env per worktree ("direct" = the default,
   // spelled out for clarity). Applies to LSPs, tasks and the terminal.
+  "project_panel": {
+    "hide_gitignore": true,
+    "hide_hidden": true
+  },
   "load_direnv": "direct",
   "lsp": {
     "json-language-server": {

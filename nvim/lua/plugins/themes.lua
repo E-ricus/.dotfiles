@@ -33,24 +33,6 @@ return {
     end,
   },
   {
-    "sainnhe/everforest",
-    enabled = false,
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd("colorscheme everforest")
-    end,
-  },
-  {
-    "sainnhe/gruvbox-material",
-    enabled = false,
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd("colorscheme gruvbox-material")
-    end,
-  },
-  {
     "ellisonleao/gruvbox.nvim",
     enabled = false,
     lazy = false,
@@ -62,9 +44,19 @@ return {
   },
   {
     "blazkowolf/gruber-darker.nvim",
-    enabled = true,
+    enabled = false,
     config = function()
       vim.cmd("colorscheme gruber-darker")
+    end,
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+  {
+    "savq/melange-nvim",
+    enabled = true,
+    config = function()
+      vim.cmd("colorscheme melange")
     end,
     lazy = false,
     priority = 1000,

@@ -26,7 +26,7 @@
       wasmRt = pkgs.pkgsCross.wasi32.llvmPackages.compiler-rt;
       gramClang =
         pkgs.runCommand "gram-clang-${clangUnwrapped.version}" {
-          nativeBuildInputs = [pkgs.makeWrapper pkgs.xorg.lndir];
+          nativeBuildInputs = [pkgs.makeWrapper pkgs.lndir];
         } ''
           resource=$out/resource-dir
           mkdir -p $resource
