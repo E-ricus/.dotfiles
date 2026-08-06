@@ -5,17 +5,7 @@
   inputs,
   den,
   ...
-}: let
-  # TODO: drop once nixos-unstable includes nixpkgs#546004
-  # (niri pins libdisplay-info_0_3; the current channel ships
-  # libdisplay-info 0.4.0 which libdisplay-info-sys 0.3.0 rejects,
-  # breaking the niri build). Applied to BOTH the nixos and homeManager
-  # pkgs since home-manager instantiates its own nixpkgs (noctalia's
-  # config.toml references ${pkgs.niri} from the HM side).
-  niriLibdisplayInfoFix = final: prev: {
-    niri = prev.niri.override {libdisplay-info = prev.libdisplay-info_0_2;};
-  };
-in {
+}: {
   # ── Standalone package (nix run .#niri-noctalia, scale 1.0) ───────
   perSystem = {pkgs, ...}: {
     packages.niri-noctalia = inputs.wrapper-modules.wrappers.niri.wrap {
@@ -43,8 +33,6 @@ in {
             settings.outputs."eDP-1".scale = host.display.scale;
           };
         in {
-          nixpkgs.overlays = [niriLibdisplayInfoFix];
-
           programs.niri.enable = true;
           programs.niri.package = niriPkg;
           services.displayManager.defaultSession = lib.mkDefault "niri";
@@ -73,8 +61,6 @@ in {
         pkgs.writeShellScript "lock-screen"
         "${noctaliaShell}/bin/noctalia msg session lock";
     in {
-      nixpkgs.overlays = [niriLibdisplayInfoFix];
-
       home.packages = [pkgs.hyprlock pkgs.satty];
 
       # Suppress the NetworkManager applet under niri. It is pulled in by the
