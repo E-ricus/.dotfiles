@@ -35,6 +35,9 @@
       brightnessScript =
         pkgs.writeShellScript "brightness-control"
         (builtins.readFile ../wayland/brightness-control.sh);
+      # Pull an existing dragon-drop window to the focused workspace.
+      # Defined in dragon-capture.nix (niri has no sticky/all-workspaces window).
+      dragonSummon = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.dragon-summon;
     in {
       v2-settings = true;
 
@@ -323,6 +326,12 @@
           "Print" = ni "screenshot";
           "Ctrl+Print" = ni "screenshot-screen";
           "Alt+Print" = ni "screenshot-window";
+
+          # Summon the dragon-drop capture window to the current workspace.
+          "Mod+Shift+A" = _: {
+            props.allow-inhibiting = false;
+            content.spawn = ["${dragonSummon}"];
+          };
 
           # Media, audio, brightness
           "XF86AudioRaiseVolume" = _: {

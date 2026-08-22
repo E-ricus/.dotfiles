@@ -127,6 +127,21 @@
             enable_daemon = true;
             position = "bottom_right";
             background_opacity = 1.0;
+
+            # Shorten how long toasts stay on screen. v5 has no global timeout
+            # key, so a catch-all filter overrides the duration for every
+            # sender. This pairs with the dragon-capture integration: the toast
+            # fades quickly while dragon-drop stays up to receive the file.
+            # (Applies to all toasts — there is no per-category timeout.)
+            filter_order = ["shorten"];
+            filter.shorten = {
+              enabled = true;
+              match_content = ".*"; # match every notification
+              show_toast = true;
+              save_history = true;
+              play_sound = true;
+              override_duration = 2500; # ms
+            };
           };
 
           # ── Audio ──────────────────────────────────────────────────────

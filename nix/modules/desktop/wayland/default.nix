@@ -25,6 +25,7 @@
         libnotify
         cliphist
         slurp
+        inotify-tools
       ];
 
       # Noctalia handles notifications

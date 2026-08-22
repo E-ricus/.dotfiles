@@ -20,6 +20,7 @@
       den.aspects.wayland
       den.aspects.wayland-regreet
       den.aspects.noctalia
+      den.aspects.dragon-capture
       # Parametric include: receives {host}, injects per-host scale
       ({host}: {
         nixos = {
