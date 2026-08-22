@@ -7,10 +7,10 @@
 
     # Sub-aspect for Mullvad
     provides.mullvad = {
-      nixos = {pkgs, ...}: {
+      nixos = {...}: {
         services.mullvad-vpn = {
           enable = true;
-          package = pkgs.mullvad-vpn;
+          gui.enable = true;
         };
         # These leaks dns but without it and the fallbadk, with the vpn off there is no connection
         # If commited to mullad, is possible to remove it.

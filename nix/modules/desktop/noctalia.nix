@@ -130,9 +130,7 @@
 
             # Shorten how long toasts stay on screen. v5 has no global timeout
             # key, so a catch-all filter overrides the duration for every
-            # sender. This pairs with the dragon-capture integration: the toast
-            # fades quickly while dragon-drop stays up to receive the file.
-            # (Applies to all toasts — there is no per-category timeout.)
+            # sender.
             filter_order = ["shorten"];
             filter.shorten = {
               enabled = true;
