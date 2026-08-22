@@ -387,6 +387,15 @@
           "Mod+Shift+E" = ni "quit";
           "Ctrl+Alt+Delete" = ni "quit";
           "Mod+Shift+P" = ni "power-off-monitors";
+          # Apps
+          "Mod+G" = _: {
+            props.allow-inhibiting = false;
+            content.spawn-sh = "${lib.getExe pkgs.handy} --toggle-transcription";
+          };
+          "Mod+Shift+G" = _: {
+            props.allow-inhibiting = false;
+            content.spawn-sh = "${lib.getExe pkgs.handy} --toggle-post-process";
+          };
         };
       };
     };

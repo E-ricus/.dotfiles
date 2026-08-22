@@ -18,6 +18,9 @@
         doxx
         xleak
         dragon-drop
+        handy
+        wtype
+        localsend
       ];
     };
     nixos = {pkgs, ...}: {

@@ -9,17 +9,6 @@ in {
       lib,
       ...
     }: {
-      nixpkgs.overlays = [
-        (final: prev: {
-          qemu = prev.qemu.overrideAttrs (old: {
-            configureFlags = old.configureFlags ++ ["--enable-gtk-clipboard"];
-          });
-          qemu_kvm = prev.qemu_kvm.overrideAttrs (old: {
-            configureFlags = old.configureFlags ++ ["--enable-gtk-clipboard"];
-          });
-        })
-      ];
-
       virtualisation.libvirtd = {
         enable = true;
         qemu = {

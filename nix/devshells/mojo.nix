@@ -7,7 +7,6 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     flake-utils,
   }:
@@ -22,7 +21,7 @@
         };
 
         # Only support Linux systems for now (GPU requirements)
-        isLinux = pkgs.stdenv.isLinux;
+        isLinux = pkgs.stdenv.hostPlatform.isLinux;
 
         # Determine GPU type and features
         # For NVIDIA, we need CUDA toolkit
