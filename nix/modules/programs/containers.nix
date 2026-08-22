@@ -1,10 +1,14 @@
 # Container tools — Podman.
 {...}: {
   den.aspects.containers = {
-    homeManager = {pkgs, config, ...}: {
+    homeManager = {
+      pkgs,
+      config,
+      ...
+    }: {
       home.packages = [pkgs.podman-compose];
 
-      # Symlink podman auth to where Docker Compose (used by arion) expects it.
+      # Symlink podman auth to where Docker Compose expects it.
       # Podman stores credentials at /run/user/<uid>/containers/auth.json,
       # but docker-compose reads ~/.docker/config.json.
       home.file.".docker/config.json".source =
@@ -13,7 +17,7 @@
 
     nixos = {...}: {
       virtualisation = {
-        containers.registries.search = [
+        containers.registries.settings.unqualified-search-registries = [
           "docker.io"
           "quay.io"
         ];

@@ -60,7 +60,7 @@
   # ReGreet greeter aspect
   den.aspects.wayland-regreet = {
     nixos = {pkgs, ...}: {
-      programs.regreet = {
+      services.displayManager.regreet = {
         enable = true;
         cageArgs = ["-s" "-d"];
         settings = {
