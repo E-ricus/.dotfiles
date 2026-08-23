@@ -16,8 +16,10 @@
       # `--target=wasm32-wasip2`, so we use the UNwrapped driver. That in turn
       # lacks wasm compiler-rt builtins in its resource dir (nixpkgs builds
       # compiler-rt host-only), so we graft the wasi cross build of
-      # compiler-rt into a merged resource dir. Both driver layouts are
-      # provided (per-target and legacy per-OS).
+      # compiler-rt into a merged resource dir. nixpkgs has shipped the
+      # builtins under different libdir layouts (lib/wasi, lib/wasip1), so
+      # locate the archive with find instead of hardcoding; both driver
+      # layouts are provided (per-target and legacy per-OS).
       #
       # Rust side is covered by rustup (langs.nix) + `rustup target add
       # wasm32-wasip2`.
@@ -32,10 +34,14 @@
           mkdir -p $resource
           lndir -silent ${lib.getLib clangUnwrapped}/lib/clang/${clangMajor} $resource
 
-          builtins_a=${wasmRt}/lib/wasi/libclang_rt.builtins-wasm32.a
+          builtins_a=$(find ${wasmRt}/lib -name 'libclang_rt.builtins-wasm32.a' | head -1)
+          test -n "$builtins_a" || {
+            echo "gram-clang: no libclang_rt.builtins-wasm32.a in ${wasmRt}" >&2
+            exit 1
+          }
           mkdir -p $resource/lib/wasm32-unknown-wasip2 $resource/lib/wasi
-          ln -sf $builtins_a $resource/lib/wasm32-unknown-wasip2/libclang_rt.builtins.a
-          ln -sf $builtins_a $resource/lib/wasi/libclang_rt.builtins-wasm32.a
+          ln -sf "$builtins_a" $resource/lib/wasm32-unknown-wasip2/libclang_rt.builtins.a
+          ln -sf "$builtins_a" $resource/lib/wasi/libclang_rt.builtins-wasm32.a
 
           mkdir -p $out/bin
           makeWrapper ${clangUnwrapped}/bin/clang $out/bin/clang \
